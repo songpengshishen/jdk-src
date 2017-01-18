@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2006, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -50,7 +50,7 @@ import sun.swing.DefaultLookup;
  * <li>The cursor blinks at about 1/2 second intervals.
  * <li>The entire value is selected when focus is gained.
  * <li>Shift-left-arrow and shift-right-arrow extend selection
- * <li>Cntrl-left-arrow and cntrl-right-arrow act like home and
+ * <li>Ctrl-left-arrow and ctrl-right-arrow act like home and
  *   end respectively.
  * </ul>
  * <p>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2009, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -60,7 +60,7 @@ public class WindowsFileChooserUI extends BasicFileChooserUI {
     private JPanel centerPanel;
 
     private JLabel lookInLabel;
-    private JComboBox directoryComboBox;
+    private JComboBox<File> directoryComboBox;
     private DirectoryComboBoxModel directoryComboBoxModel;
     private ActionListener directoryComboBoxAction = new DirectoryComboBoxAction();
 
@@ -76,7 +76,7 @@ public class WindowsFileChooserUI extends BasicFileChooserUI {
     private JPanel buttonPanel;
     private JPanel bottomPanel;
 
-    private JComboBox filterComboBox;
+    private JComboBox<FileFilter> filterComboBox;
 
     private static final Dimension hstrut10 = new Dimension(10, 1);
 
@@ -93,7 +93,6 @@ public class WindowsFileChooserUI extends BasicFileChooserUI {
 
     private static int MIN_WIDTH = 425;
     private static int MIN_HEIGHT = 245;
-    private static Dimension MIN_SIZE = new Dimension(MIN_WIDTH, MIN_HEIGHT);
 
     private static int LIST_PREF_WIDTH = 444;
     private static int LIST_PREF_HEIGHT = 138;
@@ -245,7 +244,7 @@ public class WindowsFileChooserUI extends BasicFileChooserUI {
         topPanel.add(Box.createRigidArea(new Dimension(8,0)));
 
         // CurrentDir ComboBox
-        directoryComboBox = new JComboBox() {
+        directoryComboBox = new JComboBox<File>() {
             public Dimension getMinimumSize() {
                 Dimension d = super.getMinimumSize();
                 d.width = 60;
@@ -445,7 +444,7 @@ public class WindowsFileChooserUI extends BasicFileChooserUI {
 
         filterComboBoxModel = createFilterComboBoxModel();
         fc.addPropertyChangeListener(filterComboBoxModel);
-        filterComboBox = new JComboBox(filterComboBoxModel);
+        filterComboBox = new JComboBox<FileFilter>(filterComboBoxModel);
         ftl.setLabelFor(filterComboBox);
         filterComboBox.setRenderer(createFilterComboBoxRenderer());
         fileAndFilterPanel.add(filterComboBox);
@@ -631,6 +630,7 @@ public class WindowsFileChooserUI extends BasicFileChooserUI {
      * @return   a <code>Dimension</code> specifying the preferred
      *           width and height of the file chooser
      */
+    @Override
     public Dimension getPreferredSize(JComponent c) {
         int prefWidth = PREF_SIZE.width;
         Dimension d = c.getLayout().preferredLayoutSize(c);
@@ -649,8 +649,9 @@ public class WindowsFileChooserUI extends BasicFileChooserUI {
      * @return   a <code>Dimension</code> specifying the minimum
      *           width and height of the file chooser
      */
+    @Override
     public Dimension getMinimumSize(JComponent c) {
-        return MIN_SIZE;
+        return new Dimension(MIN_WIDTH, MIN_HEIGHT);
     }
 
     /**
@@ -660,6 +661,7 @@ public class WindowsFileChooserUI extends BasicFileChooserUI {
      * @return   a <code>Dimension</code> specifying the maximum
      *           width and height of the file chooser
      */
+    @Override
     public Dimension getMaximumSize(JComponent c) {
         return new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE);
     }
@@ -1036,7 +1038,7 @@ public class WindowsFileChooserUI extends BasicFileChooserUI {
     /**
      * Data model for a type-face selection combo-box.
      */
-    protected class DirectoryComboBoxModel extends AbstractListModel implements ComboBoxModel {
+    protected class DirectoryComboBoxModel extends AbstractListModel<File> implements ComboBoxModel<File> {
         Vector<File> directories = new Vector<File>();
         int[] depths = null;
         File selectedDirectory = null;
@@ -1146,7 +1148,7 @@ public class WindowsFileChooserUI extends BasicFileChooserUI {
             return directories.size();
         }
 
-        public Object getElementAt(int index) {
+        public File getElementAt(int index) {
             return directories.elementAt(index);
         }
     }
@@ -1186,7 +1188,8 @@ public class WindowsFileChooserUI extends BasicFileChooserUI {
     /**
      * Data model for a type-face selection combo-box.
      */
-    protected class FilterComboBoxModel extends AbstractListModel implements ComboBoxModel, PropertyChangeListener {
+    protected class FilterComboBoxModel extends AbstractListModel<FileFilter> implements ComboBoxModel<FileFilter>,
+            PropertyChangeListener {
         protected FileFilter[] filters;
         protected FilterComboBoxModel() {
             super();
@@ -1239,7 +1242,7 @@ public class WindowsFileChooserUI extends BasicFileChooserUI {
             }
         }
 
-        public Object getElementAt(int index) {
+        public FileFilter getElementAt(int index) {
             if(index > getSize() - 1) {
                 // This shouldn't happen. Try to recover gracefully.
                 return getFileChooser().getFileFilter();

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2014, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -55,7 +55,6 @@ import javax.swing.text.DefaultEditorKit;
 
 import java.awt.Font;
 import java.awt.Color;
-import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
 import java.security.AccessController;
@@ -2013,7 +2012,7 @@ public class WindowsLookAndFeel extends BasicLookAndFeel
      * results.
      * </p>
      *
-     * @param component Component the error occured in, may be
+     * @param component Component the error occurred in, may be
      *                  null indicating the error condition is
      *                  not directly associated with a
      *                  <code>Component</code>.
@@ -2622,13 +2621,15 @@ public class WindowsLookAndFeel extends BasicLookAndFeel
 
     private static class FocusColorProperty extends DesktopProperty {
         public FocusColorProperty () {
-            // Fallback value is never used bacause of the configureValue method doesn't return null
+            // Fallback value is never used because of the configureValue method doesn't return null
             super("win.3d.backgroundColor", Color.BLACK);
         }
 
         @Override
         protected Object configureValue(Object value) {
-            if (! ((Boolean)Toolkit.getDefaultToolkit().getDesktopProperty("win.highContrast.on")).booleanValue()){
+            Object highContrastOn = Toolkit.getDefaultToolkit().
+                    getDesktopProperty("win.highContrast.on");
+            if (highContrastOn == null || !((Boolean) highContrastOn).booleanValue()) {
                 return Color.BLACK;
             }
             return Color.BLACK.equals(value) ? Color.WHITE : Color.BLACK;

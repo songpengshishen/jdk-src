@@ -5,9 +5,9 @@ import java.util.ListResourceBundle;
 public final class windows_ko extends ListResourceBundle {
     protected final Object[][] getContents() {
         return new Object[][] {
-            { "FileChooser.detailsViewActionLabel.textAndMnemonic", "\uC138\uBD80 \uC815\uBCF4" },
-            { "FileChooser.detailsViewButtonAccessibleName", "\uC138\uBD80 \uC815\uBCF4" },
-            { "FileChooser.detailsViewButtonToolTip.textAndMnemonic", "\uC138\uBD80 \uC815\uBCF4" },
+            { "FileChooser.detailsViewActionLabel.textAndMnemonic", "\uC138\uBD80\uC815\uBCF4" },
+            { "FileChooser.detailsViewButtonAccessibleName", "\uC138\uBD80\uC815\uBCF4" },
+            { "FileChooser.detailsViewButtonToolTip.textAndMnemonic", "\uC138\uBD80\uC815\uBCF4" },
             { "FileChooser.fileAttrHeader.textAndMnemonic", "\uC18D\uC131" },
             { "FileChooser.fileDateHeader.textAndMnemonic", "\uC218\uC815 \uB0A0\uC9DC" },
             { "FileChooser.fileNameHeader.textAndMnemonic", "\uC774\uB984" },

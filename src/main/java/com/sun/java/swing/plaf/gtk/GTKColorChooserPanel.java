@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002, 2008, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -1041,7 +1041,7 @@ class GTKColorChooserPanel extends AbstractColorChooserPanel implements
         }
 
         /**
-         * Rotates the triangle to accomodate the passed in hue.
+         * Rotates the triangle to accommodate the passed in hue.
          */
         private void setAngleFromHue(float hue) {
             setHueAngle((1.0 - hue) * Math.PI * 2);

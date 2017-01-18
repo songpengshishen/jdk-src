@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 1998, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -162,7 +162,7 @@ public abstract class WindowsTextUI extends BasicTextUI {
          *        necessarily the region to paint.
          * @param c the editor
          * @param view View painting for
-         * @return region drawing occured in
+         * @return region drawing occurred in
          */
         public Shape paintLayer(Graphics g, int offs0, int offs1,
                                 Shape bounds, JTextComponent c, View view) {
