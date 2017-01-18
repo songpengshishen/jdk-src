@@ -147,7 +147,7 @@ public class ElementImpl
      * will not be copied unless the "deep" flag is true, but Attributes
      * are <i>always</i> replicated.
      *
-     * @see org.w3c.dom.Node#cloneNode(boolean)
+     * @see Node#cloneNode(boolean)
      */
     public Node cloneNode(boolean deep) {
 
@@ -181,7 +181,7 @@ public class ElementImpl
                     try {
                        uri = new URI(uri).toString();
                     }
-                    catch (com.sun.org.apache.xerces.internal.util.URI.MalformedURIException e) {
+                    catch (URI.MalformedURIException e) {
                         // This may be a relative URI.
 
                         // Make any parentURI into a URI object to use with the URI(URI, String) constructor
@@ -190,7 +190,7 @@ public class ElementImpl
                             try{
                                 uri = new URI(new URI(parentBaseURI), uri).toString();
                             }
-                            catch (com.sun.org.apache.xerces.internal.util.URI.MalformedURIException ex){
+                            catch (URI.MalformedURIException ex){
                                 // This should never happen: parent should have checked the URI and returned null if invalid.
                                 return null;
                             }
@@ -216,7 +216,7 @@ public class ElementImpl
                 //return valid absolute base URI
                return new URI(baseURI).toString();
             }
-            catch (com.sun.org.apache.xerces.internal.util.URI.MalformedURIException e){
+            catch (URI.MalformedURIException e){
                 return null;
             }
         }
@@ -1042,14 +1042,14 @@ public class ElementImpl
    }
 
     /**
-     * @see org.w3c.dom.TypeInfo#getTypeName()
+     * @see TypeInfo#getTypeName()
      */
      public String getTypeName() {
         return null;
      }
 
     /**
-     * @see org.w3c.dom.TypeInfo#getTypeNamespace()
+     * @see TypeInfo#getTypeNamespace()
      */
     public String getTypeNamespace() {
         return null;

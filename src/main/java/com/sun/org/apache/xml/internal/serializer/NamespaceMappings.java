@@ -101,7 +101,7 @@ public class NamespaceMappings
 
     /**
      * Default constructor
-     * @see java.lang.Object#Object()
+     * @see Object#Object()
      */
     public NamespaceMappings()
     {

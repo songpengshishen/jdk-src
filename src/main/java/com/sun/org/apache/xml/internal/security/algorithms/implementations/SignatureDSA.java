@@ -48,7 +48,7 @@ public class SignatureDSA extends SignatureAlgorithmSpi {
         java.util.logging.Logger.getLogger(SignatureDSA.class.getName());
 
     /** Field algorithm */
-    private java.security.Signature signatureAlgorithm = null;
+    private Signature signatureAlgorithm = null;
 
     /** size of Q */
     private int size;

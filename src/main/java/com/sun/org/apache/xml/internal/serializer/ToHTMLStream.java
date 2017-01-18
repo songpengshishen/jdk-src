@@ -655,12 +655,12 @@ public final class ToHTMLStream extends ToStream
     /**
      * Receive notification of the beginning of a document.
      *
-     * @throws org.xml.sax.SAXException Any SAX exception, possibly
+     * @throws SAXException Any SAX exception, possibly
      *            wrapping another exception.
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
-    protected void startDocumentInternal() throws org.xml.sax.SAXException
+    protected void startDocumentInternal() throws SAXException
     {
         super.startDocumentInternal();
 
@@ -714,12 +714,12 @@ public final class ToHTMLStream extends ToStream
     /**
      * Receive notification of the end of a document.
      *
-     * @throws org.xml.sax.SAXException Any SAX exception, possibly
+     * @throws SAXException Any SAX exception, possibly
      *            wrapping another exception.
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
-    public final void endDocument() throws org.xml.sax.SAXException
+    public final void endDocument() throws SAXException
     {
 
         flushPending();
@@ -748,7 +748,7 @@ public final class ToHTMLStream extends ToStream
      *  @param localName
      *  @param name The element type name.
      *  @param atts The attributes attached to the element, if any.
-     *  @throws org.xml.sax.SAXException Any SAX exception, possibly
+     *  @throws SAXException Any SAX exception, possibly
      *             wrapping another exception.
      *  @see #endElement
      *  @see org.xml.sax.AttributeList
@@ -758,7 +758,7 @@ public final class ToHTMLStream extends ToStream
         String localName,
         String name,
         Attributes atts)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
 
         ElemContext elemContext = m_elemContext;
@@ -882,14 +882,14 @@ public final class ToHTMLStream extends ToStream
      *  @param namespaceURI
      *  @param localName
      *  @param name The element type name
-     *  @throws org.xml.sax.SAXException Any SAX exception, possibly
+     *  @throws SAXException Any SAX exception, possibly
      *             wrapping another exception.
      */
     public final void endElement(
         final String namespaceURI,
         final String localName,
         final String name)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
         // deal with any pending issues
         if (m_cdataTagOpen)
@@ -1014,7 +1014,7 @@ public final class ToHTMLStream extends ToStream
      * @param   elemDesc The description of the HTML element
      *           that has this attribute.
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
     protected void processAttribute(
         java.io.Writer writer,
@@ -1103,7 +1103,7 @@ public final class ToHTMLStream extends ToStream
      * @param doURLEscaping True if we should try to encode as
      *                      per http://www.ietf.org/rfc/rfc2396.txt.
      *
-     * @throws org.xml.sax.SAXException if a bad surrogate pair is detected.
+     * @throws SAXException if a bad surrogate pair is detected.
      */
     public void writeAttrURI(
         final java.io.Writer writer, String string, boolean doURLEscaping)
@@ -1341,7 +1341,7 @@ public final class ToHTMLStream extends ToStream
      * @param   string      String to convert to XML format.
      * @param   encoding    CURRENTLY NOT IMPLEMENTED.
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
     public void writeAttrString(
         final java.io.Writer writer, String string, String encoding)
@@ -1479,15 +1479,15 @@ public final class ToHTMLStream extends ToStream
      * @param chars The characters from the XML document.
      * @param start The start position in the array.
      * @param length The number of characters to read from the array.
-     * @throws org.xml.sax.SAXException Any SAX exception, possibly
+     * @throws SAXException Any SAX exception, possibly
      *            wrapping another exception.
      * @see #ignorableWhitespace
      * @see org.xml.sax.Locator
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
     public final void characters(char chars[], int start, int length)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
 
         if (m_elemContext.m_isRaw)
@@ -1520,7 +1520,7 @@ public final class ToHTMLStream extends ToStream
             }
             catch (IOException ioe)
             {
-                throw new org.xml.sax.SAXException(
+                throw new SAXException(
                     Utils.messages.createMessage(
                         MsgKey.ER_OIERROR,
                         null),
@@ -1554,15 +1554,15 @@ public final class ToHTMLStream extends ToStream
      *  @param ch The characters from the XML document.
      *  @param start The start position in the array.
      *  @param length The number of characters to read from the array.
-     *  @throws org.xml.sax.SAXException Any SAX exception, possibly
+     *  @throws SAXException Any SAX exception, possibly
      *             wrapping another exception.
      *  @see #ignorableWhitespace
      *  @see org.xml.sax.Locator
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
     public final void cdata(char ch[], int start, int length)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
 
         if ((null != m_elemContext.m_elementName)
@@ -1587,7 +1587,7 @@ public final class ToHTMLStream extends ToStream
             }
             catch (IOException ioe)
             {
-                throw new org.xml.sax.SAXException(
+                throw new SAXException(
                     Utils.messages.createMessage(
                         MsgKey.ER_OIERROR,
                         null),
@@ -1607,13 +1607,13 @@ public final class ToHTMLStream extends ToStream
      *  @param target The processing instruction target.
      *  @param data The processing instruction data, or null if
      *         none was supplied.
-     *  @throws org.xml.sax.SAXException Any SAX exception, possibly
+     *  @throws SAXException Any SAX exception, possibly
      *             wrapping another exception.
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
     public void processingInstruction(String target, String data)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
 
         // Process any pending starDocument and startElement first.
@@ -1680,10 +1680,10 @@ public final class ToHTMLStream extends ToStream
      *
      * @param name non-null reference to entity name string.
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
     public final void entityReference(String name)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
         try
         {
@@ -1715,7 +1715,7 @@ public final class ToHTMLStream extends ToStream
      * @param nAttrs the number of attributes in m_attributes
      * to be processed
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
     public void processAttributes(java.io.Writer writer, int nAttrs)
         throws IOException,SAXException
@@ -1737,7 +1737,7 @@ public final class ToHTMLStream extends ToStream
      * For the enclosing elements starting tag write out out any attributes
      * followed by ">"
      *
-     *@throws org.xml.sax.SAXException
+     *@throws SAXException
      */
     protected void closeStartTag() throws SAXException
     {
@@ -1863,10 +1863,10 @@ public final class ToHTMLStream extends ToStream
 
     /**
      * Report the end of DTD declarations.
-     * @throws org.xml.sax.SAXException The application may raise an exception.
+     * @throws SAXException The application may raise an exception.
      * @see #startDTD
      */
-    public void endDTD() throws org.xml.sax.SAXException
+    public void endDTD() throws SAXException
     {
         m_inDTD = false;
         /* for ToHTMLStream the DOCTYPE is entirely output in the

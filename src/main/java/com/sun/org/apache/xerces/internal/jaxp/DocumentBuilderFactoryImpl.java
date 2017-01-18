@@ -51,7 +51,7 @@ public class DocumentBuilderFactoryImpl extends DocumentBuilderFactory {
     private boolean fSecureProcess = true;
 
     /**
-     * Creates a new instance of a {@link javax.xml.parsers.DocumentBuilder}
+     * Creates a new instance of a {@link DocumentBuilder}
      * using the currently configured parameters.
      */
     public DocumentBuilder newDocumentBuilder()

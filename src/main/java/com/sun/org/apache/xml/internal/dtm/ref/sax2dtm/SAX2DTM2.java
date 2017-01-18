@@ -2079,7 +2079,7 @@ public class SAX2DTM2 extends SAX2DTM
    * @param attributes The specified or defaulted attributes.
    * @throws SAXException Any SAX exception, possibly
    *            wrapping another exception.
-   * @see org.xml.sax.ContentHandler#startElement
+   * @see ContentHandler#startElement
    */
   public void startElement(String uri, String localName, String qName, Attributes attributes)
       throws SAXException
@@ -2223,7 +2223,7 @@ public class SAX2DTM2 extends SAX2DTM
    *        empty string if qualified names are not available.
    * @throws SAXException Any SAX exception, possibly
    *            wrapping another exception.
-   * @see org.xml.sax.ContentHandler#endElement
+   * @see ContentHandler#endElement
    */
   public void endElement(String uri, String localName, String qName)
           throws SAXException
@@ -2279,7 +2279,7 @@ public class SAX2DTM2 extends SAX2DTM
    *
    * @throws SAXException Any SAX exception, possibly
    *            wrapping another exception.
-   * @see org.xml.sax.ContentHandler#startDocument
+   * @see ContentHandler#startDocument
    */
   public void startDocument() throws SAXException
   {
@@ -2299,7 +2299,7 @@ public class SAX2DTM2 extends SAX2DTM
    *
    * @throws SAXException Any SAX exception, possibly
    *            wrapping another exception.
-   * @see org.xml.sax.ContentHandler#endDocument
+   * @see ContentHandler#endDocument
    */
   public void endDocument() throws SAXException
   {
@@ -2452,7 +2452,7 @@ public class SAX2DTM2 extends SAX2DTM
    *             none is supplied.
    * @throws SAXException Any SAX exception, possibly
    *            wrapping another exception.
-   * @see org.xml.sax.ContentHandler#processingInstruction
+   * @see ContentHandler#processingInstruction
    */
   public void processingInstruction(String target, String data)
           throws SAXException

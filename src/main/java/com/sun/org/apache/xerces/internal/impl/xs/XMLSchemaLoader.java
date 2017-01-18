@@ -659,7 +659,7 @@ XSLoader, DOMConfiguration {
 
     // add external schema locations to the location pairs
     public static void processExternalHints(String sl, String nsl,
-            Map<String, XMLSchemaLoader.LocationArray> locations,
+            Map<String, LocationArray> locations,
             XMLErrorReporter er) {
         if (sl != null) {
             try {
@@ -713,7 +713,7 @@ XSLoader, DOMConfiguration {
     // @param locations     HashMap mapping namespaces to LocationArray objects holding lists of locaitons
     // @return true if no problems; false if string could not be tokenized
     public static boolean tokenizeSchemaLocationStr(String schemaStr,
-            Map<String, XMLSchemaLoader.LocationArray> locations) {
+            Map<String, LocationArray> locations) {
         if (schemaStr!= null) {
             StringTokenizer t = new StringTokenizer(schemaStr, " \n\t\r");
             String namespace, location;
@@ -836,7 +836,7 @@ XSLoader, DOMConfiguration {
                 targetNamespace = grammar.getTargetNamespace() ;
                 if(jaxpSchemaSourceNamespaces.contains(targetNamespace)){
                     //when an array of objects is passed it is illegal to have two schemas that share same namespace.
-                    throw new java.lang.IllegalArgumentException(
+                    throw new IllegalArgumentException(
                             " When using array of Objects as the value of SCHEMA_SOURCE property , " +
                     "no two Schemas should share the same targetNamespace. " );
                 }

@@ -48,7 +48,7 @@ abstract class MarkerInstruction extends Instruction {
     }
 
     /**
-     * {@link com.sun.org.apache.bcel.internal.generic.Visitor}s will know nothing about this
+     * {@link Visitor}s will know nothing about this
      * kind of {@link org.apche.bcel.generic.Instruction}, so this method does
      * nothing.
      */
@@ -59,7 +59,7 @@ abstract class MarkerInstruction extends Instruction {
      * The number of JVM stack entries consumed by the instruction.
      * This instruction is just a place holder, so it does not consume any
      * stack entries.
-     * @param cpg The {@link com.sun.org.apache.bcel.internal.generic.ConstantPoolGen} for the
+     * @param cpg The {@link ConstantPoolGen} for the
      * current {@link com.sun.org.apache.bcel.internal.generic.ClassGen}
      * @return <code>0</code> always
      */
@@ -70,7 +70,7 @@ abstract class MarkerInstruction extends Instruction {
      * The number of JVM stack entries produced by the instruction.
      * This instruction is just a place holder, so it does not produce any
      * stack entries.
-     * @param cpg The {@link com.sun.org.apache.bcel.internal.generic.ConstantPoolGen} for the
+     * @param cpg The {@link ConstantPoolGen} for the
      * current {@link com.sun.org.apache.bcel.internal.generic.ClassGen}
      * @return <code>0</code> always
      */

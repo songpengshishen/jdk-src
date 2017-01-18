@@ -90,7 +90,7 @@ public class StepPattern extends NodeTest implements SubContextList, ExpressionO
    * Calculate the local name or psuedo name of the node that this pattern will test,
    * for hash table lookup optimization.
    *
-   * @see com.sun.org.apache.xpath.internal.compiler.PsuedoNames
+   * @see PsuedoNames
    */
   public void calcTargetString()
   {
@@ -132,7 +132,7 @@ public class StepPattern extends NodeTest implements SubContextList, ExpressionO
    *
    *
    * @return local name or psuedo name of the node.
-   * @see com.sun.org.apache.xpath.internal.compiler.PsuedoNames
+   * @see PsuedoNames
    */
   public String getTargetString()
   {
@@ -321,11 +321,11 @@ public class StepPattern extends NodeTest implements SubContextList, ExpressionO
    * @param xctxt XPath runtime context.
    * @param currentNode The current node context.
    *
-   * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST},
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE},
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NSWILD},
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_QNAME}, or
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}.
+   * @return {@link NodeTest#SCORE_NODETEST},
+   *         {@link NodeTest#SCORE_NONE},
+   *         {@link NodeTest#SCORE_NSWILD},
+   *         {@link NodeTest#SCORE_QNAME}, or
+   *         {@link NodeTest#SCORE_OTHER}.
    *
    * @throws javax.xml.transform.TransformerException
    */
@@ -351,11 +351,11 @@ public class StepPattern extends NodeTest implements SubContextList, ExpressionO
    *
    * @param xctxt XPath runtime context.
    *
-   * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST},
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE},
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NSWILD},
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_QNAME}, or
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}.
+   * @return {@link NodeTest#SCORE_NODETEST},
+   *         {@link NodeTest#SCORE_NONE},
+   *         {@link NodeTest#SCORE_NSWILD},
+   *         {@link NodeTest#SCORE_QNAME}, or
+   *         {@link NodeTest#SCORE_OTHER}.
    *
    * @throws javax.xml.transform.TransformerException
    */
@@ -504,7 +504,7 @@ public class StepPattern extends NodeTest implements SubContextList, ExpressionO
     {
 
       // TODO: should keep throw sax exception...
-      throw new java.lang.RuntimeException(se.getMessage());
+      throw new RuntimeException(se.getMessage());
     }
 
     return (pos == 1);
@@ -610,7 +610,7 @@ public class StepPattern extends NodeTest implements SubContextList, ExpressionO
     {
 
       // TODO: should keep throw sax exception...
-      throw new java.lang.RuntimeException(se.getMessage());
+      throw new RuntimeException(se.getMessage());
     }
 
     return pos;
@@ -655,11 +655,11 @@ public class StepPattern extends NodeTest implements SubContextList, ExpressionO
    * @param dtm The DTM of the current node.
    * @param currentNode The current node context.
    *
-   * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST},
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE},
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NSWILD},
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_QNAME}, or
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}.
+   * @return {@link NodeTest#SCORE_NODETEST},
+   *         {@link NodeTest#SCORE_NONE},
+   *         {@link NodeTest#SCORE_NSWILD},
+   *         {@link NodeTest#SCORE_QNAME}, or
+   *         {@link NodeTest#SCORE_OTHER}.
    *
    * @throws javax.xml.transform.TransformerException
    */
@@ -883,11 +883,11 @@ public class StepPattern extends NodeTest implements SubContextList, ExpressionO
    * @param xctxt The XPath runtime context.
    * @param context The node to be tested.
    *
-   * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST},
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE},
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NSWILD},
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_QNAME}, or
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}.
+   * @return {@link NodeTest#SCORE_NODETEST},
+   *         {@link NodeTest#SCORE_NONE},
+   *         {@link NodeTest#SCORE_NSWILD},
+   *         {@link NodeTest#SCORE_QNAME}, or
+   *         {@link NodeTest#SCORE_OTHER}.
    *
    * @throws javax.xml.transform.TransformerException
    */

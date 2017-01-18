@@ -89,7 +89,7 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
 
     /**
      * Proxy method for {@link java.security.Signature#setParameter(
-     * java.security.spec.AlgorithmParameterSpec)}
+     * AlgorithmParameterSpec)}
      * which is executed on the internal {@link java.security.Signature} object.
      *
      * @param params

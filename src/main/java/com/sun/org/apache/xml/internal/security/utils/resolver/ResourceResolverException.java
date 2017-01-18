@@ -27,7 +27,7 @@ import org.w3c.dom.Attr;
 
 /**
  * This Exception is thrown if something related to the
- * {@link com.sun.org.apache.xml.internal.security.utils.resolver.ResourceResolver} goes wrong.
+ * {@link ResourceResolver} goes wrong.
  *
  * @author $Author: coheigea $
  */

@@ -105,7 +105,7 @@ import org.xml.sax.ext.LexicalHandler;
  * If an I/O exception occurs while serializing, the serializer
  * will not throw an exception directly, but only throw it
  * at the end of serializing (either DOM or SAX's {@link
- * org.xml.sax.DocumentHandler#endDocument}.
+ * DocumentHandler#endDocument}.
  * <p>
  * For elements that are not specified as whitespace preserving,
  * the serializer will potentially break long text lines at space

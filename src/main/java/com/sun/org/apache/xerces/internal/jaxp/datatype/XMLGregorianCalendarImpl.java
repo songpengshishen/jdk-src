@@ -177,7 +177,7 @@ import com.sun.org.apache.xerces.internal.utils.SecuritySupport;
  *   <li>conversion between this class and <code>java.util.GregorianCalendar</code></li>
  *   <li>partial order relation comparator method, {@link #compare(XMLGregorianCalendar)}</li>
  *   <li>{@link #equals(Object)} defined relative to {@link #compare(XMLGregorianCalendar)}.</li>
- *   <li> addition operation with {@link javax.xml.datatype.Duration}.
+ *   <li> addition operation with {@link Duration}.
  * instance as defined in <a href="http://www.w3.org/TR/xmlschema-2/#adding-durations-to-dateTimes">
  * W3C XML Schema 1.0 Part 2, Appendix E, <i>Adding durations to dateTimes</i></a>.</li>
  * </ul>
@@ -187,7 +187,7 @@ import com.sun.org.apache.xerces.internal.utils.SecuritySupport;
  * @author <a href="mailto:Joseph.Fialli@Sun.com">Joseph Fialli</a>
  * @author <a href="mailto:Sunitha.Reddy@Sun.com">Sunitha Reddy</a>
  * @version $Revision: 1.14 $, $Date: 2010-11-10 07:41:41 $
- * @see javax.xml.datatype.Duration
+ * @see Duration
  * @since 1.5
  */
 
@@ -1762,7 +1762,7 @@ public class XMLGregorianCalendarImpl
      *
      * @return XML, as <code>String</code>, representation of this <code>XMLGregorianCalendar</code>
      *
-     * @throws java.lang.IllegalStateException if the combination of set fields
+     * @throws IllegalStateException if the combination of set fields
      *    does not match one of the eight defined XML Schema builtin date/time datatypes.
      */
     public String toXMLFormat() {
@@ -1890,7 +1890,7 @@ public class XMLGregorianCalendarImpl
      *   </tbody>
      * </table>
      *
-     * @throws java.lang.IllegalStateException if the combination of set fields
+     * @throws IllegalStateException if the combination of set fields
      *    does not match one of the eight defined XML Schema builtin
      *    date/time datatypes.
      * @return One of the following class constants:
@@ -2387,9 +2387,9 @@ public class XMLGregorianCalendarImpl
      * </ul>
      * </p>
      *
-     * @see #toGregorianCalendar(java.util.TimeZone, java.util.Locale, XMLGregorianCalendar)
+     * @see #toGregorianCalendar(TimeZone, Locale, XMLGregorianCalendar)
      */
-    public java.util.GregorianCalendar toGregorianCalendar() {
+    public GregorianCalendar toGregorianCalendar() {
 
         GregorianCalendar result = null;
         final int DEFAULT_TIMEZONE_OFFSET = DatatypeConstants.FIELD_UNDEFINED;

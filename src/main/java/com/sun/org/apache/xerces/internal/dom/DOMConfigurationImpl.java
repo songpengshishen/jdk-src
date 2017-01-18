@@ -476,7 +476,7 @@ public class DOMConfigurationImpl extends ParserConfigurationSettings
      * handler immediately.</p>
      *
      * @param errorHandler The error handler.
-     * @exception java.lang.NullPointerException If the handler
+     * @exception NullPointerException If the handler
      *            argument is null.
      * @see #getErrorHandler
      */
@@ -507,7 +507,7 @@ public class DOMConfigurationImpl extends ParserConfigurationSettings
      * @param featureId The unique identifier (URI) of the feature.
      * @param state The requested state of the feature (true or false).
      *
-     * @exception com.sun.org.apache.xerces.internal.xni.parser.XMLConfigurationException If the
+     * @exception XMLConfigurationException If the
      *            requested feature is not known.
      */
     public void setFeature(String featureId, boolean state)
@@ -1043,7 +1043,7 @@ public class DOMConfigurationImpl extends ParserConfigurationSettings
      *
      * @param propertyId The unique identifier (URI) of the property
      *                   being set.
-     * @exception com.sun.org.apache.xerces.internal.xni.parser.XMLConfigurationException If the
+     * @exception XMLConfigurationException If the
      *            requested feature is not known or supported.
      */
     protected PropertyState checkProperty(String propertyId)

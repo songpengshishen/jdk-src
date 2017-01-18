@@ -547,7 +547,7 @@ public class XML11NonValidatingConfiguration extends ParserConfigurationSettings
          * handler immediately.</p>
          *
          * @param errorHandler The error handler.
-         * @exception java.lang.NullPointerException If the handler
+         * @exception NullPointerException If the handler
          *            argument is null.
          * @see #getErrorHandler
          */
@@ -583,7 +583,7 @@ public class XML11NonValidatingConfiguration extends ParserConfigurationSettings
      * @param source The input source.
      *
      * @exception XNIException Throws exception on XNI error.
-     * @exception java.io.IOException Throws exception on i/o error.
+     * @exception IOException Throws exception on i/o error.
      */
     public void parse(XMLInputSource source) throws XNIException, IOException {
 
@@ -718,7 +718,7 @@ public class XML11NonValidatingConfiguration extends ParserConfigurationSettings
          * @param featureId The unique identifier (URI) of the feature.
          * @param state The requested state of the feature (true or false).
          *
-         * @exception com.sun.org.apache.xerces.internal.xni.parser.XMLConfigurationException If the
+         * @exception XMLConfigurationException If the
          *            requested feature is not known.
          */
         public void setFeature(String featureId, boolean state)

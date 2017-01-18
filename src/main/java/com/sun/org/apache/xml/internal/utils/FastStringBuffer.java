@@ -839,7 +839,7 @@ public class FastStringBuffer
       if (sourcechunk == 0 && m_innerFSB != null)
         chunkOK = m_innerFSB.isWhitespace(sourcecolumn, runlength);
       else
-        chunkOK = com.sun.org.apache.xml.internal.utils.XMLCharacterRecognizer.isWhiteSpace(
+        chunkOK = XMLCharacterRecognizer.isWhiteSpace(
           m_array[sourcechunk], sourcecolumn, runlength);
 
       if (!chunkOK)

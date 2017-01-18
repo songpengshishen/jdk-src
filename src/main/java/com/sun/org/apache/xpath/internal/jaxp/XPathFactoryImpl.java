@@ -136,7 +136,7 @@ public  class XPathFactoryImpl extends XPathFactory {
          * @return New <code>XPath</code>
          */
         public javax.xml.xpath.XPath newXPath() {
-            return new com.sun.org.apache.xpath.internal.jaxp.XPathImpl(
+            return new XPathImpl(
                     xPathVariableResolver, xPathFunctionResolver,
                     !_isNotSecureProcessing, _useServicesMechanism,
                     _featureManager );
@@ -156,7 +156,7 @@ public  class XPathFactoryImpl extends XPathFactory {
          * value but be unable to change its state.
          * </p>
          *
-         * <p>See {@link javax.xml.xpath.XPathFactory} for full documentation
+         * <p>See {@link XPathFactory} for full documentation
          * of specific features.</p>
          *
          * @param name Feature name.

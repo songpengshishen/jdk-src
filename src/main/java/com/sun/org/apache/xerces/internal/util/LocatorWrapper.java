@@ -89,7 +89,7 @@ public class LocatorWrapper implements XMLLocator {
      * if no character offset is available.<p>
      *
      * <p>As this information is not available from
-     * {@link org.xml.sax.Locator},
+     * {@link Locator},
      * always return <code>-1</code>.</p>
      */
     public int getCharacterOffset() {
@@ -100,7 +100,7 @@ public class LocatorWrapper implements XMLLocator {
      * <p>Returns the XML version of the current entity.</p>
      *
      * <p>As this information is not available from
-     * {@link org.xml.sax.Locator},
+     * {@link Locator},
      * always return <code>null</code>.</p>
      */
     public String getXMLVersion() {

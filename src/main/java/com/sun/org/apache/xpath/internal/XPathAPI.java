@@ -178,7 +178,7 @@ public class XPathAPI
    *  @param contextNode The node to start searching from.
    *  @param str A valid XPath string.
    *  @return An XObject, which can be used to obtain a string, number, nodelist, etc, should never be null.
-   *  @see com.sun.org.apache.xpath.internal.objects.XObject
+   *  @see XObject
    *  @see com.sun.org.apache.xpath.internal.objects.XNull
    *  @see com.sun.org.apache.xpath.internal.objects.XBoolean
    *  @see com.sun.org.apache.xpath.internal.objects.XNumber
@@ -204,7 +204,7 @@ public class XPathAPI
    *  @param str A valid XPath string.
    *  @param namespaceNode The node from which prefixes in the XPath will be resolved to namespaces.
    *  @return An XObject, which can be used to obtain a string, number, nodelist, etc, should never be null.
-   *  @see com.sun.org.apache.xpath.internal.objects.XObject
+   *  @see XObject
    *  @see com.sun.org.apache.xpath.internal.objects.XNull
    *  @see com.sun.org.apache.xpath.internal.objects.XBoolean
    *  @see com.sun.org.apache.xpath.internal.objects.XNumber
@@ -254,7 +254,7 @@ public class XPathAPI
    *   @param prefixResolver Will be called if the parser encounters namespace
    *                         prefixes, to resolve the prefixes to URLs.
    *   @return An XObject, which can be used to obtain a string, number, nodelist, etc, should never be null.
-   *   @see com.sun.org.apache.xpath.internal.objects.XObject
+   *   @see XObject
    *   @see com.sun.org.apache.xpath.internal.objects.XNull
    *   @see com.sun.org.apache.xpath.internal.objects.XBoolean
    *   @see com.sun.org.apache.xpath.internal.objects.XNumber

@@ -70,7 +70,7 @@ public class StringType extends Type {
      * The translation to int is undefined since strings are always converted
      * to reals in arithmetic expressions.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             Type type) {
@@ -96,7 +96,7 @@ public class StringType extends Type {
     /**
      * Translates a string into a synthesized boolean.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             BooleanType type) {
@@ -112,7 +112,7 @@ public class StringType extends Type {
      * Translates a string into a real by calling stringToReal() from the
      * basis library.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             RealType type) {
@@ -128,7 +128,7 @@ public class StringType extends Type {
      * 0 or a 1 but instead returns branchhandle list to be appended to the
      * false list.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateToDesynthesized
+     * @see     Type#translateToDesynthesized
      */
     public FlowList translateToDesynthesized(ClassGenerator classGen,
                                              MethodGenerator methodGen,
@@ -145,7 +145,7 @@ public class StringType extends Type {
      * Expects a string on the stack and pushes a boxed string.
      * Strings are already boxed so the translation is just a NOP.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             ReferenceType type) {
@@ -155,7 +155,7 @@ public class StringType extends Type {
     /**
      * Translates a internal string into an external (Java) string.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateFrom
+     * @see     Type#translateFrom
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             Class clazz)
@@ -174,7 +174,7 @@ public class StringType extends Type {
     /**
      * Translates an external (primitive) Java type into a string.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateFrom
+     * @see     Type#translateFrom
      */
     public void translateFrom(ClassGenerator classGen,
         MethodGenerator methodGen, Class clazz)

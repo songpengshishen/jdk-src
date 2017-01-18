@@ -112,12 +112,12 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr,TypeInfo
     //RAMESH: PENDING=> Add proper implementation for the below DOM L3 additions
 
     /**
-     * @see org.w3c.dom.TypeInfo#getTypeName()
+     * @see TypeInfo#getTypeName()
      */
     public String getTypeName() {return null; }
 
     /**
-     * @see org.w3c.dom.TypeInfo#getTypeNamespace()
+     * @see TypeInfo#getTypeNamespace()
      */
     public String getTypeNamespace() { return null;}
 

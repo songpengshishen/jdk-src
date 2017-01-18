@@ -1185,7 +1185,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl
 
     public void dispatchCharactersEvents(int nodeHandle, org.xml.sax.ContentHandler ch,
                                          boolean normalize)
-          throws org.xml.sax.SAXException
+          throws SAXException
     {
         if (_dom != null) {
             _dom.dispatchCharactersEvents(nodeHandle,  ch, normalize);
@@ -1196,7 +1196,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl
     }
 
     public void dispatchToEvents(int nodeHandle, org.xml.sax.ContentHandler ch)
-      throws org.xml.sax.SAXException
+      throws SAXException
     {
         if (_dom != null) {
             _dom.dispatchToEvents(nodeHandle,  ch);
@@ -1206,7 +1206,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl
         }
     }
 
-    public org.w3c.dom.Node getNode(int nodeHandle)
+    public Node getNode(int nodeHandle)
     {
         if (_dom != null) {
             return _dom.getNode(nodeHandle);

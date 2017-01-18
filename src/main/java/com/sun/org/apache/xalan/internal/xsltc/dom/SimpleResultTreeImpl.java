@@ -940,16 +940,16 @@ public class SimpleResultTreeImpl extends EmptySerializer implements DOM, DTM
         int nodeHandle,
         org.xml.sax.ContentHandler ch,
         boolean normalize)
-          throws org.xml.sax.SAXException
+          throws SAXException
     {
     }
 
     public void dispatchToEvents(int nodeHandle, org.xml.sax.ContentHandler ch)
-      throws org.xml.sax.SAXException
+      throws SAXException
     {
     }
 
-    public org.w3c.dom.Node getNode(int nodeHandle)
+    public Node getNode(int nodeHandle)
     {
         return makeNode(nodeHandle);
     }

@@ -86,7 +86,7 @@ public class XStringForChars extends XString
    *
    * @return The string this wraps or the empty string if null
    */
-  public void appendToFsb(com.sun.org.apache.xml.internal.utils.FastStringBuffer fsb)
+  public void appendToFsb(FastStringBuffer fsb)
   {
     fsb.append((char[])m_obj, m_start, m_length);
   }

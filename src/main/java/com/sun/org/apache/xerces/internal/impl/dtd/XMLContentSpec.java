@@ -232,7 +232,7 @@ public class XMLContentSpec {
      * Constructs a content spec from the values specified by the given
      * content spec provider and identifier.
      */
-    public XMLContentSpec(XMLContentSpec.Provider provider,
+    public XMLContentSpec(Provider provider,
                           int contentSpecIndex) {
         setValues(provider, contentSpecIndex);
     }
@@ -267,7 +267,7 @@ public class XMLContentSpec {
      * provider and identifier. If the specified content spec cannot be
      * provided, the values of this content spec are cleared.
      */
-    public void setValues(XMLContentSpec.Provider provider,
+    public void setValues(Provider provider,
                           int contentSpecIndex) {
         if (!provider.getContentSpec(contentSpecIndex, this)) {
             clear();

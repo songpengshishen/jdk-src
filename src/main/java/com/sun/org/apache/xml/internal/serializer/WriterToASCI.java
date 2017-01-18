@@ -64,10 +64,10 @@ class WriterToASCI extends Writer implements WriterChain
    *
    * @exception  IOException  If an I/O error occurs
    *
-   * @throws java.io.IOException
+   * @throws IOException
    */
   public void write(char chars[], int start, int length)
-          throws java.io.IOException
+          throws IOException
   {
 
     int n = length+start;
@@ -119,7 +119,7 @@ class WriterToASCI extends Writer implements WriterChain
    *
    * @exception  IOException  If an I/O error occurs
    */
-  public void flush() throws java.io.IOException
+  public void flush() throws IOException
   {
     m_os.flush();
   }
@@ -131,7 +131,7 @@ class WriterToASCI extends Writer implements WriterChain
    *
    * @exception  IOException  If an I/O error occurs
    */
-  public void close() throws java.io.IOException
+  public void close() throws IOException
   {
     m_os.close();
   }

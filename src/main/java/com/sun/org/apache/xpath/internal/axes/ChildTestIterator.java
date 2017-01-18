@@ -31,7 +31,7 @@ import com.sun.org.apache.xpath.internal.compiler.Compiler;
 /**
  * This class implements an optimized iterator for
  * children patterns that have a node test, and possibly a predicate.
- * @see com.sun.org.apache.xpath.internal.axes.BasicTestIterator
+ * @see BasicTestIterator
  * @xsl.usage advanced
  */
 public class ChildTestIterator extends BasicTestIterator
@@ -156,7 +156,7 @@ public class ChildTestIterator extends BasicTestIterator
    */
   public int getAxis()
   {
-    return com.sun.org.apache.xml.internal.dtm.Axis.CHILD;
+    return Axis.CHILD;
   }
 
   /**

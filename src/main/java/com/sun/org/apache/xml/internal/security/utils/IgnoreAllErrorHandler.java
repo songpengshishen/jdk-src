@@ -27,7 +27,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 /**
- * This {@link org.xml.sax.ErrorHandler} does absolutely nothing but log
+ * This {@link ErrorHandler} does absolutely nothing but log
  * the events.
  *
  * @author Christian Geuer-Pollmann

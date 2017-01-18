@@ -237,7 +237,7 @@ public class IntVector implements Cloneable
 
     for (int i = 0; i < m_firstFree; i++)
     {
-      m_map[i] = java.lang.Integer.MIN_VALUE;
+      m_map[i] = Integer.MIN_VALUE;
     }
 
     m_firstFree = 0;
@@ -264,7 +264,7 @@ public class IntVector implements Cloneable
         if ((i + 1) < m_firstFree)
           System.arraycopy(m_map, i + 1, m_map, i - 1, m_firstFree - i);
         else
-          m_map[i] = java.lang.Integer.MIN_VALUE;
+          m_map[i] = Integer.MIN_VALUE;
 
         m_firstFree--;
 
@@ -289,7 +289,7 @@ public class IntVector implements Cloneable
     if (i > m_firstFree)
       System.arraycopy(m_map, i + 1, m_map, i, m_firstFree);
     else
-      m_map[i] = java.lang.Integer.MIN_VALUE;
+      m_map[i] = Integer.MIN_VALUE;
 
     m_firstFree--;
   }
@@ -360,7 +360,7 @@ public class IntVector implements Cloneable
         return i;
     }
 
-    return java.lang.Integer.MIN_VALUE;
+    return Integer.MIN_VALUE;
   }
 
   /**
@@ -382,7 +382,7 @@ public class IntVector implements Cloneable
         return i;
     }
 
-    return java.lang.Integer.MIN_VALUE;
+    return Integer.MIN_VALUE;
   }
 
   /**
@@ -404,7 +404,7 @@ public class IntVector implements Cloneable
         return i;
     }
 
-    return java.lang.Integer.MIN_VALUE;
+    return Integer.MIN_VALUE;
   }
 
   /**

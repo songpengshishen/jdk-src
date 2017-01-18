@@ -73,8 +73,8 @@ import java.util.*;
  * com.sun.org.apache.bcel.internal.classfile.AttributeReader)">Attribute.addAttributeReader</a>.
 
  *
- * @see com.sun.org.apache.bcel.internal.classfile.Attribute
- * @see com.sun.org.apache.bcel.internal.classfile.AttributeReader
+ * @see Attribute
+ * @see AttributeReader
  * @author  <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public final class Unknown extends Attribute {

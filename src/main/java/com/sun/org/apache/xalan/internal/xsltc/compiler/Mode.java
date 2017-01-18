@@ -1426,12 +1426,12 @@ for (int i = 0; i < _templates.size(); i++) {
         for (Iterator iter = find.search(pattern); iter.hasNext();) {
             InstructionHandle[] match = (InstructionHandle[]) iter.next();
             try {
-                com.sun.org.apache.bcel.internal.generic.ILOAD iload1 =
-                    (com.sun.org.apache.bcel.internal.generic.ILOAD) match[0].getInstruction();
-                com.sun.org.apache.bcel.internal.generic.ILOAD iload2 =
-                    (com.sun.org.apache.bcel.internal.generic.ILOAD) match[1].getInstruction();
-                com.sun.org.apache.bcel.internal.generic.ISTORE istore =
-                    (com.sun.org.apache.bcel.internal.generic.ISTORE) match[3].getInstruction();
+                ILOAD iload1 =
+                    (ILOAD) match[0].getInstruction();
+                ILOAD iload2 =
+                    (ILOAD) match[1].getInstruction();
+                ISTORE istore =
+                    (ISTORE) match[3].getInstruction();
 
                 if (!match[1].hasTargeters() &&
                     !match[2].hasTargeters() &&

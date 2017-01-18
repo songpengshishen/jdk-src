@@ -55,7 +55,7 @@ public abstract class SignatureECDSA extends SignatureAlgorithmSpi {
     public abstract String engineGetURI();
 
     /** Field algorithm */
-    private java.security.Signature signatureAlgorithm = null;
+    private Signature signatureAlgorithm = null;
 
     /**
      * Converts an ASN.1 ECDSA value to a XML Signature ECDSA Value.

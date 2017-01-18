@@ -69,7 +69,7 @@ public final class BasicType extends Type {
    * Constructor for basic types such as int, long, `void'
    *
    * @param type one of T_INT, T_BOOLEAN, ..., T_VOID
-   * @see com.sun.org.apache.bcel.internal.Constants
+   * @see Constants
    */
   BasicType(byte type) {
     super(type, Constants.SHORT_TYPE_NAMES[type]);

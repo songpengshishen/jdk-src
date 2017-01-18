@@ -159,7 +159,7 @@ public class BootstrapResolver implements EntityResolver, URIResolver {
           url = (href.length()==0 ? baseURL : new URL(baseURL, uri));
           result = url.toString();
         }
-      } catch (java.net.MalformedURLException mue) {
+      } catch (MalformedURLException mue) {
         // try to make an absolute URI from the current base
         String absBase = makeAbsolute(base);
         if (!absBase.equals(base)) {

@@ -220,7 +220,7 @@ public class XNodeSet extends NodeSequence
     }
     else
     {
-      return com.sun.org.apache.xpath.internal.objects.XString.EMPTYSTRING;
+      return XString.EMPTYSTRING;
     }
   }
 

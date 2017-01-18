@@ -65,7 +65,7 @@ public class XMLSignatureInput {
      */
 
     /**
-     * Some InputStreams do not support the {@link java.io.InputStream#reset}
+     * Some InputStreams do not support the {@link InputStream#reset}
      * method, so we read it in completely and work on our Proxy.
      */
     private InputStream inputOctetStreamProxy = null;

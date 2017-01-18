@@ -77,7 +77,7 @@ public interface XPointerProcessor {
      *
      */
     public boolean resolveXPointer(QName element, XMLAttributes attributes,
-            Augmentations augs, int event) throws XNIException;
+                                   Augmentations augs, int event) throws XNIException;
 
     /**
      * Returns true if the XPointer expression resolves to the current resource fragment

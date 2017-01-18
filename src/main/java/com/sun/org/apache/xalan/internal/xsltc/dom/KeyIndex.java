@@ -537,7 +537,7 @@ public class KeyIndex extends DTMAxisIteratorBase {
          * {@link MultiValuedNodeHeapIterator}.
          */
         protected class KeyIndexHeapNode
-                extends MultiValuedNodeHeapIterator.HeapNode
+                extends HeapNode
         {
             /**
              * {@link IntegerArray} of DTM nodes retrieved for one key value.

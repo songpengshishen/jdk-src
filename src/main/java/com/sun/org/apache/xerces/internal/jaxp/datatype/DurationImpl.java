@@ -1884,7 +1884,7 @@ class DurationImpl
      * Adds this duration to a {@link Calendar} object.
      *
      * <p>
-     * Calls {@link java.util.Calendar#add(int,int)} in the
+     * Calls {@link Calendar#add(int,int)} in the
      * order of YEARS, MONTHS, DAYS, HOURS, MINUTES, SECONDS, and MILLISECONDS
      * if those fields are present. Because the {@link Calendar} class
      * uses int to hold values, there are cases where this method
@@ -1940,7 +1940,7 @@ class DurationImpl
      *
      * <p>
      * The given date is first converted into
-     * a {@link java.util.GregorianCalendar}, then the duration
+     * a {@link GregorianCalendar}, then the duration
      * is added exactly like the {@link #addTo(Calendar)} method.
      *
      * <p>

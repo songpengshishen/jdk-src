@@ -51,11 +51,11 @@ public class ContextMatchStepPattern extends StepPattern
    *
    * @param xctxt XPath runtime context.
    *
-   * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST},
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE},
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NSWILD},
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_QNAME}, or
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}.
+   * @return {@link NodeTest#SCORE_NODETEST},
+   *         {@link NodeTest#SCORE_NONE},
+   *         {@link NodeTest#SCORE_NSWILD},
+   *         {@link NodeTest#SCORE_QNAME}, or
+   *         {@link NodeTest#SCORE_OTHER}.
    *
    * @throws javax.xml.transform.TransformerException
    */
@@ -76,11 +76,11 @@ public class ContextMatchStepPattern extends StepPattern
    * @param xctxt The XPath runtime context.
    * NEEDSDOC @param prevStep
    *
-   * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST},
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE},
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NSWILD},
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_QNAME}, or
-   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}.
+   * @return {@link NodeTest#SCORE_NODETEST},
+   *         {@link NodeTest#SCORE_NONE},
+   *         {@link NodeTest#SCORE_NSWILD},
+   *         {@link NodeTest#SCORE_QNAME}, or
+   *         {@link NodeTest#SCORE_OTHER}.
    *
    * @throws javax.xml.transform.TransformerException
    */

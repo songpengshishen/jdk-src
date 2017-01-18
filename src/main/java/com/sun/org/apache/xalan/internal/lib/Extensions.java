@@ -275,7 +275,7 @@ public class Extensions
    * Return a Node of basic debugging information from the
    * EnvironmentCheck utility about the Java environment.
    *
-   * <p>Simply calls the {@link com.sun.org.apache.xalan.internal.xslt.EnvironmentCheck}
+   * <p>Simply calls the {@link EnvironmentCheck}
    * utility to grab info about the Java environment and CLASSPATH,
    * etc., and then returns the resulting Node.  Stylesheets can
    * then maniuplate this data or simply xsl:copy-of the Node.  Note
@@ -335,9 +335,9 @@ public class Extensions
   {
     final String WHICH_CLASSNAME = "org.apache.env.Which";
     final String WHICH_METHODNAME = "which";
-    final Class WHICH_METHOD_ARGS[] = { java.util.Hashtable.class,
-                                        java.lang.String.class,
-                                        java.lang.String.class };
+    final Class WHICH_METHOD_ARGS[] = { Hashtable.class,
+                                        String.class,
+                                        String.class };
     try
     {
       // Use reflection to try to find xml-commons utility 'Which'

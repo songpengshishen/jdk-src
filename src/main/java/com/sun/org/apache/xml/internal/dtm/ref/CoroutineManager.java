@@ -221,14 +221,14 @@ public class CoroutineManager
    *
    * @param thisCoroutine the identifier of this coroutine, so we can
    * recognize when we are being resumed.
-   * @exception java.lang.NoSuchMethodException if thisCoroutine isn't
+   * @exception NoSuchMethodException if thisCoroutine isn't
    * a registered member of this group. %REVIEW% whether this is the
    * best choice.
    * */
-  public synchronized Object co_entry_pause(int thisCoroutine) throws java.lang.NoSuchMethodException
+  public synchronized Object co_entry_pause(int thisCoroutine) throws NoSuchMethodException
   {
     if(!m_activeIDs.get(thisCoroutine))
-      throw new java.lang.NoSuchMethodException();
+      throw new NoSuchMethodException();
 
     while(m_nextCoroutine != thisCoroutine)
       {
@@ -236,7 +236,7 @@ public class CoroutineManager
           {
             wait();
           }
-        catch(java.lang.InterruptedException e)
+        catch(InterruptedException e)
           {
             // %TBD% -- Declare? Encapsulate? Ignore? Or
             // dance widdershins about the instruction cache?
@@ -257,13 +257,13 @@ public class CoroutineManager
    * ID we watch for to see if we're the ones being resumed.
    * @param toCoroutine  Integer identifier for the coroutine we wish to
    * invoke.
-   * @exception java.lang.NoSuchMethodException if toCoroutine isn't a
+   * @exception NoSuchMethodException if toCoroutine isn't a
    * registered member of this group. %REVIEW% whether this is the best choice.
    * */
-  public synchronized Object co_resume(Object arg_object,int thisCoroutine,int toCoroutine) throws java.lang.NoSuchMethodException
+  public synchronized Object co_resume(Object arg_object,int thisCoroutine,int toCoroutine) throws NoSuchMethodException
   {
     if(!m_activeIDs.get(toCoroutine))
-      throw new java.lang.NoSuchMethodException(XMLMessages.createXMLMessage(XMLErrorResources.ER_COROUTINE_NOT_AVAIL, new Object[]{Integer.toString(toCoroutine)})); //"Coroutine not available, id="+toCoroutine);
+      throw new NoSuchMethodException(XMLMessages.createXMLMessage(XMLErrorResources.ER_COROUTINE_NOT_AVAIL, new Object[]{Integer.toString(toCoroutine)})); //"Coroutine not available, id="+toCoroutine);
 
     // We expect these values to be overwritten during the notify()/wait()
     // periods, as other coroutines in this set get their opportunity to run.
@@ -278,7 +278,7 @@ public class CoroutineManager
             // System.out.println("waiting...");
             wait();
           }
-        catch(java.lang.InterruptedException e)
+        catch(InterruptedException e)
           {
             // %TBD% -- Declare? Encapsulate? Ignore? Or
             // dance deasil about the program counter?
@@ -291,7 +291,7 @@ public class CoroutineManager
         co_exit(thisCoroutine);
         // And inform this coroutine that its partners are Going Away
         // %REVIEW% Should this throw/return something more useful?
-        throw new java.lang.NoSuchMethodException(XMLMessages.createXMLMessage(XMLErrorResources.ER_COROUTINE_CO_EXIT, null)); //"CoroutineManager recieved co_exit() request");
+        throw new NoSuchMethodException(XMLMessages.createXMLMessage(XMLErrorResources.ER_COROUTINE_CO_EXIT, null)); //"CoroutineManager recieved co_exit() request");
       }
 
     return m_yield;
@@ -326,13 +326,13 @@ public class CoroutineManager
    * @param thisCoroutine Integer identifier for the coroutine leaving the set.
    * @param toCoroutine   Integer identifier for the coroutine we wish to
    * invoke.
-   * @exception java.lang.NoSuchMethodException if toCoroutine isn't a
+   * @exception NoSuchMethodException if toCoroutine isn't a
    * registered member of this group. %REVIEW% whether this is the best choice.
    * */
-  public synchronized void co_exit_to(Object arg_object,int thisCoroutine,int toCoroutine) throws java.lang.NoSuchMethodException
+  public synchronized void co_exit_to(Object arg_object,int thisCoroutine,int toCoroutine) throws NoSuchMethodException
   {
     if(!m_activeIDs.get(toCoroutine))
-      throw new java.lang.NoSuchMethodException(XMLMessages.createXMLMessage(XMLErrorResources.ER_COROUTINE_NOT_AVAIL, new Object[]{Integer.toString(toCoroutine)})); //"Coroutine not available, id="+toCoroutine);
+      throw new NoSuchMethodException(XMLMessages.createXMLMessage(XMLErrorResources.ER_COROUTINE_NOT_AVAIL, new Object[]{Integer.toString(toCoroutine)})); //"Coroutine not available, id="+toCoroutine);
 
     // We expect these values to be overwritten during the notify()/wait()
     // periods, as other coroutines in this set get their opportunity to run.

@@ -123,7 +123,7 @@ public abstract class XMLParser {
      * @param inputSource
      *
      * @exception XNIException
-     * @exception java.io.IOException
+     * @exception IOException
      */
     public void parse(XMLInputSource inputSource)
         throws XNIException, IOException {

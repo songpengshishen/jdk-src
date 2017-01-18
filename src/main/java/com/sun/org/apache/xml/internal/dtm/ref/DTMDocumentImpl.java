@@ -63,7 +63,7 @@ import org.xml.sax.ext.LexicalHandler;
  *     DocImpl, DocumentImpl, ElementImpl, TextImpl, etc. of XalanJ2</p>
  */
 public class DTMDocumentImpl
-implements DTM, org.xml.sax.ContentHandler, org.xml.sax.ext.LexicalHandler
+implements DTM, ContentHandler, LexicalHandler
 {
 
         // Number of lower bits used to represent node index.
@@ -320,7 +320,7 @@ implements DTM, org.xml.sax.ContentHandler, org.xml.sax.ext.LexicalHandler
    * the IncrementalSAXSource if we're bound to one and should receive
    * the SAX stream via it for incremental build purposes...
    * */
-  public org.xml.sax.ContentHandler getContentHandler()
+  public ContentHandler getContentHandler()
   {
     if (m_incrSAXSource instanceof IncrementalSAXSource_Filter)
       return (ContentHandler) m_incrSAXSource;
@@ -433,8 +433,8 @@ implements DTM, org.xml.sax.ContentHandler, org.xml.sax.ext.LexicalHandler
     // There _should't_ be any significant pending text at this point.
     appendEndDocument();
   }
-  public void endElement(java.lang.String namespaceURI, java.lang.String localName,
-      java.lang.String qName)
+  public void endElement(String namespaceURI, String localName,
+      String qName)
        throws org.xml.sax.SAXException
   {
     processAccumulatedText();
@@ -442,7 +442,7 @@ implements DTM, org.xml.sax.ContentHandler, org.xml.sax.ext.LexicalHandler
     // pop up a level.
     appendEndElement();
   }
-  public void endPrefixMapping(java.lang.String prefix)
+  public void endPrefixMapping(String prefix)
        throws org.xml.sax.SAXException
   {
     // No-op
@@ -452,7 +452,7 @@ implements DTM, org.xml.sax.ContentHandler, org.xml.sax.ext.LexicalHandler
   {
     // %TBD% I believe ignorable text isn't part of the DTM model...?
   }
-  public void processingInstruction(java.lang.String target, java.lang.String data)
+  public void processingInstruction(String target, String data)
        throws org.xml.sax.SAXException
   {
     processAccumulatedText();
@@ -462,7 +462,7 @@ implements DTM, org.xml.sax.ContentHandler, org.xml.sax.ext.LexicalHandler
   {
     // No-op for DTM
   }
-  public void skippedEntity(java.lang.String name)
+  public void skippedEntity(String name)
        throws org.xml.sax.SAXException
   {
     processAccumulatedText();
@@ -473,8 +473,8 @@ implements DTM, org.xml.sax.ContentHandler, org.xml.sax.ext.LexicalHandler
   {
     appendStartDocument();
   }
-  public void startElement(java.lang.String namespaceURI, java.lang.String localName,
-      java.lang.String qName, Attributes atts)
+  public void startElement(String namespaceURI, String localName,
+      String qName, Attributes atts)
        throws org.xml.sax.SAXException
   {
     processAccumulatedText();
@@ -556,7 +556,7 @@ implements DTM, org.xml.sax.ContentHandler, org.xml.sax.ext.LexicalHandler
           }
       }
   }
-  public void startPrefixMapping(java.lang.String prefix, java.lang.String uri)
+  public void startPrefixMapping(String prefix, String uri)
        throws org.xml.sax.SAXException
   {
     // No-op in DTM, handled during element/attr processing?
@@ -585,7 +585,7 @@ implements DTM, org.xml.sax.ContentHandler, org.xml.sax.ext.LexicalHandler
   {
     // No-op in DTM
   }
-  public void endEntity(java.lang.String name)
+  public void endEntity(String name)
        throws org.xml.sax.SAXException
   {
     // No-op in DTM
@@ -595,13 +595,13 @@ implements DTM, org.xml.sax.ContentHandler, org.xml.sax.ext.LexicalHandler
   {
     // No-op in DTM
   }
-  public void startDTD(java.lang.String name, java.lang.String publicId,
-      java.lang.String systemId)
+  public void startDTD(String name, String publicId,
+      String systemId)
        throws org.xml.sax.SAXException
   {
     // No-op in DTM
   }
-  public void startEntity(java.lang.String name)
+  public void startEntity(String name)
        throws org.xml.sax.SAXException
   {
     // No-op in DTM
@@ -2010,7 +2010,7 @@ implements DTM, org.xml.sax.ContentHandler, org.xml.sax.ext.LexicalHandler
          * @throws org.xml.sax.SAXException
          */
         public void dispatchCharactersEvents(
-                                                                                                                                                        int nodeHandle, org.xml.sax.ContentHandler ch, boolean normalize)
+                                                                                                                                                        int nodeHandle, ContentHandler ch, boolean normalize)
         throws org.xml.sax.SAXException {}
 
         /**
@@ -2022,7 +2022,7 @@ implements DTM, org.xml.sax.ContentHandler, org.xml.sax.ext.LexicalHandler
          * @throws org.xml.sax.SAXException
          */
 
-        public void dispatchToEvents(int nodeHandle, org.xml.sax.ContentHandler ch)
+        public void dispatchToEvents(int nodeHandle, ContentHandler ch)
         throws org.xml.sax.SAXException {}
 
         /**

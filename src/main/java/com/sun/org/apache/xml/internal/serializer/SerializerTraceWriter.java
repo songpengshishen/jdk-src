@@ -51,7 +51,7 @@ final class SerializerTraceWriter extends Writer implements WriterChain
      * This reference may be null, in which case nothing is written out, but
      * only the trace events are fired for output.
      */
-    private final java.io.Writer m_writer;
+    private final Writer m_writer;
 
     /** The tracer to send events to */
     private final SerializerTrace m_tracer;
@@ -134,9 +134,9 @@ final class SerializerTraceWriter extends Writer implements WriterChain
 
     /**
      * Flush the internal buffer and flush the Writer
-     * @see java.io.Writer#flush()
+     * @see Writer#flush()
      */
-    public void flush() throws java.io.IOException
+    public void flush() throws IOException
     {
         // send to the real writer
         if (m_writer != null)
@@ -148,9 +148,9 @@ final class SerializerTraceWriter extends Writer implements WriterChain
 
     /**
      * Flush the internal buffer and close the Writer
-     * @see java.io.Writer#close()
+     * @see Writer#close()
      */
-    public void close() throws java.io.IOException
+    public void close() throws IOException
     {
         // send to the real writer
         if (m_writer != null)
@@ -212,10 +212,10 @@ final class SerializerTraceWriter extends Writer implements WriterChain
      *
      * @exception  IOException  If an I/O error occurs
      *
-     * @throws java.io.IOException
+     * @throws IOException
      */
     public void write(final char chars[], final int start, final int length)
-        throws java.io.IOException
+        throws IOException
     {
         // send to the real writer
         if (m_writer != null)

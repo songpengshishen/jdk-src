@@ -104,7 +104,7 @@ final class MethodHTML implements com.sun.org.apache.bcel.internal.Constants {
    * Print field of class.
    *
    * @param field field to print
-   * @exception java.io.IOException
+   * @exception IOException
    */
   private void writeField(Field field) throws IOException {
     String       type   = Utility.signatureToString(field.getSignature());

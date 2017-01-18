@@ -188,15 +188,15 @@ public class XPathImpl implements javax.xml.xpath.XPath {
 
     private XObject eval(String expression, Object contextItem)
         throws javax.xml.transform.TransformerException {
-        com.sun.org.apache.xpath.internal.XPath xpath = new com.sun.org.apache.xpath.internal.XPath( expression,
-            null, prefixResolver, com.sun.org.apache.xpath.internal.XPath.SELECT );
-        com.sun.org.apache.xpath.internal.XPathContext xpathSupport = null;
+        XPath xpath = new XPath( expression,
+            null, prefixResolver, XPath.SELECT );
+        XPathContext xpathSupport = null;
         if ( functionResolver != null ) {
             JAXPExtensionsProvider jep = new JAXPExtensionsProvider(
                     functionResolver, featureSecureProcessing, featureManager );
-            xpathSupport = new com.sun.org.apache.xpath.internal.XPathContext( jep );
+            xpathSupport = new XPathContext( jep );
         } else {
-            xpathSupport = new com.sun.org.apache.xpath.internal.XPathContext();
+            xpathSupport = new XPathContext();
         }
 
         XObject xobj = null;
@@ -272,7 +272,7 @@ public class XPathImpl implements javax.xml.xpath.XPath {
 
             XObject resultObject = eval( expression, item );
             return getResultAsType( resultObject, returnType );
-        } catch ( java.lang.NullPointerException npe ) {
+        } catch ( NullPointerException npe ) {
             // If VariableResolver returns null Or if we get
             // NullPointerException at this stage for some other reason
             // then we have to reurn XPathException
@@ -389,8 +389,8 @@ public class XPathImpl implements javax.xml.xpath.XPath {
             throw new NullPointerException ( fmsg );
         }
         try {
-            com.sun.org.apache.xpath.internal.XPath xpath = new XPath (expression, null,
-                    prefixResolver, com.sun.org.apache.xpath.internal.XPath.SELECT );
+            XPath xpath = new XPath (expression, null,
+                    prefixResolver, XPath.SELECT );
             // Can have errorListener
             XPathExpressionImpl ximpl = new XPathExpressionImpl (xpath,
                     prefixResolver, functionResolver, variableResolver,

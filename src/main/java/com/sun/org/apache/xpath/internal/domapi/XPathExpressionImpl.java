@@ -48,7 +48,7 @@ import org.w3c.dom.xpath.XPathNamespace;
  * <p>The <code>XPathExpression</code> interface represents a parsed and resolved
  * XPath expression.</p>
  *
- * @see org.w3c.dom.xpath.XPathExpression
+ * @see XPathExpression
  *
  * @xsl.usage internal
  */
@@ -118,7 +118,7 @@ class XPathExpressionImpl implements XPathExpression {
      *   <br>NOT_SUPPORTED_ERR: The Node is not a type permitted as an XPath
      *   context node.
      *
-     * @see org.w3c.dom.xpath.XPathExpression#evaluate(Node, short, XPathResult)
+     * @see XPathExpression#evaluate(Node, short, XPathResult)
      * @xsl.usage internal
      */
     public Object evaluate(

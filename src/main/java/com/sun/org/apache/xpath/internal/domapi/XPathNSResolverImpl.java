@@ -40,7 +40,7 @@ import org.w3c.dom.xpath.XPathNSResolver;
  * construct an implementation of <code>XPathNSResolver</code> from a node,
  * or the interface may be implemented by any application.</p>
  *
- * @see org.w3c.dom.xpath.XPathNSResolver
+ * @see XPathNSResolver
  * @xsl.usage internal
  */
 class XPathNSResolverImpl extends PrefixResolverDefault implements XPathNSResolver {
@@ -54,7 +54,7 @@ class XPathNSResolverImpl extends PrefixResolverDefault implements XPathNSResolv
         }
 
         /**
-         * @see org.w3c.dom.xpath.XPathNSResolver#lookupNamespaceURI(String)
+         * @see XPathNSResolver#lookupNamespaceURI(String)
          */
         public String lookupNamespaceURI(String prefix) {
                 return super.getNamespaceForPrefix(prefix);

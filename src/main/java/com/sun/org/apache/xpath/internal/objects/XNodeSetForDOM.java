@@ -69,7 +69,7 @@ public class XNodeSetForDOM extends XNodeSet
     // folks to request length through an accessor, so we can defer this
     // retrieval... but that requires an API change.
     // m_obj=new com.sun.org.apache.xpath.internal.NodeSetDTM(nodeList, xctxt);
-    com.sun.org.apache.xpath.internal.NodeSetDTM nsdtm=new com.sun.org.apache.xpath.internal.NodeSetDTM(nodeList, xctxt);
+    NodeSetDTM nsdtm=new NodeSetDTM(nodeList, xctxt);
     m_last=nsdtm.getLength();
     setObject(nsdtm);
   }
@@ -83,7 +83,7 @@ public class XNodeSetForDOM extends XNodeSet
     // folks to request length through an accessor, so we can defer this
     // retrieval... but that requires an API change.
     // m_obj = new com.sun.org.apache.xpath.internal.NodeSetDTM(nodeIter, xctxt);
-    com.sun.org.apache.xpath.internal.NodeSetDTM nsdtm=new com.sun.org.apache.xpath.internal.NodeSetDTM(nodeIter, xctxt);
+    NodeSetDTM nsdtm=new NodeSetDTM(nodeIter, xctxt);
     m_last=nsdtm.getLength();
     setObject(nsdtm);
   }

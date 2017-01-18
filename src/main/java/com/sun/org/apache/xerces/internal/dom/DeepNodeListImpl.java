@@ -114,7 +114,7 @@ public class DeepNodeListImpl
     /** Returns the length of the node list. */
     public int getLength() {
         // Preload all matching elements. (Stops when we run out of subtree!)
-        item(java.lang.Integer.MAX_VALUE);
+        item(Integer.MAX_VALUE);
         return nodes.size();
     }
 

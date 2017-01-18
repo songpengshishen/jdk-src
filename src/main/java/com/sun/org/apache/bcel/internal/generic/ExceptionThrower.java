@@ -78,5 +78,5 @@ package com.sun.org.apache.bcel.internal.generic;
  * @author  <A HREF="http://www.inf.fu-berlin.de/~ehaase">Enver Haase</A>
  */
 public interface ExceptionThrower {
-  public java.lang.Class[] getExceptions();
+  public Class[] getExceptions();
 }

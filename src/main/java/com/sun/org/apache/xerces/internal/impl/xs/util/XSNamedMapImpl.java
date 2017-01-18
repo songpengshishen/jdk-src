@@ -260,7 +260,7 @@ public class XSNamedMapImpl extends AbstractMap implements XSNamedMap {
     }
 
     /** An entry in the XSNamedMap. **/
-    private static final class XSNamedMapEntry implements Map.Entry {
+    private static final class XSNamedMapEntry implements Entry {
         private final QName key;
         private final XSObject value;
         public XSNamedMapEntry(QName key, XSObject value) {
@@ -277,8 +277,8 @@ public class XSNamedMapImpl extends AbstractMap implements XSNamedMap {
             throw new UnsupportedOperationException();
         }
         public boolean equals(Object o) {
-            if (o instanceof Map.Entry) {
-                Map.Entry e = (Map.Entry) o;
+            if (o instanceof Entry) {
+                Entry e = (Entry) o;
                 Object otherKey = e.getKey();
                 Object otherValue = e.getValue();
                 return (key == null ? otherKey == null : key.equals(otherKey)) &&

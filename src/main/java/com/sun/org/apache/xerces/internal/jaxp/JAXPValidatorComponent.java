@@ -61,7 +61,7 @@ import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * Runs events through a {@link javax.xml.validation.ValidatorHandler}
+ * Runs events through a {@link ValidatorHandler}
  * and performs validation/infoset-augmentation by an external validator.
  *
  * <p>
@@ -340,7 +340,7 @@ final class JAXPValidatorComponent
      *
      * <p>
      * Deriving from {@link DefaultXMLDocumentHandler}
-     * to reuse its default {@link com.sun.org.apache.xerces.internal.xni.XMLDocumentHandler}
+     * to reuse its default {@link XMLDocumentHandler}
      * implementation.
      *
      * @author Kohsuke Kawaguchi (kohsuke.kawaguchi@sun.com)

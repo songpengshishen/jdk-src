@@ -569,7 +569,7 @@ public class XMLDocumentScannerImpl
             } else{
                 //else we have reached the end of document prematurely
                 //so throw EOFException.
-                throw new java.io.EOFException();
+                throw new EOFException();
             }
 
             //this is taken care in wrapper which generates XNI callbacks, There are no next events

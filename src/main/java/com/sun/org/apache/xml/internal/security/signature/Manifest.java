@@ -157,7 +157,7 @@ public class Manifest extends SignatureElementProxy {
 
     /**
      * This <code>addDocument</code> method is used to add a new resource to the
-     * signed info. A {@link com.sun.org.apache.xml.internal.security.signature.Reference} is built
+     * signed info. A {@link Reference} is built
      * from the supplied values.
      *
      * @param baseURI the URI of the resource where the XML instance was stored
@@ -273,11 +273,11 @@ public class Manifest extends SignatureElementProxy {
      *
      * @return true if all References verify, false if one or more do not verify.
      * @throws MissingResourceFailureException if a {@link Reference} does not verify
-     * (throws a {@link com.sun.org.apache.xml.internal.security.signature.ReferenceNotInitializedException}
+     * (throws a {@link ReferenceNotInitializedException}
      * because of an uninitialized {@link XMLSignatureInput}
-     * @see com.sun.org.apache.xml.internal.security.signature.Reference#verify
-     * @see com.sun.org.apache.xml.internal.security.signature.SignedInfo#verify()
-     * @see com.sun.org.apache.xml.internal.security.signature.MissingResourceFailureException
+     * @see Reference#verify
+     * @see SignedInfo#verify()
+     * @see MissingResourceFailureException
      * @throws XMLSecurityException
      */
     public boolean verifyReferences()
@@ -298,11 +298,11 @@ public class Manifest extends SignatureElementProxy {
      * @param followManifests
      * @return true if all References verify, false if one or more do not verify.
      * @throws MissingResourceFailureException if a {@link Reference} does not verify
-     * (throws a {@link com.sun.org.apache.xml.internal.security.signature.ReferenceNotInitializedException}
+     * (throws a {@link ReferenceNotInitializedException}
      * because of an uninitialized {@link XMLSignatureInput}
-     * @see com.sun.org.apache.xml.internal.security.signature.Reference#verify
-     * @see com.sun.org.apache.xml.internal.security.signature.SignedInfo#verify(boolean)
-     * @see com.sun.org.apache.xml.internal.security.signature.MissingResourceFailureException
+     * @see Reference#verify
+     * @see SignedInfo#verify(boolean)
+     * @see MissingResourceFailureException
      * @throws XMLSecurityException
      */
     public boolean verifyReferences(boolean followManifests)

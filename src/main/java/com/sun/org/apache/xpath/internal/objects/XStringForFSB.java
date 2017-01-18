@@ -97,7 +97,7 @@ public class XStringForFSB extends XString
    *
    * @return The string this wraps or the empty string if null
    */
-  public void appendToFsb(com.sun.org.apache.xml.internal.utils.FastStringBuffer fsb)
+  public void appendToFsb(FastStringBuffer fsb)
   {
     // %OPT% !!! FSB has to be updated to take partial fsb's for append.
     fsb.append(str());
@@ -285,8 +285,8 @@ public class XStringForFSB extends XString
    *
    * @return  <code>true</code> if the <code>String </code>are equal;
    *          <code>false</code> otherwise.
-   * @see     java.lang.String#compareTo(java.lang.String)
-   * @see     java.lang.String#equalsIgnoreCase(java.lang.String)
+   * @see     String#compareTo(String)
+   * @see     String#equalsIgnoreCase(String)
    */
   public boolean equals(XMLString obj2)
   {
@@ -414,8 +414,8 @@ public class XStringForFSB extends XString
    *
    * @return  <code>true</code> if the <code>String </code>are equal;
    *          <code>false</code> otherwise.
-   * @see     java.lang.String#compareTo(java.lang.String)
-   * @see     java.lang.String#equalsIgnoreCase(java.lang.String)
+   * @see     String#compareTo(String)
+   * @see     String#equalsIgnoreCase(String)
    */
   public boolean equals(Object obj2)
   {
@@ -449,8 +449,8 @@ public class XStringForFSB extends XString
    *          and the <code>String</code>s are equal,
    *          ignoring case; <code>false</code> otherwise.
    * @see     #equals(Object)
-   * @see     java.lang.Character#toLowerCase(char)
-   * @see java.lang.Character#toUpperCase(char)
+   * @see     Character#toLowerCase(char)
+   * @see Character#toUpperCase(char)
    */
   public boolean equalsIgnoreCase(String anotherString)
   {
@@ -468,7 +468,7 @@ public class XStringForFSB extends XString
    *          is lexicographically less than the string argument; and a
    *          value greater than <code>0</code> if this string is
    *          lexicographically greater than the string argument.
-   * @exception java.lang.NullPointerException if <code>anotherString</code>
+   * @exception NullPointerException if <code>anotherString</code>
    *          is <code>null</code>.
    */
   public int compareTo(XMLString xstr)
@@ -604,7 +604,7 @@ public class XStringForFSB extends XString
    *          <pre>
    *          this.subString(toffset).startsWith(prefix)
    *          </pre>
-   * @exception java.lang.NullPointerException if <code>prefix</code> is
+   * @exception NullPointerException if <code>prefix</code> is
    *          <code>null</code>.
    */
   public boolean startsWith(XMLString prefix, int toffset)
@@ -647,7 +647,7 @@ public class XStringForFSB extends XString
    *          argument is an empty string or is equal to this
    *          <code>String</code> object as determined by the
    *          {@link #equals(Object)} method.
-   * @exception java.lang.NullPointerException if <code>prefix</code> is
+   * @exception NullPointerException if <code>prefix</code> is
    *          <code>null</code>.
    * @since   JDK1. 0
    */
@@ -807,7 +807,7 @@ public class XStringForFSB extends XString
    *                of this <code>String</code>.
    * @return  a string that represents the concatenation of this object's
    *          characters followed by the string argument's characters.
-   * @exception java.lang.NullPointerException if <code>str</code> is
+   * @exception NullPointerException if <code>str</code> is
    *          <code>null</code>.
    */
   public XMLString concat(String str)

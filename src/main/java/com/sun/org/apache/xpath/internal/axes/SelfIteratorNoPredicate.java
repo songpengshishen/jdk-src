@@ -29,7 +29,7 @@ import com.sun.org.apache.xpath.internal.compiler.Compiler;
 /**
  * This class implements an optimized iterator for
  * "." patterns, that is, the self axes without any predicates.
- * @see com.sun.org.apache.xpath.internal.axes.LocPathIterator
+ * @see LocPathIterator
  * @xsl.usage advanced
  */
 public class SelfIteratorNoPredicate extends LocPathIterator

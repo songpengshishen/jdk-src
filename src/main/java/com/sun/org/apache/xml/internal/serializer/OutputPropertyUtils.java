@@ -31,7 +31,7 @@ import java.util.Properties;
  * This class is not a public API.
  * It is only public because it is used outside of this package.
  *
- * @see java.util.Properties
+ * @see Properties
  * @xsl.usage internal
  */
 public final class OutputPropertyUtils

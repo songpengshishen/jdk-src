@@ -91,13 +91,13 @@ public interface Repository extends java.io.Serializable {
    * isn't there, make an attempt to load it.
    */
   public JavaClass loadClass(String className)
-    throws java.lang.ClassNotFoundException;
+    throws ClassNotFoundException;
 
   /**
    * Find the JavaClass instance for the given run-time class object
    */
   public JavaClass loadClass(Class clazz)
-    throws java.lang.ClassNotFoundException;
+    throws ClassNotFoundException;
 
   /** Clear all entries from cache.
    */

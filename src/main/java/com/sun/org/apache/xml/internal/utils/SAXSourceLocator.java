@@ -71,7 +71,7 @@ public class SAXSourceLocator extends LocatorImpl
    *
    * @param locator Source locator
    */
-  public SAXSourceLocator(javax.xml.transform.SourceLocator locator)
+  public SAXSourceLocator(SourceLocator locator)
   {
     m_locator = null;
     this.setColumnNumber(locator.getColumnNumber());

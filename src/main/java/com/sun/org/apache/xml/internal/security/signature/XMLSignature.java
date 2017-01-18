@@ -579,7 +579,7 @@ public final class XMLSignature extends SignatureElementProxy {
      * and sets it in the SignatureValue Element.
      *
      * @param signingKey the {@link java.security.PrivateKey} or
-     * {@link javax.crypto.SecretKey} that is used to sign.
+     * {@link SecretKey} that is used to sign.
      * @throws XMLSignatureException
      */
     public void sign(Key signingKey) throws XMLSignatureException {
@@ -677,8 +677,8 @@ public final class XMLSignature extends SignatureElementProxy {
      * comparing those against the stored DigestValues and then checking to see
      * if the Signatures match on the SignedInfo.
      *
-     * @param pk {@link java.security.PublicKey} part of the keypair or
-     * {@link javax.crypto.SecretKey} that was used to sign
+     * @param pk {@link PublicKey} part of the keypair or
+     * {@link SecretKey} that was used to sign
      * @return true if the signature is valid, false otherwise
      * @throws XMLSignatureException
      */
@@ -839,7 +839,7 @@ public final class XMLSignature extends SignatureElementProxy {
     /**
      * Proxy method for {@link SignedInfo#createSecretKey(byte[])}. If you want
      * to create a MAC, this method helps you to obtain the
-     * {@link javax.crypto.SecretKey} from octets.
+     * {@link SecretKey} from octets.
      *
      * @param secretKeyBytes
      * @return the secret key created.

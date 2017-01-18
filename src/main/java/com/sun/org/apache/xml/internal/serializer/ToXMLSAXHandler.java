@@ -174,7 +174,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
 
     /**
      * Receives notification of the end of the document.
-     * @see org.xml.sax.ContentHandler#endDocument()
+     * @see ContentHandler#endDocument()
      */
     public void endDocument() throws SAXException
     {
@@ -238,7 +238,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
     }
 
     /**
-     * @see org.xml.sax.ContentHandler#endElement(String, String, String)
+     * @see ContentHandler#endElement(String, String, String)
      */
     public void endElement(String namespaceURI, String localName, String qName)
         throws SAXException
@@ -276,7 +276,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
     }
 
     /**
-     * @see org.xml.sax.ContentHandler#endPrefixMapping(String)
+     * @see ContentHandler#endPrefixMapping(String)
      */
     public void endPrefixMapping(String prefix) throws SAXException
     {
@@ -287,7 +287,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
     }
 
     /**
-     * @see org.xml.sax.ContentHandler#ignorableWhitespace(char[], int, int)
+     * @see ContentHandler#ignorableWhitespace(char[], int, int)
      */
     public void ignorableWhitespace(char[] arg0, int arg1, int arg2)
         throws SAXException
@@ -296,7 +296,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
     }
 
     /**
-     * @see org.xml.sax.ContentHandler#setDocumentLocator(Locator)
+     * @see ContentHandler#setDocumentLocator(Locator)
      */
     public void setDocumentLocator(Locator arg0)
     {
@@ -305,7 +305,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
     }
 
     /**
-     * @see org.xml.sax.ContentHandler#skippedEntity(String)
+     * @see ContentHandler#skippedEntity(String)
      */
     public void skippedEntity(String arg0) throws SAXException
     {
@@ -313,7 +313,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
     }
 
     /**
-     * @see org.xml.sax.ContentHandler#startPrefixMapping(String, String)
+     * @see ContentHandler#startPrefixMapping(String, String)
      * @param prefix The prefix that maps to the URI
      * @param uri The URI for the namespace
      */
@@ -326,7 +326,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
     /**
      * Remember the prefix/uri mapping at the current nested element depth.
      *
-     * @see org.xml.sax.ContentHandler#startPrefixMapping(String, String)
+     * @see ContentHandler#startPrefixMapping(String, String)
      * @param prefix The prefix that maps to the URI
      * @param uri The URI for the namespace
      * @param shouldFlush a flag indicating if the mapping applies to the
@@ -337,7 +337,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
         String prefix,
         String uri,
         boolean shouldFlush)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
 
         /* Remember the mapping, and at what depth it was declared
@@ -399,7 +399,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
 
 
     /**
-     * @see org.xml.sax.ext.LexicalHandler#comment(char[], int, int)
+     * @see LexicalHandler#comment(char[], int, int)
      */
     public void comment(char[] arg0, int arg1, int arg2) throws SAXException
     {
@@ -412,7 +412,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
     }
 
     /**
-     * @see org.xml.sax.ext.LexicalHandler#endCDATA()
+     * @see LexicalHandler#endCDATA()
      */
     public void endCDATA() throws SAXException
     {
@@ -440,7 +440,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
     }
 
     /**
-     * @see org.xml.sax.ext.LexicalHandler#endDTD()
+     * @see LexicalHandler#endDTD()
      */
     public void endDTD() throws SAXException
     {
@@ -449,7 +449,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
     }
 
     /**
-     * @see org.xml.sax.ext.LexicalHandler#startEntity(String)
+     * @see LexicalHandler#startEntity(String)
      */
     public void startEntity(String arg0) throws SAXException
     {
@@ -575,7 +575,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
 
     /**
      *
-     * @see org.xml.sax.ContentHandler#processingInstruction(String, String)
+     * @see ContentHandler#processingInstruction(String, String)
      * Send a processing instruction to the output document
      */
     public void processingInstruction(String target, String data)
@@ -638,7 +638,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
     }
 
     /**
-     * @see org.xml.sax.ContentHandler#startElement(String, String, String, Attributes)
+     * @see ContentHandler#startElement(String, String, String, Attributes)
      */
     public void startElement(
     String namespaceURI,
@@ -683,7 +683,7 @@ public final class ToXMLSAXHandler extends ToSAXHandler
     }
 
     private void ensurePrefixIsDeclared(String ns, String rawName)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
 
         if (ns != null && ns.length() > 0)

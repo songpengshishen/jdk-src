@@ -134,7 +134,7 @@ public class ParserConfigurationSettings
      * @param featureId The unique identifier (URI) of the feature.
      * @param state The requested state of the feature (true or false).
      *
-     * @exception com.sun.org.apache.xerces.internal.xni.parser.XMLConfigurationException If the
+     * @exception XMLConfigurationException If the
      *            requested feature is not known.
      */
     public void setFeature(String featureId, boolean state)
@@ -165,7 +165,7 @@ public class ParserConfigurationSettings
      *
      * @param propertyId
      * @param value
-     * @exception com.sun.org.apache.xerces.internal.xni.parser.XMLConfigurationException If the
+     * @exception XMLConfigurationException If the
      *            requested feature is not known.
      */
     public void setProperty(String propertyId, Object value)
@@ -282,7 +282,7 @@ public class ParserConfigurationSettings
      *
      * @param featureId The unique identifier (URI) of the feature.
      *
-     * @exception com.sun.org.apache.xerces.internal.xni.parser.XMLConfigurationException If the
+     * @exception XMLConfigurationException If the
      *            requested feature is not known.
      */
     protected FeatureState checkFeature(String featureId)
@@ -308,7 +308,7 @@ public class ParserConfigurationSettings
      *
      * @param propertyId The unique identifier (URI) of the property
      *                   being set.
-     * @exception com.sun.org.apache.xerces.internal.xni.parser.XMLConfigurationException If the
+     * @exception XMLConfigurationException If the
      *            requested feature is not known.
      */
     protected PropertyState checkProperty(String propertyId)

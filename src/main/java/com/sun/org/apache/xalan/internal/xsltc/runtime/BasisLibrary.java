@@ -1140,7 +1140,7 @@ public final class BasisLibrary {
         final org.w3c.dom.Node inNode = node;
         // Create a dummy NodeList which only contains the given node to make
         // use of the nodeList2Iterator() interface.
-        org.w3c.dom.NodeList nodelist = new org.w3c.dom.NodeList() {
+        NodeList nodelist = new NodeList() {
             public int getLength() {
                 return 1;
             }
@@ -1166,7 +1166,7 @@ public final class BasisLibrary {
      * @see org.apache.xml.dtm.ref.DTMManagerDefault#getDTMHandleFromNode
      */
     private static DTMAxisIterator nodeList2IteratorUsingHandleFromNode(
-                                        org.w3c.dom.NodeList nodeList,
+                                        NodeList nodeList,
                                         Translet translet, DOM dom)
     {
         final int n = nodeList.getLength();
@@ -1200,7 +1200,7 @@ public final class BasisLibrary {
      * DOM iterator.
      */
     public static DTMAxisIterator nodeList2Iterator(
-                                        org.w3c.dom.NodeList nodeList,
+                                        NodeList nodeList,
                                         Translet translet, DOM dom)
     {
         // First pass: build w3c DOM for all nodes not proxied from our DOM.

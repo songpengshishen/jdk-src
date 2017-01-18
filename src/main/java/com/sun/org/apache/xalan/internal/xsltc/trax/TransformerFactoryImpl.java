@@ -257,7 +257,7 @@ public class TransformerFactoryImpl
             _isSecureMode = true;
             _isNotSecureProcessing = false;
             _featureManager.setValue(FeatureManager.Feature.ORACLE_ENABLE_EXTENSION_FUNCTION,
-                    FeaturePropertyBase.State.FSP, XalanConstants.FEATURE_FALSE);
+                    State.FSP, XalanConstants.FEATURE_FALSE);
         }
 
         _xmlSecurityPropertyMgr = new XMLSecurityPropertyManager();
@@ -471,7 +471,7 @@ public class TransformerFactoryImpl
         }
 
         if (_xmlSecurityPropertyMgr != null &&
-            _xmlSecurityPropertyMgr.setValue(name, XMLSecurityPropertyManager.State.APIPROPERTY, value)) {
+            _xmlSecurityPropertyMgr.setValue(name, State.APIPROPERTY, value)) {
             _accessExternalDTD = _xmlSecurityPropertyMgr.getValue(
                     Property.ACCESS_EXTERNAL_DTD);
             _accessExternalStylesheet = _xmlSecurityPropertyMgr.getValue(
@@ -497,7 +497,7 @@ public class TransformerFactoryImpl
      * It is possible for an <code>TransformerFactory</code> to expose a feature value but be unable to change its state.
      * </p>
      *
-     * <p>See {@link javax.xml.transform.TransformerFactory} for full documentation of specific features.</p>
+     * <p>See {@link TransformerFactory} for full documentation of specific features.</p>
      *
      * @param name Feature name.
      * @param value Is feature state <code>true</code> or <code>false</code>.
@@ -538,7 +538,7 @@ public class TransformerFactoryImpl
 
             if (value && _featureManager != null) {
                 _featureManager.setValue(FeatureManager.Feature.ORACLE_ENABLE_EXTENSION_FUNCTION,
-                        FeaturePropertyBase.State.FSP, XalanConstants.FEATURE_FALSE);
+                        State.FSP, XalanConstants.FEATURE_FALSE);
             }
             return;
         }
@@ -983,7 +983,7 @@ public class TransformerFactoryImpl
             try {
                 xsltc.outputToJar();
             }
-            catch (java.io.IOException e) { }
+            catch (IOException e) { }
         }
 
         // Reset the per-session attributes to their default values
@@ -1154,7 +1154,7 @@ public class TransformerFactoryImpl
         throws TransformerConfigurationException
     {
         try {
-            return new com.sun.org.apache.xalan.internal.xsltc.trax.TrAXFilter(templates);
+            return new TrAXFilter(templates);
         }
         catch (TransformerConfigurationException e1) {
             if (_errorListener != null) {

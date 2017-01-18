@@ -299,7 +299,7 @@ public class DocumentBuilderImpl extends DocumentBuilder
                              !fSecurityManager.setLimit(name, XMLSecurityManager.State.APIPROPERTY, val)) {
                          //check if the property is managed by security property manager
                          if (fSecurityPropertyMgr == null ||
-                                 !fSecurityPropertyMgr.setValue(name, XMLSecurityPropertyManager.State.APIPROPERTY, val)) {
+                                 !fSecurityPropertyMgr.setValue(name, State.APIPROPERTY, val)) {
                              //fall back to the existing property manager
                              domParser.setProperty(name, val);
                          }

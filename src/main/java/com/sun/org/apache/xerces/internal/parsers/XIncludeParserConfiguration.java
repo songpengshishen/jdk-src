@@ -37,7 +37,7 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLDocumentSource;
  * <code>XIncludeHandler</code>.
  *
  * @author Peter McCracken, IBM
- * @see com.sun.org.apache.xerces.internal.xinclude.XIncludeHandler
+ * @see XIncludeHandler
  */
 public class XIncludeParserConfiguration extends XML11Configuration {
 

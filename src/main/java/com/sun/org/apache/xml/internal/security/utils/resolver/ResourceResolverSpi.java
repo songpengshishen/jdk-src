@@ -40,7 +40,7 @@ public abstract class ResourceResolverSpi {
         java.util.logging.Logger.getLogger(ResourceResolverSpi.class.getName());
 
     /** Field properties */
-    protected java.util.Map<String, String> properties = null;
+    protected Map<String, String> properties = null;
 
     /**
      * Deprecated - used to carry state about whether resolution was being done in a secure fashion,

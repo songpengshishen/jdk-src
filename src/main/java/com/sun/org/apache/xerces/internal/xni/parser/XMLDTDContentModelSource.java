@@ -85,6 +85,6 @@ public interface XMLDTDContentModelSource {
     public void setDTDContentModelHandler(XMLDTDContentModelHandler handler);
 
     /** Returns the DTD content model handler. */
-    public XMLDTDContentModelHandler getDTDContentModelHandler( );
+    public XMLDTDContentModelHandler getDTDContentModelHandler();
 
 } // interface XMLDTDContentModelSource

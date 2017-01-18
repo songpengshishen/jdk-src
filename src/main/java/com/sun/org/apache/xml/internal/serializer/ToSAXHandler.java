@@ -102,7 +102,7 @@ public abstract class ToSAXHandler extends SerializerBase
     }
     /**
      * Do nothing.
-     * @see org.xml.sax.ext.LexicalHandler#startDTD(String, String, String)
+     * @see LexicalHandler#startDTD(String, String, String)
      */
     public void startDTD(String arg0, String arg1, String arg2)
         throws SAXException
@@ -115,7 +115,7 @@ public abstract class ToSAXHandler extends SerializerBase
      *
      * @param characters The string of characters to process.
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      *
      * @see ExtendedContentHandler#characters(String)
      */
@@ -159,7 +159,7 @@ public abstract class ToSAXHandler extends SerializerBase
     /**
      * Do nothing as this is an abstract class. All subclasses will need to
      * define their behavior if it is different.
-     * @see org.xml.sax.ContentHandler#processingInstruction(String, String)
+     * @see ContentHandler#processingInstruction(String, String)
      */
     public void processingInstruction(String target, String data)
         throws SAXException
@@ -181,15 +181,15 @@ public abstract class ToSAXHandler extends SerializerBase
      * SAX method additional namespace or attribute information can occur before
      * or after this call, that is associated with this element.
      *
-     * @throws org.xml.sax.SAXException Any SAX exception, possibly
+     * @throws SAXException Any SAX exception, possibly
      *            wrapping another exception.
-     * @see org.xml.sax.ContentHandler#startElement
-     * @see org.xml.sax.ContentHandler#endElement
+     * @see ContentHandler#startElement
+     * @see ContentHandler#endElement
      * @see org.xml.sax.AttributeList
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      *
-     * @see org.xml.sax.ContentHandler#startElement(String,String,String,Attributes)
+     * @see ContentHandler#startElement(String,String,String,Attributes)
      */
     public void startElement(
         String arg0,
@@ -234,7 +234,7 @@ public abstract class ToSAXHandler extends SerializerBase
     /**
      * Does nothing. The setting of CDATA section elements has an impact on
      * stream serializers.
-     * @see SerializationHandler#setCdataSectionElements(java.util.Vector)
+     * @see SerializationHandler#setCdataSectionElements(Vector)
      */
     public void setCdataSectionElements(Vector URI_and_localNames)
     {
@@ -344,10 +344,10 @@ public abstract class ToSAXHandler extends SerializerBase
      * This method gets the node's value as a String and uses that String as if
      * it were an input character notification.
      * @param node the Node to serialize
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
     public void characters(org.w3c.dom.Node node)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
         // remember the current node
         if (m_state != null)
@@ -364,7 +364,7 @@ public abstract class ToSAXHandler extends SerializerBase
     }
 
     /**
-     * @see org.xml.sax.ErrorHandler#fatalError(SAXParseException)
+     * @see ErrorHandler#fatalError(SAXParseException)
      */
     public void fatalError(SAXParseException exc) throws SAXException {
         super.fatalError(exc);
@@ -377,7 +377,7 @@ public abstract class ToSAXHandler extends SerializerBase
     }
 
     /**
-     * @see org.xml.sax.ErrorHandler#error(SAXParseException)
+     * @see ErrorHandler#error(SAXParseException)
      */
     public void error(SAXParseException exc) throws SAXException {
         super.error(exc);
@@ -388,7 +388,7 @@ public abstract class ToSAXHandler extends SerializerBase
     }
 
     /**
-     * @see org.xml.sax.ErrorHandler#warning(SAXParseException)
+     * @see ErrorHandler#warning(SAXParseException)
      */
     public void warning(SAXParseException exc) throws SAXException {
         super.warning(exc);

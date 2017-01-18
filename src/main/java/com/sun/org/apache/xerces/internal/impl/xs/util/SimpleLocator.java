@@ -90,14 +90,14 @@ public class SimpleLocator implements XMLLocator {
         return null;
     }
     /**
-     * @see com.sun.org.apache.xerces.internal.xni.XMLLocator#setColumnNumber(int)
+     * @see XMLLocator#setColumnNumber(int)
      */
     public void setColumnNumber(int col) {
         this.column = col;
     }
 
     /**
-     * @see com.sun.org.apache.xerces.internal.xni.XMLLocator#setLineNumber(int)
+     * @see XMLLocator#setLineNumber(int)
      */
     public void setLineNumber(int line) {
         this.line = line;

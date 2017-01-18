@@ -125,33 +125,33 @@ class Token implements java.io.Serializable {
         Token.token_not_spaces = Token.complementRanges(Token.token_spaces);
     }
 
-    static Token.ParenToken createLook(int type, Token child) {
+    static ParenToken createLook(int type, Token child) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new Token.ParenToken(type, child, 0);
+        return new ParenToken(type, child, 0);
     }
-    static Token.ParenToken createParen(Token child, int pnumber) {
+    static ParenToken createParen(Token child, int pnumber) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new Token.ParenToken(Token.PAREN, child, pnumber);
+        return new ParenToken(Token.PAREN, child, pnumber);
     }
-    static Token.ClosureToken createClosure(Token tok) {
+    static ClosureToken createClosure(Token tok) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new Token.ClosureToken(Token.CLOSURE, tok);
+        return new ClosureToken(Token.CLOSURE, tok);
     }
-    static Token.ClosureToken createNGClosure(Token tok) {
+    static ClosureToken createNGClosure(Token tok) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new Token.ClosureToken(Token.NONGREEDYCLOSURE, tok);
+        return new ClosureToken(Token.NONGREEDYCLOSURE, tok);
     }
-    static Token.ConcatToken createConcat(Token tok1, Token tok2) {
+    static ConcatToken createConcat(Token tok1, Token tok2) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new Token.ConcatToken(tok1, tok2);
+        return new ConcatToken(tok1, tok2);
     }
-    static Token.UnionToken createConcat() {
+    static UnionToken createConcat() {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new Token.UnionToken(Token.CONCAT); // *** It is not a bug.
+        return new UnionToken(Token.CONCAT); // *** It is not a bug.
     }
-    static Token.UnionToken createUnion() {
+    static UnionToken createUnion() {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new Token.UnionToken(Token.UNION);
+        return new UnionToken(Token.UNION);
     }
     static Token createEmpty() {
         return Token.token_empty;
@@ -164,30 +164,30 @@ class Token implements java.io.Serializable {
         if (COUNTTOKENS)  Token.tokens ++;
         return new RangeToken(Token.NRANGE);
     }
-    static Token.CharToken createChar(int ch) {
+    static CharToken createChar(int ch) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new Token.CharToken(Token.CHAR, ch);
+        return new CharToken(Token.CHAR, ch);
     }
-    static private Token.CharToken createAnchor(int ch) {
+    static private CharToken createAnchor(int ch) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new Token.CharToken(Token.ANCHOR, ch);
+        return new CharToken(Token.ANCHOR, ch);
     }
-    static Token.StringToken createBackReference(int refno) {
+    static StringToken createBackReference(int refno) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new Token.StringToken(Token.BACKREFERENCE, null, refno);
+        return new StringToken(Token.BACKREFERENCE, null, refno);
     }
-    static Token.StringToken createString(String str) {
+    static StringToken createString(String str) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new Token.StringToken(Token.STRING, str, 0);
+        return new StringToken(Token.STRING, str, 0);
     }
-    static Token.ModifierToken createModifierGroup(Token child, int add, int mask) {
+    static ModifierToken createModifierGroup(Token child, int add, int mask) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new Token.ModifierToken(child, add, mask);
+        return new ModifierToken(child, add, mask);
     }
-    static Token.ConditionToken createCondition(int refno, Token condition,
+    static ConditionToken createCondition(int refno, Token condition,
                                                 Token yespat, Token nopat) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new Token.ConditionToken(refno, condition, yespat, nopat);
+        return new ConditionToken(refno, condition, yespat, nopat);
     }
 
     protected Token(int type) {

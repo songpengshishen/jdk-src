@@ -138,7 +138,7 @@ public class TransformXPath extends TransformSpi {
         }
 
         /**
-         * @see com.sun.org.apache.xml.internal.security.signature.NodeFilter#isNodeInclude(org.w3c.dom.Node)
+         * @see NodeFilter#isNodeInclude(Node)
          */
         public int isNodeInclude(Node currentNode) {
             try {

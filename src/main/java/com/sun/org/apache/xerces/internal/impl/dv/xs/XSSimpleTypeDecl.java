@@ -3019,7 +3019,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     }
 
     /**
-     * @see java.lang.Object#toString()
+     * @see Object#toString()
      */
     public String toString() {
         return this.fTargetNamespace+"," +this.fTypeName;

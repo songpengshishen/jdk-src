@@ -403,7 +403,7 @@ public class StAXEvent2SAX implements XMLReader, Locator {
 
         // gather non-namespace attrs
         for (Iterator i = event.getAttributes(); i.hasNext();) {
-            Attribute staxAttr = (javax.xml.stream.events.Attribute)i.next();
+            Attribute staxAttr = (Attribute)i.next();
 
             String uri = staxAttr.getName().getNamespaceURI();
             if (uri == null) {

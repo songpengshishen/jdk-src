@@ -70,7 +70,7 @@ public class AttributeMap extends NamedNodeMapImpl {
      *      returned, otherwise null is returned.
      * @param arg
      *      An Attr node to store in this map.
-     * @exception org.w3c.dom.DOMException The exception description.
+     * @exception DOMException The exception description.
      */
     public Node setNamedItem(Node arg)
     throws DOMException {

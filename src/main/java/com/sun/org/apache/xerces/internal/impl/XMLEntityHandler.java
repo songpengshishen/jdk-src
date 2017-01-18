@@ -72,7 +72,7 @@ import com.sun.org.apache.xerces.internal.xni.XNIException;
  *
  * @xerces.internal
  *
- * @see com.sun.org.apache.xerces.internal.impl.XMLEntityScanner
+ * @see XMLEntityScanner
  *
  * @author Andy Clark, IBM
  *

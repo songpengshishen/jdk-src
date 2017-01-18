@@ -325,7 +325,7 @@ public class IncrementalSAXSource_Xerces
         private boolean parseSomeSetup(InputSource source)
                 throws SAXException, IOException, IllegalAccessException,
                                          java.lang.reflect.InvocationTargetException,
-                                         java.lang.InstantiationException
+                                         InstantiationException
         {
                 if(fConfigSetInput!=null)
                 {

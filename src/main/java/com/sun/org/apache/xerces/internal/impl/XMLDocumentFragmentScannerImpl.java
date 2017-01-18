@@ -517,7 +517,7 @@ public class XMLDocumentFragmentScannerImpl
 
 
 
-    public com.sun.org.apache.xerces.internal.xni.QName getElementQName(){
+    public QName getElementQName(){
         if(fScannerLastState == XMLEvent.END_ELEMENT){
             fElementQName.setValues(fElementStack.getLastPoppedElement());
         }
@@ -654,11 +654,11 @@ public class XMLDocumentFragmentScannerImpl
         dtdGrammarUtil = null;
 
         if (fSecurityManager != null) {
-            fElementAttributeLimit = fSecurityManager.getLimit(XMLSecurityManager.Limit.ELEMENT_ATTRIBUTE_LIMIT);
-            fXMLNameLimit = fSecurityManager.getLimit(XMLSecurityManager.Limit.MAX_NAME_LIMIT);
+            fElementAttributeLimit = fSecurityManager.getLimit(Limit.ELEMENT_ATTRIBUTE_LIMIT);
+            fXMLNameLimit = fSecurityManager.getLimit(Limit.MAX_NAME_LIMIT);
         } else {
             fElementAttributeLimit = 0;
-            fXMLNameLimit = XMLSecurityManager.Limit.MAX_NAME_LIMIT.defaultValue();
+            fXMLNameLimit = Limit.MAX_NAME_LIMIT.defaultValue();
         }
         fLimitAnalyzer = fEntityManager.fLimitAnalyzer;
     }

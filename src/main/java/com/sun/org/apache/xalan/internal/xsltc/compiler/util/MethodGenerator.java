@@ -739,7 +739,7 @@ public class MethodGenerator extends MethodGen
         private int m_size;
 
         /**
-         * <p>Constructor for an outlineable {@link MethodGenerator.Chunk}.</p>
+         * <p>Constructor for an outlineable {@link Chunk}.</p>
          * <p><b>Preconditions:</b>
          * <ul>
          * <li>The {@link InstructionList#setPositions()} has been called for
@@ -758,12 +758,12 @@ public class MethodGenerator extends MethodGen
         }
 
         /**
-         * Determines whether this outlineable {@link MethodGenerator.Chunk} is
+         * Determines whether this outlineable {@link Chunk} is
          * followed immediately by the argument
          * <code>MethodGenerator.Chunk</code>, with no other intervening
          * instructions, including {@link OutlineableChunkStart} or
          * {@link OutlineableChunkEnd} instructions.
-         * @param neighbour an outlineable {@link MethodGenerator.Chunk}
+         * @param neighbour an outlineable {@link Chunk}
          * @return <code>true</code> if and only if the argument chunk
          * immediately follows <code>this</code> chunk
          */
@@ -781,7 +781,7 @@ public class MethodGenerator extends MethodGen
         }
 
         /**
-         * Getter method for the end of this {@link MethodGenerator.Chunk}
+         * Getter method for the end of this {@link Chunk}
          * @return the {@link InstructionHandle} of the start of this chunk
          */
         InstructionHandle getChunkEnd() {
@@ -789,7 +789,7 @@ public class MethodGenerator extends MethodGen
         }
 
         /**
-         * The size of this {@link MethodGenerator.Chunk}
+         * The size of this {@link Chunk}
          * @return the number of bytes in the byte code represented by this
          *         chunk.
          */
@@ -821,7 +821,7 @@ public class MethodGenerator extends MethodGen
      *                 will be associated
      * @param totalMethodSize the size of the bytecode in the original method
      * @return a <code>java.util.ArrayList</code> containing the
-     *  {@link MethodGenerator.Chunk}s that may be outlined from this method
+     *  {@link Chunk}s that may be outlined from this method
      */
     private ArrayList getCandidateChunks(ClassGenerator classGen,
                                          int totalMethodSize) {
@@ -983,7 +983,7 @@ public class MethodGenerator extends MethodGen
     /**
      * Merge adjacent sibling chunks to produce larger candidate chunks for
      * outlining
-     * @param chunks array of sibling {@link MethodGenerator.Chunk}s that are
+     * @param chunks array of sibling {@link Chunk}s that are
      *               under consideration for outlining.  Chunks must be in
      *               the order encountered in the {@link InstructionList}
      * @return a <code>java.util.ArrayList</code> of
@@ -1264,7 +1264,7 @@ public class MethodGenerator extends MethodGen
 
         final MethodGenerator outlinedMethodGen =
             new MethodGenerator(methodAttributes,
-                                com.sun.org.apache.bcel.internal.generic.Type.VOID,
+                                Type.VOID,
                                 argTypes, argNames, outlinedMethodName,
                                 getClassName(), newIL, cpg);
 

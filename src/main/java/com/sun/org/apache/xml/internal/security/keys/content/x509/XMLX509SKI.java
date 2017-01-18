@@ -107,7 +107,7 @@ public class XMLX509SKI extends SignatureElementProxy implements XMLX509DataCont
      * @return ski bytes from the given certificate
      *
      * @throws XMLSecurityException
-     * @see java.security.cert.X509Extension#getExtensionValue(java.lang.String)
+     * @see java.security.cert.X509Extension#getExtensionValue(String)
      */
     public static byte[] getSKIBytesFromCert(X509Certificate cert)
         throws XMLSecurityException {

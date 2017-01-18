@@ -72,7 +72,7 @@ public interface XPointerPart {
      *
      */
     public boolean resolveXPointer(QName element, XMLAttributes attributes,
-            Augmentations augs, int event) throws XNIException;
+                                   Augmentations augs, int event) throws XNIException;
 
     /**
      * Returns true if the XPointer expression resolves to a resource fragment

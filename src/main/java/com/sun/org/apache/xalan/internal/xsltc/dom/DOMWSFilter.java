@@ -33,8 +33,8 @@ import java.util.Map;
 
 /**
  * A wrapper class that adapts the
- * {@link com.sun.org.apache.xml.internal.dtm.DTMWSFilter DTMWSFilter} interface to the XSLTC
- * DOM {@link com.sun.org.apache.xalan.internal.xsltc.StripFilter StripFilter} interface.
+ * {@link DTMWSFilter DTMWSFilter} interface to the XSLTC
+ * DOM {@link StripFilter StripFilter} interface.
  */
 public class DOMWSFilter implements DTMWSFilter {
 
@@ -55,8 +55,8 @@ public class DOMWSFilter implements DTMWSFilter {
      * @param translet A translet that also implements the StripFilter
      * interface.
      *
-     * @see com.sun.org.apache.xml.internal.dtm.DTMWSFilter
-     * @see com.sun.org.apache.xalan.internal.xsltc.StripFilter
+     * @see DTMWSFilter
+     * @see StripFilter
      */
     public DOMWSFilter(AbstractTranslet translet) {
         m_translet = translet;

@@ -225,7 +225,7 @@ implements IncrementalSAXSource, ContentHandler, DTDHandler, LexicalHandler, Err
   // possibility of a large base-64 block in a SOAP stream.)
   //
   public void characters(char[] ch, int start, int length)
-       throws org.xml.sax.SAXException
+       throws SAXException
   {
     if(--eventcounter<=0)
       {
@@ -236,7 +236,7 @@ implements IncrementalSAXSource, ContentHandler, DTDHandler, LexicalHandler, Err
       clientContentHandler.characters(ch,start,length);
   }
   public void endDocument()
-       throws org.xml.sax.SAXException
+       throws SAXException
   {
     // EXCEPTION: In this case we need to run the event BEFORE we yield.
     if(clientContentHandler!=null)
@@ -245,9 +245,9 @@ implements IncrementalSAXSource, ContentHandler, DTDHandler, LexicalHandler, Err
     eventcounter=0;
     co_yield(false);
   }
-  public void endElement(java.lang.String namespaceURI, java.lang.String localName,
-      java.lang.String qName)
-       throws org.xml.sax.SAXException
+  public void endElement(String namespaceURI, String localName,
+      String qName)
+       throws SAXException
   {
     if(--eventcounter<=0)
       {
@@ -257,8 +257,8 @@ implements IncrementalSAXSource, ContentHandler, DTDHandler, LexicalHandler, Err
     if(clientContentHandler!=null)
       clientContentHandler.endElement(namespaceURI,localName,qName);
   }
-  public void endPrefixMapping(java.lang.String prefix)
-       throws org.xml.sax.SAXException
+  public void endPrefixMapping(String prefix)
+       throws SAXException
   {
     if(--eventcounter<=0)
       {
@@ -269,7 +269,7 @@ implements IncrementalSAXSource, ContentHandler, DTDHandler, LexicalHandler, Err
       clientContentHandler.endPrefixMapping(prefix);
   }
   public void ignorableWhitespace(char[] ch, int start, int length)
-       throws org.xml.sax.SAXException
+       throws SAXException
   {
     if(--eventcounter<=0)
       {
@@ -279,8 +279,8 @@ implements IncrementalSAXSource, ContentHandler, DTDHandler, LexicalHandler, Err
     if(clientContentHandler!=null)
       clientContentHandler.ignorableWhitespace(ch,start,length);
   }
-  public void processingInstruction(java.lang.String target, java.lang.String data)
-       throws org.xml.sax.SAXException
+  public void processingInstruction(String target, String data)
+       throws SAXException
   {
     if(--eventcounter<=0)
       {
@@ -301,8 +301,8 @@ implements IncrementalSAXSource, ContentHandler, DTDHandler, LexicalHandler, Err
     if(clientContentHandler!=null)
       clientContentHandler.setDocumentLocator(locator);
   }
-  public void skippedEntity(java.lang.String name)
-       throws org.xml.sax.SAXException
+  public void skippedEntity(String name)
+       throws SAXException
   {
     if(--eventcounter<=0)
       {
@@ -313,7 +313,7 @@ implements IncrementalSAXSource, ContentHandler, DTDHandler, LexicalHandler, Err
       clientContentHandler.skippedEntity(name);
   }
   public void startDocument()
-       throws org.xml.sax.SAXException
+       throws SAXException
   {
     co_entry_pause();
 
@@ -326,9 +326,9 @@ implements IncrementalSAXSource, ContentHandler, DTDHandler, LexicalHandler, Err
     if(clientContentHandler!=null)
       clientContentHandler.startDocument();
   }
-  public void startElement(java.lang.String namespaceURI, java.lang.String localName,
-      java.lang.String qName, Attributes atts)
-       throws org.xml.sax.SAXException
+  public void startElement(String namespaceURI, String localName,
+      String qName, Attributes atts)
+       throws SAXException
   {
     if(--eventcounter<=0)
       {
@@ -338,8 +338,8 @@ implements IncrementalSAXSource, ContentHandler, DTDHandler, LexicalHandler, Err
     if(clientContentHandler!=null)
       clientContentHandler.startElement(namespaceURI, localName, qName, atts);
   }
-  public void startPrefixMapping(java.lang.String prefix, java.lang.String uri)
-       throws org.xml.sax.SAXException
+  public void startPrefixMapping(String prefix, String uri)
+       throws SAXException
   {
     if(--eventcounter<=0)
       {
@@ -361,44 +361,44 @@ implements IncrementalSAXSource, ContentHandler, DTDHandler, LexicalHandler, Err
   // But I want 'em here for now, to remind us to recheck this assertion!
   //
   public void comment(char[] ch, int start, int length)
-       throws org.xml.sax.SAXException
+       throws SAXException
   {
     if(null!=clientLexicalHandler)
       clientLexicalHandler.comment(ch,start,length);
   }
   public void endCDATA()
-       throws org.xml.sax.SAXException
+       throws SAXException
   {
     if(null!=clientLexicalHandler)
       clientLexicalHandler.endCDATA();
   }
   public void endDTD()
-       throws org.xml.sax.SAXException
+       throws SAXException
   {
     if(null!=clientLexicalHandler)
       clientLexicalHandler.endDTD();
   }
-  public void endEntity(java.lang.String name)
-       throws org.xml.sax.SAXException
+  public void endEntity(String name)
+       throws SAXException
   {
     if(null!=clientLexicalHandler)
       clientLexicalHandler.endEntity(name);
   }
   public void startCDATA()
-       throws org.xml.sax.SAXException
+       throws SAXException
   {
     if(null!=clientLexicalHandler)
       clientLexicalHandler.startCDATA();
   }
-  public void startDTD(java.lang.String name, java.lang.String publicId,
-      java.lang.String systemId)
-       throws org.xml.sax.SAXException
+  public void startDTD(String name, String publicId,
+      String systemId)
+       throws SAXException
   {
     if(null!=clientLexicalHandler)
       clientLexicalHandler. startDTD(name, publicId, systemId);
   }
-  public void startEntity(java.lang.String name)
-       throws org.xml.sax.SAXException
+  public void startEntity(String name)
+       throws SAXException
   {
     if(null!=clientLexicalHandler)
       clientLexicalHandler.startEntity(name);
@@ -678,7 +678,7 @@ implements IncrementalSAXSource, ContentHandler, DTDHandler, LexicalHandler, Err
       fCoroutineManager.co_exit_to(arg, fSourceCoroutineID,
                                    fControllerCoroutineID);
     }
-    catch(java.lang.NoSuchMethodException e)
+    catch(NoSuchMethodException e)
     {
       // Shouldn't happen unless we've miscoded our coroutine logic
       // "CPO, shut down the garbage smashers on the detention level!"

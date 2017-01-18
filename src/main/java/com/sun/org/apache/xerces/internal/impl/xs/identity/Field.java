@@ -44,7 +44,7 @@ public class Field {
     //
 
     /** Field XPath. */
-    protected Field.XPath fXPath;
+    protected XPath fXPath;
 
 
     /** Identity constraint. */
@@ -55,7 +55,7 @@ public class Field {
     //
 
     /** Constructs a field. */
-    public Field(Field.XPath xpath,
+    public Field(XPath xpath,
                  IdentityConstraint identityConstraint) {
         fXPath = xpath;
         fIdentityConstraint = identityConstraint;
@@ -79,7 +79,7 @@ public class Field {
 
     /** Creates a field matcher. */
     public XPathMatcher createMatcher(FieldActivator activator, ValueStore store) {
-        return new Field.Matcher(fXPath, activator, store);
+        return new Matcher(fXPath, activator, store);
     } // createMatcher(ValueStore):XPathMatcher
 
     //
@@ -124,9 +124,9 @@ public class Field {
             // verify that only one attribute is selected per branch
             for (int i=0;i<fLocationPaths.length;i++) {
                 for(int j=0; j<fLocationPaths[i].steps.length; j++) {
-                    com.sun.org.apache.xerces.internal.impl.xpath.XPath.Axis axis =
+                    Axis axis =
                         fLocationPaths[i].steps[j].axis;
-                    if (axis.type == XPath.Axis.ATTRIBUTE &&
+                    if (axis.type == Axis.ATTRIBUTE &&
                             (j < fLocationPaths[i].steps.length-1)) {
                         throw new XPathException("c-fields-xpaths");
                     }
@@ -159,7 +159,7 @@ public class Field {
         //
 
         /** Constructs a field matcher. */
-        public Matcher(Field.XPath xpath, FieldActivator activator, ValueStore store) {
+        public Matcher(XPath xpath, FieldActivator activator, ValueStore store) {
             super(xpath);
             fFieldActivator = activator;
             fStore = store;

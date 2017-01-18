@@ -362,7 +362,7 @@ public class UnionPathIterator extends LocPathIterator
         if(compiler.getLocationPathDepth() <= 0)
           iter.setIsTopLevel(true);
 
-        iter.m_firstWalker = new com.sun.org.apache.xpath.internal.axes.FilterExprWalker(iter);
+        iter.m_firstWalker = new FilterExprWalker(iter);
 
         iter.m_firstWalker.init(compiler, opPos, steptype);
 

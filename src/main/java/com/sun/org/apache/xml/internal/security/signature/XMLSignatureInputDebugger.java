@@ -471,7 +471,7 @@ public class XMLSignatureInputDebugger {
     }
 
     /**
-     * Normalizes a {@link org.w3c.dom.Comment} value
+     * Normalizes a {@link Comment} value
      *
      * @param currentPI
      * @throws IOException

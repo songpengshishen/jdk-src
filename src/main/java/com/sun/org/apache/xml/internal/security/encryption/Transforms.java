@@ -35,7 +35,7 @@ package com.sun.org.apache.xml.internal.security.encryption;
  * </xmp>
  *
  * @author Axl Mattheus
- * @see com.sun.org.apache.xml.internal.security.encryption.CipherReference
+ * @see CipherReference
  */
 public interface Transforms {
     /**

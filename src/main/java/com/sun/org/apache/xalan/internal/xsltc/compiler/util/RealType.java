@@ -66,7 +66,7 @@ public final class RealType extends NumberType {
     }
 
     /**
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#distanceTo
+     * @see     Type#distanceTo
      */
     public int distanceTo(Type type) {
         if (type == this) {
@@ -84,7 +84,7 @@ public final class RealType extends NumberType {
      * Translates a real into an object of internal type <code>type</code>. The
      * translation to int is undefined since reals are never converted to ints.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             Type type) {
@@ -111,7 +111,7 @@ public final class RealType extends NumberType {
      * Expects a real on the stack and pushes its string value by calling
      * <code>Double.toString(double d)</code>.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             StringType type) {
@@ -126,7 +126,7 @@ public final class RealType extends NumberType {
      * Expects a real on the stack and pushes a 0 if that number is 0.0 and
      * a 1 otherwise.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             BooleanType type) {
@@ -141,7 +141,7 @@ public final class RealType extends NumberType {
     /**
      * Expects a real on the stack and pushes a truncated integer value
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             IntType type) {
@@ -156,7 +156,7 @@ public final class RealType extends NumberType {
      * 0 or a 1 but instead returns branchhandle list to be appended to the
      * false list. A NaN must be converted to "false".
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateToDesynthesized
+     * @see     Type#translateToDesynthesized
      */
     public FlowList translateToDesynthesized(ClassGenerator classGen,
                                              MethodGenerator methodGen,
@@ -191,7 +191,7 @@ public final class RealType extends NumberType {
      * Expects a double on the stack and pushes a boxed double. Boxed
      * double are represented by an instance of <code>java.lang.Double</code>.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             ReferenceType type) {
@@ -238,7 +238,7 @@ public final class RealType extends NumberType {
             il.append(NOP);
         }
         // Is Double <: clazz? I.e. clazz in { Double, Number, Object }
-        else if (clazz.isAssignableFrom(java.lang.Double.class)) {
+        else if (clazz.isAssignableFrom(Double.class)) {
             translateTo(classGen, methodGen, Type.Reference);
         }
         else {

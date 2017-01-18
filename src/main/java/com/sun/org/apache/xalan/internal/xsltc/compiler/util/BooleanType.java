@@ -79,7 +79,7 @@ public final class BooleanType extends Type {
      * translation to int is undefined since booleans are always converted to
      * reals in arithmetic expressions.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             Type type) {
@@ -104,7 +104,7 @@ public final class BooleanType extends Type {
      * stack is zero, then the string 'false' is pushed. Otherwise, the string
      * 'true' is pushed.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             StringType type) {
@@ -121,7 +121,7 @@ public final class BooleanType extends Type {
      * Expects a boolean on the stack and pushes a real. The value "true" is
      * converted to 1.0 and the value "false" to 0.0.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             RealType type) {
@@ -133,7 +133,7 @@ public final class BooleanType extends Type {
      * Boxed booleans are represented by an instance of
      * <code>java.lang.Boolean</code>.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             ReferenceType type) {

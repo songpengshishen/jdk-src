@@ -58,7 +58,7 @@ import java.util.Locale;
  */
 public class XMLEntityScanner implements XMLLocator  {
 
-    protected Entity.ScannedEntity fCurrentEntity = null;
+    protected ScannedEntity fCurrentEntity = null;
     protected int fBufferSize = XMLEntityManager.DEFAULT_BUFFER_SIZE;
 
     protected XMLEntityManager fEntityManager;
@@ -271,7 +271,7 @@ public class XMLEntityScanner implements XMLLocator  {
      *   @param ScannedEntity
      */
 
-    public final void setCurrentEntity(Entity.ScannedEntity scannedEntity){
+    public final void setCurrentEntity(ScannedEntity scannedEntity){
         fCurrentEntity = scannedEntity ;
         if(fCurrentEntity != null){
             isExternal = fCurrentEntity.isExternal();
@@ -280,7 +280,7 @@ public class XMLEntityScanner implements XMLLocator  {
         }
     }
 
-    public  Entity.ScannedEntity getCurrentEntity(){
+    public  ScannedEntity getCurrentEntity(){
         return fCurrentEntity ;
     }
     //
@@ -296,7 +296,7 @@ public class XMLEntityScanner implements XMLLocator  {
     } // getBaseSystemId():String
 
     /**
-     * @see com.sun.org.apache.xerces.internal.xni.XMLResourceIdentifier#setBaseSystemId(String)
+     * @see XMLResourceIdentifier#setBaseSystemId(String)
      */
     public void setBaseSystemId(String systemId) {
         //no-op
@@ -310,7 +310,7 @@ public class XMLEntityScanner implements XMLLocator  {
     }
 
     /**
-     * @see com.sun.org.apache.xerces.internal.xni.XMLLocator#setLineNumber(int)
+     * @see XMLLocator#setLineNumber(int)
      */
     public void setLineNumber(int line) {
         //no-op
@@ -324,7 +324,7 @@ public class XMLEntityScanner implements XMLLocator  {
     }
 
     /**
-     * @see com.sun.org.apache.xerces.internal.xni.XMLLocator#setColumnNumber(int)
+     * @see XMLLocator#setColumnNumber(int)
      */
     public void setColumnNumber(int col) {
         // no-op
@@ -341,7 +341,7 @@ public class XMLEntityScanner implements XMLLocator  {
     }
 
     /**
-     * @see com.sun.org.apache.xerces.internal.xni.XMLResourceIdentifier#setExpandedSystemId(String)
+     * @see XMLResourceIdentifier#setExpandedSystemId(String)
      */
     public void setExpandedSystemId(String systemId) {
         //no-op
@@ -353,7 +353,7 @@ public class XMLEntityScanner implements XMLLocator  {
     }
 
     /**
-     * @see com.sun.org.apache.xerces.internal.xni.XMLResourceIdentifier#setLiteralSystemId(String)
+     * @see XMLResourceIdentifier#setLiteralSystemId(String)
      */
     public void setLiteralSystemId(String systemId) {
         //no-op
@@ -365,7 +365,7 @@ public class XMLEntityScanner implements XMLLocator  {
     }
 
     /**
-     * @see com.sun.org.apache.xerces.internal.xni.XMLResourceIdentifier#setPublicId(String)
+     * @see XMLResourceIdentifier#setPublicId(String)
      */
     public void setPublicId(String publicId) {
         //no-op
@@ -415,7 +415,7 @@ public class XMLEntityScanner implements XMLLocator  {
      *
      * @throws IOException Thrown if the new encoding is not supported.
      *
-     * @see com.sun.org.apache.xerces.internal.util.EncodingMap
+     * @see EncodingMap
      */
     public final void setEncoding(String encoding) throws IOException {
 
@@ -597,8 +597,8 @@ public class XMLEntityScanner implements XMLLocator  {
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
      *
-     * @see com.sun.org.apache.xerces.internal.util.SymbolTable
-     * @see com.sun.org.apache.xerces.internal.util.XMLChar#isName
+     * @see SymbolTable
+     * @see XMLChar#isName
      */
     protected String scanNmtoken() throws IOException {
         if (DEBUG_BUFFER) {
@@ -677,9 +677,9 @@ public class XMLEntityScanner implements XMLLocator  {
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
      *
-     * @see com.sun.org.apache.xerces.internal.util.SymbolTable
-     * @see com.sun.org.apache.xerces.internal.util.XMLChar#isName
-     * @see com.sun.org.apache.xerces.internal.util.XMLChar#isNameStart
+     * @see SymbolTable
+     * @see XMLChar#isName
+     * @see XMLChar#isNameStart
      */
     protected String scanName(NameType nt) throws IOException {
         if (DEBUG_BUFFER) {
@@ -770,9 +770,9 @@ public class XMLEntityScanner implements XMLLocator  {
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
      *
-     * @see com.sun.org.apache.xerces.internal.util.SymbolTable
-     * @see com.sun.org.apache.xerces.internal.util.XMLChar#isName
-     * @see com.sun.org.apache.xerces.internal.util.XMLChar#isNameStart
+     * @see SymbolTable
+     * @see XMLChar#isName
+     * @see XMLChar#isNameStart
      */
     protected boolean scanQName(QName qname, NameType nt) throws IOException {
         if (DEBUG_BUFFER) {
@@ -901,7 +901,7 @@ public class XMLEntityScanner implements XMLLocator  {
      * @return the length of characters scanned before the end of the buffer,
      * zero if there is more to be read in the buffer
      */
-    protected int checkBeforeLoad(Entity.ScannedEntity entity, int offset,
+    protected int checkBeforeLoad(ScannedEntity entity, int offset,
             int nameOffset) throws IOException {
         int length = 0;
         if (++entity.position == entity.count) {
@@ -1615,7 +1615,7 @@ public class XMLEntityScanner implements XMLLocator  {
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
      *
-     * @see com.sun.org.apache.xerces.internal.util.XMLChar#isSpace
+     * @see XMLChar#isSpace
      */
     protected boolean skipSpaces() throws IOException {
         if (DEBUG_BUFFER) {
@@ -2239,7 +2239,7 @@ public class XMLEntityScanner implements XMLLocator  {
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
      *
-     * @see com.sun.org.apache.xerces.internal.util.XMLChar#isSpace
+     * @see XMLChar#isSpace
      */
     protected final boolean skipDeclSpaces() throws IOException {
         if (DEBUG_BUFFER) {

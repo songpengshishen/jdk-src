@@ -124,7 +124,7 @@ public abstract class CPInstruction extends Instruction
     if(c instanceof ConstantClass)
       str = str.replace('.', '/');
 
-    return com.sun.org.apache.bcel.internal.Constants.OPCODE_NAMES[opcode] + " " + str;
+    return Constants.OPCODE_NAMES[opcode] + " " + str;
   }
 
   /**
@@ -159,7 +159,7 @@ public abstract class CPInstruction extends Instruction
    */
   public Type getType(ConstantPoolGen cpg) {
     ConstantPool cp   = cpg.getConstantPool();
-    String       name = cp.getConstantString(index, com.sun.org.apache.bcel.internal.Constants.CONSTANT_Class);
+    String       name = cp.getConstantString(index, Constants.CONSTANT_Class);
 
     if(!name.startsWith("["))
       name = "L" + name + ";";

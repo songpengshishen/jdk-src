@@ -146,7 +146,7 @@ public class XML11EntityScanner
      * @throws EOFException Thrown on end of file.
      *
      * @see com.sun.org.apache.xerces.internal.util.SymbolTable
-     * @see com.sun.org.apache.xerces.internal.util.XML11Char#isXML11Name
+     * @see XML11Char#isXML11Name
      */
     protected String scanNmtoken() throws IOException {
         // load more characters, if needed
@@ -261,8 +261,8 @@ public class XML11EntityScanner
      * @throws EOFException Thrown on end of file.
      *
      * @see com.sun.org.apache.xerces.internal.util.SymbolTable
-     * @see com.sun.org.apache.xerces.internal.util.XML11Char#isXML11Name
-     * @see com.sun.org.apache.xerces.internal.util.XML11Char#isXML11NameStart
+     * @see XML11Char#isXML11Name
+     * @see XML11Char#isXML11NameStart
      */
     protected String scanName(NameType nt) throws IOException {
         // load more characters, if needed
@@ -385,8 +385,8 @@ public class XML11EntityScanner
      * @throws EOFException Thrown on end of file.
      *
      * @see com.sun.org.apache.xerces.internal.util.SymbolTable
-     * @see com.sun.org.apache.xerces.internal.util.XML11Char#isXML11NCName
-     * @see com.sun.org.apache.xerces.internal.util.XML11Char#isXML11NCNameStart
+     * @see XML11Char#isXML11NCName
+     * @see XML11Char#isXML11NCNameStart
      */
     protected String scanNCName() throws IOException {
 
@@ -553,8 +553,8 @@ public class XML11EntityScanner
      * @throws EOFException Thrown on end of file.
      *
      * @see com.sun.org.apache.xerces.internal.util.SymbolTable
-     * @see com.sun.org.apache.xerces.internal.util.XML11Char#isXML11Name
-     * @see com.sun.org.apache.xerces.internal.util.XML11Char#isXML11NameStart
+     * @see XML11Char#isXML11Name
+     * @see XML11Char#isXML11NameStart
      */
     protected boolean scanQName(QName qname, XMLScanner.NameType nt) throws IOException {
 
@@ -1318,8 +1318,8 @@ public class XML11EntityScanner
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
      *
-     * @see com.sun.org.apache.xerces.internal.util.XMLChar#isSpace
-     * @see com.sun.org.apache.xerces.internal.util.XML11Char#isXML11Space
+     * @see XMLChar#isSpace
+     * @see XML11Char#isXML11Space
      */
     protected boolean skipSpaces() throws IOException {
 

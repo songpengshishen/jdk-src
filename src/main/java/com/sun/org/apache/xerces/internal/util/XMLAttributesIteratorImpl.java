@@ -52,7 +52,7 @@ public class XMLAttributesIteratorImpl extends XMLAttributesImpl implements Iter
     //pointer to current position.
     protected int fCurrent = 0 ;
 
-    protected XMLAttributesImpl.Attribute fLastReturnedItem ;
+    protected Attribute fLastReturnedItem ;
 
     /** Creates a new instance of XMLAttributesIteratorImpl */
     public XMLAttributesIteratorImpl() {

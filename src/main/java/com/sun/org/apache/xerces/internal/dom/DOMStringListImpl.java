@@ -53,7 +53,7 @@ public class DOMStringListImpl implements DOMStringList {
     }
 
         /**
-         * @see org.w3c.dom.DOMStringList#item(int)
+         * @see DOMStringList#item(int)
          */
         public String item(int index) {
         try {
@@ -64,14 +64,14 @@ public class DOMStringListImpl implements DOMStringList {
         }
 
         /**
-         * @see org.w3c.dom.DOMStringList#getLength()
+         * @see DOMStringList#getLength()
          */
         public int getLength() {
                 return fStrings.size();
         }
 
         /**
-         * @see org.w3c.dom.DOMStringList#contains(String)
+         * @see DOMStringList#contains(String)
          */
         public boolean contains(String param) {
                 return fStrings.contains(param) ;

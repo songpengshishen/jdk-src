@@ -176,10 +176,10 @@ final class WriterToUTF8Buffered extends Writer implements WriterChain
    *
    * @exception  IOException  If an I/O error occurs
    *
-   * @throws java.io.IOException
+   * @throws IOException
    */
   public void write(final char chars[], final int start, final int length)
-          throws java.io.IOException
+          throws IOException
   {
 
     // We multiply the length by three since this is the maximum length
@@ -462,9 +462,9 @@ final class WriterToUTF8Buffered extends Writer implements WriterChain
    *
    * @exception  IOException  If an I/O error occurs
    *
-   * @throws java.io.IOException
+   * @throws IOException
    */
-  public void flush() throws java.io.IOException
+  public void flush() throws IOException
   {
     flushBuffer();
     m_os.flush();
@@ -477,9 +477,9 @@ final class WriterToUTF8Buffered extends Writer implements WriterChain
    *
    * @exception  IOException  If an I/O error occurs
    *
-   * @throws java.io.IOException
+   * @throws IOException
    */
-  public void close() throws java.io.IOException
+  public void close() throws IOException
   {
     flushBuffer();
     m_os.close();

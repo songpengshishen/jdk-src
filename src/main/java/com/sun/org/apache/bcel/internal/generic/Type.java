@@ -236,7 +236,7 @@ public abstract class Type implements java.io.Serializable {
    * @param cl Java class
    * @return corresponding Type object
    */
-  public static Type getType(java.lang.Class cl) {
+  public static Type getType(Class cl) {
     if(cl == null) {
       throw new IllegalArgumentException("Class must not be null");
     }

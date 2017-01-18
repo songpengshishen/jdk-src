@@ -31,7 +31,7 @@ import com.sun.org.apache.xpath.internal.compiler.Compiler;
  * This class implements an optimized iterator for
  * "node()" patterns, that is, any children of the
  * context node.
- * @see com.sun.org.apache.xpath.internal.axes.LocPathIterator
+ * @see LocPathIterator
  * @xsl.usage advanced
  */
 public class ChildIterator extends LocPathIterator

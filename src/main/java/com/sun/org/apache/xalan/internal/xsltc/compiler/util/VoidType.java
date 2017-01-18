@@ -60,7 +60,7 @@ public final class VoidType extends Type {
      * This translation is needed when calling external functions
      * that return void.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             Type type) {
@@ -77,7 +77,7 @@ public final class VoidType extends Type {
     /**
      * Translates a void into a string by pushing the empty string ''.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             StringType type) {

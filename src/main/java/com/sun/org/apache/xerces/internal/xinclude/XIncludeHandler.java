@@ -1554,7 +1554,7 @@ public class XIncludeHandler
                 reportFatalError("HrefFragmentIdentifierIllegal", new Object[] {href});
             }
         }
-        catch (URI.MalformedURIException exc) {
+        catch (MalformedURIException exc) {
             String newHref = escapeHref(href);
             if (href != newHref) {
                 href = newHref;
@@ -1564,7 +1564,7 @@ public class XIncludeHandler
                         reportFatalError("HrefFragmentIdentifierIllegal", new Object[] {href});
                     }
                 }
-                catch (URI.MalformedURIException exc2) {
+                catch (MalformedURIException exc2) {
                     reportFatalError("HrefSyntacticallyInvalid", new Object[] {href});
                 }
             }

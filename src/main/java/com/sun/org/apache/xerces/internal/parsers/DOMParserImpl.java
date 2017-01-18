@@ -1103,14 +1103,14 @@ extends AbstractDOMParser implements LSParser, DOMConfiguration {
     }
 
     /**
-     * @see org.w3c.dom.ls.LSParser#getAsync()
+     * @see LSParser#getAsync()
      */
     public boolean getAsync () {
         return false;
     }
 
     /**
-     * @see org.w3c.dom.ls.LSParser#getBusy()
+     * @see LSParser#getBusy()
      */
     public boolean getBusy () {
         return fBusy;

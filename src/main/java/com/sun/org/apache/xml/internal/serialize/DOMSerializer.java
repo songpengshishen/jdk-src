@@ -48,7 +48,7 @@ public interface DOMSerializer
      * @throws IOException An I/O exception occured while
      *   serializing
      */
-    public void serialize( Element elem )
+    public void serialize(Element elem)
         throws IOException;
 
 
@@ -60,7 +60,7 @@ public interface DOMSerializer
      * @throws IOException An I/O exception occured while
      *   serializing
      */
-    public void serialize( Document doc )
+    public void serialize(Document doc)
         throws IOException;
 
 
@@ -72,7 +72,7 @@ public interface DOMSerializer
      * @throws IOException An I/O exception occured while
      *   serializing
      */
-    public void serialize( DocumentFragment frag )
+    public void serialize(DocumentFragment frag)
         throws IOException;
 
 

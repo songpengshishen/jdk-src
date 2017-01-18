@@ -38,7 +38,7 @@ import org.w3c.dom.DOMException;
 /**
  * This class implements an optimized iterator for
  * descendant, descendant-or-self, or "//foo" patterns.
- * @see com.sun.org.apache.xpath.internal.axes.LocPathIterator
+ * @see LocPathIterator
  * @xsl.usage advanced
  */
 public class DescendantIterator extends LocPathIterator

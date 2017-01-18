@@ -55,8 +55,8 @@ import org.w3c.dom.xpath.XPathResult;
  *
  * <p>This implementation wraps an <code>XObject</code>.
  *
- * @see com.sun.org.apache.xpath.internal.objects.XObject
- * @see org.w3c.dom.xpath.XPathResult
+ * @see XObject
+ * @see XPathResult
  *
  * @xsl.usage internal
  */
@@ -169,7 +169,7 @@ class XPathResultImpl implements XPathResult, EventListener {
         }
 
         /**
-         * @see org.w3c.dom.xpath.XPathResult#getResultType()
+         * @see XPathResult#getResultType()
          */
         public short getResultType() {
                 return m_resultType;
@@ -180,7 +180,7 @@ class XPathResultImpl implements XPathResult, EventListener {
      * @exception XPathException
      *   TYPE_ERR: raised if <code>resultType</code> is not
      *   <code>NUMBER_TYPE</code>.
-         * @see org.w3c.dom.xpath.XPathResult#getNumberValue()
+         * @see XPathResult#getNumberValue()
          */
         public double getNumberValue() throws XPathException {
                 if (getResultType() != NUMBER_TYPE) {
@@ -203,7 +203,7 @@ class XPathResultImpl implements XPathResult, EventListener {
      *   TYPE_ERR: raised if <code>resultType</code> is not
      *   <code>STRING_TYPE</code>.
      *
-         * @see org.w3c.dom.xpath.XPathResult#getStringValue()
+         * @see XPathResult#getStringValue()
          */
         public String getStringValue() throws XPathException {
                 if (getResultType() != STRING_TYPE) {
@@ -221,7 +221,7 @@ class XPathResultImpl implements XPathResult, EventListener {
         }
 
         /**
-         * @see org.w3c.dom.xpath.XPathResult#getBooleanValue()
+         * @see XPathResult#getBooleanValue()
          */
         public boolean getBooleanValue() throws XPathException {
                 if (getResultType() != BOOLEAN_TYPE) {
@@ -245,7 +245,7 @@ class XPathResultImpl implements XPathResult, EventListener {
      *   <code>ANY_UNORDERED_NODE_TYPE</code> or
      *   <code>FIRST_ORDERED_NODE_TYPE</code>.
      *
-         * @see org.w3c.dom.xpath.XPathResult#getSingleNodeValue()
+         * @see XPathResult#getSingleNodeValue()
          */
         public Node getSingleNodeValue() throws XPathException {
 
@@ -277,7 +277,7 @@ class XPathResultImpl implements XPathResult, EventListener {
         }
 
         /**
-         * @see org.w3c.dom.xpath.XPathResult#getInvalidIteratorState()
+         * @see XPathResult#getInvalidIteratorState()
          */
         public boolean getInvalidIteratorState() {
                 return m_isInvalidIteratorState;
@@ -292,7 +292,7 @@ class XPathResultImpl implements XPathResult, EventListener {
      *   <code>UNORDERED_NODE_SNAPSHOT_TYPE</code> or
      *   <code>ORDERED_NODE_SNAPSHOT_TYPE</code>.
      *
-         * @see org.w3c.dom.xpath.XPathResult#getSnapshotLength()
+         * @see XPathResult#getSnapshotLength()
          */
         public int getSnapshotLength() throws XPathException {
 
@@ -317,7 +317,7 @@ class XPathResultImpl implements XPathResult, EventListener {
      * @exception DOMException
      *   INVALID_STATE_ERR: The document has been mutated since the result was
      *   returned.
-         * @see org.w3c.dom.xpath.XPathResult#iterateNext()
+         * @see XPathResult#iterateNext()
          */
         public Node iterateNext() throws XPathException, DOMException {
                 if ((m_resultType != UNORDERED_NODE_ITERATOR_TYPE) &&
@@ -359,7 +359,7 @@ class XPathResultImpl implements XPathResult, EventListener {
      *   <code>UNORDERED_NODE_SNAPSHOT_TYPE</code> or
      *   <code>ORDERED_NODE_SNAPSHOT_TYPE</code>.
      *
-         * @see org.w3c.dom.xpath.XPathResult#snapshotItem(int)
+         * @see XPathResult#snapshotItem(int)
          */
         public Node snapshotItem(int index) throws XPathException {
 
@@ -405,7 +405,7 @@ class XPathResultImpl implements XPathResult, EventListener {
         }
 
         /**
-         * @see org.w3c.dom.events.EventListener#handleEvent(Event)
+         * @see EventListener#handleEvent(Event)
          */
         public void handleEvent(Event event) {
 

@@ -387,7 +387,7 @@ implements XMLDTDScanner, XMLComponent, XMLEntityHandler {
      *
      * @param supportDTD The value of the property javax.xml.stream.supportDTD.
      * @return true if DTD is skipped, false otherwise.
-     * @throws java.io.IOException if i/o error occurs
+     * @throws IOException if i/o error occurs
      */
     @Override
     public boolean skipDTD(boolean supportDTD) throws IOException {

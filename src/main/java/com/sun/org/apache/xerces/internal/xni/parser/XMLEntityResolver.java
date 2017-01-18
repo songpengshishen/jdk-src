@@ -53,7 +53,7 @@ public interface XMLEntityResolver {
      * @throws XNIException Thrown on general error.
      * @throws IOException  Thrown if resolved entity stream cannot be
      *                      opened or some other i/o error occurs.
-     * @see com.sun.org.apache.xerces.internal.xni.XMLResourceIdentifier
+     * @see XMLResourceIdentifier
      */
     public XMLInputSource resolveEntity(XMLResourceIdentifier resourceIdentifier)
         throws XNIException, IOException;

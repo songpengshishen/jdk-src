@@ -294,7 +294,7 @@ public class OpMap
     }
     else
     {
-      error(com.sun.org.apache.xpath.internal.res.XPATHErrorResources.ER_UNKNOWN_OPCODE,
+      error(XPATHErrorResources.ER_UNKNOWN_OPCODE,
             new Object[]{ String.valueOf(stepType) });  //"ERROR! Unknown op code: "+m_opMap[opPos]);
       return -1;
     }
@@ -305,7 +305,7 @@ public class OpMap
    * exception.
    *
    * @param msg An error msgkey that corresponds to one of the constants found
-   *            in {@link com.sun.org.apache.xpath.internal.res.XPATHErrorResources}, which is
+   *            in {@link XPATHErrorResources}, which is
    *            a key for a format string.
    * @param args An array of arguments represented in the format string, which
    *             may be null.
@@ -316,7 +316,7 @@ public class OpMap
   public void error(String msg, Object[] args) throws javax.xml.transform.TransformerException
   {
 
-    java.lang.String fmsg = com.sun.org.apache.xalan.internal.res.XSLMessages.createXPATHMessage(msg, args);
+    String fmsg = XSLMessages.createXPATHMessage(msg, args);
 
 
     throw new javax.xml.transform.TransformerException(fmsg);

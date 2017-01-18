@@ -253,8 +253,8 @@ public abstract class Canonicalizer20010315 extends CanonicalizerBase {
      * Returns the Attr[]s to be output for the given element.
      * <br>
      * IMPORTANT: This method expects to work on a modified DOM tree, i.e. a DOM which has
-     * been prepared using {@link com.sun.org.apache.xml.internal.security.utils.XMLUtils#circumventBug2650(
-     * org.w3c.dom.Document)}.
+     * been prepared using {@link XMLUtils#circumventBug2650(
+     * Document)}.
      *
      * @param element
      * @param ns

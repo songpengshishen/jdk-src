@@ -144,7 +144,7 @@ public class NamespaceSupport implements NamespaceContext {
     //
 
     /**
-     * @see com.sun.org.apache.xerces.internal.xni.NamespaceContext#reset()
+     * @see NamespaceContext#reset()
      */
     public void reset() {
 
@@ -167,7 +167,7 @@ public class NamespaceSupport implements NamespaceContext {
 
 
     /**
-     * @see com.sun.org.apache.xerces.internal.xni.NamespaceContext#pushContext()
+     * @see NamespaceContext#pushContext()
      */
     public void pushContext() {
 
@@ -185,7 +185,7 @@ public class NamespaceSupport implements NamespaceContext {
 
 
     /**
-     * @see com.sun.org.apache.xerces.internal.xni.NamespaceContext#popContext()
+     * @see NamespaceContext#popContext()
      */
     public void popContext() {
         fNamespaceSize = fContext[fCurrentContext--];
@@ -193,7 +193,7 @@ public class NamespaceSupport implements NamespaceContext {
     } // popContext()
 
     /**
-     * @see com.sun.org.apache.xerces.internal.xni.NamespaceContext#declarePrefix(String, String)
+     * @see NamespaceContext#declarePrefix(String, String)
      */
     public boolean declarePrefix(String prefix, String uri) {
         // ignore "xml" and "xmlns" prefixes
@@ -231,7 +231,7 @@ public class NamespaceSupport implements NamespaceContext {
     } // declarePrefix(String,String):boolean
 
     /**
-     * @see com.sun.org.apache.xerces.internal.xni.NamespaceContext#getURI(String)
+     * @see NamespaceContext#getURI(String)
      */
     public String getURI(String prefix) {
 
@@ -249,7 +249,7 @@ public class NamespaceSupport implements NamespaceContext {
 
 
     /**
-     * @see com.sun.org.apache.xerces.internal.xni.NamespaceContext#getPrefix(String)
+     * @see NamespaceContext#getPrefix(String)
      */
     public String getPrefix(String uri) {
 
@@ -267,14 +267,14 @@ public class NamespaceSupport implements NamespaceContext {
     } // getPrefix(String):String
 
     /**
-     * @see com.sun.org.apache.xerces.internal.xni.NamespaceContext#getDeclaredPrefixCount()
+     * @see NamespaceContext#getDeclaredPrefixCount()
      */
     public int getDeclaredPrefixCount() {
         return (fNamespaceSize - fContext[fCurrentContext]) / 2;
     } // getDeclaredPrefixCount():int
 
     /**
-     * @see com.sun.org.apache.xerces.internal.xni.NamespaceContext#getDeclaredPrefixAt(int)
+     * @see NamespaceContext#getDeclaredPrefixAt(int)
      */
     public String getDeclaredPrefixAt(int index) {
         return fNamespace[fContext[fCurrentContext] + index * 2];
@@ -305,7 +305,7 @@ public class NamespaceSupport implements NamespaceContext {
         return new IteratorPrefixes(fPrefixes, count);
     }//getPrefixes
     /**
-     * @see com.sun.org.apache.xerces.internal.xni.NamespaceContext#getAllPrefixes()
+     * @see NamespaceContext#getAllPrefixes()
      */
     public Enumeration getAllPrefixes() {
         int count = 0;
@@ -406,14 +406,14 @@ public class NamespaceSupport implements NamespaceContext {
         }
 
         /**
-         * @see java.util.Enumeration#hasMoreElements()
+         * @see Enumeration#hasMoreElements()
          */
         public boolean hasNext() {
             return (counter < size);
         }
 
         /**
-         * @see java.util.Enumeration#nextElement()
+         * @see Enumeration#nextElement()
          */
         public Object next() {
             if (counter< size){
@@ -452,14 +452,14 @@ public class NamespaceSupport implements NamespaceContext {
         }
 
         /**
-         * @see java.util.Enumeration#hasMoreElements()
+         * @see Enumeration#hasMoreElements()
          */
         public boolean hasMoreElements() {
             return (counter< size);
         }
 
         /**
-         * @see java.util.Enumeration#nextElement()
+         * @see Enumeration#nextElement()
          */
         public Object nextElement() {
             if (counter< size){

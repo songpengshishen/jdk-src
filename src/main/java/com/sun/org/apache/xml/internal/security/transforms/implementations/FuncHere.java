@@ -69,11 +69,11 @@ public class FuncHere extends Function {
      *
      * @param xctxt
      * @return the xobject
-     * @throws javax.xml.transform.TransformerException
+     * @throws TransformerException
      */
     @Override
     public XObject execute(XPathContext xctxt)
-        throws javax.xml.transform.TransformerException {
+        throws TransformerException {
 
         Node xpathOwnerNode = (Node) xctxt.getOwnerObject();
 

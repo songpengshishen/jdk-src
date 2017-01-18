@@ -36,7 +36,7 @@ import org.xml.sax.DocumentHandler;
  * <p>
  * To serialize a document using SAX events, create a compatible serializer
  * and pass it around as a {@link
- * org.xml.sax.DocumentHandler}. If an I/O error occurs while serializing, it will
+ * DocumentHandler}. If an I/O error occurs while serializing, it will
  * be thrown by {@link DocumentHandler#endDocument}. The SAX serializer
  * may also be used as {@link org.xml.sax.DTDHandler}, {@link org.xml.sax.ext.DeclHandler} and
  * {@link org.xml.sax.ext.LexicalHandler}.
@@ -78,7 +78,7 @@ public interface Serializer
      * This method should not be called while the serializer is in
      * the process of serializing a document.
      */
-    public void setOutputCharStream( Writer output );
+    public void setOutputCharStream(Writer output);
 
 
     /**
@@ -90,7 +90,7 @@ public interface Serializer
      *
      * @param format The output format to use
      */
-    public void setOutputFormat( OutputFormat format );
+    public void setOutputFormat(OutputFormat format);
 
 
     /**

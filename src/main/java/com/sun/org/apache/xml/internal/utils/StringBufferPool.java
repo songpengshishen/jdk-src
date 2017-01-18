@@ -33,7 +33,7 @@ public class StringBufferPool
 
   /** The global pool of string buffers.   */
   private static ObjectPool m_stringBufPool =
-    new ObjectPool(com.sun.org.apache.xml.internal.utils.FastStringBuffer.class);
+    new ObjectPool(FastStringBuffer.class);
 
   /**
    * Get the first free instance of a string buffer, or create one

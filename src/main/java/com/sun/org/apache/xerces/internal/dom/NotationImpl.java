@@ -193,7 +193,7 @@ public class NotationImpl
             try {
                 return new URI(baseURI).toString();
             }
-            catch (com.sun.org.apache.xerces.internal.util.URI.MalformedURIException e){
+            catch (URI.MalformedURIException e){
                 // REVISIT: what should happen in this case?
                 return null;
             }

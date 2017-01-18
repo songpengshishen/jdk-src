@@ -725,7 +725,7 @@ public class DOM2DTM extends DTMDefaultBaseIterators
               cursor=
                 (cursor.getNodeType()!=ATTRIBUTE_NODE)
                 ? cursor.getParentNode()
-                : ((org.w3c.dom.Attr)cursor).getOwnerElement())
+                : ((Attr)cursor).getOwnerElement())
             {
               if(cursor==m_root)
                 // We know this node; find its handle.
@@ -1502,7 +1502,7 @@ public class DOM2DTM extends DTMDefaultBaseIterators
    * the IncrmentalSAXSource if we're bound to one and should receive
    * the SAX stream via it for incremental build purposes...
    * */
-  public org.xml.sax.ContentHandler getContentHandler()
+  public ContentHandler getContentHandler()
   {
       return null;
   }
@@ -1606,7 +1606,7 @@ public class DOM2DTM extends DTMDefaultBaseIterators
    * @throws org.xml.sax.SAXException
    */
   public void dispatchCharactersEvents(
-          int nodeHandle, org.xml.sax.ContentHandler ch,
+          int nodeHandle, ContentHandler ch,
           boolean normalize)
             throws org.xml.sax.SAXException
   {
@@ -1654,7 +1654,7 @@ public class DOM2DTM extends DTMDefaultBaseIterators
    * contents of all Text or CDATASection nodes.
    */
   protected static void dispatchNodeData(Node node,
-                                         org.xml.sax.ContentHandler ch,
+                                         ContentHandler ch,
                                          int depth)
             throws org.xml.sax.SAXException
   {
@@ -1710,7 +1710,7 @@ public class DOM2DTM extends DTMDefaultBaseIterators
    *
    * @throws org.xml.sax.SAXException
    */
-  public void dispatchToEvents(int nodeHandle, org.xml.sax.ContentHandler ch)
+  public void dispatchToEvents(int nodeHandle, ContentHandler ch)
           throws org.xml.sax.SAXException
   {
     TreeWalker treeWalker = m_walker;

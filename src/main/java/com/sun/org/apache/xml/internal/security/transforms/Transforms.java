@@ -40,7 +40,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 /**
- * Holder of the {@link com.sun.org.apache.xml.internal.security.transforms.Transform} steps to
+ * Holder of the {@link Transform} steps to
  * be performed on the data.
  * The input to the first Transform is the result of dereferencing the
  * <code>URI</code> attribute of the <code>Reference</code> element.

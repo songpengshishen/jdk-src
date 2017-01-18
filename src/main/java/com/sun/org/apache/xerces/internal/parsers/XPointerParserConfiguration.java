@@ -37,7 +37,7 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLDocumentSource;
  * XML Inclusions specification with XPointers, to the conformance level described in
  * <code>XPointerHandler.</code>.
  *
- * @see com.sun.org.apache.xerces.internal.xpointer.XPointerHandler
+ * @see XPointerHandler
  */
 public class XPointerParserConfiguration extends XML11Configuration {
 

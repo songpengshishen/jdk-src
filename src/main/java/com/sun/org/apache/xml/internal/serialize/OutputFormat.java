@@ -836,7 +836,7 @@ public class OutputFormat
 
     /**
      * Determine the output method for the specified document.
-     * If the document is an instance of {@link org.w3c.dom.html.HTMLDocument}
+     * If the document is an instance of {@link HTMLDocument}
      * then the method is said to be <tt>html</tt>. If the root
      * element is 'html' and all text nodes preceding the root
      * element are all whitespace, then the method is said to be

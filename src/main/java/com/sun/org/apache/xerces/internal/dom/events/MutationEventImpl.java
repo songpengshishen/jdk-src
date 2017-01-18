@@ -29,7 +29,7 @@ import org.w3c.dom.events.MutationEvent;
  */
 
 public class MutationEventImpl
-extends com.sun.org.apache.xerces.internal.dom.events.EventImpl
+extends EventImpl
 implements MutationEvent
 {
     Node relatedNode=null;

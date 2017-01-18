@@ -211,9 +211,9 @@ abstract public class ToStream extends SerializerBase
     /**
      * This helper method to writes out "]]>" when closing a CDATA section.
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
-    protected void closeCDATA() throws org.xml.sax.SAXException
+    protected void closeCDATA() throws SAXException
     {
         try
         {
@@ -244,7 +244,7 @@ abstract public class ToStream extends SerializerBase
 
             walker.traverse(node);
         }
-        catch (org.xml.sax.SAXException se)
+        catch (SAXException se)
         {
             throw new WrappedRuntimeException(se);
         }
@@ -270,11 +270,11 @@ abstract public class ToStream extends SerializerBase
     /**
      * Flush the formatter's result stream.
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
-    protected final void flushWriter() throws org.xml.sax.SAXException
+    protected final void flushWriter() throws SAXException
     {
-        final java.io.Writer writer = m_writer;
+        final Writer writer = m_writer;
         if (null != writer)
         {
             try
@@ -301,7 +301,7 @@ abstract public class ToStream extends SerializerBase
             }
             catch (IOException ioe)
             {
-                throw new org.xml.sax.SAXException(ioe);
+                throw new SAXException(ioe);
             }
         }
     }
@@ -345,7 +345,7 @@ abstract public class ToStream extends SerializerBase
             return;
         try
         {
-            final java.io.Writer writer = m_writer;
+            final Writer writer = m_writer;
             DTDprolog();
 
             writer.write("<!ELEMENT ");
@@ -399,11 +399,11 @@ abstract public class ToStream extends SerializerBase
      * @param name non-null reference to document type name.
      * NEEDSDOC @param value
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
     void outputEntityDecl(String name, String value) throws IOException
     {
-        final java.io.Writer writer = m_writer;
+        final Writer writer = m_writer;
         writer.write("<!ENTITY ");
         writer.write(name);
         writer.write(" \"");
@@ -415,7 +415,7 @@ abstract public class ToStream extends SerializerBase
     /**
      * Output a system-dependent line break.
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
     protected final void outputLineSep() throws IOException
     {
@@ -757,7 +757,7 @@ abstract public class ToStream extends SerializerBase
      *
      * @param depth the indentation depth (element nesting depth)
      *
-     * @throws org.xml.sax.SAXException if an error occurs during writing.
+     * @throws SAXException if an error occurs during writing.
      */
     protected void indent(int depth) throws IOException
     {
@@ -785,11 +785,11 @@ abstract public class ToStream extends SerializerBase
      * Prints <var>n</var> spaces.
      * @param n         Number of spaces to print.
      *
-     * @throws org.xml.sax.SAXException if an error occurs when writing.
+     * @throws SAXException if an error occurs when writing.
      */
     private void printSpace(int n) throws IOException
     {
-        final java.io.Writer writer = m_writer;
+        final Writer writer = m_writer;
         for (int i = 0; i < n; i++)
         {
             writer.write(' ');
@@ -829,7 +829,7 @@ abstract public class ToStream extends SerializerBase
             return;
         try
         {
-            final java.io.Writer writer = m_writer;
+            final Writer writer = m_writer;
             DTDprolog();
 
             writer.write("<!ATTLIST ");
@@ -953,7 +953,7 @@ abstract public class ToStream extends SerializerBase
      * was written out.
      *
      * @throws IOException
-     * @throws org.xml.sax.SAXException if invalid UTF-16 surrogate detected.
+     * @throws SAXException if invalid UTF-16 surrogate detected.
      */
     protected int writeUTF16Surrogate(char c, char ch[], int i, int end)
         throws IOException
@@ -979,7 +979,7 @@ abstract public class ToStream extends SerializerBase
                             + Integer.toHexString(low)}));
         }
 
-        final java.io.Writer writer = m_writer;
+        final Writer writer = m_writer;
 
         // If we make it to here we have a valid high, low surrogate pair
         if (m_encodingInfo.isInEncoding(c,low)) {
@@ -1027,10 +1027,10 @@ abstract public class ToStream extends SerializerBase
      *
      * @return i+1 if the character was written, else i.
      *
-     * @throws java.io.IOException
+     * @throws IOException
      */
     protected int accumDefaultEntity(
-        java.io.Writer writer,
+        Writer writer,
         char ch,
         int i,
         char[] chars,
@@ -1077,7 +1077,7 @@ abstract public class ToStream extends SerializerBase
      * end-of-line separator should be output rather than a new-line character.
      *
      * @throws IOException
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
     void writeNormalizedChars(
         char ch[],
@@ -1085,9 +1085,9 @@ abstract public class ToStream extends SerializerBase
         int length,
         boolean isCData,
         boolean useSystemLineSeparator)
-        throws IOException, org.xml.sax.SAXException
+        throws IOException, SAXException
     {
-        final java.io.Writer writer = m_writer;
+        final Writer writer = m_writer;
         int end = start + length;
 
         for (int i = start; i < end; i++)
@@ -1179,9 +1179,9 @@ abstract public class ToStream extends SerializerBase
      *
      * @see #startNonEscaping
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
-    public void endNonEscaping() throws org.xml.sax.SAXException
+    public void endNonEscaping() throws SAXException
     {
         m_disableOutputEscapingStates.pop();
     }
@@ -1194,9 +1194,9 @@ abstract public class ToStream extends SerializerBase
      * <p> The contents of the un-escaping section will be delivered through the
      * regular <tt>characters</tt> event.
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
-    public void startNonEscaping() throws org.xml.sax.SAXException
+    public void startNonEscaping() throws SAXException
     {
         m_disableOutputEscapingStates.push(true);
     }
@@ -1221,15 +1221,15 @@ abstract public class ToStream extends SerializerBase
      * @param ch The characters from the XML document.
      * @param start The start position in the array.
      * @param length The number of characters to read from the array.
-     * @throws org.xml.sax.SAXException Any SAX exception, possibly
+     * @throws SAXException Any SAX exception, possibly
      *            wrapping another exception.
      * @see #ignorableWhitespace
      * @see org.xml.sax.Locator
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
     protected void cdata(char ch[], int start, final int length)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
 
         try
@@ -1287,7 +1287,7 @@ abstract public class ToStream extends SerializerBase
         }
         catch (IOException ioe)
         {
-            throw new org.xml.sax.SAXException(
+            throw new SAXException(
                 Utils.messages.createMessage(
                     MsgKey.ER_OIERROR,
                     null),
@@ -1314,10 +1314,10 @@ abstract public class ToStream extends SerializerBase
      * @param start The start position in the array.
      * @param length The number of characters to read from the array.
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
     protected void charactersRaw(char ch[], int start, int length)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
 
         if (m_inEntityRef)
@@ -1361,15 +1361,15 @@ abstract public class ToStream extends SerializerBase
      * @param chars The characters from the XML document.
      * @param start The start position in the array.
      * @param length The number of characters to read from the array.
-     * @throws org.xml.sax.SAXException Any SAX exception, possibly
+     * @throws SAXException Any SAX exception, possibly
      *            wrapping another exception.
      * @see #ignorableWhitespace
      * @see org.xml.sax.Locator
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
     public void characters(final char chars[], final int start, final int length)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
         // It does not make sense to continue with rest of the method if the number of
         // characters to read from array is 0.
@@ -1603,9 +1603,9 @@ abstract public class ToStream extends SerializerBase
      *
      * @param s The string of characters to process.
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
-    public void characters(String s) throws org.xml.sax.SAXException
+    public void characters(String s) throws SAXException
     {
         if (m_inEntityRef && !m_expandDTDEntities)
             return;
@@ -1633,7 +1633,7 @@ abstract public class ToStream extends SerializerBase
      * @return i+1 if a character was written, i+2 if two characters
      * were written out, else return i.
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
     protected int accumDefaultEscape(
         Writer writer,
@@ -1740,20 +1740,20 @@ abstract public class ToStream extends SerializerBase
      *        performed.
      * @param name The element type name.
      * @param atts The attributes attached to the element, if any.
-     * @throws org.xml.sax.SAXException Any SAX exception, possibly
+     * @throws SAXException Any SAX exception, possibly
      *            wrapping another exception.
-     * @see org.xml.sax.ContentHandler#startElement
-     * @see org.xml.sax.ContentHandler#endElement
+     * @see ContentHandler#startElement
+     * @see ContentHandler#endElement
      * @see org.xml.sax.AttributeList
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
     public void startElement(
         String namespaceURI,
         String localName,
         String name,
         Attributes atts)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
         if (m_inEntityRef)
             return;
@@ -1796,7 +1796,7 @@ abstract public class ToStream extends SerializerBase
 
             m_startNewLine = true;
 
-            final java.io.Writer writer = m_writer;
+            final Writer writer = m_writer;
             writer.write('<');
             writer.write(name);
         }
@@ -1831,13 +1831,13 @@ abstract public class ToStream extends SerializerBase
       *        empty string if Namespace processing is not being
       *        performed.
       * @param elementName The element type name.
-      * @throws org.xml.sax.SAXException Any SAX exception, possibly
+      * @throws SAXException Any SAX exception, possibly
       *            wrapping another exception.
-      * @see org.xml.sax.ContentHandler#startElement
-      * @see org.xml.sax.ContentHandler#endElement
+      * @see ContentHandler#startElement
+      * @see ContentHandler#endElement
       * @see org.xml.sax.AttributeList
       *
-      * @throws org.xml.sax.SAXException
+      * @throws SAXException
       */
     public void startElement(
         String elementNamespaceURI,
@@ -1859,7 +1859,7 @@ abstract public class ToStream extends SerializerBase
      * @param name non-null reference to document type name.
      * NEEDSDOC @param closeDecl
      *
-     * @throws java.io.IOException
+     * @throws IOException
      */
     void outputDocTypeDecl(String name, boolean closeDecl) throws SAXException
     {
@@ -1867,7 +1867,7 @@ abstract public class ToStream extends SerializerBase
             closeCDATA();
         try
         {
-            final java.io.Writer writer = m_writer;
+            final Writer writer = m_writer;
             writer.write("<!DOCTYPE ");
             writer.write(name);
 
@@ -1925,10 +1925,10 @@ abstract public class ToStream extends SerializerBase
      * @param nAttrs the number of attributes in m_attributes
      * to be processed
      *
-     * @throws java.io.IOException
-     * @throws org.xml.sax.SAXException
+     * @throws IOException
+     * @throws SAXException
      */
-    public void processAttributes(java.io.Writer writer, int nAttrs) throws IOException, SAXException
+    public void processAttributes(Writer writer, int nAttrs) throws IOException, SAXException
     {
             /* real SAX attributes are not passed in, so process the
              * attributes that were collected after the startElement call.
@@ -1956,7 +1956,7 @@ abstract public class ToStream extends SerializerBase
      * @param   string      String to convert to XML format.
      * @param   encoding    CURRENTLY NOT IMPLEMENTED.
      *
-     * @throws java.io.IOException
+     * @throws IOException
      */
     public void writeAttrString(
         Writer writer,
@@ -2007,13 +2007,13 @@ abstract public class ToStream extends SerializerBase
      *        empty string if Namespace processing is not being
      *        performed.
      * @param name The element type name
-     * @throws org.xml.sax.SAXException Any SAX exception, possibly
+     * @throws SAXException Any SAX exception, possibly
      *            wrapping another exception.
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
     public void endElement(String namespaceURI, String localName, String name)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
 
         if (m_inEntityRef)
@@ -2025,7 +2025,7 @@ abstract public class ToStream extends SerializerBase
 
         try
         {
-            final java.io.Writer writer = m_writer;
+            final Writer writer = m_writer;
             if (m_elemContext.m_startTagOpen)
             {
                 if (m_tracer != null)
@@ -2081,10 +2081,10 @@ abstract public class ToStream extends SerializerBase
     /**
      * Receive notification of the end of an element.
      * @param name The element type name
-     * @throws org.xml.sax.SAXException Any SAX exception, possibly
+     * @throws SAXException Any SAX exception, possibly
      *     wrapping another exception.
      */
-    public void endElement(String name) throws org.xml.sax.SAXException
+    public void endElement(String name) throws SAXException
     {
         endElement(null, null, name);
     }
@@ -2095,17 +2095,17 @@ abstract public class ToStream extends SerializerBase
      * This call will close any open tags so that the prefix mapping
      * will not apply to the current element, but the up comming child.
      *
-     * @see org.xml.sax.ContentHandler#startPrefixMapping
+     * @see ContentHandler#startPrefixMapping
      *
      * @param prefix The Namespace prefix being declared.
      * @param uri The Namespace URI the prefix is mapped to.
      *
-     * @throws org.xml.sax.SAXException The client may throw
+     * @throws SAXException The client may throw
      *            an exception during processing.
      *
      */
     public void startPrefixMapping(String prefix, String uri)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
         // the "true" causes the flush of any open tags
         startPrefixMapping(prefix, uri, true);
@@ -2127,7 +2127,7 @@ abstract public class ToStream extends SerializerBase
      * namespace information, false if it did not change anything, e.g. if the
      * prefix/namespace mapping was already in scope from before.
      *
-     * @throws org.xml.sax.SAXException The client may throw
+     * @throws SAXException The client may throw
      *            an exception during processing.
      *
      *
@@ -2136,7 +2136,7 @@ abstract public class ToStream extends SerializerBase
         String prefix,
         String uri,
         boolean shouldFlush)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
 
         /* Remember the mapping, and at what depth it was declared
@@ -2198,10 +2198,10 @@ abstract public class ToStream extends SerializerBase
      * @param ch An array holding the characters in the comment.
      * @param start The starting position in the array.
      * @param length The number of characters to use from the array.
-     * @throws org.xml.sax.SAXException The application may raise an exception.
+     * @throws SAXException The application may raise an exception.
      */
     public void comment(char ch[], int start, int length)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
 
         int start_old = start;
@@ -2231,7 +2231,7 @@ abstract public class ToStream extends SerializerBase
             if (shouldIndent() && !m_isStandalone)
                 indent();
 
-            final java.io.Writer writer = m_writer;
+            final Writer writer = m_writer;
             writer.write(COMMENT_BEGIN);
             // Detect occurrences of two consecutive dashes, handle as necessary.
             for (int i = start; i < limit; i++)
@@ -2280,11 +2280,11 @@ abstract public class ToStream extends SerializerBase
 
     /**
      * Report the end of a CDATA section.
-     * @throws org.xml.sax.SAXException The application may raise an exception.
+     * @throws SAXException The application may raise an exception.
      *
      *  @see  #startCDATA
      */
-    public void endCDATA() throws org.xml.sax.SAXException
+    public void endCDATA() throws SAXException
     {
         if (m_cdataTagOpen)
             closeCDATA();
@@ -2293,10 +2293,10 @@ abstract public class ToStream extends SerializerBase
 
     /**
      * Report the end of DTD declarations.
-     * @throws org.xml.sax.SAXException The application may raise an exception.
+     * @throws SAXException The application may raise an exception.
      * @see #startDTD
      */
-    public void endDTD() throws org.xml.sax.SAXException
+    public void endDTD() throws SAXException
     {
         try
         {
@@ -2311,7 +2311,7 @@ abstract public class ToStream extends SerializerBase
                 outputDocTypeDecl(m_elemContext.m_elementName, false);
                 m_needToOutputDocTypeDecl = false;
             }
-            final java.io.Writer writer = m_writer;
+            final Writer writer = m_writer;
             if (!m_inDoctype)
                 writer.write("]>");
             else
@@ -2330,13 +2330,13 @@ abstract public class ToStream extends SerializerBase
 
     /**
      * End the scope of a prefix-URI Namespace mapping.
-     * @see org.xml.sax.ContentHandler#endPrefixMapping
+     * @see ContentHandler#endPrefixMapping
      *
      * @param prefix The prefix that was being mapping.
-     * @throws org.xml.sax.SAXException The client may throw
+     * @throws SAXException The client may throw
      *            an exception during processing.
      */
-    public void endPrefixMapping(String prefix) throws org.xml.sax.SAXException
+    public void endPrefixMapping(String prefix) throws SAXException
     { // do nothing
     }
 
@@ -2348,14 +2348,14 @@ abstract public class ToStream extends SerializerBase
      * @param ch The characters from the XML document.
      * @param start The start position in the array.
      * @param length The number of characters to read from the array.
-     * @throws org.xml.sax.SAXException Any SAX exception, possibly
+     * @throws SAXException Any SAX exception, possibly
      *            wrapping another exception.
      * @see #characters
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
     public void ignorableWhitespace(char ch[], int start, int length)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
 
         if (0 == length)
@@ -2365,26 +2365,26 @@ abstract public class ToStream extends SerializerBase
 
     /**
      * Receive notification of a skipped entity.
-     * @see org.xml.sax.ContentHandler#skippedEntity
+     * @see ContentHandler#skippedEntity
      *
      * @param name The name of the skipped entity.  If it is a
      *       parameter                   entity, the name will begin with '%',
      * and if it is the external DTD subset, it will be the string
      * "[dtd]".
-     * @throws org.xml.sax.SAXException Any SAX exception, possibly wrapping
+     * @throws SAXException Any SAX exception, possibly wrapping
      * another exception.
      */
-    public void skippedEntity(String name) throws org.xml.sax.SAXException
+    public void skippedEntity(String name) throws SAXException
     { // TODO: Should handle
     }
 
     /**
      * Report the start of a CDATA section.
      *
-     * @throws org.xml.sax.SAXException The application may raise an exception.
+     * @throws SAXException The application may raise an exception.
      * @see #endCDATA
      */
-    public void startCDATA() throws org.xml.sax.SAXException
+    public void startCDATA() throws SAXException
     {
         m_cdataStartCalled = true;
     }
@@ -2399,12 +2399,12 @@ abstract public class ToStream extends SerializerBase
      *
      * @param name The name of the entity.  If it is a parameter
      *        entity, the name will begin with '%'.
-     * @throws org.xml.sax.SAXException The application may raise an exception.
+     * @throws SAXException The application may raise an exception.
      * @see #endEntity
      * @see org.xml.sax.ext.DeclHandler#internalEntityDecl
      * @see org.xml.sax.ext.DeclHandler#externalEntityDecl
      */
-    public void startEntity(String name) throws org.xml.sax.SAXException
+    public void startEntity(String name) throws SAXException
     {
         if (name.equals("[dtd]"))
             m_inExternalDTD = true;
@@ -2426,7 +2426,7 @@ abstract public class ToStream extends SerializerBase
      * For the enclosing elements starting tag write out
      * out any attributes followed by ">"
      *
-     * @throws org.xml.sax.SAXException
+     * @throws SAXException
      */
     protected void closeStartTag() throws SAXException
     {
@@ -2478,13 +2478,13 @@ abstract public class ToStream extends SerializerBase
      *        external DTD subset, or null if none was declared.
      * @param systemId The declared system identifier for the
      *        external DTD subset, or null if none was declared.
-     * @throws org.xml.sax.SAXException The application may raise an
+     * @throws SAXException The application may raise an
      *            exception.
      * @see #endDTD
      * @see #startEntity
      */
     public void startDTD(String name, String publicId, String systemId)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
         setDoctypeSystem(systemId);
         setDoctypePublic(publicId);
@@ -2644,7 +2644,7 @@ abstract public class ToStream extends SerializerBase
         String ns,
         String localName,
         String rawName)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
 
         if (ns != null && ns.length() > 0)
@@ -2708,7 +2708,7 @@ abstract public class ToStream extends SerializerBase
     }
 
     void ensurePrefixIsDeclared(String ns, String rawName)
-        throws org.xml.sax.SAXException
+        throws SAXException
     {
 
         if (ns != null && ns.length() > 0)
@@ -2938,8 +2938,8 @@ abstract public class ToStream extends SerializerBase
                 {
                     // make a writer that internally appends to the same
                     // StringBuffer
-                    java.io.Writer writer =
-                        new ToStream.WritertoStringBuffer(sb);
+                    Writer writer =
+                        new WritertoStringBuffer(sb);
 
                     processAttributes(writer, nAttrs);
                     // Don't clear the attributes!
@@ -2974,11 +2974,11 @@ abstract public class ToStream extends SerializerBase
      * In this manner trace events, and the real writing of attributes will use
      * the same code.
      */
-    private class WritertoStringBuffer extends java.io.Writer
+    private class WritertoStringBuffer extends Writer
     {
         final private StringBuffer m_stringbuf;
         /**
-         * @see java.io.Writer#write(char[], int, int)
+         * @see Writer#write(char[], int, int)
          */
         WritertoStringBuffer(StringBuffer sb)
         {
@@ -2990,13 +2990,13 @@ abstract public class ToStream extends SerializerBase
             m_stringbuf.append(arg0, arg1, arg2);
         }
         /**
-         * @see java.io.Writer#flush()
+         * @see Writer#flush()
          */
         public void flush() throws IOException
         {
         }
         /**
-         * @see java.io.Writer#close()
+         * @see Writer#close()
          */
         public void close() throws IOException
         {
@@ -3301,7 +3301,7 @@ abstract public class ToStream extends SerializerBase
      * If this method is called, the serializer is used as a
      * DTDHandler, which changes behavior how the serializer
      * handles document entities.
-     * @see org.xml.sax.DTDHandler#notationDecl(java.lang.String, java.lang.String, java.lang.String)
+     * @see org.xml.sax.DTDHandler#notationDecl(String, String, String)
      */
     public void notationDecl(String name, String pubID, String sysID) throws SAXException {
         // TODO Auto-generated method stub
@@ -3331,7 +3331,7 @@ abstract public class ToStream extends SerializerBase
      * If this method is called, the serializer is used as a
      * DTDHandler, which changes behavior how the serializer
      * handles document entities.
-     * @see org.xml.sax.DTDHandler#unparsedEntityDecl(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+     * @see org.xml.sax.DTDHandler#unparsedEntityDecl(String, String, String, String)
      */
     public void unparsedEntityDecl(String name, String pubID, String sysID, String notationName) throws SAXException {
         // TODO Auto-generated method stub
@@ -3365,7 +3365,7 @@ abstract public class ToStream extends SerializerBase
      * @throws IOException
      */
     private void DTDprolog() throws SAXException, IOException {
-        final java.io.Writer writer = m_writer;
+        final Writer writer = m_writer;
         if (m_needToOutputDocTypeDecl)
         {
             outputDocTypeDecl(m_elemContext.m_elementName, false);

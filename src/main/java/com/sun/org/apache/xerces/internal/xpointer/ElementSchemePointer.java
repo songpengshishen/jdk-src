@@ -121,7 +121,7 @@ class ElementSchemePointer implements XPointerPart {
      * Parses the XPointer expression and tokenizes it into Strings
      * delimited by whitespace.
      *
-     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerProcessor#parseXPointer(java.lang.String)
+     * @see XPointerProcessor#parseXPointer(String)
      */
     public void parseXPointer(String xpointer) throws XNIException {
 
@@ -201,7 +201,7 @@ class ElementSchemePointer implements XPointerPart {
 
     /**
      * Returns the scheme name i.e element
-     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerPart#getSchemeName()
+     * @see XPointerPart#getSchemeName()
      */
     public String getSchemeName() {
         return fSchemeName;
@@ -210,7 +210,7 @@ class ElementSchemePointer implements XPointerPart {
     /**
      * Returns the scheme data
      *
-     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerPart#getSchemeData()
+     * @see XPointerPart#getSchemeData()
      */
     public String getSchemeData() {
         return fSchemeData;
@@ -219,7 +219,7 @@ class ElementSchemePointer implements XPointerPart {
     /**
      * Sets the scheme name
      *
-     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerPart#setSchemeName(java.lang.String)
+     * @see XPointerPart#setSchemeName(String)
      */
     public void setSchemeName(String schemeName) {
         fSchemeName = schemeName;
@@ -229,7 +229,7 @@ class ElementSchemePointer implements XPointerPart {
     /**
      * Sets the scheme data
      *
-     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerPart#setSchemeData(java.lang.String)
+     * @see XPointerPart#setSchemeData(String)
      */
     public void setSchemeData(String schemeData) {
         fSchemeData = schemeData;
@@ -240,7 +240,7 @@ class ElementSchemePointer implements XPointerPart {
      * Pointer is present and it is successfully resolved and if a child
      * sequence is present, the child sequence is resolved relative to it.
      *
-     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerProcessor#resolveXPointer(com.sun.org.apache.xerces.internal.xni.QName, com.sun.org.apache.xerces.internal.xni.XMLAttributes, com.sun.org.apache.xerces.internal.xni.Augmentations, int event)
+     * @see XPointerProcessor#resolveXPointer(QName, XMLAttributes, Augmentations, int event)
      */
     public boolean resolveXPointer(QName element, XMLAttributes attributes,
             Augmentations augs, int event) throws XNIException {
@@ -414,7 +414,7 @@ class ElementSchemePointer implements XPointerPart {
      * Returns true if the node matches or is a child of a matching element()
      * scheme XPointer.
      *
-     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerProcessor#isFragmentResolved()
+     * @see XPointerProcessor#isFragmentResolved()
      */
     public boolean isFragmentResolved() throws XNIException {
         // Return true if the Fragment was resolved and the current Node depth
@@ -426,7 +426,7 @@ class ElementSchemePointer implements XPointerPart {
      * Returns true if the XPointer expression resolves to a non-element child
      * of the current resource fragment.
      *
-     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerPart#isChildFragmentResolved()
+     * @see XPointerPart#isChildFragmentResolved()
      *
      */
     public boolean isChildFragmentResolved() {

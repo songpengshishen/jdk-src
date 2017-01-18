@@ -181,7 +181,7 @@ class XPath2NodeFilter implements NodeFilter {
     }
 
     /**
-     * @see com.sun.org.apache.xml.internal.security.signature.NodeFilter#isNodeInclude(org.w3c.dom.Node)
+     * @see NodeFilter#isNodeInclude(Node)
      */
     public int isNodeInclude(Node currentNode) {
         int result = 1;

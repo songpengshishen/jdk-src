@@ -37,7 +37,7 @@ public final class Utils
      * given resource bundle just once, it is
      * used by multiple transformations as long as the JVM stays up.
      */
-    public static final com.sun.org.apache.xml.internal.serializer.utils.Messages messages=
-        new com.sun.org.apache.xml.internal.serializer.utils.Messages(
+    public static final Messages messages=
+        new Messages(
             "com.sun.org.apache.xml.internal.serializer.utils.SerializerMessages");
 }

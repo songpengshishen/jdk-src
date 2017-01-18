@@ -68,7 +68,7 @@ public final class ReferenceType extends Type {
      * The translation to int is undefined since references
      * are always converted to reals in arithmetic expressions.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             Type type) {
@@ -104,7 +104,7 @@ public final class ReferenceType extends Type {
     /**
      * Translates reference into object of internal type <code>type</code>.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             StringType type) {
@@ -133,7 +133,7 @@ public final class ReferenceType extends Type {
     /**
      * Translates a reference into an object of internal type <code>type</code>.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             RealType type) {
@@ -152,7 +152,7 @@ public final class ReferenceType extends Type {
     /**
      * Translates a reference to an object of internal type <code>type</code>.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             BooleanType type) {
@@ -169,7 +169,7 @@ public final class ReferenceType extends Type {
     /**
      * Casts a reference into a NodeIterator.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             NodeSetType type) {
@@ -190,7 +190,7 @@ public final class ReferenceType extends Type {
     /**
      * Casts a reference into a Node.
      *
-     * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             NodeType type) {
@@ -201,7 +201,7 @@ public final class ReferenceType extends Type {
     /**
      * Casts a reference into a ResultTree.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             ResultTreeType type) {
@@ -215,7 +215,7 @@ public final class ReferenceType extends Type {
     /**
      * Subsume reference into ObjectType.
      *
-     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
+     * @see     Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             ObjectType type) {
@@ -344,7 +344,7 @@ public final class ReferenceType extends Type {
      * boolean. It does not push a 0 or a 1 but instead returns branchhandle
      * list to be appended to the false list.
      *
-     * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateToDesynthesized
+     * @see Type#translateToDesynthesized
      */
     public FlowList translateToDesynthesized(ClassGenerator classGen,
                                              MethodGenerator methodGen,

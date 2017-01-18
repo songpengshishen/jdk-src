@@ -680,9 +680,9 @@ public final class Constants {
 
     /** Boolean indicating if this entity is the last opened entity.
      *
-     *@see com.sun.org.apache.xerces.internal.impl.XMLEntityManager#endEntity()
-     *@see com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl#endEntity()
-     *@see com.sun.org.apache.xerces.internal.impl.XMLDTDScannerImpl#endEntity()
+     *@see XMLEntityManager#endEntity()
+     *@see XMLDocumentScannerImpl#endEntity()
+     *@see XMLDTDScannerImpl#endEntity()
      */
     public final static String LAST_ENTITY = "LAST_ENTITY";
 

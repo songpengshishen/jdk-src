@@ -165,7 +165,7 @@ public class DOM2Helper extends DOMHelper
       */
 
       parser.setErrorHandler(
-        new com.sun.org.apache.xml.internal.utils.DefaultErrorHandler());
+        new DefaultErrorHandler());
 
       // if(null != m_entityResolver)
       // {

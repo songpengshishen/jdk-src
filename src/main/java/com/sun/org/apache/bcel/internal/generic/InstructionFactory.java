@@ -491,7 +491,7 @@ public class InstructionFactory
 
       Instruction i = null;
       try {
-        i = (Instruction)java.lang.Class.forName(name).newInstance();
+        i = (Instruction) Class.forName(name).newInstance();
       } catch(Exception e) {
         throw new RuntimeException("Could not find instruction: " + name);
       }

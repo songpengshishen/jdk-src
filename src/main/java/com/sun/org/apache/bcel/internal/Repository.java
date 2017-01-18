@@ -68,7 +68,7 @@ import java.io.*;
  * to SyntheticRepository with current class path by default.
  *
  * @see com.sun.org.apache.bcel.internal.util.Repository
- * @see com.sun.org.apache.bcel.internal.util.SyntheticRepository
+ * @see SyntheticRepository
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */

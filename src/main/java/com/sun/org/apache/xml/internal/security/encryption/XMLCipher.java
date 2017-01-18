@@ -393,7 +393,7 @@ public class XMLCipher {
      *   &quot;http://www.w3.org/2001/04/xmlenc#tripledes-cbc&quot;
      * @throws XMLEncryptionException
      * @return the XMLCipher
-     * @see javax.crypto.Cipher#getInstance(java.lang.String)
+     * @see Cipher#getInstance(String)
      */
     public static XMLCipher getInstance(String transformation) throws XMLEncryptionException {
         if (log.isLoggable(java.util.logging.Level.FINE)) {
@@ -577,7 +577,7 @@ public class XMLCipher {
      * @param opmode the operation mode of this cipher (this is one of the
      *   following: ENCRYPT_MODE, DECRYPT_MODE, WRAP_MODE or UNWRAP_MODE)
      * @param key
-     * @see javax.crypto.Cipher#init(int, java.security.Key)
+     * @see Cipher#init(int, Key)
      * @throws XMLEncryptionException
      */
     public void init(int opmode, Key key) throws XMLEncryptionException {

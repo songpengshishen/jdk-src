@@ -68,7 +68,7 @@ import org.xml.sax.SAXException;
  * The output of this transform is an octet stream.</p>
  *
  * @author Christian Geuer-Pollmann
- * @see com.sun.org.apache.xml.internal.security.utils.Base64
+ * @see Base64
  */
 public class TransformBase64Decode extends TransformSpi {
 
@@ -161,7 +161,7 @@ public class TransformBase64Decode extends TransformSpi {
         }
     }
 
-    void traverseElement(org.w3c.dom.Element node, StringBuilder sb) {
+    void traverseElement(Element node, StringBuilder sb) {
         Node sibling = node.getFirstChild();
         while (sibling != null) {
             switch (sibling.getNodeType()) {

@@ -323,7 +323,7 @@ public final class OutputPropertiesFactory
 
                 defaultProperties = m_text_properties;
             }
-            else if (method.equals(com.sun.org.apache.xml.internal.serializer.Method.UNKNOWN))
+            else if (method.equals(Method.UNKNOWN))
             {
                 if (null == m_unknown_properties) // double check
                 {

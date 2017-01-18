@@ -181,11 +181,11 @@ public class Variable extends Expression implements PathComponent
    *
    * @return The result of the expression in the form of a <code>XObject</code>.
    *
-   * @throws javax.xml.transform.TransformerException if a runtime exception
+   * @throws TransformerException if a runtime exception
    *         occurs.
    */
   public XObject execute(XPathContext xctxt)
-    throws javax.xml.transform.TransformerException
+    throws TransformerException
   {
         return execute(xctxt, false);
   }
@@ -201,9 +201,9 @@ public class Variable extends Expression implements PathComponent
    *
    * @return The evaluated variable, or an empty nodeset if not found.
    *
-   * @throws javax.xml.transform.TransformerException
+   * @throws TransformerException
    */
-  public XObject execute(XPathContext xctxt, boolean destructiveOK) throws javax.xml.transform.TransformerException
+  public XObject execute(XPathContext xctxt, boolean destructiveOK) throws TransformerException
   {
     com.sun.org.apache.xml.internal.utils.PrefixResolver xprefixResolver = xctxt.getNamespaceContext();
 

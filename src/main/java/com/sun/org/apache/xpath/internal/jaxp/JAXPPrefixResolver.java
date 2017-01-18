@@ -86,7 +86,7 @@ public class JAXPPrefixResolver implements PrefixResolver
      * is not bound.
      */
     public String getNamespaceForPrefix(String prefix,
-                                      org.w3c.dom.Node namespaceContext) {
+                                      Node namespaceContext) {
         Node parent = namespaceContext;
         String namespace = null;
 

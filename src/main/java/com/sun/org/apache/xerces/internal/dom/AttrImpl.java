@@ -283,14 +283,14 @@ public class AttrImpl
     }
 
     /**
-     * @see org.w3c.dom.TypeInfo#getTypeName()
+     * @see TypeInfo#getTypeName()
      */
     public String getTypeName() {
         return (String)type;
     }
 
     /**
-     * @see org.w3c.dom.TypeInfo#getTypeNamespace()
+     * @see TypeInfo#getTypeNamespace()
      */
     public String getTypeNamespace() {
         if (type != null) {

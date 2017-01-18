@@ -57,7 +57,7 @@ public class MessageDigestAlgorithm extends Algorithm {
     public static final String ALGO_ID_DIGEST_RIPEMD160 =
         EncryptionConstants.EncryptionSpecNS + "ripemd160";
 
-    /** Field algorithm stores the actual {@link java.security.MessageDigest} */
+    /** Field algorithm stores the actual {@link MessageDigest} */
     private final MessageDigest algorithm;
 
     /**
@@ -117,55 +117,55 @@ public class MessageDigestAlgorithm extends Algorithm {
     }
 
     /**
-     * Returns the actual {@link java.security.MessageDigest} algorithm object
+     * Returns the actual {@link MessageDigest} algorithm object
      *
-     * @return the actual {@link java.security.MessageDigest} algorithm object
+     * @return the actual {@link MessageDigest} algorithm object
      */
-    public java.security.MessageDigest getAlgorithm() {
+    public MessageDigest getAlgorithm() {
         return algorithm;
     }
 
     /**
-     * Proxy method for {@link java.security.MessageDigest#isEqual}
-     * which is executed on the internal {@link java.security.MessageDigest} object.
+     * Proxy method for {@link MessageDigest#isEqual}
+     * which is executed on the internal {@link MessageDigest} object.
      *
      * @param digesta
      * @param digestb
-     * @return the result of the {@link java.security.MessageDigest#isEqual} method
+     * @return the result of the {@link MessageDigest#isEqual} method
      */
     public static boolean isEqual(byte[] digesta, byte[] digestb) {
-        return java.security.MessageDigest.isEqual(digesta, digestb);
+        return MessageDigest.isEqual(digesta, digestb);
     }
 
     /**
-     * Proxy method for {@link java.security.MessageDigest#digest()}
-     * which is executed on the internal {@link java.security.MessageDigest} object.
+     * Proxy method for {@link MessageDigest#digest()}
+     * which is executed on the internal {@link MessageDigest} object.
      *
-     * @return the result of the {@link java.security.MessageDigest#digest()} method
+     * @return the result of the {@link MessageDigest#digest()} method
      */
     public byte[] digest() {
         return algorithm.digest();
     }
 
     /**
-     * Proxy method for {@link java.security.MessageDigest#digest(byte[])}
-     * which is executed on the internal {@link java.security.MessageDigest} object.
+     * Proxy method for {@link MessageDigest#digest(byte[])}
+     * which is executed on the internal {@link MessageDigest} object.
      *
      * @param input
-     * @return the result of the {@link java.security.MessageDigest#digest(byte[])} method
+     * @return the result of the {@link MessageDigest#digest(byte[])} method
      */
     public byte[] digest(byte input[]) {
         return algorithm.digest(input);
     }
 
     /**
-     * Proxy method for {@link java.security.MessageDigest#digest(byte[], int, int)}
-     * which is executed on the internal {@link java.security.MessageDigest} object.
+     * Proxy method for {@link MessageDigest#digest(byte[], int, int)}
+     * which is executed on the internal {@link MessageDigest} object.
      *
      * @param buf
      * @param offset
      * @param len
-     * @return the result of the {@link java.security.MessageDigest#digest(byte[], int, int)} method
+     * @return the result of the {@link MessageDigest#digest(byte[], int, int)} method
      * @throws java.security.DigestException
      */
     public int digest(byte buf[], int offset, int len) throws java.security.DigestException {
@@ -173,38 +173,38 @@ public class MessageDigestAlgorithm extends Algorithm {
     }
 
     /**
-     * Proxy method for {@link java.security.MessageDigest#getAlgorithm}
-     * which is executed on the internal {@link java.security.MessageDigest} object.
+     * Proxy method for {@link MessageDigest#getAlgorithm}
+     * which is executed on the internal {@link MessageDigest} object.
      *
-     * @return the result of the {@link java.security.MessageDigest#getAlgorithm} method
+     * @return the result of the {@link MessageDigest#getAlgorithm} method
      */
     public String getJCEAlgorithmString() {
         return algorithm.getAlgorithm();
     }
 
     /**
-     * Proxy method for {@link java.security.MessageDigest#getProvider}
-     * which is executed on the internal {@link java.security.MessageDigest} object.
+     * Proxy method for {@link MessageDigest#getProvider}
+     * which is executed on the internal {@link MessageDigest} object.
      *
-     * @return the result of the {@link java.security.MessageDigest#getProvider} method
+     * @return the result of the {@link MessageDigest#getProvider} method
      */
     public java.security.Provider getJCEProvider() {
         return algorithm.getProvider();
     }
 
     /**
-     * Proxy method for {@link java.security.MessageDigest#getDigestLength}
-     * which is executed on the internal {@link java.security.MessageDigest} object.
+     * Proxy method for {@link MessageDigest#getDigestLength}
+     * which is executed on the internal {@link MessageDigest} object.
      *
-     * @return the result of the {@link java.security.MessageDigest#getDigestLength} method
+     * @return the result of the {@link MessageDigest#getDigestLength} method
      */
     public int getDigestLength() {
         return algorithm.getDigestLength();
     }
 
     /**
-     * Proxy method for {@link java.security.MessageDigest#reset}
-     * which is executed on the internal {@link java.security.MessageDigest} object.
+     * Proxy method for {@link MessageDigest#reset}
+     * which is executed on the internal {@link MessageDigest} object.
      *
      */
     public void reset() {
@@ -212,8 +212,8 @@ public class MessageDigestAlgorithm extends Algorithm {
     }
 
     /**
-     * Proxy method for {@link java.security.MessageDigest#update(byte[])}
-     * which is executed on the internal {@link java.security.MessageDigest} object.
+     * Proxy method for {@link MessageDigest#update(byte[])}
+     * which is executed on the internal {@link MessageDigest} object.
      *
      * @param input
      */
@@ -222,8 +222,8 @@ public class MessageDigestAlgorithm extends Algorithm {
     }
 
     /**
-     * Proxy method for {@link java.security.MessageDigest#update(byte)}
-     * which is executed on the internal {@link java.security.MessageDigest} object.
+     * Proxy method for {@link MessageDigest#update(byte)}
+     * which is executed on the internal {@link MessageDigest} object.
      *
      * @param input
      */
@@ -232,8 +232,8 @@ public class MessageDigestAlgorithm extends Algorithm {
     }
 
     /**
-     * Proxy method for {@link java.security.MessageDigest#update(byte[], int, int)}
-     * which is executed on the internal {@link java.security.MessageDigest} object.
+     * Proxy method for {@link MessageDigest#update(byte[], int, int)}
+     * which is executed on the internal {@link MessageDigest} object.
      *
      * @param buf
      * @param offset

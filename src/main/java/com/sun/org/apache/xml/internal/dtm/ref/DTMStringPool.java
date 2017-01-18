@@ -93,11 +93,11 @@ public class DTMStringPool
     }
 
   /** @return string whose value is uniquely identified by this integer index.
-   * @throws java.lang.ArrayIndexOutOfBoundsException
+   * @throws ArrayIndexOutOfBoundsException
    *  if index doesn't map to a string.
    * */
   public String indexToString(int i)
-    throws java.lang.ArrayIndexOutOfBoundsException
+    throws ArrayIndexOutOfBoundsException
     {
       if(i==NULL) return null;
       return (String) m_intToString.elementAt(i);

@@ -972,7 +972,7 @@ public class XPathContext extends DTMManager // implements ExpressionContext
    * @xsl.usage internal
    */
 
-  public com.sun.org.apache.xpath.internal.axes.SubContextList getCurrentNodeList()
+  public SubContextList getCurrentNodeList()
   {
     return m_axesIteratorStack.isEmpty()
            ? null : (SubContextList) m_axesIteratorStack.elementAt(0);
@@ -1125,11 +1125,11 @@ public class XPathContext extends DTMManager // implements ExpressionContext
      * Get a variable based on it's qualified name.
      * @param qname The qualified name of the variable.
      * @return The evaluated value of the variable.
-     * @throws javax.xml.transform.TransformerException
+     * @throws TransformerException
      */
 
     public final XObject getVariableOrParam(com.sun.org.apache.xml.internal.utils.QName qname)
-              throws javax.xml.transform.TransformerException
+              throws TransformerException
     {
       return m_variableStacks.getVariableOrParam(XPathContext.this, qname);
     }

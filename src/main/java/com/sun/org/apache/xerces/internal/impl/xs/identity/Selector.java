@@ -44,7 +44,7 @@ public class Selector {
     //
 
     /** XPath. */
-    protected final Selector.XPath fXPath;
+    protected final XPath fXPath;
 
     /** Identity constraint. */
     protected final IdentityConstraint fIdentityConstraint;
@@ -58,7 +58,7 @@ public class Selector {
     //
 
     /** Constructs a selector. */
-    public Selector(Selector.XPath xpath,
+    public Selector(XPath xpath,
                     IdentityConstraint identityConstraint) {
         fXPath = xpath;
         fIdentityConstraint = identityConstraint;
@@ -86,7 +86,7 @@ public class Selector {
      *                          used in correctly handling recursive elements.
      */
     public XPathMatcher createMatcher(FieldActivator activator, int initialDepth) {
-        return new Selector.Matcher(fXPath, activator, initialDepth);
+        return new Matcher(fXPath, activator, initialDepth);
     } // createMatcher(FieldActivator):XPathMatcher
 
     //
@@ -121,9 +121,9 @@ public class Selector {
             super(normalize(xpath), symbolTable, context);
             // verify that an attribute is not selected
             for (int i=0;i<fLocationPaths.length;i++) {
-                com.sun.org.apache.xerces.internal.impl.xpath.XPath.Axis axis =
+                Axis axis =
                 fLocationPaths[i].steps[fLocationPaths[i].steps.length-1].axis;
-                if (axis.type == XPath.Axis.ATTRIBUTE) {
+                if (axis.type == Axis.ATTRIBUTE) {
                     throw new XPathException("c-selector-xpath");
                 }
             }
@@ -186,7 +186,7 @@ public class Selector {
         //
 
         /** Constructs a selector matcher. */
-        public Matcher(Selector.XPath xpath, FieldActivator activator,
+        public Matcher(XPath xpath, FieldActivator activator,
                 int initialDepth) {
             super(xpath);
             fFieldActivator = activator;

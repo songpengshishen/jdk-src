@@ -23,8 +23,8 @@
 package com.sun.org.apache.xml.internal.security.signature;
 
 /**
- * Raised if verifying a {@link com.sun.org.apache.xml.internal.security.signature.Reference} fails
- * because of an uninitialized {@link com.sun.org.apache.xml.internal.security.signature.XMLSignatureInput}
+ * Raised if verifying a {@link Reference} fails
+ * because of an uninitialized {@link XMLSignatureInput}
  *
  * @author Christian Geuer-Pollmann
  */

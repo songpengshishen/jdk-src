@@ -56,9 +56,9 @@ import com.sun.org.apache.xml.internal.resolver.helpers.FileURL;
  * </p>
  *
  * @deprecated This interface has been replaced by the
- *             {@link com.sun.org.apache.xml.internal.resolver.tools.ResolvingXMLReader} for SAX2.
+ *             {@link ResolvingXMLReader} for SAX2.
  * @see CatalogResolver
- * @see org.xml.sax.Parser
+ * @see Parser
  *
  * @author Norman Walsh
  * <a href="mailto:Norman.Walsh@Sun.COM">Norman.Walsh@Sun.COM</a>

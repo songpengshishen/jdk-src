@@ -357,7 +357,7 @@ public class ObjectVector implements Cloneable
         return i;
     }
 
-    return java.lang.Integer.MIN_VALUE;
+    return Integer.MIN_VALUE;
   }
 
   /**
@@ -379,7 +379,7 @@ public class ObjectVector implements Cloneable
         return i;
     }
 
-    return java.lang.Integer.MIN_VALUE;
+    return Integer.MIN_VALUE;
   }
 
   /**
@@ -401,7 +401,7 @@ public class ObjectVector implements Cloneable
         return i;
     }
 
-    return java.lang.Integer.MIN_VALUE;
+    return Integer.MIN_VALUE;
   }
 
   /*

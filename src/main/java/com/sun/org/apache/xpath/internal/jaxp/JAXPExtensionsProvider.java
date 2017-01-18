@@ -68,7 +68,7 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
      */
 
     public boolean functionAvailable(String ns, String funcName)
-          throws javax.xml.transform.TransformerException {
+          throws TransformerException {
       try {
         if ( funcName == null ) {
             String fmsg = XSLMessages.createXPATHMessage(
@@ -77,8 +77,8 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
             throw new NullPointerException ( fmsg );
         }
         //Find the XPathFunction corresponding to namespace and funcName
-        javax.xml.namespace.QName myQName = new QName( ns, funcName );
-        javax.xml.xpath.XPathFunction xpathFunction =
+        QName myQName = new QName( ns, funcName );
+        XPathFunction xpathFunction =
             resolver.resolveFunction ( myQName, 0 );
         if (  xpathFunction == null ) {
             return false;
@@ -96,7 +96,7 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
      * Is the extension element available?
      */
     public boolean elementAvailable(String ns, String elemName)
-          throws javax.xml.transform.TransformerException {
+          throws TransformerException {
         return false;
     }
 
@@ -104,7 +104,7 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
      * Execute the extension function.
      */
     public Object extFunction(String ns, String funcName, Vector argVec,
-        Object methodKey) throws javax.xml.transform.TransformerException {
+        Object methodKey) throws TransformerException {
         try {
 
             if ( funcName == null ) {
@@ -114,7 +114,7 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
                 throw new NullPointerException ( fmsg );
             }
             //Find the XPathFunction corresponding to namespace and funcName
-            javax.xml.namespace.QName myQName = new QName( ns, funcName );
+            QName myQName = new QName( ns, funcName );
 
             // JAXP 1.3 spec says When XMLConstants.FEATURE_SECURE_PROCESSING
             // feature is set then invocation of extension functions need to
@@ -130,7 +130,7 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
             // default values )
             int arity = argVec.size();
 
-            javax.xml.xpath.XPathFunction xpathFunction =
+            XPathFunction xpathFunction =
                 resolver.resolveFunction ( myQName, arity );
 
             // not using methodKey
@@ -155,7 +155,7 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
             // further execution by throwing WrappedRuntimeException
             throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException ( xfe );
         } catch ( Exception e ) {
-            throw new javax.xml.transform.TransformerException ( e );
+            throw new TransformerException ( e );
         }
 
     }
@@ -165,13 +165,13 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
      */
     public Object extFunction(FuncExtFunction extFunction,
                               Vector argVec)
-        throws javax.xml.transform.TransformerException {
+        throws TransformerException {
         try {
             String namespace = extFunction.getNamespace();
             String functionName = extFunction.getFunctionName();
             int arity = extFunction.getArgCount();
-            javax.xml.namespace.QName myQName =
-                new javax.xml.namespace.QName( namespace, functionName );
+            QName myQName =
+                new QName( namespace, functionName );
 
             // JAXP 1.3 spec says  When XMLConstants.FEATURE_SECURE_PROCESSING
             // feature is set then invocation of extension functions need to
@@ -207,7 +207,7 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
             // further execution by throwing WrappedRuntimeException
             throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException ( xfe );
         } catch ( Exception e ) {
-            throw new javax.xml.transform.TransformerException ( e );
+            throw new TransformerException ( e );
         }
     }
 

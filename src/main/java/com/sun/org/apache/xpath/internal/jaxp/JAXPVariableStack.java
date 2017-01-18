@@ -35,7 +35,7 @@ import com.sun.org.apache.xalan.internal.res.XSLMessages;
 
 /**
  * Overrides {@link VariableStack} and delegates the call to
- * {@link javax.xml.xpath.XPathVariableResolver}.
+ * {@link XPathVariableResolver}.
  *
  * @author Ramesh Mandava ( ramesh.mandava@sun.com )
  */

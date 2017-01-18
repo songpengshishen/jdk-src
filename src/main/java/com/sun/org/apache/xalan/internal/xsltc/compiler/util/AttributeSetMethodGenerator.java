@@ -39,14 +39,14 @@ public final class AttributeSetMethodGenerator extends MethodGenerator {
     private static final int PARAM_START_INDEX = 5;
 
     private static final String[] argNames = new String[4];
-    private static final com.sun.org.apache.bcel.internal.generic.Type[] argTypes =
-        new com.sun.org.apache.bcel.internal.generic.Type[4];
+    private static final Type[] argTypes =
+        new Type[4];
 
     static {
         argTypes[0] = Util.getJCRefType(DOM_INTF_SIG);
         argTypes[1] = Util.getJCRefType(NODE_ITERATOR_SIG);
         argTypes[2] = Util.getJCRefType(TRANSLET_OUTPUT_SIG);
-        argTypes[3] = com.sun.org.apache.bcel.internal.generic.Type.INT;
+        argTypes[3] = Type.INT;
         argNames[0] = DOCUMENT_PNAME;
         argNames[1] = ITERATOR_PNAME;
         argNames[2] = TRANSLET_OUTPUT_PNAME;
@@ -55,7 +55,7 @@ public final class AttributeSetMethodGenerator extends MethodGenerator {
 
    public AttributeSetMethodGenerator(String methodName, ClassGenerator classGen) {
         super(com.sun.org.apache.bcel.internal.Constants.ACC_PRIVATE,
-              com.sun.org.apache.bcel.internal.generic.Type.VOID,
+              Type.VOID,
               argTypes, argNames, methodName,
               classGen.getClassName(),
               new InstructionList(),

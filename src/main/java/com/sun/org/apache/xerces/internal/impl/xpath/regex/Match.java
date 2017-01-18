@@ -29,9 +29,9 @@ import java.text.CharacterIterator;
  *
  * @see RegularExpression#matches(char[], int, int, Match)
  * @see RegularExpression#matches(char[], Match)
- * @see RegularExpression#matches(java.text.CharacterIterator, Match)
- * @see RegularExpression#matches(java.lang.String, int, int, Match)
- * @see RegularExpression#matches(java.lang.String, Match)
+ * @see RegularExpression#matches(CharacterIterator, Match)
+ * @see RegularExpression#matches(String, int, int, Match)
+ * @see RegularExpression#matches(String, Match)
  * @author TAMURA Kent &lt;kent@trl.ibm.co.jp&gt;
  */
 public class Match implements Cloneable {

@@ -302,7 +302,7 @@ public class SAX2DOM implements ContentHandler, LexicalHandler, Constants {
     // Lexical Handler methods- not implemented
     public void startCDATA() { }
     public void endCDATA() { }
-    public void startEntity(java.lang.String name) { }
+    public void startEntity(String name) { }
     public void endDTD() { }
     public void endEntity(String name) { }
     public void startDTD(String name, String publicId, String systemId)

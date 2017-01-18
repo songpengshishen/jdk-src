@@ -40,11 +40,11 @@ extends DTMStringPool
     }
 
   /** @return string whose value is uniquely identified by this integer index.
-   * @throws java.lang.ArrayIndexOutOfBoundsException
+   * @throws ArrayIndexOutOfBoundsException
    *  if index doesn't map to a string.
    * */
   public synchronized String indexToString(int i)
-    throws java.lang.ArrayIndexOutOfBoundsException
+    throws ArrayIndexOutOfBoundsException
     {
       return super.indexToString(i);
     }

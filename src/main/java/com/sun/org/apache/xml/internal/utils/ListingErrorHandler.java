@@ -95,9 +95,9 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener
      *
      * @param exception The warning information encapsulated in a
      *                  SAX parse exception.
-     * @exception org.xml.sax.SAXException Any SAX exception, possibly
+     * @exception SAXException Any SAX exception, possibly
      * wrapping another exception; only if setThrowOnWarning is true.
-     * @see org.xml.sax.SAXParseException
+     * @see SAXParseException
      */
     public void warning (SAXParseException exception)
         throws SAXException
@@ -134,9 +134,9 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener
      *
      * @param exception The error information encapsulated in a
      *                  SAX parse exception.
-     * @exception org.xml.sax.SAXException Any SAX exception, possibly
+     * @exception SAXException Any SAX exception, possibly
      * wrapping another exception; only if setThrowOnErroris true.
-     * @see org.xml.sax.SAXParseException
+     * @see SAXParseException
      */
     public void error (SAXParseException exception)
         throws SAXException
@@ -166,9 +166,9 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener
      *
      * @param exception The error information encapsulated in a
      *                  SAX parse exception.
-     * @exception org.xml.sax.SAXException Any SAX exception, possibly
+     * @exception SAXException Any SAX exception, possibly
      * wrapping another exception; only if setThrowOnFatalError is true.
-     * @see org.xml.sax.SAXParseException
+     * @see SAXParseException
      */
     public void fatalError (SAXParseException exception)
         throws SAXException
@@ -198,10 +198,10 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener
      * @param exception The warning information encapsulated in a
      *                  transformer exception.
      *
-     * @throws javax.xml.transform.TransformerException  only if
+     * @throws TransformerException  only if
      * setThrowOnWarning is true.
      *
-     * @see javax.xml.transform.TransformerException
+     * @see TransformerException
      */
     public void warning(TransformerException exception)
         throws TransformerException
@@ -225,10 +225,10 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener
      * @param exception The error information encapsulated in a
      *                  transformer exception.
      *
-     * @throws javax.xml.transform.TransformerException  only if
+     * @throws TransformerException  only if
      * setThrowOnError is true.
      *
-     * @see javax.xml.transform.TransformerException
+     * @see TransformerException
      */
     public void error(TransformerException exception)
         throws TransformerException
@@ -253,10 +253,10 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener
      * @param exception The error information encapsulated in a
      *                  transformer exception.
      *
-     * @throws javax.xml.transform.TransformerException  only if
+     * @throws TransformerException  only if
      * setThrowOnError is true.
      *
-     * @see javax.xml.transform.TransformerException
+     * @see TransformerException
      */
     public void fatalError(TransformerException exception)
         throws TransformerException

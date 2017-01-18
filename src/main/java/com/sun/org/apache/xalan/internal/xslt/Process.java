@@ -178,8 +178,8 @@ public class Process
     /**
      * The default diagnostic writer...
      */
-    java.io.PrintWriter diagnosticsWriter = new PrintWriter(System.err, true);
-    java.io.PrintWriter dumpWriter = diagnosticsWriter;
+    PrintWriter diagnosticsWriter = new PrintWriter(System.err, true);
+    PrintWriter dumpWriter = diagnosticsWriter;
     ResourceBundle resbundle =
       (SecuritySupport.getResourceBundle(
         com.sun.org.apache.xml.internal.utils.res.XResourceBundle.ERROR_RESOURCES));
@@ -960,7 +960,7 @@ public class Process
 
                 reader = jaxpParser.getXMLReader();
               }
-              catch (javax.xml.parsers.ParserConfigurationException ex)
+              catch (ParserConfigurationException ex)
               {
                 throw new org.xml.sax.SAXException(ex);
               }
@@ -1037,7 +1037,7 @@ public class Process
 
                   reader = jaxpParser.getXMLReader();
                 }
-                catch (javax.xml.parsers.ParserConfigurationException ex)
+                catch (ParserConfigurationException ex)
                 {
                   throw new org.xml.sax.SAXException(ex);
                 }

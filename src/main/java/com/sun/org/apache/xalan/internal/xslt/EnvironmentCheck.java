@@ -989,8 +989,8 @@ public class EnvironmentCheck
     final String DOM_LEVEL2WD_METHOD = "supported";  // String, String
     final String DOM_LEVEL2FD_CLASS = "org.w3c.dom.Node";
     final String DOM_LEVEL2FD_METHOD = "isSupported";  // String, String
-    final Class twoStringArgs[] = { java.lang.String.class,
-                                    java.lang.String.class };
+    final Class twoStringArgs[] = { String.class,
+                                    String.class };
 
     try
     {
@@ -1064,7 +1064,7 @@ public class EnvironmentCheck
     final String SAX_VERSION2_METHOD = "parse";  // String
     final String SAX_VERSION2BETA_CLASSNF = "org.xml.sax.helpers.AttributesImpl";
     final String SAX_VERSION2BETA_METHODNF = "setAttributes";  // Attributes
-    final Class oneStringArg[] = { java.lang.String.class };
+    final Class oneStringArg[] = { String.class };
     // Note this introduces a minor compile dependency on SAX...
     final Class attributesArg[] = { org.xml.sax.Attributes.class };
 

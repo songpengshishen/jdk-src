@@ -115,14 +115,14 @@ public class FilterExprIteratorSimple extends LocPathIterator
         int savedStart = vars.getStackFrame();
         vars.setStackFrame(stackFrame);
 
-        result = (com.sun.org.apache.xpath.internal.objects.XNodeSet) expr.execute(xctxt);
+        result = (XNodeSet) expr.execute(xctxt);
         result.setShouldCacheNodes(true);
 
         // These two statements need to be combined into one operation.
         vars.setStackFrame(savedStart);
       }
       else
-          result = (com.sun.org.apache.xpath.internal.objects.XNodeSet) expr.execute(xctxt);
+          result = (XNodeSet) expr.execute(xctxt);
 
     }
     catch (javax.xml.transform.TransformerException se)

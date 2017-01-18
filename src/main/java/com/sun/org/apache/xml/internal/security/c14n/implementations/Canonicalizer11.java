@@ -298,8 +298,8 @@ public abstract class Canonicalizer11 extends CanonicalizerBase {
      * <br>
      * IMPORTANT: This method expects to work on a modified DOM tree, i.e. a
      * DOM which has been prepared using
-     * {@link com.sun.org.apache.xml.internal.security.utils.XMLUtils#circumventBug2650(
-     * org.w3c.dom.Document)}.
+     * {@link XMLUtils#circumventBug2650(
+     * Document)}.
      *
      * @param element
      * @param ns

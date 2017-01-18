@@ -63,12 +63,12 @@ public class CustomStringPool extends DTMStringPool {
 
     /**
      * @return string whose value is uniquely identified by this integer index.
-     * @throws java.lang.ArrayIndexOutOfBoundsException if index doesn't map to
+     * @throws ArrayIndexOutOfBoundsException if index doesn't map to
      * a string.
      */
     @Override
     public String indexToString(int i)
-            throws java.lang.ArrayIndexOutOfBoundsException {
+            throws ArrayIndexOutOfBoundsException {
         return (String) m_intToString.elementAt(i);
     }
 

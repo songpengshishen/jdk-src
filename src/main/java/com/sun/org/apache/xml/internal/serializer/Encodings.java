@@ -481,9 +481,9 @@ public final class Encodings extends Object
                     e.setValue(canonicals.get(toUpperCaseFast(e.getValue().javaName)));
                 }
 
-            } catch (java.net.MalformedURLException mue) {
+            } catch (MalformedURLException mue) {
                 throw new com.sun.org.apache.xml.internal.serializer.utils.WrappedRuntimeException(mue);
-            } catch (java.io.IOException ioe) {
+            } catch (IOException ioe) {
                 throw new com.sun.org.apache.xml.internal.serializer.utils.WrappedRuntimeException(ioe);
             }
         }

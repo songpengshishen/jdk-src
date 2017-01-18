@@ -45,7 +45,7 @@ import javax.xml.stream.events.XMLEvent;
  * event, would have to wait until 1.1 of StAX in which the filtered stream reader would be defined more clearly.
  */
 
-public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
+public class XMLStreamFilterImpl implements XMLStreamReader {
 
     private StreamFilter fStreamFilter = null;
     private XMLStreamReader fStreamReader = null;
@@ -287,7 +287,7 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
      *
      * @return
      */
-    public javax.xml.stream.Location getLocation() {
+    public Location getLocation() {
         return fStreamReader.getLocation();
     }
 
@@ -295,7 +295,7 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
      *
      * @return
      */
-    public javax.xml.namespace.QName getName() {
+    public QName getName() {
         return fStreamReader.getName();
     }
 
@@ -380,7 +380,7 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
      * @throws IllegalArgumentException
      * @return
      */
-    public Object getProperty(java.lang.String name) throws java.lang.IllegalArgumentException {
+    public Object getProperty(String name) throws IllegalArgumentException {
         return fStreamReader.getProperty(name);
     }
 

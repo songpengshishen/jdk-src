@@ -183,7 +183,7 @@ public abstract class AbstractSAXParser
     protected NamespaceContext fNamespaceContext;
 
     /** DTD handler. */
-    protected org.xml.sax.DTDHandler fDTDHandler;
+    protected DTDHandler fDTDHandler;
 
     /** Decl handler. */
     protected DeclHandler fDeclHandler;
@@ -1129,8 +1129,8 @@ public abstract class AbstractSAXParser
      *
      * @param systemId The system identifier (URI).
      *
-     * @exception org.xml.sax.SAXException Throws exception on SAX error.
-     * @exception java.io.IOException Throws exception on i/o error.
+     * @exception SAXException Throws exception on SAX error.
+     * @exception IOException Throws exception on i/o error.
      */
     public void parse(String systemId) throws SAXException, IOException {
 
@@ -1195,8 +1195,8 @@ public abstract class AbstractSAXParser
      *
      * @param inputSource
      *
-     * @exception org.xml.sax.SAXException
-     * @exception java.io.IOException
+     * @exception SAXException
+     * @exception IOException
      */
     public void parse(InputSource inputSource)
         throws SAXException, IOException {
@@ -1400,7 +1400,7 @@ public abstract class AbstractSAXParser
      * @exception SAXException An exception thrown if the parser does not
      *                         support the specified locale.
      *
-     * @see org.xml.sax.Parser
+     * @see Parser
      */
     public void setLocale(Locale locale) throws SAXException {
         //REVISIT:this methods is not part of SAX2 interfaces, we should throw exception
@@ -1687,7 +1687,7 @@ public abstract class AbstractSAXParser
      * @param featureId The unique identifier (URI) of the feature
      *                  being set.
      * @return The current state of the feature.
-     * @exception org.xml.sax.SAXNotRecognizedException If the
+     * @exception SAXNotRecognizedException If the
      *            requested feature is not known.
      * @exception SAXNotSupportedException If the
      *            requested feature is known but not supported.
@@ -1967,7 +1967,7 @@ public abstract class AbstractSAXParser
      * @param propertyId The unique identifier (URI) of the property
      *                   being set.
      * @return The current value of the property.
-     * @exception org.xml.sax.SAXNotRecognizedException If the
+     * @exception SAXNotRecognizedException If the
      *            requested property is not known.
      * @exception SAXNotSupportedException If the
      *            requested property is known but not supported.

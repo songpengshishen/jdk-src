@@ -39,8 +39,8 @@ public class And extends Operation
    *
    * @param xctxt The runtime execution context.
    *
-   * @return {@link com.sun.org.apache.xpath.internal.objects.XBoolean#S_TRUE} or
-   * {@link com.sun.org.apache.xpath.internal.objects.XBoolean#S_FALSE}.
+   * @return {@link XBoolean#S_TRUE} or
+   * {@link XBoolean#S_FALSE}.
    *
    * @throws javax.xml.transform.TransformerException
    */

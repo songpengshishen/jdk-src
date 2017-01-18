@@ -280,7 +280,7 @@ public class SAX2RTFDTM extends SAX2DTM
   public void pushRewindMark()
   {
     if(m_indexing || m_elemIndexes!=null)
-      throw new java.lang.NullPointerException("Coding error; Don't try to mark/rewind an indexed DTM");
+      throw new NullPointerException("Coding error; Don't try to mark/rewind an indexed DTM");
 
     // Values from DTMDefaultBase
     // %REVIEW% Can the namespace stack sizes ever differ? If not, save space!

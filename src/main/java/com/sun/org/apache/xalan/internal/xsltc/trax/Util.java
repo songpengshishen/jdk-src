@@ -125,7 +125,7 @@ public final class Util {
                                       parserFactory.setFeature(
                                           XMLConstants.FEATURE_SECURE_PROCESSING, true);
                                   }
-                                  catch (org.xml.sax.SAXException se) {}
+                                  catch (SAXException se) {}
                                }
 
                                reader = parserFactory.newSAXParser()

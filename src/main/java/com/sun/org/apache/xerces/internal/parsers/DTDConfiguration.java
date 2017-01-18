@@ -575,7 +575,7 @@ public class DTDConfiguration
      * @param source The input source.
      *
      * @exception XNIException Throws exception on XNI error.
-     * @exception java.io.IOException Throws exception on i/o error.
+     * @exception IOException Throws exception on i/o error.
      */
     public void parse(XMLInputSource source) throws XNIException, IOException {
 

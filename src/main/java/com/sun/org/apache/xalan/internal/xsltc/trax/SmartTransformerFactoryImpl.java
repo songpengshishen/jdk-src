@@ -433,7 +433,7 @@ public class SmartTransformerFactoryImpl extends SAXTransformerFactory
     public XMLFilter newXMLFilter(Templates templates)
         throws TransformerConfigurationException {
         try {
-            return new com.sun.org.apache.xalan.internal.xsltc.trax.TrAXFilter(templates);
+            return new TrAXFilter(templates);
         }
         catch(TransformerConfigurationException e1) {
             if (_xsltcFactory == null) {
