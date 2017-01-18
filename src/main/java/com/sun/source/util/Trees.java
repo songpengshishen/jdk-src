@@ -211,8 +211,8 @@ public abstract class Trees {
      * @param root the compilation unit that contains tree
      */
     public abstract void printMessage(Diagnostic.Kind kind, CharSequence msg,
-            com.sun.source.tree.Tree t,
-            com.sun.source.tree.CompilationUnitTree root);
+            Tree t,
+            CompilationUnitTree root);
 
     /**
      * Gets the lub of an exception parameter declared in a catch clause.

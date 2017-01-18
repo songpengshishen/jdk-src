@@ -54,7 +54,7 @@ public abstract class JavacTask implements CompilationTask {
     /**
      * Get the {@code JavacTask} for a {@code ProcessingEnvironment}.
      * If the compiler is being invoked using a
-     * {@link javax.tools.JavaCompiler.CompilationTask CompilationTask},
+     * {@link CompilationTask CompilationTask},
      * then that task will be returned.
      * @param processingEnvironment the processing environment
      * @return the {@code JavacTask} for a {@code ProcessingEnvironment}
@@ -136,8 +136,8 @@ public abstract class JavacTask implements CompilationTask {
     /**
      * Get a type mirror of the tree node determined by the specified path.
      * This method has been superceded by methods on
-     * {@link com.sun.source.util.Trees Trees}.
-     * @see com.sun.source.util.Trees#getTypeMirror
+     * {@link Trees Trees}.
+     * @see Trees#getTypeMirror
      */
     public abstract TypeMirror getTypeMirror(Iterable<? extends Tree> path);
 

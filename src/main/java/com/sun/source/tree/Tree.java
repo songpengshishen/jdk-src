@@ -628,5 +628,5 @@ public interface Tree {
      * @param <R> result type of this operation.
      * @param <D> type of additional data.
      */
-    <R,D> R accept(TreeVisitor<R,D> visitor, D data);
+    <R,D> R accept(TreeVisitor<R, D> visitor, D data);
 }
