@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -147,7 +147,7 @@ public class ElementImpl
      * will not be copied unless the "deep" flag is true, but Attributes
      * are <i>always</i> replicated.
      *
-     * @see Node#cloneNode(boolean)
+     * @see org.w3c.dom.Node#cloneNode(boolean)
      */
     public Node cloneNode(boolean deep) {
 
@@ -181,7 +181,7 @@ public class ElementImpl
                     try {
                        uri = new URI(uri).toString();
                     }
-                    catch (URI.MalformedURIException e) {
+                    catch (com.sun.org.apache.xerces.internal.util.URI.MalformedURIException e) {
                         // This may be a relative URI.
 
                         // Make any parentURI into a URI object to use with the URI(URI, String) constructor
@@ -190,7 +190,7 @@ public class ElementImpl
                             try{
                                 uri = new URI(new URI(parentBaseURI), uri).toString();
                             }
-                            catch (URI.MalformedURIException ex){
+                            catch (com.sun.org.apache.xerces.internal.util.URI.MalformedURIException ex){
                                 // This should never happen: parent should have checked the URI and returned null if invalid.
                                 return null;
                             }
@@ -216,7 +216,7 @@ public class ElementImpl
                 //return valid absolute base URI
                return new URI(baseURI).toString();
             }
-            catch (URI.MalformedURIException e){
+            catch (com.sun.org.apache.xerces.internal.util.URI.MalformedURIException e){
                 return null;
             }
         }
@@ -1042,14 +1042,14 @@ public class ElementImpl
    }
 
     /**
-     * @see TypeInfo#getTypeName()
+     * @see org.w3c.dom.TypeInfo#getTypeName()
      */
      public String getTypeName() {
         return null;
      }
 
     /**
-     * @see TypeInfo#getTypeNamespace()
+     * @see org.w3c.dom.TypeInfo#getTypeNamespace()
      */
     public String getTypeNamespace() {
         return null;

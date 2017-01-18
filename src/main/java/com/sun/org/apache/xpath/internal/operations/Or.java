@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -39,8 +39,8 @@ public class Or extends Operation
    *
    * @param xctxt The runtime execution context.
    *
-   * @return {@link XBoolean#S_TRUE} or
-   * {@link XBoolean#S_FALSE}.
+   * @return {@link com.sun.org.apache.xpath.internal.objects.XBoolean#S_TRUE} or
+   * {@link com.sun.org.apache.xpath.internal.objects.XBoolean#S_FALSE}.
    *
    * @throws javax.xml.transform.TransformerException
    */

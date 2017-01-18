@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -839,7 +839,7 @@ public class FastStringBuffer
       if (sourcechunk == 0 && m_innerFSB != null)
         chunkOK = m_innerFSB.isWhitespace(sourcecolumn, runlength);
       else
-        chunkOK = XMLCharacterRecognizer.isWhiteSpace(
+        chunkOK = com.sun.org.apache.xml.internal.utils.XMLCharacterRecognizer.isWhiteSpace(
           m_array[sourcechunk], sourcecolumn, runlength);
 
       if (!chunkOK)

@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Copyright (c) 2015, Oracle and/or its affiliates. All rights reserved.
  */
 /*
- * Copyright 2002-2004 The Apache Software Foundation.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -26,22 +26,23 @@ import com.sun.org.apache.xalan.internal.xsltc.DOM;
 import com.sun.org.apache.xalan.internal.xsltc.DOMEnhancedForDTM;
 import com.sun.org.apache.xalan.internal.xsltc.StripFilter;
 import com.sun.org.apache.xalan.internal.xsltc.runtime.AbstractTranslet;
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 import com.sun.org.apache.xml.internal.dtm.DTM;
 import com.sun.org.apache.xml.internal.dtm.DTMWSFilter;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A wrapper class that adapts the
- * {@link DTMWSFilter DTMWSFilter} interface to the XSLTC
- * DOM {@link StripFilter StripFilter} interface.
+ * {@link com.sun.org.apache.xml.internal.dtm.DTMWSFilter DTMWSFilter} interface to the XSLTC
+ * DOM {@link com.sun.org.apache.xalan.internal.xsltc.StripFilter StripFilter} interface.
  */
 public class DOMWSFilter implements DTMWSFilter {
 
     private AbstractTranslet m_translet;
     private StripFilter m_filter;
 
-    // The Hashtable for DTM to mapping array
-    private Hashtable m_mappings;
+    // The Map for DTM to mapping array
+    private Map<DTM, short[]> m_mappings;
 
     // Cache the DTM and mapping that are used last time
     private DTM m_currentDTM;
@@ -54,12 +55,12 @@ public class DOMWSFilter implements DTMWSFilter {
      * @param translet A translet that also implements the StripFilter
      * interface.
      *
-     * @see DTMWSFilter
-     * @see StripFilter
+     * @see com.sun.org.apache.xml.internal.dtm.DTMWSFilter
+     * @see com.sun.org.apache.xalan.internal.xsltc.StripFilter
      */
     public DOMWSFilter(AbstractTranslet translet) {
         m_translet = translet;
-        m_mappings = new Hashtable();
+        m_mappings = new HashMap<>();
 
         if (translet instanceof StripFilter) {
             m_filter = (StripFilter) translet;
@@ -91,7 +92,7 @@ public class DOMWSFilter implements DTMWSFilter {
                     mapping = m_currentMapping;
                 }
                 else {
-                    mapping = (short[])m_mappings.get(dtm);
+                    mapping = m_mappings.get(dtm);
                     if (mapping == null) {
                         mapping = mappableDOM.getMapping(
                                      m_translet.getNamesArray(),

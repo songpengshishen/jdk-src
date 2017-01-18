@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -51,5 +51,5 @@ public interface Grammar {
      * get the <code>XMLGrammarDescription</code> associated with this
      * object
      */
-    public XMLGrammarDescription getGrammarDescription();
+    public XMLGrammarDescription getGrammarDescription ();
 } // interface Grammar

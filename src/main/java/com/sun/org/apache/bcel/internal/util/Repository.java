@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 package com.sun.org.apache.bcel.internal.util;
@@ -91,13 +91,13 @@ public interface Repository extends java.io.Serializable {
    * isn't there, make an attempt to load it.
    */
   public JavaClass loadClass(String className)
-    throws ClassNotFoundException;
+    throws java.lang.ClassNotFoundException;
 
   /**
    * Find the JavaClass instance for the given run-time class object
    */
   public JavaClass loadClass(Class clazz)
-    throws ClassNotFoundException;
+    throws java.lang.ClassNotFoundException;
 
   /** Clear all entries from cache.
    */

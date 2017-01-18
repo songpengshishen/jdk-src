@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 package com.sun.org.apache.bcel.internal.generic;
@@ -236,7 +236,7 @@ public abstract class Type implements java.io.Serializable {
    * @param cl Java class
    * @return corresponding Type object
    */
-  public static Type getType(Class cl) {
+  public static Type getType(java.lang.Class cl) {
     if(cl == null) {
       throw new IllegalArgumentException("Class must not be null");
     }

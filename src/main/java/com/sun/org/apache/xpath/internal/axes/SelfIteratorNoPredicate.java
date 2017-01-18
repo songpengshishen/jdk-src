@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -29,7 +29,7 @@ import com.sun.org.apache.xpath.internal.compiler.Compiler;
 /**
  * This class implements an optimized iterator for
  * "." patterns, that is, the self axes without any predicates.
- * @see LocPathIterator
+ * @see com.sun.org.apache.xpath.internal.axes.LocPathIterator
  * @xsl.usage advanced
  */
 public class SelfIteratorNoPredicate extends LocPathIterator

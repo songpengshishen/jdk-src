@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Copyright (c) 2015, Oracle and/or its affiliates. All rights reserved.
  */
 /*
- * Copyright 1999-2002,2004,2005 The Apache Software Foundation.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
  *
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -20,8 +20,18 @@
 
 package com.sun.org.apache.xerces.internal.impl.xpath.regex;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamField;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.Vector;
-import java.util.Hashtable;
 
 /**
  * This class represents a node in parse tree.
@@ -115,33 +125,33 @@ class Token implements java.io.Serializable {
         Token.token_not_spaces = Token.complementRanges(Token.token_spaces);
     }
 
-    static ParenToken createLook(int type, Token child) {
+    static Token.ParenToken createLook(int type, Token child) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new ParenToken(type, child, 0);
+        return new Token.ParenToken(type, child, 0);
     }
-    static ParenToken createParen(Token child, int pnumber) {
+    static Token.ParenToken createParen(Token child, int pnumber) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new ParenToken(Token.PAREN, child, pnumber);
+        return new Token.ParenToken(Token.PAREN, child, pnumber);
     }
-    static ClosureToken createClosure(Token tok) {
+    static Token.ClosureToken createClosure(Token tok) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new ClosureToken(Token.CLOSURE, tok);
+        return new Token.ClosureToken(Token.CLOSURE, tok);
     }
-    static ClosureToken createNGClosure(Token tok) {
+    static Token.ClosureToken createNGClosure(Token tok) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new ClosureToken(Token.NONGREEDYCLOSURE, tok);
+        return new Token.ClosureToken(Token.NONGREEDYCLOSURE, tok);
     }
-    static ConcatToken createConcat(Token tok1, Token tok2) {
+    static Token.ConcatToken createConcat(Token tok1, Token tok2) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new ConcatToken(tok1, tok2);
+        return new Token.ConcatToken(tok1, tok2);
     }
-    static UnionToken createConcat() {
+    static Token.UnionToken createConcat() {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new UnionToken(Token.CONCAT); // *** It is not a bug.
+        return new Token.UnionToken(Token.CONCAT); // *** It is not a bug.
     }
-    static UnionToken createUnion() {
+    static Token.UnionToken createUnion() {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new UnionToken(Token.UNION);
+        return new Token.UnionToken(Token.UNION);
     }
     static Token createEmpty() {
         return Token.token_empty;
@@ -154,30 +164,30 @@ class Token implements java.io.Serializable {
         if (COUNTTOKENS)  Token.tokens ++;
         return new RangeToken(Token.NRANGE);
     }
-    static CharToken createChar(int ch) {
+    static Token.CharToken createChar(int ch) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new CharToken(Token.CHAR, ch);
+        return new Token.CharToken(Token.CHAR, ch);
     }
-    static private CharToken createAnchor(int ch) {
+    static private Token.CharToken createAnchor(int ch) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new CharToken(Token.ANCHOR, ch);
+        return new Token.CharToken(Token.ANCHOR, ch);
     }
-    static StringToken createBackReference(int refno) {
+    static Token.StringToken createBackReference(int refno) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new StringToken(Token.BACKREFERENCE, null, refno);
+        return new Token.StringToken(Token.BACKREFERENCE, null, refno);
     }
-    static StringToken createString(String str) {
+    static Token.StringToken createString(String str) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new StringToken(Token.STRING, str, 0);
+        return new Token.StringToken(Token.STRING, str, 0);
     }
-    static ModifierToken createModifierGroup(Token child, int add, int mask) {
+    static Token.ModifierToken createModifierGroup(Token child, int add, int mask) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new ModifierToken(child, add, mask);
+        return new Token.ModifierToken(child, add, mask);
     }
-    static ConditionToken createCondition(int refno, Token condition,
+    static Token.ConditionToken createCondition(int refno, Token condition,
                                                 Token yespat, Token nopat) {
         if (COUNTTOKENS)  Token.tokens ++;
-        return new ConditionToken(refno, condition, yespat, nopat);
+        return new Token.ConditionToken(refno, condition, yespat, nopat);
     }
 
     protected Token(int type) {
@@ -583,8 +593,8 @@ class Token implements java.io.Serializable {
     }
 
     // ------------------------------------------------------
-    private final static Hashtable categories = new Hashtable();
-    private final static Hashtable categories2 = new Hashtable();
+    private final static Map<String, Token> categories = new HashMap<>();
+    private final static Map<String, Token> categories2 = new HashMap<>();
     private static final String[] categoryNames = {
         "Cn", "Lu", "Ll", "Lt", "Lm", "Lo", "Mn", "Me", "Mc", "Nd",
         "Nl", "No", "Zs", "Zl", "Zp", "Cc", "Cf", null, "Co", "Cs",
@@ -820,7 +830,7 @@ class Token implements java.io.Serializable {
                 //REVISIT: do we really need to support block names as in Unicode 3.1
                 //         or we can just create all the names in IsBLOCKNAME format (XML Schema REC)?
                 //
-                StringBuffer buffer = new StringBuffer(50);
+                StringBuilder buffer = new StringBuilder(50);
                 for (int i = 0;  i < Token.blockNames.length;  i ++) {
                     Token r1 = Token.createRange();
                     int location;
@@ -972,22 +982,17 @@ class Token implements java.io.Serializable {
         return range;
     }
 
-    static Hashtable nonxs = null;
+    static final Set<String> nonxs = Collections.synchronizedSet(new HashSet<>());
     /**
      * This method is called by only getRange().
      * So this method need not MT-safe.
      */
     static protected void registerNonXS(String name) {
-        if (Token.nonxs == null)
-            Token.nonxs = new Hashtable();
-        Token.nonxs.put(name, name);
+        Token.nonxs.add(name);
     }
+
     static protected boolean isRegisterNonXS(String name) {
-        if (Token.nonxs == null)
-            return false;
-        //DEBUG
-        //System.err.println("isRegisterNonXS: "+name);
-        return Token.nonxs.containsKey(name);
+        return Token.nonxs.contains(name);
     }
 
     private static void setAlias(String newName, String name, boolean positive) {
@@ -1423,17 +1428,26 @@ class Token implements java.io.Serializable {
 
         private static final long serialVersionUID = -2568843945989489861L;
 
-        Vector children;
+        List<Token> children;
+
+        /**
+         * @serialField children Vector children
+         */
+        private static final ObjectStreamField[] serialPersistentFields =
+            new ObjectStreamField[] {
+                new ObjectStreamField("children", Vector.class),
+            };
 
         UnionToken(int type) {
             super(type);
         }
 
+        @Override
         void addChild(Token tok) {
             if (tok == null)  return;
-            if (this.children == null)  this.children = new Vector();
+            if (this.children == null)  this.children = new ArrayList<>();
             if (this.type == UNION) {
-                this.children.addElement(tok);
+                this.children.add(tok);
                 return;
             }
                                                 // This is CONCAT, and new child is CONCAT.
@@ -1444,31 +1458,31 @@ class Token implements java.io.Serializable {
             }
             int size = this.children.size();
             if (size == 0) {
-                this.children.addElement(tok);
+                this.children.add(tok);
                 return;
             }
-            Token previous = (Token)this.children.elementAt(size-1);
+            Token previous = this.children.get(size - 1);
             if (!((previous.type == CHAR || previous.type == STRING)
                   && (tok.type == CHAR || tok.type == STRING))) {
-                this.children.addElement(tok);
+                this.children.add(tok);
                 return;
             }
 
             //System.err.println("Merge '"+previous+"' and '"+tok+"'.");
 
-            StringBuffer buffer;
+            StringBuilder buffer;
             int nextMaxLength = (tok.type == CHAR ? 2 : tok.getString().length());
             if (previous.type == CHAR) {        // Replace previous token by STRING
-                buffer = new StringBuffer(2 + nextMaxLength);
+                buffer = new StringBuilder(2 + nextMaxLength);
                 int ch = previous.getChar();
                 if (ch >= 0x10000)
                     buffer.append(REUtil.decomposeToSurrogates(ch));
                 else
                     buffer.append((char)ch);
                 previous = Token.createString(null);
-                this.children.setElementAt(previous, size-1);
+                this.children.set(size - 1, previous);
             } else {                            // STRING
-                buffer = new StringBuffer(previous.getString().length() + nextMaxLength);
+                buffer = new StringBuilder(previous.getString().length() + nextMaxLength);
                 buffer.append(previous.getString());
             }
 
@@ -1485,13 +1499,16 @@ class Token implements java.io.Serializable {
             ((StringToken)previous).string = new String(buffer);
         }
 
+        @Override
         int size() {
             return this.children == null ? 0 : this.children.size();
         }
+        @Override
         Token getChild(int index) {
-            return (Token)this.children.elementAt(index);
+            return this.children.get(index);
         }
 
+        @Override
         public String toString(int options) {
             String ret;
             if (this.type == CONCAT) {
@@ -1505,9 +1522,9 @@ class Token implements java.io.Serializable {
                     } else
                         ret = ch.toString(options)+ch2.toString(options);
                 } else {
-                    StringBuffer sb = new StringBuffer();
+                    StringBuilder sb = new StringBuilder();
                     for (int i = 0;  i < this.children.size();  i ++) {
-                        sb.append(((Token)this.children.elementAt(i)).toString(options));
+                        sb.append(((Token)this.children.get(i)).toString(options));
                     }
                     ret = new String(sb);
                 }
@@ -1519,15 +1536,39 @@ class Token implements java.io.Serializable {
                        && this.getChild(0).type == EMPTY) {
                 ret = this.getChild(1).toString(options)+"??";
             } else {
-                StringBuffer sb = new StringBuffer();
-                sb.append(((Token)this.children.elementAt(0)).toString(options));
+                StringBuilder sb = new StringBuilder();
+                sb.append((this.children.get(0)).toString(options));
                 for (int i = 1;  i < this.children.size();  i ++) {
                     sb.append((char)'|');
-                    sb.append(((Token)this.children.elementAt(i)).toString(options));
+                    sb.append((this.children.get(i)).toString(options));
                 }
                 ret = new String(sb);
             }
             return ret;
+        }
+
+        /**
+         * @serialData Serialized fields. Convert the List to Vector for backward compatibility.
+         */
+        private void writeObject(ObjectOutputStream out) throws IOException {
+            // Convert List to Vector
+            Vector<Token> vChildren = (children == null)? null : new Vector<>(children);
+
+            // Write serialized fields
+            ObjectOutputStream.PutField pf = out.putFields();
+            pf.put("children", vChildren);
+            out.writeFields();
+        }
+
+        @SuppressWarnings("unchecked")
+        private void readObject(ObjectInputStream in)
+                            throws IOException, ClassNotFoundException {
+            // We have to read serialized fields first.
+            ObjectInputStream.GetField gf = in.readFields();
+            Vector<Token> vChildren = (Vector<Token>)gf.get("children", null);
+
+            //convert Vector back to List
+            if (vChildren != null) children = new ArrayList<>(vChildren);
         }
     }
 }

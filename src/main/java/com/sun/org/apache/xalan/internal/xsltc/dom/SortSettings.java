@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -68,7 +68,7 @@ final class SortSettings {
 
     /**
      * Create an instance of <code>SortSettings</code>.
-     * @param translet {@link AbstractTranslet}
+     * @param translet {@link com.sun.org.apache.xalan.internal.xsltc.runtime.AbstractTranslet}
      *                 object for the transformation
      * @param sortOrders an array specifying the sort order for each sort level
      * @param types an array specifying the type of comparison for each sort

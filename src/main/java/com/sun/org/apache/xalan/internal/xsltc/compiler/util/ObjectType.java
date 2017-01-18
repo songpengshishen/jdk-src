@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -109,7 +109,7 @@ public final class ObjectType extends Type {
      * This translation is needed when calling external functions
      * that return void.
      *
-     * @see     Type#translateTo
+     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             Type type) {
@@ -127,7 +127,7 @@ public final class ObjectType extends Type {
      * Expects an integer on the stack and pushes its string value by calling
      * <code>Integer.toString(int i)</code>.
      *
-     * @see     Type#translateTo
+     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             StringType type) {

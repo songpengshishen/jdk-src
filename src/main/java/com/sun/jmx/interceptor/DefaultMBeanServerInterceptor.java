@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000, 2008, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -100,10 +100,10 @@ import javax.management.loading.ClassLoaderRepository;
  * A Java object cannot be registered in the MBean server unless it is a JMX compliant MBean.
  * <P>
  * When an MBean is registered or unregistered in the MBean server an
- * {@link MBeanServerNotification MBeanServerNotification}
+ * {@link javax.management.MBeanServerNotification MBeanServerNotification}
  * Notification is emitted. To register an object as listener to MBeanServerNotifications
  * you should call the MBean server method {@link #addNotificationListener addNotificationListener} with <CODE>ObjectName</CODE>
- * the <CODE>ObjectName</CODE> of the {@link MBeanServerDelegate MBeanServerDelegate}.
+ * the <CODE>ObjectName</CODE> of the {@link javax.management.MBeanServerDelegate MBeanServerDelegate}.
  * This <CODE>ObjectName</CODE> is:
  * <BR>
  * <CODE>JMImplementation:type=MBeanServerDelegate</CODE>.
@@ -149,7 +149,7 @@ public class DefaultMBeanServerInterceptor implements MBeanServerInterceptor {
      * before using this object.
      * @param outer A pointer to the MBeanServer object that must be
      *        passed to the MBeans when invoking their
-     *        {@link MBeanRegistration} interface.
+     *        {@link javax.management.MBeanRegistration} interface.
      * @param delegate A pointer to the MBeanServerDelegate associated
      *        with the new MBeanServer. The new MBeanServer must register
      *        this MBean in its MBean repository.
@@ -1432,7 +1432,7 @@ public class DefaultMBeanServerInterceptor implements MBeanServerInterceptor {
     }
 
     /**
-     * <p>Return the {@link ClassLoader} that was used for
+     * <p>Return the {@link java.lang.ClassLoader} that was used for
      * loading the class of the named MBean.
      * @param mbeanName The ObjectName of the MBean.
      * @return The ClassLoader used for that MBean.
@@ -1447,7 +1447,7 @@ public class DefaultMBeanServerInterceptor implements MBeanServerInterceptor {
     }
 
     /**
-     * <p>Return the named {@link ClassLoader}.
+     * <p>Return the named {@link java.lang.ClassLoader}.
      * @param loaderName The ObjectName of the ClassLoader.
      * @return The named ClassLoader.
      * @exception InstanceNotFoundException if the named ClassLoader

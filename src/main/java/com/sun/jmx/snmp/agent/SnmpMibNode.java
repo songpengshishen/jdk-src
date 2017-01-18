@@ -67,7 +67,7 @@ public abstract class SnmpMibNode implements Serializable {
      * @param id Id we start from looking for the next.
      * @param userData A contextual object containing user-data.
      *        This object is allocated through the <code>
-     *        {@link SnmpUserDataFactory}</code>
+     *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code>
      *        for each incoming SNMP request.
      *
      * @return The next id in this group.
@@ -84,13 +84,13 @@ public abstract class SnmpMibNode implements Serializable {
      * a branch leading to a subgroub, or a table, possibly skipping over
      * those arcs that must not or cannot be returned.
      *
-     * Calls {@link #getNextVarId(long,Object)} until
-     * {@link #skipVariable(long,Object,int)} returns false.
+     * Calls {@link #getNextVarId(long,java.lang.Object)} until
+     * {@link #skipVariable(long,java.lang.Object,int)} returns false.
      *
      * @param id Id we start from looking for the next.
      * @param userData A contextual object containing user-data.
      *        This object is allocated through the <code>
-     *        {@link SnmpUserDataFactory}</code>
+     *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code>
      *        for each incoming SNMP request.
      * @param pduVersion Protocol version of the original request PDU.
      *
@@ -122,7 +122,7 @@ public abstract class SnmpMibNode implements Serializable {
      * @param id Id we start from looking for the next.
      * @param userData A contextual object containing user-data.
      *        This object is allocated through the <code>
-     *        {@link SnmpUserDataFactory}</code>
+     *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code>
      *        for each incoming SNMP request.
      * @param pduVersion Protocol version of the original request PDU.
      *
@@ -346,8 +346,9 @@ public abstract class SnmpMibNode implements Serializable {
         final int[] a = table;
         final int val= (int) value;
 
-        if (a == null)
+        if (a == null) {
             throw new SnmpStatusException(SnmpStatusException.noSuchObject);
+        }
 
         int low= 0;
         int max= a.length;
@@ -356,11 +357,13 @@ public abstract class SnmpMibNode implements Serializable {
 
         // Basic check
         //
-        if (max < 1)
+        if (max < 1) {
             throw new SnmpStatusException(SnmpStatusException.noSuchObject);
+        }
 
-        if (a[max-1] <= val)
+        if (a[max-1] <= val) {
             throw new SnmpStatusException(SnmpStatusException.noSuchObject);
+        }
 
         while (low <= max) {
             elmt= a[curr];

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -86,7 +86,7 @@ public class XStringForChars extends XString
    *
    * @return The string this wraps or the empty string if null
    */
-  public void appendToFsb(FastStringBuffer fsb)
+  public void appendToFsb(com.sun.org.apache.xml.internal.utils.FastStringBuffer fsb)
   {
     fsb.append((char[])m_obj, m_start, m_length);
   }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2010, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -34,6 +34,7 @@ import java.util.List;
  *
  * @since 1.7
  */
+@jdk.Exported
 public interface UnionTypeTree extends Tree {
     List<? extends Tree> getTypeAlternatives();
 }

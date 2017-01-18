@@ -12,10 +12,6 @@ package com.sun.jmx.snmp;
 import java.util.StringTokenizer;
 import java.util.NoSuchElementException;
 
-// sun imports
-import sun.misc.JavaAWTAccess;
-import sun.misc.SharedSecrets;
-
 /**
  * Represents an SNMP Object Identifier (OID).
  *
@@ -150,13 +146,10 @@ public class SnmpOid extends SnmpValue {
      *        <li><code>false</code> if a reference on the internal data
      *            can be returned.</li>
      * @return A copy of (or a reference on) the components array.
+     * @Deprecated use {@link #longValue()}
      */
     public final long[] longValue(boolean duplicate) {
-        if (duplicate) return longValue();
-        if (componentCount == components.length) return components ;
-        components =  longValue();
-        componentCount = components.length;
-        return components ;
+        return longValue();
     }
 
     /**
@@ -533,12 +526,7 @@ public class SnmpOid extends SnmpValue {
      * @return The MIB table.
      */
     public static SnmpOidTable getSnmpOidTable() {
-        JavaAWTAccess awtAccess = SharedSecrets.getJavaAWTAccess();
-        if (awtAccess == null) {
-            return meta;
-        } else {
-            return (SnmpOidTable) awtAccess.get(SnmpOidTable.class);
-        }
+        return meta;
     }
 
     /**
@@ -546,18 +534,16 @@ public class SnmpOid extends SnmpValue {
      * If no mib table is available, the class will not be able to resolve
      * names contained in the Object Identifier.
      * @param db The MIB table to use.
+     * @throws SecurityException if the security manager is present and
+     *         denies the access.
      */
     public static void setSnmpOidTable(SnmpOidTable db) {
-        JavaAWTAccess awtAccess = SharedSecrets.getJavaAWTAccess();
-        if (awtAccess == null) {
-            meta = db;
-        } else {
-            if (db == null) {
-                awtAccess.remove(SnmpOidTable.class);
-            } else {
-                awtAccess.put(SnmpOidTable.class, db);
-            }
+        final SecurityManager sm = System.getSecurityManager();
+        if (sm != null) {
+            sm.checkPermission(new SnmpPermission("setSnmpOidTable"));
         }
+
+        meta = db;
     }
 
     /**

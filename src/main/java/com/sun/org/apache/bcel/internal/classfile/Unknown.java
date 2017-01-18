@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 package com.sun.org.apache.bcel.internal.classfile;
@@ -73,8 +73,8 @@ import java.util.*;
  * com.sun.org.apache.bcel.internal.classfile.AttributeReader)">Attribute.addAttributeReader</a>.
 
  *
- * @see Attribute
- * @see AttributeReader
+ * @see com.sun.org.apache.bcel.internal.classfile.Attribute
+ * @see com.sun.org.apache.bcel.internal.classfile.AttributeReader
  * @author  <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public final class Unknown extends Attribute {

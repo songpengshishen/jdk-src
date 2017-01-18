@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -164,7 +164,7 @@ public class NamedNodeMapImpl
      * stored under, multiple nodes of certain types (those that have a "special" string
      * value) cannot be stored as the names would clash. This is seen as preferable to
      * allowing nodes to be aliased.
-     * @see NamedNodeMap#setNamedItem
+     * @see org.w3c.dom.NamedNodeMap#setNamedItem
      * @return If the new Node replaces an existing node the replaced Node is returned,
      *      otherwise null is returned.
      * @param arg
@@ -173,7 +173,7 @@ public class NamedNodeMapImpl
      *      attribute of the node. If a node with those namespace URI and
      *      local name is already present in the map, it is replaced by the new
      *      one.
-     * @exception DOMException The exception description.
+     * @exception org.w3c.dom.DOMException The exception description.
      */
     public Node setNamedItem(Node arg)
     throws DOMException {
@@ -208,7 +208,7 @@ public class NamedNodeMapImpl
 
     /**
      * Adds a node using its namespaceURI and localName.
-     * @see NamedNodeMap#setNamedItem
+     * @see org.w3c.dom.NamedNodeMap#setNamedItem
      * @return If the new Node replaces an existing node the replaced Node is returned,
      *      otherwise null is returned.
      * @param arg A node to store in a named node map. The node will later be

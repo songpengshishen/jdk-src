@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -66,7 +66,7 @@ public final class NodeSetType extends Type {
      * since node-sets are always converted to
      * reals in arithmetic expressions.
      *
-     * @see     Type#translateTo
+     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             Type type) {
@@ -149,7 +149,7 @@ public final class NodeSetType extends Type {
      * and "false" otherwise. Notice that the
      * function getFirstNode() is called in translateToDesynthesized().
      *
-     * @see     Type#translateTo
+     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             BooleanType type) {
@@ -165,7 +165,7 @@ public final class NodeSetType extends Type {
      * Translates a node-set into a string. The string value of a node-set is
      * value of its first element.
      *
-     * @see     Type#translateTo
+     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             StringType type) {
@@ -184,7 +184,7 @@ public final class NodeSetType extends Type {
      * Expects a node-set on the stack and pushes a real.
      * First the node-set is converted to string, and from string to real.
      *
-     * @see     Type#translateTo
+     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             RealType type) {
@@ -195,7 +195,7 @@ public final class NodeSetType extends Type {
     /**
      * Expects a node-set on the stack and pushes a node.
      *
-     * @see     Type#translateTo
+     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             NodeType type) {
@@ -205,7 +205,7 @@ public final class NodeSetType extends Type {
     /**
      * Subsume node-set into ObjectType.
      *
-     * @see     Type#translateTo
+     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             ObjectType type) {
@@ -217,7 +217,7 @@ public final class NodeSetType extends Type {
      * push a 0 or a 1 but instead returns branchhandle list to be appended
      * to the false list.
      *
-     * @see     Type#translateToDesynthesized
+     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateToDesynthesized
      */
     public FlowList translateToDesynthesized(ClassGenerator classGen,
                                              MethodGenerator methodGen,
@@ -231,7 +231,7 @@ public final class NodeSetType extends Type {
      * Expects a node-set on the stack and pushes a boxed node-set.
      * Node sets are already boxed so the translation is just a NOP.
      *
-     * @see     Type#translateTo
+     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             ReferenceType type) {

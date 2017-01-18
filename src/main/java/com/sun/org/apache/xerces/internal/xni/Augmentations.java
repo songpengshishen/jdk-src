@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -50,7 +50,7 @@ public interface Augmentations {
      * @return the previous value of the specified key in the Augmentations structure,
      *         or <code>null</code> if it did not have one.
      */
-    public Object putItem(String key, Object item);
+    public Object putItem (String key, Object item);
 
 
     /**
@@ -71,19 +71,19 @@ public interface Augmentations {
      * @return the previous value of the specified key in the Augmentations structure,
      *         or <code>null</code> if it did not have one.
      */
-    public Object removeItem(String key);
+    public Object removeItem (String key);
 
 
     /**
      * Returns an enumeration of the keys in the Augmentations structure
      *
      */
-    public Enumeration keys();
+    public Enumeration keys ();
 
 
     /**
      * Remove all objects from the Augmentations structure.
      */
-    public void removeAllItems();
+    public void removeAllItems ();
 
 }

@@ -29,7 +29,7 @@ import javax.management.loading.ClassLoaderRepository;
 /**
  * Fix security hole in ClassLoaderRepository. This class wraps
  * the actual ClassLoaderRepository implementation so that
- * only the methods from {@link ClassLoaderRepository}
+ * only the methods from {@link javax.management.loading.ClassLoaderRepository}
  * can be accessed (read-only).
  *
  * @since 1.5

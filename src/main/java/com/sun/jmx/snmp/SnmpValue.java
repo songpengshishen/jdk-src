@@ -72,7 +72,7 @@ public abstract class SnmpValue implements Cloneable, Serializable, SnmpDataType
 
     /**
      * This method returns <CODE>false</CODE> by default and is redefined
-     * in the {@link SnmpNull} class.
+     * in the {@link com.sun.jmx.snmp.SnmpNull} class.
      */
     public boolean isNoSuchObjectValue() {
         return false;
@@ -80,7 +80,7 @@ public abstract class SnmpValue implements Cloneable, Serializable, SnmpDataType
 
     /**
      * This method returns <CODE>false</CODE> by default and is redefined
-     * in the {@link SnmpNull} class.
+     * in the {@link com.sun.jmx.snmp.SnmpNull} class.
      */
     public boolean isNoSuchInstanceValue() {
         return false;
@@ -88,7 +88,7 @@ public abstract class SnmpValue implements Cloneable, Serializable, SnmpDataType
 
     /**
      * This method returns <CODE>false</CODE> by default and is redefined
-     * in the {@link SnmpNull} class.
+     * in the {@link com.sun.jmx.snmp.SnmpNull} class.
      */
     public boolean isEndOfMibViewValue() {
         return false;

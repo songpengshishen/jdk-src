@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -1103,14 +1103,14 @@ extends AbstractDOMParser implements LSParser, DOMConfiguration {
     }
 
     /**
-     * @see LSParser#getAsync()
+     * @see org.w3c.dom.ls.LSParser#getAsync()
      */
     public boolean getAsync () {
         return false;
     }
 
     /**
-     * @see LSParser#getBusy()
+     * @see org.w3c.dom.ls.LSParser#getBusy()
      */
     public boolean getBusy () {
         return fBusy;

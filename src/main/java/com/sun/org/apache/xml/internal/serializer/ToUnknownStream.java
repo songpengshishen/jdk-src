@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -363,7 +363,7 @@ public final class ToUnknownStream extends SerializerBase
 
 
     /**
-     * @see ContentHandler#startPrefixMapping(String, String)
+     * @see org.xml.sax.ContentHandler#startPrefixMapping(String, String)
      * @param prefix The prefix that maps to the URI
      * @param uri The URI for the namespace
      */
@@ -457,7 +457,7 @@ public final class ToUnknownStream extends SerializerBase
     }
 
     /**
-     * @see ContentHandler#startDocument()
+     * @see org.xml.sax.ContentHandler#startDocument()
      */
     public void startDocument() throws SAXException
     {
@@ -801,7 +801,7 @@ public final class ToUnknownStream extends SerializerBase
 
     /**
      * Pass the call on to the underlying handler
-     * @see ContentHandler#characters(char[], int, int)
+     * @see org.xml.sax.ContentHandler#characters(char[], int, int)
      */
     public void characters(char[] characters, int offset, int length)
         throws SAXException
@@ -817,7 +817,7 @@ public final class ToUnknownStream extends SerializerBase
 
     /**
      * Pass the call on to the underlying handler
-     * @see ContentHandler#endDocument()
+     * @see org.xml.sax.ContentHandler#endDocument()
      */
     public void endDocument() throws SAXException
     {
@@ -833,7 +833,7 @@ public final class ToUnknownStream extends SerializerBase
 
     /**
      * Pass the call on to the underlying handler
-     * @see ContentHandler#endElement(String, String, String)
+     * @see org.xml.sax.ContentHandler#endElement(String, String, String)
      */
     public void endElement(String namespaceURI, String localName, String qName)
         throws SAXException
@@ -854,7 +854,7 @@ public final class ToUnknownStream extends SerializerBase
 
     /**
      * Pass the call on to the underlying handler
-     * @see ContentHandler#endPrefixMapping(String)
+     * @see org.xml.sax.ContentHandler#endPrefixMapping(String)
      */
     public void endPrefixMapping(String prefix) throws SAXException
     {
@@ -863,7 +863,7 @@ public final class ToUnknownStream extends SerializerBase
 
     /**
      * Pass the call on to the underlying handler
-     * @see ContentHandler#ignorableWhitespace(char[], int, int)
+     * @see org.xml.sax.ContentHandler#ignorableWhitespace(char[], int, int)
      */
     public void ignorableWhitespace(char[] ch, int start, int length)
         throws SAXException
@@ -877,7 +877,7 @@ public final class ToUnknownStream extends SerializerBase
 
     /**
      * Pass the call on to the underlying handler
-     * @see ContentHandler#processingInstruction(String, String)
+     * @see org.xml.sax.ContentHandler#processingInstruction(String, String)
      */
     public void processingInstruction(String target, String data)
         throws SAXException
@@ -892,7 +892,7 @@ public final class ToUnknownStream extends SerializerBase
 
     /**
      * Pass the call on to the underlying handler
-     * @see ContentHandler#setDocumentLocator(Locator)
+     * @see org.xml.sax.ContentHandler#setDocumentLocator(Locator)
      */
     public void setDocumentLocator(Locator locator)
     {
@@ -902,7 +902,7 @@ public final class ToUnknownStream extends SerializerBase
 
     /**
      * Pass the call on to the underlying handler
-     * @see ContentHandler#skippedEntity(String)
+     * @see org.xml.sax.ContentHandler#skippedEntity(String)
      */
     public void skippedEntity(String name) throws SAXException
     {
@@ -1192,14 +1192,14 @@ public final class ToUnknownStream extends SerializerBase
     /**
      * @param URI_and_localNames Vector a list of pairs of URI/localName
      * specified in the cdata-section-elements attribute.
-     * @see SerializationHandler#setCdataSectionElements(Vector)
+     * @see SerializationHandler#setCdataSectionElements(java.util.Vector)
      */
     public void setCdataSectionElements(Vector URI_and_localNames)
     {
         m_handler.setCdataSectionElements(URI_and_localNames);
     }
     /**
-     * @see ExtendedContentHandler#addAttributes(Attributes)
+     * @see ExtendedContentHandler#addAttributes(org.xml.sax.Attributes)
      */
     public void addAttributes(Attributes atts) throws SAXException
     {
@@ -1261,7 +1261,7 @@ public final class ToUnknownStream extends SerializerBase
         return m_handler.getPrefix(namespaceURI);
     }
     /**
-     * @see ExtendedContentHandler#entityReference(String)
+     * @see ExtendedContentHandler#entityReference(java.lang.String)
      */
     public void entityReference(String entityName) throws SAXException
     {
@@ -1269,7 +1269,7 @@ public final class ToUnknownStream extends SerializerBase
     }
 
     /**
-     * @see ExtendedContentHandler#getNamespaceURI(String, boolean)
+     * @see ExtendedContentHandler#getNamespaceURI(java.lang.String, boolean)
      */
     public String getNamespaceURI(String qname, boolean isElement)
     {
@@ -1297,7 +1297,7 @@ public final class ToUnknownStream extends SerializerBase
     }
 
     /**
-     * @see SerializationHandler#setContentHandler(ContentHandler)
+     * @see SerializationHandler#setContentHandler(org.xml.sax.ContentHandler)
      */
     public void setContentHandler(ContentHandler ch)
     {
@@ -1308,7 +1308,7 @@ public final class ToUnknownStream extends SerializerBase
      * generated an error message.
      * @param locator the source locator
      *
-     * @see ExtendedContentHandler#setSourceLocator(SourceLocator)
+     * @see ExtendedContentHandler#setSourceLocator(javax.xml.transform.SourceLocator)
      */
     public void setSourceLocator(SourceLocator locator)
     {

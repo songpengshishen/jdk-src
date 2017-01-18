@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -330,8 +330,8 @@ public class XString extends XObject implements XMLString
    * @param   obj2   the object to compare this <code>String</code> against.
    * @return  <code>true</code> if the <code>String</code>s are equal;
    *          <code>false</code> otherwise.
-   * @see     String#compareTo(String)
-   * @see     String#equalsIgnoreCase(String)
+   * @see     java.lang.String#compareTo(java.lang.String)
+   * @see     java.lang.String#equalsIgnoreCase(java.lang.String)
    */
   public boolean equals(String obj2) {
     return str().equals(obj2);
@@ -347,8 +347,8 @@ public class XString extends XObject implements XMLString
    *                     against.
    * @return  <code>true</code> if the <code>String </code>are equal;
    *          <code>false</code> otherwise.
-   * @see     String#compareTo(String)
-   * @see     String#equalsIgnoreCase(String)
+   * @see     java.lang.String#compareTo(java.lang.String)
+   * @see     java.lang.String#equalsIgnoreCase(java.lang.String)
    */
   public boolean equals(XMLString obj2)
   {
@@ -372,8 +372,8 @@ public class XString extends XObject implements XMLString
    *                     against.
    * @return  <code>true</code> if the <code>String </code>are equal;
    *          <code>false</code> otherwise.
-   * @see     String#compareTo(String)
-   * @see     String#equalsIgnoreCase(String)
+   * @see     java.lang.String#compareTo(java.lang.String)
+   * @see     java.lang.String#equalsIgnoreCase(java.lang.String)
    */
   public boolean equals(Object obj2)
   {
@@ -404,8 +404,8 @@ public class XString extends XObject implements XMLString
    *          and the <code>String</code>s are equal,
    *          ignoring case; <code>false</code> otherwise.
    * @see     #equals(Object)
-   * @see     Character#toLowerCase(char)
-   * @see Character#toUpperCase(char)
+   * @see     java.lang.Character#toLowerCase(char)
+   * @see java.lang.Character#toUpperCase(char)
    */
   public boolean equalsIgnoreCase(String anotherString)
   {
@@ -422,7 +422,7 @@ public class XString extends XObject implements XMLString
    *          is lexicographically less than the string argument; and a
    *          value greater than <code>0</code> if this string is
    *          lexicographically greater than the string argument.
-   * @exception NullPointerException if <code>anotherString</code>
+   * @exception java.lang.NullPointerException if <code>anotherString</code>
    *          is <code>null</code>.
    */
   public int compareTo(XMLString xstr)
@@ -480,7 +480,7 @@ public class XString extends XObject implements XMLString
     //    return str().compareToIgnoreCase(str.toString());
 
     throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
-      new NoSuchMethodException(
+      new java.lang.NoSuchMethodException(
         "Java 1.2 method, not yet implemented"));
   }
 
@@ -500,7 +500,7 @@ public class XString extends XObject implements XMLString
    *          <pre>
    *          this.subString(toffset).startsWith(prefix)
    *          </pre>
-   * @exception NullPointerException if <code>prefix</code> is
+   * @exception java.lang.NullPointerException if <code>prefix</code> is
    *          <code>null</code>.
    */
   public boolean startsWith(String prefix, int toffset)
@@ -519,7 +519,7 @@ public class XString extends XObject implements XMLString
    *          argument is an empty string or is equal to this
    *          <code>String</code> object as determined by the
    *          {@link #equals(Object)} method.
-   * @exception NullPointerException if <code>prefix</code> is
+   * @exception java.lang.NullPointerException if <code>prefix</code> is
    *          <code>null</code>.
    */
   public boolean startsWith(String prefix)
@@ -543,7 +543,7 @@ public class XString extends XObject implements XMLString
    *          <pre>
    *          this.subString(toffset).startsWith(prefix)
    *          </pre>
-   * @exception NullPointerException if <code>prefix</code> is
+   * @exception java.lang.NullPointerException if <code>prefix</code> is
    *          <code>null</code>.
    */
   public boolean startsWith(XMLString prefix, int toffset)
@@ -585,7 +585,7 @@ public class XString extends XObject implements XMLString
    *          argument is an empty string or is equal to this
    *          <code>String</code> object as determined by the
    *          {@link #equals(Object)} method.
-   * @exception NullPointerException if <code>prefix</code> is
+   * @exception java.lang.NullPointerException if <code>prefix</code> is
    *          <code>null</code>.
    */
   public boolean startsWith(XMLString prefix)
@@ -603,7 +603,7 @@ public class XString extends XObject implements XMLString
    *          result will be <code>true</code> if the argument is the
    *          empty string or is equal to this <code>String</code> object
    *          as determined by the {@link #equals(Object)} method.
-   * @exception NullPointerException if <code>suffix</code> is
+   * @exception java.lang.NullPointerException if <code>suffix</code> is
    *          <code>null</code>.
    */
   public boolean endsWith(String suffix)
@@ -746,7 +746,7 @@ public class XString extends XObject implements XMLString
    *          object, then the index of the first character of the first
    *          such substring is returned; if it does not occur as a
    *          substring, <code>-1</code> is returned.
-   * @exception NullPointerException if <code>str</code> is
+   * @exception java.lang.NullPointerException if <code>str</code> is
    *          <code>null</code>.
    */
   public int indexOf(String str)
@@ -768,7 +768,7 @@ public class XString extends XObject implements XMLString
    *          object, then the index of the first character of the first
    *          such substring is returned; if it does not occur as a
    *          substring, <code>-1</code> is returned.
-   * @exception NullPointerException if <code>str</code> is
+   * @exception java.lang.NullPointerException if <code>str</code> is
    *          <code>null</code>.
    */
   public int indexOf(XMLString str)
@@ -799,7 +799,7 @@ public class XString extends XObject implements XMLString
    *          of the first such substring is returned. If it does not occur
    *          as a substring starting at <code>fromIndex</code> or beyond,
    *          <code>-1</code> is returned.
-   * @exception NullPointerException if <code>str</code> is
+   * @exception java.lang.NullPointerException if <code>str</code> is
    *          <code>null</code>
    */
   public int indexOf(String str, int fromIndex)
@@ -822,7 +822,7 @@ public class XString extends XObject implements XMLString
    *          within this object, then the index of the first character of
    *          the last such substring is returned. If it does not occur as
    *          a substring, <code>-1</code> is returned.
-   * @exception NullPointerException  if <code>str</code> is
+   * @exception java.lang.NullPointerException  if <code>str</code> is
    *          <code>null</code>.
    */
   public int lastIndexOf(String str)
@@ -847,7 +847,7 @@ public class XString extends XObject implements XMLString
    *          the last such substring is returned. If it does not occur as a
    *          substring starting at <code>fromIndex</code> or earlier,
    *          <code>-1</code> is returned.
-   * @exception NullPointerException if <code>str</code> is
+   * @exception java.lang.NullPointerException if <code>str</code> is
    *          <code>null</code>.
    */
   public int lastIndexOf(String str, int fromIndex)
@@ -905,7 +905,7 @@ public class XString extends XObject implements XMLString
    *                of this <code>String</code>.
    * @return  a string that represents the concatenation of this object's
    *          characters followed by the string argument's characters.
-   * @exception NullPointerException if <code>str</code> is
+   * @exception java.lang.NullPointerException if <code>str</code> is
    *          <code>null</code>.
    */
   public XMLString concat(String str)
@@ -921,8 +921,8 @@ public class XString extends XObject implements XMLString
    *
    * @param locale use the case transformation rules for this locale
    * @return the String, converted to lowercase.
-   * @see     Character#toLowerCase(char)
-   * @see     String#toUpperCase(Locale)
+   * @see     java.lang.Character#toLowerCase(char)
+   * @see     java.lang.String#toUpperCase(Locale)
    */
   public XMLString toLowerCase(Locale locale)
   {
@@ -936,8 +936,8 @@ public class XString extends XObject implements XMLString
    * <p>
    *
    * @return  the string, converted to lowercase.
-   * @see     Character#toLowerCase(char)
-   * @see     String#toLowerCase(Locale)
+   * @see     java.lang.Character#toLowerCase(char)
+   * @see     java.lang.String#toLowerCase(Locale)
    */
   public XMLString toLowerCase()
   {
@@ -949,8 +949,8 @@ public class XString extends XObject implements XMLString
    * case using the rules of the given locale.
    * @param locale use the case transformation rules for this locale
    * @return the String, converted to uppercase.
-   * @see     Character#toUpperCase(char)
-   * @see     String#toLowerCase(Locale)
+   * @see     java.lang.Character#toUpperCase(char)
+   * @see     java.lang.String#toLowerCase(Locale)
    */
   public XMLString toUpperCase(Locale locale)
   {
@@ -980,8 +980,8 @@ public class XString extends XObject implements XMLString
    * </pre></blockquote>
    *
    * @return  the string, converted to uppercase.
-   * @see     Character#toUpperCase(char)
-   * @see     String#toUpperCase(Locale)
+   * @see     java.lang.Character#toUpperCase(char)
+   * @see     java.lang.String#toUpperCase(Locale)
    */
   public XMLString toUpperCase()
   {

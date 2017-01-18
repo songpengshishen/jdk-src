@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -1478,7 +1478,7 @@ public class DOMNormalizer implements XMLDocumentHandler {
 
                 /**
          * This method adds default declarations
-                 * @see XMLAttributes#addAttribute(QName, String, String)
+                 * @see com.sun.org.apache.xerces.internal.xni.XMLAttributes#addAttribute(QName, String, String)
                  */
                 public int addAttribute(QName qname, String attrType, String attrValue) {
                         int index = fElement.getXercesAttribute(qname.uri, qname.localpart);

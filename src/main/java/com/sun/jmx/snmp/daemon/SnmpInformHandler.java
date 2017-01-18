@@ -23,7 +23,7 @@
  *
  */
 
-package com.sun.jmx.snmp.daemon;
+package com.sun.jmx.snmp.daemon ;
 
 // JMX imports
 //

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2007, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -54,7 +54,7 @@ import com.sun.jmx.snmp.SnmpVarBind;
  * Its responsibility is to manage a sorted array of OID indexes
  * according to the SNMP indexing scheme over the "real" table.
  * Each object of this class can be bound to an
- * {@link SnmpTableEntryFactory} to which it will
+ * {@link com.sun.jmx.snmp.agent.SnmpTableEntryFactory} to which it will
  * forward remote entry creation requests, and invoke callbacks
  * when an entry has been successfully added to / removed from
  * the OID index array.
@@ -72,16 +72,16 @@ import com.sun.jmx.snmp.SnmpVarBind;
  *
  * <p>
  * Objects of this class are instantiated by the generated
- * whole MIB class extending {@link SnmpMib}
+ * whole MIB class extending {@link com.sun.jmx.snmp.agent.SnmpMib}
  * You should never need to instantiate this class directly.
  * </p>
  *
  * <p><b>This API is a Sun Microsystems internal API  and is subject
  * to change without notice.</b></p>
- * @see SnmpMib
- * @see SnmpMibEntry
- * @see SnmpTableEntryFactory
- * @see SnmpTableSupport
+ * @see com.sun.jmx.snmp.agent.SnmpMib
+ * @see com.sun.jmx.snmp.agent.SnmpMibEntry
+ * @see com.sun.jmx.snmp.agent.SnmpTableEntryFactory
+ * @see com.sun.jmx.snmp.agent.SnmpTableSupport
  *
  */
 
@@ -266,6 +266,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      * <p>
      *
      */
+    @Override
     public void get(SnmpMibSubRequest req, int depth)
         throws SnmpStatusException {
 
@@ -276,9 +277,9 @@ public abstract class SnmpMibTable extends SnmpMibNode
         // each varbind involved (nb: should not happen, the error
         // should have been registered earlier)
         if (isnew) {
-            SnmpVarBind     var = null;
-            for (Enumeration e= r.getElements(); e.hasMoreElements();) {
-                var      = (SnmpVarBind) e.nextElement();
+            SnmpVarBind var;
+            for (Enumeration<SnmpVarBind> e= r.getElements(); e.hasMoreElements();) {
+                var = e.nextElement();
                 r.registerGetException(var,new SnmpStatusException(SnmpStatusException.noSuchInstance));
             }
         }
@@ -329,6 +330,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      * <p>
      *
      */
+    @Override
     public void check(SnmpMibSubRequest req, int depth)
         throws SnmpStatusException {
         final SnmpOid     oid    = req.getEntryOid();
@@ -389,6 +391,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      * <p>
      *
      */
+    @Override
     public void set(SnmpMibSubRequest req, int depth)
         throws SnmpStatusException {
 
@@ -425,14 +428,14 @@ public abstract class SnmpMibTable extends SnmpMibNode
     /**
      * Add a new entry in this <CODE>SnmpMibTable</CODE>.
      * Also triggers the addEntryCB() callback of the
-     * {@link SnmpTableEntryFactory} interface
+     * {@link com.sun.jmx.snmp.agent.SnmpTableEntryFactory} interface
      * if this node is bound to a factory.
      *
      * This method assumes that the given entry will not be registered.
      * If the entry is going to be registered, or if ObjectName's are
      * required, then
-     * {@link SnmpMibTable#addEntry(SnmpOid,
-     * ObjectName, Object)} should be prefered.
+     * {@link com.sun.jmx.snmp.agent.SnmpMibTable#addEntry(SnmpOid,
+     * ObjectName, Object)} should be preferred.
      * <br> This function is mainly provided for backward compatibility.
      *
      * <p>
@@ -455,7 +458,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
     /**
      * Add a new entry in this <CODE>SnmpMibTable</CODE>.
      * Also triggers the addEntryCB() callback of the
-     * {@link SnmpTableEntryFactory} interface
+     * {@link com.sun.jmx.snmp.agent.SnmpTableEntryFactory} interface
      * if this node is bound to a factory.
      *
      * <p>
@@ -572,7 +575,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
     /**
      * Remove the specified entry from the table.
      * Also triggers the removeEntryCB() callback of the
-     * {@link SnmpTableEntryFactory} interface
+     * {@link com.sun.jmx.snmp.agent.SnmpTableEntryFactory} interface
      * if this node is bound to a factory.
      *
      * <p>
@@ -598,7 +601,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
     /**
      * Remove the specified entry from the table.
      * Also triggers the removeEntryCB() callback of the
-     * {@link SnmpTableEntryFactory} interface
+     * {@link com.sun.jmx.snmp.agent.SnmpTableEntryFactory} interface
      * if this node is bound to a factory.
      *
      * <p>
@@ -620,7 +623,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
     /**
      * Remove the specified entry from the table.
      * Also triggers the removeEntryCB() callback of the
-     * {@link SnmpTableEntryFactory} interface
+     * {@link com.sun.jmx.snmp.agent.SnmpTableEntryFactory} interface
      * if this node is bound to a factory.
      *
      * <p>
@@ -755,6 +758,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *
      * @exception IllegalArgumentException Listener parameter is null.
      */
+    @Override
     public synchronized void
         addNotificationListener(NotificationListener listener,
                                 NotificationFilter filter, Object handback)  {
@@ -762,19 +766,17 @@ public abstract class SnmpMibTable extends SnmpMibNode
         // Check listener
         //
         if (listener == null) {
-            throw new IllegalArgumentException
+            throw new java.lang.IllegalArgumentException
                 ("Listener can't be null") ;
         }
 
         // looking for listener in handbackTable
         //
-        Vector<Object> handbackList =
-            handbackTable.get(listener) ;
-        Vector<NotificationFilter> filterList =
-            filterTable.get(listener) ;
+        Vector<Object> handbackList = handbackTable.get(listener) ;
+        Vector<NotificationFilter> filterList = filterTable.get(listener) ;
         if ( handbackList == null ) {
-            handbackList = new Vector<Object>() ;
-            filterList = new Vector<NotificationFilter>() ;
+            handbackList = new Vector<>() ;
+            filterList = new Vector<>() ;
             handbackTable.put(listener, handbackList) ;
             filterTable.put(listener, filterList) ;
         }
@@ -797,16 +799,14 @@ public abstract class SnmpMibTable extends SnmpMibNode
      * @exception ListenerNotFoundException The listener is not registered
      *    in the MBean.
      */
+    @Override
     public synchronized void
         removeNotificationListener(NotificationListener listener)
         throws ListenerNotFoundException {
 
         // looking for listener in handbackTable
         //
-        Vector handbackList =
-            (Vector) handbackTable.get(listener) ;
-        Vector filterList =
-            (Vector) filterTable.get(listener) ;
+        java.util.Vector<?> handbackList = handbackTable.get(listener) ;
         if ( handbackList == null ) {
             throw new ListenerNotFoundException("listener");
         }
@@ -822,6 +822,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      * notification class and the notification type sent by the
      * <CODE>SnmpMibTable</CODE>.
      */
+    @Override
     public MBeanNotificationInfo[] getNotificationInfo() {
 
         String[] types = {SnmpTableEntryNotification.SNMP_ENTRY_ADDED,
@@ -843,7 +844,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *
      * <p>
      * @param factory The
-     *        {@link SnmpTableEntryFactory} through
+     *        {@link com.sun.jmx.snmp.agent.SnmpTableEntryFactory} through
      *        which entries will be created when a remote SNMP manager
      *        request the creation of a new entry via an SNMP SET request.
      */
@@ -879,7 +880,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *
      * @param userData A contextual object containing user-data.
      *        This object is allocated through the <code>
-     *        {@link SnmpUserDataFactory}</code>
+     *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code>
      *        for each incoming SNMP request.
      *
      **/
@@ -893,7 +894,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      * Return the RowStatus code value specified in this request.
      * <p>
      * The RowStatus code value should be one of the values defined
-     * by {@link EnumRowStatus}. These codes correspond
+     * by {@link com.sun.jmx.snmp.EnumRowStatus}. These codes correspond
      * to RowStatus codes as defined in RFC 2579, plus the <i>unspecified</i>
      * value which is SNMP Runtime specific.
      * <p>
@@ -923,7 +924,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      * @exception SnmpStatusException if the value of the control variable
      *            could not be mapped to a RowStatus code.
      *
-     * @see EnumRowStatus
+     * @see com.sun.jmx.snmp.EnumRowStatus
      **/
     protected int getRowAction(SnmpMibSubRequest req, SnmpOid rowOid,
                                int depth)
@@ -947,7 +948,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
     /**
      * Map the value of the <code>vbstatus</code> varbind to the
      * corresponding RowStatus code defined in
-     * {@link EnumRowStatus}.
+     * {@link com.sun.jmx.snmp.EnumRowStatus}.
      * These codes correspond to RowStatus codes as defined in RFC 2579,
      * plus the <i>unspecified</i> value which is SNMP Runtime specific.
      * <p>
@@ -972,7 +973,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *
      * @param userData A contextual object containing user-data.
      *        This object is allocated through the <code>
-     *        {@link SnmpUserDataFactory}</code>
+     *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code>
      *        for each incoming SNMP request.
      *
      * @return The RowStatus code mapped from the value contained
@@ -981,7 +982,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      * @exception SnmpStatusException if the value of the control variable
      *            could not be mapped to a RowStatus code.
      *
-     * @see EnumRowStatus
+     * @see com.sun.jmx.snmp.EnumRowStatus
      **/
     protected int mapRowStatus(SnmpOid rowOid, SnmpVarBind vbstatus,
                                Object userData)
@@ -1022,13 +1023,13 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *
      * @param newStatus The new status for the row: one of the
      *        RowStatus code defined in
-     *        {@link EnumRowStatus}. These codes
+     *        {@link com.sun.jmx.snmp.EnumRowStatus}. These codes
      *        correspond to RowStatus codes as defined in RFC 2579,
      *        plus the <i>unspecified</i> value which is SNMP Runtime specific.
      *
      * @param userData A contextual object containing user-data.
      *        This object is allocated through the <code>
-     *        {@link SnmpUserDataFactory}</code>
+     *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code>
      *        for each incoming SNMP request.
      *
      * @return The new value of the control variable (usually
@@ -1039,7 +1040,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *            could not be set on the specified entry, or if the
      *            given <code>newStatus</code> is not valid.
      *
-     * @see EnumRowStatus
+     * @see com.sun.jmx.snmp.EnumRowStatus
      **/
     protected SnmpValue setRowStatus(SnmpOid rowOid, int newStatus,
                                      Object userData)
@@ -1081,17 +1082,17 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *
      * @param userData A contextual object containing user-data.
      *        This object is allocated through the <code>
-     *        {@link SnmpUserDataFactory}</code>
+     *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code>
      *        for each incoming SNMP request.
      *
      * @return <code>true</code> if the row can be placed in
      *         <i>notInService</i> state.
      *
-     * @exception SnmpStatusException An error occured while trying
+     * @exception SnmpStatusException An error occurred while trying
      *            to retrieve the row status, and the operation should
      *            be aborted.
      *
-     * @see EnumRowStatus
+     * @see com.sun.jmx.snmp.EnumRowStatus
      **/
     protected boolean isRowReady(SnmpOid rowOid, Object userData)
         throws SnmpStatusException {
@@ -1124,7 +1125,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *
      * @param newStatus The new status for the row: one of the
      *        RowStatus code defined in
-     *        {@link EnumRowStatus}. These codes
+     *        {@link com.sun.jmx.snmp.EnumRowStatus}. These codes
      *        correspond to RowStatus codes as defined in RFC 2579,
      *        plus the <i>unspecified</i> value which is SNMP Runtime specific.
      *
@@ -1247,7 +1248,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *
      * @param rowAction The requested action as returned by <code>
      *        getRowAction()</code>: one of the RowStatus codes defined in
-     *        {@link EnumRowStatus}. These codes
+     *        {@link com.sun.jmx.snmp.EnumRowStatus}. These codes
      *        correspond to RowStatus codes as defined in RFC 2579,
      *        plus the <i>unspecified</i> value which is SNMP Runtime specific.
      *
@@ -1257,7 +1258,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *            atomicity of the SET request. Specific checks should
      *            be implemented in <code>beginRowAction()</code> if needed.
      *
-     * @see EnumRowStatus
+     * @see com.sun.jmx.snmp.EnumRowStatus
      **/
     protected synchronized void beginRowAction(SnmpMibSubRequest req,
                               SnmpOid rowOid, int depth, int rowAction)
@@ -1400,14 +1401,14 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *
      * @param rowAction The requested action as returned by <code>
      *        getRowAction()</code>: one of the RowStatus codes defined in
-     *        {@link EnumRowStatus}. These codes
+     *        {@link com.sun.jmx.snmp.EnumRowStatus}. These codes
      *        correspond to RowStatus codes as defined in RFC 2579,
      *        plus the <i>unspecified</i> value which is SNMP Runtime specific.
      *
      * @exception SnmpStatusException if the specified <code>rowAction</code>
      *            is not valid.
      *
-     * @see EnumRowStatus
+     * @see com.sun.jmx.snmp.EnumRowStatus
      **/
     protected void endRowAction(SnmpMibSubRequest req, SnmpOid rowOid,
                                int depth, int rowAction)
@@ -1517,10 +1518,10 @@ public abstract class SnmpMibTable extends SnmpMibNode
      * object in the underlying entry OBJECT-TYPE, possibly skipping over
      * those objects that must not or cannot be returned.
      * Calls {@link
-     * #getNextVarEntryId(SnmpOid,long,Object)},
+     * #getNextVarEntryId(com.sun.jmx.snmp.SnmpOid,long,java.lang.Object)},
      * until
-     * {@link #skipEntryVariable(SnmpOid,long,
-     * Object,int)} returns false.
+     * {@link #skipEntryVariable(com.sun.jmx.snmp.SnmpOid,long,
+     * java.lang.Object,int)} returns false.
      *
      *
      * @param rowOid The OID index of the row involved in the operation.
@@ -1529,7 +1530,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *
      * @param userData A contextual object containing user-data.
      *        This object is allocated through the <code>
-     *        {@link SnmpUserDataFactory}</code>
+     *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code>
      *        for each incoming SNMP request.
      *
      * @param pduVersion Protocol version of the original request PDU.
@@ -1570,7 +1571,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *
      * @param userData A contextual object containing user-data.
      *        This object is allocated through the <code>
-     *        {@link SnmpUserDataFactory}</code>
+     *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code>
      *        for each incoming SNMP request.
      *
      * @param pduVersion Protocol version of the original request PDU.
@@ -1595,7 +1596,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *
      * @param userData A contextual object containing user-data.
      *        This object is allocated through the <code>
-     *        {@link SnmpUserDataFactory}</code>
+     *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code>
      *        for each incoming SNMP request.
      *
      * @return The next <CODE>SnmpOid</CODE> index.
@@ -1606,8 +1607,9 @@ public abstract class SnmpMibTable extends SnmpMibNode
     protected SnmpOid getNextOid(SnmpOid oid, Object userData)
         throws SnmpStatusException {
 
-        if (size == 0)
+        if (size == 0) {
             throw new SnmpStatusException(SnmpStatusException.noSuchInstance);
+        }
 
         final SnmpOid resOid = oid;
 
@@ -1658,7 +1660,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      * <p>
      * @param userData A contextual object containing user-data.
      *        This object is allocated through the <code>
-     *        {@link SnmpUserDataFactory}</code>
+     *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code>
      *        for each incoming SNMP request.
      *
      * @return The <CODE>SnmpOid</CODE> of the first entry in the table.
@@ -1667,8 +1669,9 @@ public abstract class SnmpMibTable extends SnmpMibNode
      */
     protected SnmpOid getNextOid(Object userData)
         throws SnmpStatusException {
-        if (size == 0)
+        if (size == 0) {
             throw new SnmpStatusException(SnmpStatusException.noSuchInstance);
+        }
         // XX return (SnmpOid) oids.firstElement();
         return tableoids[0];
     }
@@ -1691,7 +1694,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *
      * @param userData A contextual object containing user-data.
      *        This object is allocated through the <code>
-     *        {@link SnmpUserDataFactory}</code>
+     *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code>
      *        for each incoming SNMP request.
      *
      * @return The next columnar object id.
@@ -1714,7 +1717,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *
      * @param userData A contextual object containing user-data.
      *        This object is allocated through the <code>
-     *        {@link SnmpUserDataFactory}</code>
+     *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code>
      *        for each incoming SNMP request.
      *
      * @exception SnmpStatusException If this id is not valid.
@@ -1736,7 +1739,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *
      * @param userData A contextual object containing user-data.
      *        This object is allocated through the <code>
-     *        {@link SnmpUserDataFactory}</code>
+     *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code>
      *        for each incoming SNMP request.
      *
      * @exception SnmpStatusException If this id is not valid.
@@ -1787,7 +1790,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *
      * @param userData A contextual object containing user-data.
      *        This object is allocated through the <code>
-     *        {@link SnmpUserDataFactory}</code>
+     *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code>
      *        for each incoming SNMP request.
      *
      * @return The next <CODE>SnmpOid</CODE>.
@@ -1813,9 +1816,9 @@ public abstract class SnmpMibTable extends SnmpMibNode
     //
     // ---------------------------------------------------------------------
 
-    final static void checkRowStatusFail(SnmpMibSubRequest req,
-                                         int errorStatus)
+    static void checkRowStatusFail(SnmpMibSubRequest req, int errorStatus)
         throws SnmpStatusException {
+
         final SnmpVarBind statusvb  = req.getRowStatusVarBind();
         final SnmpStatusException x = new SnmpStatusException(errorStatus);
         req.registerCheckException(statusvb,x);
@@ -1827,9 +1830,9 @@ public abstract class SnmpMibTable extends SnmpMibNode
     //
     // ---------------------------------------------------------------------
 
-    final static void setRowStatusFail(SnmpMibSubRequest req,
-                                       int errorStatus)
+    static void setRowStatusFail(SnmpMibSubRequest req, int errorStatus)
         throws SnmpStatusException {
+
         final SnmpVarBind statusvb  = req.getRowStatusVarBind();
         final SnmpStatusException x = new SnmpStatusException(errorStatus);
         req.registerSetException(statusvb,x);
@@ -1840,6 +1843,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
     // Implements the method defined in SnmpMibNode.
     //
     // ---------------------------------------------------------------------
+    @Override
     final synchronized void findHandlingNode(SnmpVarBind varbind,
                                              long[] oid, int depth,
                                              SnmpRequestTree handlers)
@@ -1873,10 +1877,10 @@ public abstract class SnmpMibTable extends SnmpMibNode
         // not support creation.
         // We know that the entry does not exists if (isentry == false).
         if (!hasEntry) {
-            if (!handlers.isCreationAllowed())
+            if (!handlers.isCreationAllowed()) {
                 // we're not doing a set
                 throw new SnmpStatusException(SnmpStatusException.noSuchInstance);
-            else if (!isCreationEnabled())
+            } else if (!isCreationEnabled())
                 // we're doing a set but creation is disabled.
                 throw new
                     SnmpStatusException(SnmpStatusException.snmpRspNoAccess);
@@ -1909,19 +1913,24 @@ public abstract class SnmpMibTable extends SnmpMibNode
     // largely inspired from the original getNext() method.
     //
     // ---------------------------------------------------------------------
+    @Override
     final synchronized long[] findNextHandlingNode(SnmpVarBind varbind,
-                                      long[] oid, int pos, int depth,
-                                      SnmpRequestTree handlers,
-                                      AcmChecker checker)
+                                                   long[] oid,
+                                                   int pos,
+                                                   int depth,
+                                                   SnmpRequestTree handlers,
+                                                   AcmChecker checker)
         throws SnmpStatusException {
+
             int length = oid.length;
 
-            if (handlers == null)
-            // This should be considered as a genErr, but we do not want to
-            // abort the whole request, so we're going to throw
-            // a noSuchObject...
-            //
-            throw new SnmpStatusException(SnmpStatusException.noSuchObject);
+            if (handlers == null) {
+                // This should be considered as a genErr, but we do not want to
+                // abort the whole request, so we're going to throw
+                // a noSuchObject...
+                //
+                throw new SnmpStatusException(SnmpStatusException.noSuchObject);
+            }
 
             final Object data = handlers.getUserData();
             final int pduVersion = handlers.getRequestPduVersion();
@@ -1974,7 +1983,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
             }
 
             // Now that we've got everything right we can begin.
-            SnmpOid entryoid = null ;
+            SnmpOid entryoid;
 
             if (pos == (length - 1)) {
                 // pos points to the last arc in the oid, and this arc is
@@ -2045,8 +2054,9 @@ public abstract class SnmpMibTable extends SnmpMibNode
                     //     in tables can't be properly supported (all rows
                     //     must have the same holes)
                     //
-                    if (skipEntryVariable(entryoid,var,data,pduVersion))
+                    if (skipEntryVariable(entryoid,var,data,pduVersion)) {
                         throw new SnmpStatusException(SnmpStatusException.noSuchObject);
+                    }
                 } catch(SnmpStatusException se) {
                     entryoid = getNextOid(data);
                     var = getNextVarEntryId(entryoid,var,data,pduVersion);
@@ -2079,8 +2089,9 @@ public abstract class SnmpMibTable extends SnmpMibNode
             // So we throw the exception.
             // => will skip to next node in the MIB tree.
             //
-            if (entryoid == null || var == -1 ) throw new SnmpStatusException(SnmpStatusException.noSuchObject);
-
+            if (entryoid == null || var == -1 ) {
+                throw new SnmpStatusException(SnmpStatusException.noSuchObject);
+            }
 
             // So here we know both the row (entryoid) and the column (var)
             //
@@ -2091,8 +2102,9 @@ public abstract class SnmpMibTable extends SnmpMibNode
                 // for this specific entry, it is not readable for any
                 // other entry => skip to next column.
                 //
-                if (!isReadableEntryId(entryoid,var,data))
+                if (!isReadableEntryId(entryoid,var,data)) {
                     throw new SnmpStatusException(SnmpStatusException.noSuchObject);
+                }
 
                 // Prepare the result and the ACM checker.
                 //
@@ -2103,7 +2115,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
 
                 // Copy the entryOid at the end of `result'
                 //
-                System.arraycopy(etable, 0, result,
+                java.lang.System.arraycopy(etable, 0, result,
                                            depth+2, elength);
 
                 // Set the node Id and var Id in result.
@@ -2155,8 +2167,9 @@ public abstract class SnmpMibTable extends SnmpMibNode
             // No need to continue, we throw an exception.
             // => will skip to next node in the MIB tree.
             //
-            if (entryoid == null || var == -1 )
+            if (entryoid == null || var == -1 ) {
                 throw new SnmpStatusException(SnmpStatusException.noSuchObject);
+            }
         }
     }
 
@@ -2176,14 +2189,15 @@ public abstract class SnmpMibTable extends SnmpMibNode
 
         // Control the length of the oid
         //
-        if (pos +2 >= length)
+        if (pos +2 >= length) {
             throw new SnmpStatusException(SnmpStatusException.noSuchInstance);
+        }
 
         // Check that the entry identifier is specified
         //
-        if (oid[pos] != nodeId)
+        if (oid[pos] != nodeId) {
             throw new SnmpStatusException(SnmpStatusException.noSuchObject);
-
+        }
     }
 
     // ----------------------------------------------------------------------
@@ -2200,28 +2214,25 @@ public abstract class SnmpMibTable extends SnmpMibNode
 
         // loop on listener
         //
-        for(Enumeration k = handbackTable.keys();
+        for(java.util.Enumeration<NotificationListener> k = handbackTable.keys();
             k.hasMoreElements(); ) {
 
-            NotificationListener listener =
-                (NotificationListener) k.nextElement();
+            NotificationListener listener = k.nextElement();
 
             // Get the associated handback list and the associated filter list
             //
-            Vector handbackList =
-                (Vector) handbackTable.get(listener) ;
-            Vector filterList =
-                (Vector) filterTable.get(listener) ;
+            java.util.Vector<?> handbackList = handbackTable.get(listener) ;
+            java.util.Vector<NotificationFilter> filterList =
+                filterTable.get(listener) ;
 
             // loop on handback
             //
-            Enumeration f = filterList.elements();
-            for(Enumeration h = handbackList.elements();
+            java.util.Enumeration<NotificationFilter> f = filterList.elements();
+            for(java.util.Enumeration<?> h = handbackList.elements();
                 h.hasMoreElements(); ) {
 
                 Object handback = h.nextElement();
-                NotificationFilter filter =
-                    (NotificationFilter)f.nextElement();
+                NotificationFilter filter = f.nextElement();
 
                 if ((filter == null) ||
                      (filter.isNotificationEnabled(notification))) {
@@ -2277,7 +2288,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      * @param oid The index part of the OID we're looking for.
      * @param userData A contextual object containing user-data.
      *        This object is allocated through the <code>
-     *        {@link SnmpUserDataFactory}</code>
+     *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code>
      *        for each incoming SNMP request.
      *
      * @return <code>true</code> if the entry is found, <code>false</code>
@@ -2300,7 +2311,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *         OID was not found.
      *
      **/
-    private final int findObject(SnmpOid oid) {
+    private int findObject(SnmpOid oid) {
         int low= 0;
         int max= size - 1;
         SnmpOid pos;
@@ -2339,25 +2350,6 @@ public abstract class SnmpMibTable extends SnmpMibNode
      * <p>
      * @param oid The OID we would like to insert.
      *
-     * @return The position at which the OID should be inserted in
-     *         the table.
-     *
-     * @exception SnmpStatusException if the OID is already present in the
-     *            table.
-     *
-     **/
-    private final int getInsertionPoint(SnmpOid oid)
-        throws SnmpStatusException {
-        return getInsertionPoint(oid, true);
-    }
-
-    /**
-     * Search the position at which the given oid should be inserted
-     * in the OID table (tableoids).
-     *
-     * <p>
-     * @param oid The OID we would like to insert.
-     *
      * @param fail Tells whether a SnmpStatusException must be generated
      *             if the given OID is already present in the table.
      *
@@ -2371,7 +2363,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      *            table and <code>fail</code> is <code>true</code>.
      *
      **/
-    private final int getInsertionPoint(SnmpOid oid, boolean fail)
+    private int getInsertionPoint(SnmpOid oid, boolean fail)
         throws SnmpStatusException {
 
         final int failStatus = SnmpStatusException.snmpRspNotWritable;
@@ -2413,13 +2405,13 @@ public abstract class SnmpMibTable extends SnmpMibNode
      * @param pos The position at which the OID to be removed is located.
      *
      **/
-    private final void removeOid(int pos) {
+    private void removeOid(int pos) {
         if (pos >= tablecount) return;
         if (pos < 0) return;
         final int l1 = --tablecount-pos;
         tableoids[pos] = null;
         if (l1 > 0)
-            System.arraycopy(tableoids,pos+1,tableoids,pos,l1);
+            java.lang.System.arraycopy(tableoids,pos+1,tableoids,pos,l1);
         tableoids[tablecount] = null;
     }
 
@@ -2431,7 +2423,7 @@ public abstract class SnmpMibTable extends SnmpMibNode
      * @param pos The position at which the OID to be added is located.
      *
      **/
-    private final void insertOid(int pos, SnmpOid oid) {
+    private void insertOid(int pos, SnmpOid oid) {
         if (pos >= tablesize || tablecount == tablesize) {
                 // Vector must be enlarged
 
@@ -2451,21 +2443,21 @@ public abstract class SnmpMibTable extends SnmpMibNode
 
                 // Copy original vector up to `pos'
                 if (l1 > 0)
-                    System.arraycopy(olde,0,tableoids,0,l1);
+                    java.lang.System.arraycopy(olde,0,tableoids,0,l1);
 
                 // Copy original vector from `pos' to end, leaving
                 // an empty room at `pos' in the new vector.
                 if (l2 > 0)
-                    System.arraycopy(olde,l1,tableoids,
+                    java.lang.System.arraycopy(olde,l1,tableoids,
                                                l1+1,l2);
 
             } else if (pos < tablecount) {
-                // Vector is large enough to accomodate one additional
+                // Vector is large enough to accommodate one additional
                 // entry.
                 //
                 // Shift vector, making an empty room at `pos'
 
-                System.arraycopy(tableoids,pos,tableoids,
+                java.lang.System.arraycopy(tableoids,pos,tableoids,
                                            pos+1,tablecount-pos);
             }
 
@@ -2534,13 +2526,13 @@ public abstract class SnmpMibTable extends SnmpMibNode
      * The list of entries.
      * @serial
      */
-    private final Vector<Object> entries= new Vector<Object>();
+    private final Vector<Object> entries= new Vector<>();
 
     /**
      * The list of object names.
      * @serial
      */
-    private final Vector<ObjectName> entrynames= new Vector<ObjectName>();
+    private final Vector<ObjectName> entrynames= new Vector<>();
 
     /**
      * Callback handlers
@@ -2548,17 +2540,16 @@ public abstract class SnmpMibTable extends SnmpMibNode
     // final Vector callbacks = new Vector();
 
     /**
-     * Listener hastable containing the hand-back objects.
+     * Listener hashtable containing the hand-back objects.
      */
     private Hashtable<NotificationListener, Vector<Object>> handbackTable =
-            new Hashtable<NotificationListener, Vector<Object>>();
+            new Hashtable<>();
 
     /**
-     * Listener hastable containing the filter objects.
+     * Listener hashtable containing the filter objects.
      */
     private Hashtable<NotificationListener, Vector<NotificationFilter>>
-            filterTable =
-            new Hashtable<NotificationListener, Vector<NotificationFilter>>();
+            filterTable = new Hashtable<>();
 
     // PACKAGE VARIABLES
     //------------------

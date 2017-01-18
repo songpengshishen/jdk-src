@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -93,11 +93,11 @@ public class DTMStringPool
     }
 
   /** @return string whose value is uniquely identified by this integer index.
-   * @throws ArrayIndexOutOfBoundsException
+   * @throws java.lang.ArrayIndexOutOfBoundsException
    *  if index doesn't map to a string.
    * */
   public String indexToString(int i)
-    throws ArrayIndexOutOfBoundsException
+    throws java.lang.ArrayIndexOutOfBoundsException
     {
       if(i==NULL) return null;
       return (String) m_intToString.elementAt(i);

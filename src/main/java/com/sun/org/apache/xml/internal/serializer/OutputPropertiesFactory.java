@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -323,7 +323,7 @@ public final class OutputPropertiesFactory
 
                 defaultProperties = m_text_properties;
             }
-            else if (method.equals(Method.UNKNOWN))
+            else if (method.equals(com.sun.org.apache.xml.internal.serializer.Method.UNKNOWN))
             {
                 if (null == m_unknown_properties) // double check
                 {

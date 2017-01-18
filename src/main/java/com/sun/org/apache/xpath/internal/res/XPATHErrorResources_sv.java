@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -16,9 +16,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/*
- * $Id: XPATHErrorResources_sv.java /st_wptg_1.7.0.79.0jdk/1 2015/01/23 10:05:13 gmolloy Exp $
  */
 package com.sun.org.apache.xpath.internal.res;
 
@@ -483,7 +480,7 @@ public static final String ER_IGNORABLE_WHITESPACE_NOT_HANDLED =
       "FEL! Hittade inte ENDOP efter OP_LOCATIONPATH"},
 
   { ER_ERROR_OCCURED,
-     "Fel intr\u00E4ffade!"},
+     "Ett fel har intr\u00E4ffat!"},
 
   { ER_ILLEGAL_VARIABLE_REFERENCE,
       "VariableReference angiven f\u00F6r variabel som \u00E4r utanf\u00F6r kontext eller som saknar definition! Namn = {0}"},
@@ -828,7 +825,7 @@ public static final String ER_IGNORABLE_WHITESPACE_NOT_HANDLED =
   // Warnings...
 
   { WG_LOCALE_NAME_NOT_HANDLED,
-      "spr\u00E5knamnet i funktionen format-number har \u00E4nnu inte hanterats!"},
+      "spr\u00E5kkonventionsnamnet i funktionen format-number har \u00E4nnu inte hanterats!"},
 
   { WG_PROPERTY_NOT_SUPPORTED,
       "XSL-egenskapen st\u00F6ds inte: {0}"},
@@ -874,8 +871,8 @@ public static final String ER_IGNORABLE_WHITESPACE_NOT_HANDLED =
   { "version", ">>>>>>> Xalan version "},
   { "version2", "<<<<<<<"},
   { "yes", "ja"},
-  { "line", "Rad #"},
-  { "column", "Kolumn #"},
+  { "line", "Rad nr"},
+  { "column", "Kolumn nr"},
   { "xsldone", "XSLProcessor: utf\u00F6rd"},
   { "xpath_option", "xpath-alternativ: "},
   { "optionIN", "   [-in inputXMLURL]"},

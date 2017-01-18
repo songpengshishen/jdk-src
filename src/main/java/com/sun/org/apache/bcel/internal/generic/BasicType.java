@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 package com.sun.org.apache.bcel.internal.generic;
@@ -69,7 +69,7 @@ public final class BasicType extends Type {
    * Constructor for basic types such as int, long, `void'
    *
    * @param type one of T_INT, T_BOOLEAN, ..., T_VOID
-   * @see Constants
+   * @see com.sun.org.apache.bcel.internal.Constants
    */
   BasicType(byte type) {
     super(type, Constants.SHORT_TYPE_NAMES[type]);

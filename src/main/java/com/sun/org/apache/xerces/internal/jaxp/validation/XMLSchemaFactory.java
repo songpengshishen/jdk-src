@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -87,6 +87,7 @@ public final class XMLSchemaFactory extends SchemaFactory {
     private static final String XML_SECURITY_PROPERTY_MANAGER =
             Constants.XML_SECURITY_PROPERTY_MANAGER;
 
+
     //
     // Data
     //
@@ -121,6 +122,8 @@ public final class XMLSchemaFactory extends SchemaFactory {
      * Note the default value (false) is the safe option..
      */
     private final boolean fUseServicesMechanism;
+
+
     public XMLSchemaFactory() {
         this(true);
     }
@@ -298,7 +301,7 @@ public final class XMLSchemaFactory extends SchemaFactory {
                     "FeatureNameNull", null));
         }
         if (name.equals(XMLConstants.FEATURE_SECURE_PROCESSING)) {
-            return (fSecurityManager !=null && fSecurityManager.isSecureProcessing());
+            return (fSecurityManager != null && fSecurityManager.isSecureProcessing());
         }
         try {
             return fXMLSchemaLoader.getFeature(name);

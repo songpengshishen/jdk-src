@@ -85,7 +85,7 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
         super(list.size(), 5);
         for (Enumeration<SnmpVarBind> e = list.elements(); e.hasMoreElements();) {
             final SnmpVarBind varBind = e.nextElement();
-            addElement((SnmpVarBind)varBind.clone());
+            addElement(varBind.clone());
         }
     }
 
@@ -126,7 +126,7 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
      * Gets an <CODE>SnmpVarBind</CODE> object.
      * @param pos The position in the list.
      * @return The <CODE>SnmpVarBind</CODE> object at the specified position.
-     * @exception ArrayIndexOutOfBoundsException If the specified <CODE>pos</CODE> is beyond range.
+     * @exception java.lang.ArrayIndexOutOfBoundsException If the specified <CODE>pos</CODE> is beyond range.
      */
     public final synchronized SnmpVarBind getVarBindAt(int pos) {
         return elementAt(pos);
@@ -145,7 +145,7 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
      * This is advantageous as it hides the implementation of the class of the list which keeps the variables.
      * @return An enumeration object of <CODE>SnmpVarBind</CODE> objects.
      */
-    public synchronized Enumeration getVarBindList() {
+    public synchronized Enumeration<SnmpVarBind> getVarBindList() {
         return elements() ;
     }
 
@@ -156,7 +156,7 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
      * contained in the list.
      * @param list A vector of <CODE>SnmpVarBind</CODE> objects.
      */
-    public final synchronized void setVarBindList(Vector list) {
+    public final synchronized void setVarBindList(Vector<SnmpVarBind> list) {
         setVarBindList(list, false) ;
     }
 
@@ -168,7 +168,7 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
      * @param list A vector of <CODE>SnmpVarBind</CODE> objects.
      * @param copy The flag indicating whether each object in the list should be cloned.
      */
-    public final synchronized void setVarBindList(Vector list, boolean copy) {
+    public final synchronized void setVarBindList(Vector<SnmpVarBind> list, boolean copy) {
         synchronized (list) {
             final int max = list.size();
             setSize(max) ;
@@ -216,7 +216,7 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
      * Replaces an element at a specified location with the new element.
      * @param var The replacement variable.
      * @param pos The location in the <CODE>SnmpVarBindList</CODE>.
-     * @exception ArrayIndexOutOfBoundsException If the specified <CODE>pos</CODE> is beyond range.
+     * @exception java.lang.ArrayIndexOutOfBoundsException If the specified <CODE>pos</CODE> is beyond range.
      */
     public final synchronized void replaceVarBind(SnmpVarBind var, int pos) {
         setElementAt(var, pos) ;
@@ -465,7 +465,7 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
         newvb.ensureCapacity(this.size()) ;
         for (int i = 0; i < this.size() ; i++) {
             SnmpVarBind avar = (SnmpVarBind)elementData[i] ;
-            newvb.addElement((SnmpVarBind) avar.clone()) ;
+            newvb.addElement(avar.clone()) ;
         }
         return newvb ;
     }
@@ -491,7 +491,8 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
      * It is a real deep copy.
      * @return The object clone.
      */
-    public synchronized Object clone() {
+    @Override
+    public synchronized SnmpVarBindList clone() {
         return cloneWithValue() ;
     }
 
@@ -502,13 +503,13 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
      * @param copy The flag indicating whether each object in the list should be cloned.
      * @return A new vector of <CODE>SnmpVarBind</CODE> objects.
      */
-    public synchronized Vector toVector(boolean copy) {
+    public synchronized Vector<SnmpVarBind> toVector(boolean copy) {
         final int count = elementCount;
-        if (copy == false) return (Vector) super.clone();
-        Vector<SnmpVarBind> result = new Vector<SnmpVarBind>(count,5);
+        if (copy == false) return new Vector<>(this);
+        Vector<SnmpVarBind> result = new Vector<>(count,5);
         for (int i = 0; i < count ; i++) {
             SnmpVarBind avar = (SnmpVarBind)elementData[i] ;
-            result.addElement((SnmpVarBind) avar.clone()) ;
+            result.addElement(avar.clone()) ;
         }
         return result;
     }
@@ -518,10 +519,10 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
      * @return An ASCII list of all OIDs in this list.
      */
     public String oidListToString() {
-        StringBuffer s = new StringBuffer(300) ;
+        StringBuilder s = new StringBuilder(300) ;
         for (int i = 0 ; i < elementCount ; i++) {
             SnmpVarBind avar = (SnmpVarBind)elementData[i] ;
-            s.append(avar.getOid().toString() + "\n") ;
+            s.append(avar.getOid().toString()).append("\n") ;
         }
         return s.toString() ;
     }
@@ -532,9 +533,9 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
      * @return A detailed <CODE>String</CODE> of all in the <CODE>SnmpVarBindList</CODE>.
      */
     public synchronized String varBindListToString() {
-        StringBuffer s = new StringBuffer(300) ;
+        StringBuilder s = new StringBuilder(300) ;
         for (int i = 0; i < elementCount ; i++) {
-            s.append(elementData[i].toString() + "\n")  ;
+            s.append(elementData[i].toString()).append("\n")  ;
         }
         return s.toString() ;
     }
@@ -545,7 +546,8 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
      * when garbage collection determines that there are no more references to the object.
      * <P>Removes all the elements from this <CODE>SnmpVarBindList</CODE> object.
      */
-    public void finalize() {
+    @Override
+    protected void finalize() {
         removeAllElements() ;
     }
 }

@@ -183,7 +183,7 @@ public class ProxyInputStream extends org.omg.CORBA_2_3.portable.InputStream {
     }
 
     @Override
-    public org.omg.CORBA.Object read_Object(Class clz) {
+    public org.omg.CORBA.Object read_Object(java.lang.Class clz) {
         return in.read_Object(clz);
     }
 

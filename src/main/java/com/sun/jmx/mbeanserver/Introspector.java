@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1999, 2008, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -50,10 +50,9 @@ import javax.management.MBeanInfo;
 import javax.management.NotCompliantMBeanException;
 
 import com.sun.jmx.remote.util.EnvHelp;
-import java.beans.BeanInfo;
-import java.beans.PropertyDescriptor;
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
+import java.security.AccessController;
 import javax.management.AttributeNotFoundException;
 import javax.management.openmbean.CompositeData;
 import sun.reflect.misc.MethodUtil;
@@ -66,7 +65,11 @@ import sun.reflect.misc.ReflectUtil;
  * @since 1.5
  */
 public class Introspector {
-
+    final public static boolean ALLOW_NONPUBLIC_MBEAN;
+    static {
+        String val = AccessController.doPrivileged(new GetPropertyAction("jdk.jmx.mbeans.allowNonPublic"));
+        ALLOW_NONPUBLIC_MBEAN = Boolean.parseBoolean(val);
+    }
 
      /*
      * ------------------------------------------
@@ -109,7 +112,7 @@ public class Introspector {
      **/
     public static final boolean isDynamic(final Class<?> c) {
         // Check if the MBean implements the DynamicMBean interface
-        return DynamicMBean.class.isAssignableFrom(c);
+        return javax.management.DynamicMBean.class.isAssignableFrom(c);
     }
 
     /**
@@ -207,7 +210,7 @@ public class Introspector {
      * @param baseClass The class to be tested
      *
      * @return <code>null</code> if the MBean is a DynamicMBean,
-     *         the computed {@link MBeanInfo} otherwise.
+     *         the computed {@link javax.management.MBeanInfo} otherwise.
      * @exception NotCompliantMBeanException The specified class is not a
      *            JMX compliant MBean
      */
@@ -225,11 +228,27 @@ public class Introspector {
         return testCompliance(baseClass, null);
     }
 
+    /**
+     * Tests the given interface class for being a compliant MXBean interface.
+     * A compliant MXBean interface is any publicly accessible interface
+     * following the {@link MXBean} conventions.
+     * @param interfaceClass An interface class to test for the MXBean compliance
+     * @throws NotCompliantMBeanException Thrown when the tested interface
+     * is not public or contradicts the {@link MXBean} conventions.
+     */
     public static void testComplianceMXBeanInterface(Class<?> interfaceClass)
             throws NotCompliantMBeanException {
         MXBeanIntrospector.getInstance().getAnalyzer(interfaceClass);
     }
 
+    /**
+     * Tests the given interface class for being a compliant MBean interface.
+     * A compliant MBean interface is any publicly accessible interface
+     * following the {@code MBean} conventions.
+     * @param interfaceClass An interface class to test for the MBean compliance
+     * @throws NotCompliantMBeanException Thrown when the tested interface
+     * is not public or contradicts the {@code MBean} conventions.
+     */
     public static void testComplianceMBeanInterface(Class<?> interfaceClass)
             throws NotCompliantMBeanException{
         StandardMBeanIntrospector.getInstance().getAnalyzer(interfaceClass);
@@ -245,7 +264,7 @@ public class Introspector {
      * @param mbeanInterface the MBean interface that the class implements,
      * or null if the interface must be determined by introspection.
      *
-     * @return the computed {@link MBeanInfo}.
+     * @return the computed {@link javax.management.MBeanInfo}.
      * @exception NotCompliantMBeanException The specified class is not a
      *            JMX compliant Standard MBean
      */
@@ -301,18 +320,18 @@ public class Introspector {
      * not a JMX compliant Standard MBean.
      */
     public static <T> Class<? super T> getStandardMBeanInterface(Class<T> baseClass)
-    throws NotCompliantMBeanException {
-        Class<? super T> current = baseClass;
-        Class<? super T> mbeanInterface = null;
-        while (current != null) {
-            mbeanInterface =
-                findMBeanInterface(current, current.getName());
-            if (mbeanInterface != null) break;
-            current = current.getSuperclass();
-        }
-        if (mbeanInterface != null) {
-            return mbeanInterface;
-        } else {
+        throws NotCompliantMBeanException {
+            Class<? super T> current = baseClass;
+            Class<? super T> mbeanInterface = null;
+            while (current != null) {
+                mbeanInterface =
+                    findMBeanInterface(current, current.getName());
+                if (mbeanInterface != null) break;
+                current = current.getSuperclass();
+            }
+                if (mbeanInterface != null) {
+                    return mbeanInterface;
+            } else {
             final String msg =
                 "Class " + baseClass.getName() +
                 " is not a JMX compliant Standard MBean";
@@ -509,8 +528,11 @@ public class Introspector {
         }
         Class<?>[] interfaces = c.getInterfaces();
         for (int i = 0;i < interfaces.length; i++) {
-            if (interfaces[i].getName().equals(clMBeanName))
+            if (interfaces[i].getName().equals(clMBeanName) &&
+                (Modifier.isPublic(interfaces[i].getModifiers()) ||
+                 ALLOW_NONPUBLIC_MBEAN)) {
                 return Util.cast(interfaces[i]);
+            }
         }
 
         return null;
@@ -622,7 +644,7 @@ public class Introspector {
         /**
          * Returns the list of "getter" methods for the given class. The list
          * is ordered so that isXXX methods appear before getXXX methods - this
-         * is for compatability with the JavaBeans Introspector.
+         * is for compatibility with the JavaBeans Introspector.
          */
         static List<Method> getReadMethods(Class<?> clazz) {
             // return cached result if available
@@ -660,7 +682,7 @@ public class Introspector {
          * {@code null} if no method is found.
          */
         static Method getReadMethod(Class<?> clazz, String property) {
-            // first character in uppercase (compatability with JavaBeans)
+            // first character in uppercase (compatibility with JavaBeans)
             property = property.substring(0, 1).toUpperCase(Locale.ENGLISH) +
                 property.substring(1);
             String getMethod = GET_METHOD_PREFIX + property;

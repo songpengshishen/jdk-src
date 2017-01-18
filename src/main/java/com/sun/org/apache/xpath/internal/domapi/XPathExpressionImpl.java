@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -48,7 +48,7 @@ import org.w3c.dom.xpath.XPathNamespace;
  * <p>The <code>XPathExpression</code> interface represents a parsed and resolved
  * XPath expression.</p>
  *
- * @see XPathExpression
+ * @see org.w3c.dom.xpath.XPathExpression
  *
  * @xsl.usage internal
  */
@@ -118,7 +118,7 @@ class XPathExpressionImpl implements XPathExpression {
      *   <br>NOT_SUPPORTED_ERR: The Node is not a type permitted as an XPath
      *   context node.
      *
-     * @see XPathExpression#evaluate(Node, short, XPathResult)
+     * @see org.w3c.dom.xpath.XPathExpression#evaluate(Node, short, XPathResult)
      * @xsl.usage internal
      */
     public Object evaluate(

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -33,7 +33,7 @@ public class StringBufferPool
 
   /** The global pool of string buffers.   */
   private static ObjectPool m_stringBufPool =
-    new ObjectPool(FastStringBuffer.class);
+    new ObjectPool(com.sun.org.apache.xml.internal.utils.FastStringBuffer.class);
 
   /**
    * Get the first free instance of a string buffer, or create one

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1999, 2007, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -29,20 +29,13 @@ package com.sun.jmx.snmp.agent;
 //
 import java.io.Serializable;
 import java.util.Hashtable;
-import java.util.Enumeration;
 import java.util.Vector;
 
 // jmx imports
 //
-import com.sun.jmx.snmp.SnmpOid;
-import com.sun.jmx.snmp.SnmpValue;
 import com.sun.jmx.snmp.SnmpVarBind;
 import com.sun.jmx.snmp.SnmpStatusException;
 
-// SNMP Runtime imports
-//
-import com.sun.jmx.snmp.agent.SnmpMibOid;
-import com.sun.jmx.snmp.agent.SnmpMibNode;
 
 /**
  * Represents a node in an SNMP MIB which corresponds to a group.
@@ -115,8 +108,9 @@ public abstract class SnmpMibGroup extends SnmpMibOid
      */
     public void validateVarId(long arc, Object userData)
         throws SnmpStatusException {
-        if (isVariable(arc) == false)
+        if (isVariable(arc) == false) {
             throw new SnmpStatusException(SnmpStatusException.noSuchObject);
+        }
     }
 
 
@@ -126,7 +120,7 @@ public abstract class SnmpMibGroup extends SnmpMibOid
     // needed...
     // For instance, the subclass could provide a generated isNestedArc()
     // method in which the subgroup OID arcs would be hardcoded.
-    // However, the generic approach was prefered because at this time
+    // However, the generic approach was preferred because at this time
     // groups and subgroups are dynamically registered in the MIB.
     //
     /**
@@ -174,6 +168,7 @@ public abstract class SnmpMibGroup extends SnmpMibOid
      * @exception SnmpStatusException An error occurred while accessing
      *  the MIB node.
      */
+    @Override
     abstract public void get(SnmpMibSubRequest req, int depth)
         throws SnmpStatusException;
 
@@ -203,6 +198,7 @@ public abstract class SnmpMibGroup extends SnmpMibOid
      * @exception SnmpStatusException An error occurred while accessing
      *  the MIB node.
      */
+    @Override
     abstract public void set(SnmpMibSubRequest req, int depth)
         throws SnmpStatusException;
 
@@ -234,6 +230,7 @@ public abstract class SnmpMibGroup extends SnmpMibOid
      * @exception SnmpStatusException An error occurred while accessing
      *  the MIB node.
      */
+    @Override
     abstract public void check(SnmpMibSubRequest req, int depth)
         throws SnmpStatusException;
 
@@ -241,8 +238,8 @@ public abstract class SnmpMibGroup extends SnmpMibOid
     // If we reach this node, we are below the root OID, so we just
     // return.
     // --------------------------------------------------------------------
-    public void getRootOid(Vector result) {
-        return;
+    @Override
+    public void getRootOid(Vector<Integer> result) {
     }
 
     // -------------------------------------------------------------------
@@ -264,7 +261,7 @@ public abstract class SnmpMibGroup extends SnmpMibOid
      */
     void registerNestedArc(long arc) {
         Long obj = new Long(arc);
-        if (subgroups == null) subgroups = new Hashtable<Long, Long>();
+        if (subgroups == null) subgroups = new Hashtable<>();
         // registers the arc in the hashtable.
         subgroups.put(obj,obj);
     }
@@ -312,6 +309,7 @@ public abstract class SnmpMibGroup extends SnmpMibOid
      * @param node The node being registered.
      *
      */
+    @Override
     void registerNode(long[] oid, int cursor ,SnmpMibNode node)
         throws IllegalAccessException {
         super.registerNode(oid,cursor,node);
@@ -325,13 +323,13 @@ public abstract class SnmpMibGroup extends SnmpMibOid
     // -------------------------------------------------------------------
     // see comments in SnmpMibNode
     // -------------------------------------------------------------------
+    @Override
     void findHandlingNode(SnmpVarBind varbind,
                           long[] oid, int depth,
                           SnmpRequestTree handlers)
         throws SnmpStatusException {
 
         int length = oid.length;
-        SnmpMibNode node = null;
 
         if (handlers == null)
             throw new SnmpStatusException(SnmpStatusException.snmpRspGenErr);
@@ -349,7 +347,6 @@ public abstract class SnmpMibGroup extends SnmpMibOid
             // This arc leads to a subgroup: delegates the search to the
             // method defined in SnmpMibOid
             super.findHandlingNode(varbind,oid,depth,handlers);
-            return;
         } else if (isTable(arc)) {
             // This arc leads to a table: forward the search to the table.
 
@@ -364,17 +361,20 @@ public abstract class SnmpMibGroup extends SnmpMibOid
             validateVarId(arc, data);
 
             // The trailing .0 is missing in the OID
-            if (depth+2 > length)
+            if (depth+2 > length) {
                 throw new SnmpStatusException(SnmpStatusException.noSuchInstance);
+            }
 
             // There are too many arcs left in the OID (there should remain
             // a single trailing .0)
-            if (depth+2 < length)
+            if (depth+2 < length) {
                 throw new SnmpStatusException(SnmpStatusException.noSuchInstance);
+            }
 
             // The last trailing arc is not .0
-            if (oid[depth+1] != 0L)
+            if (oid[depth+1] != 0L) {
                 throw new SnmpStatusException(SnmpStatusException.noSuchInstance);
+            }
 
             // It's one of our variable, register this node.
             handlers.add(this,depth,varbind);
@@ -384,6 +384,7 @@ public abstract class SnmpMibGroup extends SnmpMibOid
     // -------------------------------------------------------------------
     // See comments in SnmpMibNode.
     // -------------------------------------------------------------------
+    @Override
     long[] findNextHandlingNode(SnmpVarBind varbind,
                                 long[] oid, int pos, int depth,
                                 SnmpRequestTree handlers, AcmChecker checker)
@@ -392,12 +393,13 @@ public abstract class SnmpMibGroup extends SnmpMibOid
         int length = oid.length;
         SnmpMibNode node = null;
 
-        if (handlers == null)
+        if (handlers == null) {
             // This should be considered as a genErr, but we do not want to
             // abort the whole request, so we're going to throw
             // a noSuchObject...
             //
             throw new SnmpStatusException(SnmpStatusException.noSuchObject);
+        }
 
         final Object data = handlers.getUserData();
         final int pduVersion = handlers.getRequestPduVersion();

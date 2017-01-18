@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002, 2008, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2002, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -30,7 +30,7 @@ import com.sun.jmx.snmp.tasks.Task;
 import com.sun.jmx.snmp.tasks.TaskServer;
 
 /**
- * This class implements a {@link TaskServer} over
+ * This class implements a {@link com.sun.jmx.snmp.tasks.TaskServer} over
  * a thread pool.
  * <p><b>This API is a Sun Microsystems internal API  and is subject
  * to change without notice.</b></p>
@@ -56,8 +56,8 @@ public class ThreadService implements TaskServer {
     /**
      * Submit a task to be executed.
      * Once a task is submitted, it is guaranteed that either
-     * {@link Task#run() task.run()} or
-     * {@link Task#cancel() task.cancel()} will be called.
+     * {@link com.sun.jmx.snmp.tasks.Task#run() task.run()} or
+     * {@link com.sun.jmx.snmp.tasks.Task#cancel() task.cancel()} will be called.
      * This implementation of TaskServer uses a thread pool to execute
      * the submitted tasks.
      * @param task The task to be executed.
@@ -199,7 +199,7 @@ public class ThreadService implements TaskServer {
 
                 // re-init
                 this.setPriority(priority);
-                this.interrupted();
+                Thread.interrupted();
                 this.setContextClassLoader(cloader);
             }
         }

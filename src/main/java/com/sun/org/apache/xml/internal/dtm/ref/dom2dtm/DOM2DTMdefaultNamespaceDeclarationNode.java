@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -112,12 +112,12 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr,TypeInfo
     //RAMESH: PENDING=> Add proper implementation for the below DOM L3 additions
 
     /**
-     * @see TypeInfo#getTypeName()
+     * @see org.w3c.dom.TypeInfo#getTypeName()
      */
     public String getTypeName() {return null; }
 
     /**
-     * @see TypeInfo#getTypeNamespace()
+     * @see org.w3c.dom.TypeInfo#getTypeNamespace()
      */
     public String getTypeNamespace() { return null;}
 

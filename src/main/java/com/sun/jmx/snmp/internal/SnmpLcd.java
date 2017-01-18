@@ -30,7 +30,7 @@ import com.sun.jmx.snmp.SnmpUnknownModelLcdException;
 import com.sun.jmx.snmp.SnmpUnknownSubSystemException;
 /**
  * Class to extend in order to develop a customized Local Configuration Datastore. The Lcd is used by the <CODE>SnmpEngine</CODE> to store and retrieve data.
- *<P> <CODE>SnmpLcd</CODE> manages the Lcds needed by every {@link SnmpModel SnmpModel}. It is possible to add and remove {@link SnmpModelLcd SnmpModelLcd}.</P>
+ *<P> <CODE>SnmpLcd</CODE> manages the Lcds needed by every {@link com.sun.jmx.snmp.internal.SnmpModel SnmpModel}. It is possible to add and remove {@link com.sun.jmx.snmp.internal.SnmpModelLcd SnmpModelLcd}.</P>
  * <p><b>This API is a Sun Microsystems internal API  and is subject
  * to change without notice.</b></p>
  * @since 1.5

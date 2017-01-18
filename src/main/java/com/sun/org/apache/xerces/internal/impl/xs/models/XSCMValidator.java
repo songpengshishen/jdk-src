@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -63,7 +63,7 @@ public interface XSCMValidator {
      * @return element decl or wildcard decl that
      *         corresponds to the element from the Schema grammar
      */
-    public Object oneTransition(QName elementName, int[] state, SubstitutionGroupHandler subGroupHandler);
+    public Object oneTransition (QName elementName, int[] state, SubstitutionGroupHandler subGroupHandler);
 
 
     /**
@@ -72,7 +72,7 @@ public interface XSCMValidator {
      * @param state  Current state of the content model
      * @return true if the last state was a valid final state
      */
-    public boolean endContentModel(int[] state);
+    public boolean endContentModel (int[] state);
 
     /**
      * check whether this content violates UPA constraint.

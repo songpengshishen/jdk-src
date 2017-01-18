@@ -70,7 +70,7 @@ public interface SnmpUsmKeyHandler {
      * @return The localized key.
      * @exception IllegalArgumentException If the algorithm is unknown.
      */
-    public byte[] localizePrivKey(String algoName, byte[] key, SnmpEngineId engineId, int keysize) throws IllegalArgumentException;
+    public byte[] localizePrivKey(String algoName, byte[] key, SnmpEngineId engineId,int keysize) throws IllegalArgumentException;
 
     /**
      * Calculate the delta parameter needed when processing key change. This computation is done by the key change initiator. It MUST be compliant to RFC 2574 description.

@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Copyright (c) 2015, 2016, Oracle and/or its affiliates. All rights reserved.
  */
 /*
- * Copyright 1999-2004 The Apache Software Foundation.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -17,24 +17,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
- * $Id: AdaptiveResultTreeImpl.java,v 1.2.4.1 2005/09/06 05:52:18 pvedula Exp $
- */
+
 package com.sun.org.apache.xalan.internal.xsltc.dom;
 
 import com.sun.org.apache.xalan.internal.xsltc.DOM;
-import com.sun.org.apache.xalan.internal.xsltc.TransletException;
 import com.sun.org.apache.xalan.internal.xsltc.StripFilter;
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
+import com.sun.org.apache.xalan.internal.xsltc.TransletException;
 import com.sun.org.apache.xalan.internal.xsltc.runtime.BasisLibrary;
-
 import com.sun.org.apache.xml.internal.dtm.DTMAxisIterator;
 import com.sun.org.apache.xml.internal.dtm.DTMAxisTraverser;
 import com.sun.org.apache.xml.internal.dtm.DTMWSFilter;
-import com.sun.org.apache.xml.internal.utils.XMLString;
-
 import com.sun.org.apache.xml.internal.serializer.SerializationHandler;
-
+import com.sun.org.apache.xml.internal.utils.XMLString;
+import java.util.Map;
 import javax.xml.transform.SourceLocator;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -556,7 +551,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl
         }
     }
 
-    public Hashtable getElementsWithIDs()
+    public Map<String, Integer> getElementsWithIDs()
     {
         if (_dom != null) {
             return _dom.getElementsWithIDs();
@@ -1190,7 +1185,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl
 
     public void dispatchCharactersEvents(int nodeHandle, org.xml.sax.ContentHandler ch,
                                          boolean normalize)
-          throws SAXException
+          throws org.xml.sax.SAXException
     {
         if (_dom != null) {
             _dom.dispatchCharactersEvents(nodeHandle,  ch, normalize);
@@ -1201,7 +1196,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl
     }
 
     public void dispatchToEvents(int nodeHandle, org.xml.sax.ContentHandler ch)
-      throws SAXException
+      throws org.xml.sax.SAXException
     {
         if (_dom != null) {
             _dom.dispatchToEvents(nodeHandle,  ch);
@@ -1211,7 +1206,7 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl
         }
     }
 
-    public Node getNode(int nodeHandle)
+    public org.w3c.dom.Node getNode(int nodeHandle)
     {
         if (_dom != null) {
             return _dom.getNode(nodeHandle);
@@ -1341,4 +1336,11 @@ public class AdaptiveResultTreeImpl extends SimpleResultTreeImpl
         }
     }
 
+    public void release() {
+        if (_dom != null) {
+            _dom.release();
+            _dom = null;
+        }
+        super.release();
+    }
 }

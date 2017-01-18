@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2013 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2016, Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -128,18 +128,23 @@ public final class XMLLimitAnalyzer {
     public void addValue(int index, String entityName, int value) {
         if (index == Limit.ENTITY_EXPANSION_LIMIT.ordinal() ||
                 index == Limit.MAX_OCCUR_NODE_LIMIT.ordinal() ||
-                index == Limit.ELEMENT_ATTRIBUTE_LIMIT.ordinal()) {
+                index == Limit.ELEMENT_ATTRIBUTE_LIMIT.ordinal() ||
+                index == Limit.TOTAL_ENTITY_SIZE_LIMIT.ordinal() ||
+                index == Limit.ENTITY_REPLACEMENT_LIMIT.ordinal()
+                ) {
             totalValue[index] += value;
             return;
         }
-        if (index == Limit.MAX_ELEMENT_DEPTH_LIMIT.ordinal()) {
+        if (index == Limit.MAX_ELEMENT_DEPTH_LIMIT.ordinal() ||
+                index == Limit.MAX_NAME_LIMIT.ordinal()) {
+            values[index] = value;
             totalValue[index] = value;
             return;
         }
 
         Map<String, Integer> cache;
         if (caches[index] == null) {
-            cache = new HashMap<String, Integer>(10);
+            cache = new HashMap<>(10);
             caches[index] = cache;
         } else {
             cache = caches[index];
@@ -147,10 +152,10 @@ public final class XMLLimitAnalyzer {
 
         int accumulatedValue = value;
         if (cache.containsKey(entityName)) {
-            accumulatedValue += cache.get(entityName).intValue();
-            cache.put(entityName, Integer.valueOf(accumulatedValue));
+            accumulatedValue += cache.get(entityName);
+            cache.put(entityName, accumulatedValue);
         } else {
-            cache.put(entityName, Integer.valueOf(value));
+            cache.put(entityName, value);
         }
 
         if (accumulatedValue > values[index]) {
@@ -159,7 +164,7 @@ public final class XMLLimitAnalyzer {
         }
 
 
-        if (index == Limit.GENEAL_ENTITY_SIZE_LIMIT.ordinal() ||
+        if (index == Limit.GENERAL_ENTITY_SIZE_LIMIT.ordinal() ||
                 index == Limit.PARAMETER_ENTITY_SIZE_LIMIT.ordinal()) {
             totalValue[Limit.TOTAL_ENTITY_SIZE_LIMIT.ordinal()] += value;
         }
@@ -172,10 +177,13 @@ public final class XMLLimitAnalyzer {
      * @return the value of the property
      */
     public int getValue(Limit limit) {
-        return values[limit.ordinal()];
+        return getValue(limit.ordinal());
     }
 
     public int getValue(int index) {
+        if (index == Limit.ENTITY_REPLACEMENT_LIMIT.ordinal()) {
+            return totalValue[index];
+        }
         return values[index];
     }
     /**
@@ -220,6 +228,21 @@ public final class XMLLimitAnalyzer {
         Map<String, Integer> cache = caches[limit.ordinal()];
         if (cache != null) {
             cache.remove(name);
+        }
+    }
+
+    /**
+     * Resets the current value of the specified limit.
+     * @param limit The limit to be reset.
+     */
+    public void reset(Limit limit) {
+        if (limit.ordinal() == Limit.TOTAL_ENTITY_SIZE_LIMIT.ordinal()) {
+            totalValue[limit.ordinal()] = 0;
+        } else if (limit.ordinal() == Limit.GENERAL_ENTITY_SIZE_LIMIT.ordinal()) {
+            names[limit.ordinal()] = null;
+            values[limit.ordinal()] = 0;
+            caches[limit.ordinal()] = null;
+            totalValue[limit.ordinal()] = 0;
         }
     }
 

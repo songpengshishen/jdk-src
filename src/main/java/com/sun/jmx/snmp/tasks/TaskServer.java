@@ -36,7 +36,7 @@ package com.sun.jmx.snmp.tasks;
  *
  * <p><b>This API is a Sun Microsystems internal API  and is subject
  * to change without notice.</b></p>
- * @see Task
+ * @see com.sun.jmx.snmp.tasks.Task
  *
  * @since 1.5
  **/
@@ -44,8 +44,8 @@ public interface TaskServer {
     /**
      * Submit a task to be executed.
      * Once a task is submitted, it is guaranteed that either
-     * {@link Task#run() task.run()} or
-     * {@link Task#cancel() task.cancel()} will be called.
+     * {@link com.sun.jmx.snmp.tasks.Task#run() task.run()} or
+     * {@link com.sun.jmx.snmp.tasks.Task#cancel() task.cancel()} will be called.
      * <p>Whether the task is executed in the client thread (e.g.
      * <code>public void submitTask(Task task) { task.run(); }</code>) or in
      * another thread (e.g. <code>

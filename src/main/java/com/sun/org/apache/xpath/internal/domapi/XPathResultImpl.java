@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -55,8 +55,8 @@ import org.w3c.dom.xpath.XPathResult;
  *
  * <p>This implementation wraps an <code>XObject</code>.
  *
- * @see XObject
- * @see XPathResult
+ * @see com.sun.org.apache.xpath.internal.objects.XObject
+ * @see org.w3c.dom.xpath.XPathResult
  *
  * @xsl.usage internal
  */
@@ -169,7 +169,7 @@ class XPathResultImpl implements XPathResult, EventListener {
         }
 
         /**
-         * @see XPathResult#getResultType()
+         * @see org.w3c.dom.xpath.XPathResult#getResultType()
          */
         public short getResultType() {
                 return m_resultType;
@@ -180,7 +180,7 @@ class XPathResultImpl implements XPathResult, EventListener {
      * @exception XPathException
      *   TYPE_ERR: raised if <code>resultType</code> is not
      *   <code>NUMBER_TYPE</code>.
-         * @see XPathResult#getNumberValue()
+         * @see org.w3c.dom.xpath.XPathResult#getNumberValue()
          */
         public double getNumberValue() throws XPathException {
                 if (getResultType() != NUMBER_TYPE) {
@@ -203,7 +203,7 @@ class XPathResultImpl implements XPathResult, EventListener {
      *   TYPE_ERR: raised if <code>resultType</code> is not
      *   <code>STRING_TYPE</code>.
      *
-         * @see XPathResult#getStringValue()
+         * @see org.w3c.dom.xpath.XPathResult#getStringValue()
          */
         public String getStringValue() throws XPathException {
                 if (getResultType() != STRING_TYPE) {
@@ -221,7 +221,7 @@ class XPathResultImpl implements XPathResult, EventListener {
         }
 
         /**
-         * @see XPathResult#getBooleanValue()
+         * @see org.w3c.dom.xpath.XPathResult#getBooleanValue()
          */
         public boolean getBooleanValue() throws XPathException {
                 if (getResultType() != BOOLEAN_TYPE) {
@@ -245,7 +245,7 @@ class XPathResultImpl implements XPathResult, EventListener {
      *   <code>ANY_UNORDERED_NODE_TYPE</code> or
      *   <code>FIRST_ORDERED_NODE_TYPE</code>.
      *
-         * @see XPathResult#getSingleNodeValue()
+         * @see org.w3c.dom.xpath.XPathResult#getSingleNodeValue()
          */
         public Node getSingleNodeValue() throws XPathException {
 
@@ -277,7 +277,7 @@ class XPathResultImpl implements XPathResult, EventListener {
         }
 
         /**
-         * @see XPathResult#getInvalidIteratorState()
+         * @see org.w3c.dom.xpath.XPathResult#getInvalidIteratorState()
          */
         public boolean getInvalidIteratorState() {
                 return m_isInvalidIteratorState;
@@ -292,7 +292,7 @@ class XPathResultImpl implements XPathResult, EventListener {
      *   <code>UNORDERED_NODE_SNAPSHOT_TYPE</code> or
      *   <code>ORDERED_NODE_SNAPSHOT_TYPE</code>.
      *
-         * @see XPathResult#getSnapshotLength()
+         * @see org.w3c.dom.xpath.XPathResult#getSnapshotLength()
          */
         public int getSnapshotLength() throws XPathException {
 
@@ -317,7 +317,7 @@ class XPathResultImpl implements XPathResult, EventListener {
      * @exception DOMException
      *   INVALID_STATE_ERR: The document has been mutated since the result was
      *   returned.
-         * @see XPathResult#iterateNext()
+         * @see org.w3c.dom.xpath.XPathResult#iterateNext()
          */
         public Node iterateNext() throws XPathException, DOMException {
                 if ((m_resultType != UNORDERED_NODE_ITERATOR_TYPE) &&
@@ -359,7 +359,7 @@ class XPathResultImpl implements XPathResult, EventListener {
      *   <code>UNORDERED_NODE_SNAPSHOT_TYPE</code> or
      *   <code>ORDERED_NODE_SNAPSHOT_TYPE</code>.
      *
-         * @see XPathResult#snapshotItem(int)
+         * @see org.w3c.dom.xpath.XPathResult#snapshotItem(int)
          */
         public Node snapshotItem(int index) throws XPathException {
 
@@ -405,7 +405,7 @@ class XPathResultImpl implements XPathResult, EventListener {
         }
 
         /**
-         * @see EventListener#handleEvent(Event)
+         * @see org.w3c.dom.events.EventListener#handleEvent(Event)
          */
         public void handleEvent(Event event) {
 

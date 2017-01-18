@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -68,7 +68,7 @@ public interface XMLGrammarLoader {
      *                  recognized or cannot be set.
      */
     public void setFeature(String featureId,
-                           boolean state) throws XMLConfigurationException;
+                boolean state) throws XMLConfigurationException;
 
     /**
      * Returns a list of property identifiers that are recognized by
@@ -97,7 +97,7 @@ public interface XMLGrammarLoader {
      *                  recognized or cannot be set.
      */
     public void setProperty(String propertyId,
-                            Object state) throws XMLConfigurationException;
+                Object state) throws XMLConfigurationException;
 
     /**
      * Set the locale to use for messages.

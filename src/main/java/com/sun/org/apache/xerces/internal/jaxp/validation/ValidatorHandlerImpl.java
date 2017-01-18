@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -52,8 +52,8 @@ import com.sun.org.apache.xerces.internal.util.SymbolTable;
 import com.sun.org.apache.xerces.internal.util.URI;
 import com.sun.org.apache.xerces.internal.util.XMLAttributesImpl;
 import com.sun.org.apache.xerces.internal.util.XMLSymbols;
-import com.sun.org.apache.xerces.internal.utils.XMLSecurityManager;
 import com.sun.org.apache.xerces.internal.utils.XMLSecurityPropertyManager;
+import com.sun.org.apache.xerces.internal.utils.XMLSecurityManager;
 import com.sun.org.apache.xerces.internal.xni.Augmentations;
 import com.sun.org.apache.xerces.internal.xni.NamespaceContext;
 import com.sun.org.apache.xerces.internal.xni.QName;
@@ -698,8 +698,8 @@ final class ValidatorHandlerImpl extends ValidatorHandler implements
                                reader.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD,
                                        spm.getValue(XMLSecurityPropertyManager.Property.ACCESS_EXTERNAL_DTD));
                            } catch (SAXException exc) {
-                               System.err.println("Warning: " + reader.getClass().getName() + ": " +
-                                      exc.getMessage());
+                               XMLSecurityManager.printWarning(reader.getClass().getName(),
+                                       XMLConstants.ACCESS_EXTERNAL_DTD, exc);
                            }
                         }
                     } catch( Exception e ) {

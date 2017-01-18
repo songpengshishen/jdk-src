@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  */
 /*
- * Copyright 1999-2005 The Apache Software Foundation.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
  *
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -19,21 +19,6 @@
  */
 
 package com.sun.org.apache.xerces.internal.impl.xs.traversers;
-
-import java.io.IOException;
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Stack;
-import java.util.Vector;
-
-import javax.xml.stream.XMLEventReader;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
 
 import com.sun.org.apache.xerces.internal.impl.Constants;
 import com.sun.org.apache.xerces.internal.impl.XMLEntityManager;
@@ -74,8 +59,8 @@ import com.sun.org.apache.xerces.internal.util.StAXInputSource;
 import com.sun.org.apache.xerces.internal.util.StAXLocationWrapper;
 import com.sun.org.apache.xerces.internal.util.SymbolHash;
 import com.sun.org.apache.xerces.internal.util.SymbolTable;
-import com.sun.org.apache.xerces.internal.util.XMLSymbols;
 import com.sun.org.apache.xerces.internal.util.URI.MalformedURIException;
+import com.sun.org.apache.xerces.internal.util.XMLSymbols;
 import com.sun.org.apache.xerces.internal.utils.SecuritySupport;
 import com.sun.org.apache.xerces.internal.utils.XMLSecurityManager;
 import com.sun.org.apache.xerces.internal.utils.XMLSecurityPropertyManager;
@@ -107,7 +92,19 @@ import com.sun.org.apache.xerces.internal.xs.XSSimpleTypeDefinition;
 import com.sun.org.apache.xerces.internal.xs.XSTerm;
 import com.sun.org.apache.xerces.internal.xs.XSTypeDefinition;
 import com.sun.org.apache.xerces.internal.xs.datatypes.ObjectList;
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Stack;
+import java.util.Vector;
 import javax.xml.XMLConstants;
+import javax.xml.stream.XMLEventReader;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -198,6 +195,7 @@ public class XSDHandler {
     /** Property identifier: entity resolver. */
     public static final String ENTITY_RESOLVER =
         Constants.XERCES_PROPERTY_PREFIX + Constants.ENTITY_RESOLVER_PROPERTY;
+
     /** Property identifier: entity manager. */
     protected static final String ENTITY_MANAGER =
         Constants.XERCES_PROPERTY_PREFIX + Constants.ENTITY_MANAGER_PROPERTY;
@@ -218,16 +216,13 @@ public class XSDHandler {
     protected static final String SECURITY_MANAGER =
         Constants.XERCES_PROPERTY_PREFIX + Constants.SECURITY_MANAGER_PROPERTY;
 
-    private static final String SECURE_PROCESSING =
-        Constants.XERCES_PROPERTY_PREFIX + Constants.SECURITY_MANAGER_PROPERTY;
-
     /** Property identifier: locale. */
     protected static final String LOCALE =
         Constants.XERCES_PROPERTY_PREFIX + Constants.LOCALE_PROPERTY;
 
-        /** Property identifier: Security property manager. */
+    /** Property identifier: Security property manager. */
     private static final String XML_SECURITY_PROPERTY_MANAGER =
-            Constants.XML_SECURITY_PROPERTY_MANAGER;
+        Constants.XML_SECURITY_PROPERTY_MANAGER;
 
     protected static final boolean DEBUG_NODE_POOL = false;
 
@@ -247,17 +242,12 @@ public class XSDHandler {
     // as unlikely as possible to cause collisions.
     public final static String REDEF_IDENTIFIER = "_fn3dktizrknc9pi";
 
-    //
-    //protected data that can be accessable by any traverser
+    //protected data that can be accessible by any traverser
 
     protected XSDeclarationPool fDeclPool = null;
 
-    /**
-     * <p>Security manager in effect.</p>
-     *
-     * <p>Protected to allow access by any traverser.</p>
-     */
-    protected XMLSecurityManager fSecureProcessing = null;
+    // the Security manager in effect.
+    protected XMLSecurityManager fSecurityManager = null;
 
     private String fAccessExternalSchema;
     private String fAccessExternalDTD;
@@ -270,27 +260,28 @@ public class XSDHandler {
     // XSDocumentInfoRegistry we can easily get the corresponding
     // XSDocumentInfo object.
     private boolean registryEmpty = true;
-    private Map<String, Element> fUnparsedAttributeRegistry = new HashMap();
-    private Map<String, Element> fUnparsedAttributeGroupRegistry =  new HashMap();
-    private Map<String, Element> fUnparsedElementRegistry =  new HashMap();
-    private Map<String, Element> fUnparsedGroupRegistry =  new HashMap();
-    private Map<String, Element> fUnparsedIdentityConstraintRegistry =  new HashMap();
-    private Map<String, Element> fUnparsedNotationRegistry =  new HashMap();
-    private Map<String, Element> fUnparsedTypeRegistry =  new HashMap();
-    // Compensation for the above hashtables to locate XSDocumentInfo,
+    private Map<String, Element> fUnparsedAttributeRegistry = new HashMap<>();
+    private Map<String, Element> fUnparsedAttributeGroupRegistry =  new HashMap<>();
+    private Map<String, Element> fUnparsedElementRegistry =  new HashMap<>();
+    private Map<String, Element> fUnparsedGroupRegistry =  new HashMap<>();
+    private Map<String, Element> fUnparsedIdentityConstraintRegistry =  new HashMap<>();
+    private Map<String, Element> fUnparsedNotationRegistry =  new HashMap<>();
+    private Map<String, Element> fUnparsedTypeRegistry =  new HashMap<>();
+    // Compensation for the above maps to locate XSDocumentInfo,
     // Since we may take Schema Element directly, so can not get the
-    // corresponding XSDocumentInfo object just using above hashtables.
-    private Map<String, XSDocumentInfo> fUnparsedAttributeRegistrySub =  new HashMap();
-    private Map<String, XSDocumentInfo> fUnparsedAttributeGroupRegistrySub =  new HashMap();
-    private Map<String, XSDocumentInfo> fUnparsedElementRegistrySub =  new HashMap();
-    private Map<String, XSDocumentInfo> fUnparsedGroupRegistrySub =  new HashMap();
-    private Map<String, XSDocumentInfo> fUnparsedIdentityConstraintRegistrySub =  new HashMap();
-    private Map<String, XSDocumentInfo> fUnparsedNotationRegistrySub =  new HashMap();
-    private Map<String, XSDocumentInfo> fUnparsedTypeRegistrySub =  new HashMap();
+    // corresponding XSDocumentInfo object just using above maps.
+    private Map<String, XSDocumentInfo> fUnparsedAttributeRegistrySub =  new HashMap<>();
+    private Map<String, XSDocumentInfo> fUnparsedAttributeGroupRegistrySub =  new HashMap<>();
+    private Map<String, XSDocumentInfo> fUnparsedElementRegistrySub =  new HashMap<>();
+    private Map<String, XSDocumentInfo> fUnparsedGroupRegistrySub =  new HashMap<>();
+    private Map<String, XSDocumentInfo> fUnparsedIdentityConstraintRegistrySub =  new HashMap<>();
+    private Map<String, XSDocumentInfo> fUnparsedNotationRegistrySub =  new HashMap<>();
+    private Map<String, XSDocumentInfo> fUnparsedTypeRegistrySub =  new HashMap<>();
 
     // Stores XSDocumentInfo (keyed by component name), to check for duplicate
     // components declared within the same xsd document
-    private Map fUnparsedRegistriesExt[] = new HashMap[] {
+    @SuppressWarnings("unchecked")
+    private Map<String, XSDocumentInfo> fUnparsedRegistriesExt[] = new HashMap[] {
         null,
         null, // ATTRIBUTE_TYPE
         null, // ATTRIBUTEGROUP_TYPE
@@ -301,26 +292,27 @@ public class XSDHandler {
         null, // TYPEDECL_TYPE
     };
 
-    // this hashtable is keyed on by XSDocumentInfo objects.  Its values
+    // this map is keyed on by XSDocumentInfo objects.  Its values
     // are Vectors containing the XSDocumentInfo objects <include>d,
     // <import>ed or <redefine>d by the key XSDocumentInfo.
-    private Map<XSDocumentInfo, Vector> fDependencyMap = new HashMap();
+    private Map<XSDocumentInfo, Vector<XSDocumentInfo>> fDependencyMap = new HashMap<>();
 
-    // this hashtable is keyed on by a target namespace.  Its values
+    // this map is keyed on by a target namespace.  Its values
     // are Vectors containing namespaces imported by schema documents
     // with the key target namespace.
-    // if an imprted schema has absent namespace, the value "null" is stored.
-    private Map<String, Vector> fImportMap = new HashMap();
+    // if an imported schema has absent namespace, the value "null" is stored.
+    private Map<String, Vector> fImportMap = new HashMap<> ();
+
     // all namespaces that imports other namespaces
     // if the importing schema has absent namespace, empty string is stored.
-    // (because the key of a hashtable can't be null.)
-    private Vector fAllTNSs = new Vector();
+    // (because the key of a map can't be null.)
+    private Vector<String> fAllTNSs = new Vector<>();
+
     // stores instance document mappings between namespaces and schema hints
-    private Map fLocationPairs = null;
-    private static final Map EMPTY_TABLE = new HashMap();
+    private Map<String, XMLSchemaLoader.LocationArray> fLocationPairs = null;
 
     // Records which nodes are hidden when the input is a DOMInputSource.
-    Hashtable fHiddenNodes = null;
+    Map<Node, String> fHiddenNodes = null;
 
     // convenience methods
     private String null2EmptyString(String ns) {
@@ -338,7 +330,7 @@ public class XSDHandler {
         if(ele.getOwnerDocument() instanceof com.sun.org.apache.xerces.internal.impl.xs.opti.SchemaDOM){
             documentURI = ((com.sun.org.apache.xerces.internal.impl.xs.opti.SchemaDOM) ele.getOwnerDocument()).getDocumentURI();
         }
-        return documentURI != null ? documentURI : (String) fDoc2SystemId.get(ele);
+        return documentURI != null ? documentURI : fDoc2SystemId.get(ele);
     }
 
     // This vector stores strings which are combinations of the
@@ -346,16 +338,16 @@ public class XSDHandler {
     // schema document.  This combination is used so that the user's
     // EntityResolver can provide a consistent way of identifying a
     // schema document that is included in multiple other schemas.
-    private Map fTraversed = new HashMap();
+    private Map<XSDKey, Element> fTraversed = new HashMap<>();
 
-    // this hashtable contains a mapping from Schema Element to its systemId
+    // this map contains a mapping from Schema Element to its systemId
     // this is useful to resolve a uri relative to the referring document
-    private Map fDoc2SystemId = new HashMap();
+    private Map<Element, String> fDoc2SystemId = new HashMap<>();
 
     // the primary XSDocumentInfo we were called to parse
     private XSDocumentInfo fRoot = null;
 
-    // This hashtable's job is to act as a link between the Schema Element and its
+    // This map's job is to act as a link between the Schema Element and its
     // XSDocumentInfo object.
     private Map fDoc2XSDocumentMap = new HashMap();
 
@@ -392,7 +384,15 @@ public class XSDHandler {
 
     // the XMLErrorReporter
     private XMLErrorReporter fErrorReporter;
-    private XMLEntityResolver fEntityResolver;
+
+    // the XMLErrorHandler
+    private XMLErrorHandler fErrorHandler;
+
+    // the Locale
+    private Locale fLocale;
+
+    // the XMLEntityManager
+    private XMLEntityResolver fEntityManager;
 
     // the XSAttributeChecker
     private XSAttributeChecker fAttributeChecker;
@@ -408,6 +408,9 @@ public class XSDHandler {
 
     // the Grammar Pool
     private XMLGrammarPool fGrammarPool;
+
+    // the security property manager
+    private XMLSecurityPropertyManager fSecurityPropertyMgr = null;
 
     //************ Traversers **********
     XSDAttributeGroupTraverser fAttributeGroupTraverser;
@@ -461,17 +464,17 @@ public class XSDHandler {
     private String [][] fKeyrefNamespaceContext = new String[INIT_KEYREF_STACK][1];
 
     // global decls: map from decl name to decl object
-    SymbolHash fGlobalAttrDecls = new SymbolHash();
-    SymbolHash fGlobalAttrGrpDecls = new SymbolHash();
-    SymbolHash fGlobalElemDecls = new SymbolHash();
-    SymbolHash fGlobalGroupDecls = new SymbolHash();
-    SymbolHash fGlobalNotationDecls = new SymbolHash();
-    SymbolHash fGlobalIDConstraintDecls = new SymbolHash();
-    SymbolHash fGlobalTypeDecls = new SymbolHash();
+    SymbolHash fGlobalAttrDecls = new SymbolHash(12);
+    SymbolHash fGlobalAttrGrpDecls = new SymbolHash(5);
+    SymbolHash fGlobalElemDecls = new SymbolHash(25);
+    SymbolHash fGlobalGroupDecls = new SymbolHash(5);
+    SymbolHash fGlobalNotationDecls = new SymbolHash(1);
+    SymbolHash fGlobalIDConstraintDecls = new SymbolHash(3);
+    SymbolHash fGlobalTypeDecls = new SymbolHash(25);
 
     // Constructors
     public XSDHandler(){
-        fHiddenNodes = new Hashtable();
+        fHiddenNodes = new HashMap<>();
         fSchemaParser = new SchemaDOMParser(new SchemaParsingConfig());
     }
 
@@ -500,7 +503,7 @@ public class XSDHandler {
      * @throws IOException
      */
     public SchemaGrammar parseSchema(XMLInputSource is, XSDDescription desc,
-            Map locationPairs)
+            Map<String, XMLSchemaLoader.LocationArray> locationPairs)
     throws IOException {
         fLocationPairs = locationPairs;
         fSchemaParser.resetNodePool();
@@ -643,7 +646,7 @@ public class XSDHandler {
         // for all grammars with <import>s
         for (int i = fAllTNSs.size() - 1; i >= 0; i--) {
             // get its target namespace
-            String tns = (String)fAllTNSs.elementAt(i);
+            String tns = fAllTNSs.elementAt(i);
             // get all namespaces it imports
             Vector ins = (Vector)fImportMap.get(tns);
             // get the grammar
@@ -701,12 +704,13 @@ public class XSDHandler {
         fAnnotationValidator.setFeature(VALIDATION, true);
         fAnnotationValidator.setFeature(XMLSCHEMA_VALIDATION, true);
         fAnnotationValidator.setProperty(XMLGRAMMAR_POOL, fGrammarBucketAdapter);
+        /** set security manager and XML Security Property Manager **/
+        fAnnotationValidator.setProperty(SECURITY_MANAGER, (fSecurityManager != null) ? fSecurityManager : new XMLSecurityManager(true));
+        fAnnotationValidator.setProperty(XML_SECURITY_PROPERTY_MANAGER, fSecurityPropertyMgr);
         /** Set error handler. **/
-        XMLErrorHandler errorHandler = fErrorReporter.getErrorHandler();
-        fAnnotationValidator.setProperty(ERROR_HANDLER, (errorHandler != null) ? errorHandler : new DefaultErrorHandler());
+        fAnnotationValidator.setProperty(ERROR_HANDLER, (fErrorHandler != null) ? fErrorHandler : new DefaultErrorHandler());
         /** Set locale. **/
-        Locale locale = fErrorReporter.getLocale();
-        fAnnotationValidator.setProperty(LOCALE, locale);
+        fAnnotationValidator.setProperty(LOCALE, fLocale);
     }
 
     /**
@@ -885,10 +889,10 @@ public class XSDHandler {
 
         // store the document and its location
         // REVISIT: don't expose the DOM tree
-        sg.addDocument(null, (String)fDoc2SystemId.get(currSchemaInfo.fSchemaElement));
+        sg.addDocument(null, fDoc2SystemId.get(currSchemaInfo.fSchemaElement));
 
         fDoc2XSDocumentMap.put(schemaRoot, currSchemaInfo);
-        Vector dependencies = new Vector();
+        Vector<XSDocumentInfo> dependencies = new Vector<>();
         Element rootNode = schemaRoot;
 
         Element newSchemaRoot = null;
@@ -1002,7 +1006,7 @@ public class XSDHandler {
 
                 // If "findGrammar" returns a grammar, then this is not the
                 // the first time we see a location for a given namespace.
-                // Don't consult the location pair hashtable in this case,
+                // Don't consult the location pair map in this case,
                 // otherwise the location will be ignored because it'll get
                 // resolved to the same location as the first hint.
                 newSchemaRoot = resolveSchema(fSchemaGrammarDescription, false, child, isg == null);
@@ -1339,9 +1343,9 @@ public class XSDHandler {
             } // end for
 
             // now we're done with this one!
-                DOMUtil.setHidden(currDoc, fHiddenNodes);
+            DOMUtil.setHidden(currDoc, fHiddenNodes);
             // now add the schemas this guy depends on
-            Vector currSchemaDepends = (Vector)fDependencyMap.get(currSchemaDoc);
+            Vector<XSDocumentInfo> currSchemaDepends = fDependencyMap.get(currSchemaDoc);
             for (int i = 0; i < currSchemaDepends.size(); i++) {
                 schemasToProcess.push(currSchemaDepends.elementAt(i));
             }
@@ -1471,7 +1475,7 @@ public class XSDHandler {
             DOMUtil.setHidden(currDoc, fHiddenNodes);
 
             // now add the schemas this guy depends on
-            Vector currSchemaDepends = (Vector)fDependencyMap.get(currSchemaDoc);
+            Vector<XSDocumentInfo> currSchemaDepends = fDependencyMap.get(currSchemaDoc);
             for (int i = 0; i < currSchemaDepends.size(); i++) {
                 schemasToProcess.push(currSchemaDepends.elementAt(i));
             }
@@ -1920,7 +1924,7 @@ public class XSDHandler {
     }
 
     public String schemaDocument2SystemId(XSDocumentInfo schemaDoc) {
-        return (String)fDoc2SystemId.get(schemaDoc.fSchemaElement);
+        return fDoc2SystemId.get(schemaDoc.fSchemaElement);
     }
 
     // This method determines whether there is a group
@@ -2048,8 +2052,8 @@ public class XSDHandler {
                                   Element referElement, boolean usePairs) {
         XMLInputSource schemaSource = null;
         try {
-            Map pairs = usePairs ? fLocationPairs : EMPTY_TABLE;
-            schemaSource = XMLSchemaLoader.resolveDocument(desc, pairs, fEntityResolver);
+            Map<String, XMLSchemaLoader.LocationArray> pairs = usePairs ? fLocationPairs : Collections.emptyMap();
+            schemaSource = XMLSchemaLoader.resolveDocument(desc, pairs, fEntityManager);
         }
         catch (IOException ex) {
             if (mustResolve) {
@@ -2101,8 +2105,8 @@ public class XSDHandler {
 
         XMLInputSource schemaSource = null;
         try {
-            Map pairs = usePairs ? fLocationPairs : EMPTY_TABLE;
-            schemaSource = XMLSchemaLoader.resolveDocument(desc, pairs, fEntityResolver);
+            Map<String, XMLSchemaLoader.LocationArray> pairs = usePairs ? fLocationPairs : Collections.emptyMap();
+            schemaSource = XMLSchemaLoader.resolveDocument(desc, pairs, fEntityManager);
         }
         catch (IOException ex) {
             if (mustResolve) {
@@ -2157,7 +2161,7 @@ public class XSDHandler {
                 if (referType != XSDDescription.CONTEXT_PREPARSE){
                     schemaId = XMLEntityManager.expandSystemId(schemaSource.getSystemId(), schemaSource.getBaseSystemId(), false);
                     key = new XSDKey(schemaId, referType, schemaNamespace);
-                    if((schemaElement = (Element)fTraversed.get(key)) != null) {
+                    if((schemaElement = fTraversed.get(key)) != null) {
                         fLastSchemaWasDuplicate = true;
                         return schemaElement;
                     }
@@ -2216,7 +2220,7 @@ public class XSDHandler {
                 if (referType != XSDDescription.CONTEXT_PREPARSE) {
                     schemaId = XMLEntityManager.expandSystemId(inputSource.getSystemId(), schemaSource.getBaseSystemId(), false);
                     key = new XSDKey(schemaId, referType, schemaNamespace);
-                    if ((schemaElement = (Element) fTraversed.get(key)) != null) {
+                    if ((schemaElement = fTraversed.get(key)) != null) {
                         fLastSchemaWasDuplicate = true;
                         return schemaElement;
                     }
@@ -2243,20 +2247,19 @@ public class XSDHandler {
                         namespacePrefixes = true;
                         // If this is a Xerces SAX parser set the security manager if there is one
                         if (parser instanceof SAXParser) {
-                            Object securityManager = fSchemaParser.getProperty(SECURITY_MANAGER);
-                            if (securityManager != null) {
-                                parser.setProperty(SECURITY_MANAGER, securityManager);
+                            if (fSecurityManager != null) {
+                                parser.setProperty(SECURITY_MANAGER, fSecurityManager);
                             }
                         }
                     }
                     catch (SAXException se) {}
 
-                     try {
-                             parser.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, fAccessExternalDTD);
-                     } catch (SAXNotRecognizedException exc) {
-                         System.err.println("Warning: " + parser.getClass().getName() + ": " +
-                                 exc.getMessage());
-                     }
+                    try {
+                        parser.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, fAccessExternalDTD);
+                    } catch (SAXNotRecognizedException exc) {
+                        XMLSecurityManager.printWarning(parser.getClass().getName(),
+                                XMLConstants.ACCESS_EXTERNAL_DTD, exc);
+                    }
                 }
                 // If XML names and Namespace URIs are already internalized we
                 // can avoid running them through the SymbolTable.
@@ -2352,7 +2355,7 @@ public class XSDHandler {
                     }
                     if (isDocument) {
                         key = new XSDKey(schemaId, referType, schemaNamespace);
-                        if ((schemaElement = (Element) fTraversed.get(key)) != null) {
+                        if ((schemaElement = fTraversed.get(key)) != null) {
                             fLastSchemaWasDuplicate = true;
                             return schemaElement;
                         }
@@ -2407,7 +2410,7 @@ public class XSDHandler {
                 }
                 if (isDocument) {
                     key = new XSDKey(schemaId, referType, schemaNamespace);
-                    if ((schemaElement = (Element) fTraversed.get(key)) != null) {
+                    if ((schemaElement = fTraversed.get(key)) != null) {
                         fLastSchemaWasDuplicate = true;
                         return schemaElement;
                     }
@@ -3507,40 +3510,21 @@ public class XSDHandler {
         // set symbol table
         fSymbolTable = (SymbolTable) componentManager.getProperty(SYMBOL_TABLE);
 
-        fSecureProcessing = null;
-        if( componentManager!=null ) {
-            fSecureProcessing = (XMLSecurityManager) componentManager.getProperty(SECURE_PROCESSING, null);
-        }
+        // set security manager
+        fSecurityManager = (XMLSecurityManager) componentManager.getProperty(SECURITY_MANAGER, null);
+
+        //set entity manager
+        fEntityManager = (XMLEntityResolver) componentManager.getProperty(ENTITY_MANAGER);
 
         //set entity resolver
-        fEntityResolver = (XMLEntityResolver) componentManager.getProperty(ENTITY_MANAGER);
         XMLEntityResolver er = (XMLEntityResolver)componentManager.getProperty(ENTITY_RESOLVER);
         if (er != null)
             fSchemaParser.setEntityResolver(er);
 
         // set error reporter
-        fErrorReporter =
-            (XMLErrorReporter) componentManager.getProperty(ERROR_REPORTER);
-        try {
-            XMLErrorHandler currErrorHandler = fErrorReporter.getErrorHandler();
-            // Setting a parser property can be much more expensive
-            // than checking its value.  Don't set the ERROR_HANDLER
-            // or LOCALE properties unless they've actually changed.
-            if (currErrorHandler != fSchemaParser.getProperty(ERROR_HANDLER)) {
-                fSchemaParser.setProperty(ERROR_HANDLER, (currErrorHandler != null) ? currErrorHandler : new DefaultErrorHandler());
-                if (fAnnotationValidator != null) {
-                    fAnnotationValidator.setProperty(ERROR_HANDLER, (currErrorHandler != null) ? currErrorHandler : new DefaultErrorHandler());
-                }
-            }
-            Locale currentLocale = fErrorReporter.getLocale();
-            if (currentLocale != fSchemaParser.getProperty(LOCALE)) {
-                fSchemaParser.setProperty(LOCALE, currentLocale);
-                if (fAnnotationValidator != null) {
-                    fAnnotationValidator.setProperty(LOCALE, currentLocale);
-                }
-            }
-        }
-        catch (XMLConfigurationException e) {}
+        fErrorReporter = (XMLErrorReporter) componentManager.getProperty(ERROR_REPORTER);
+        fErrorHandler = fErrorReporter.getErrorHandler();
+        fLocale = fErrorReporter.getLocale();
 
         fValidateAnnotations = componentManager.getFeature(VALIDATE_ANNOTATIONS, false);
         fHonourAllSchemaLocations = componentManager.getFeature(HONOUR_ALL_SCHEMALOCATIONS, false);
@@ -3548,56 +3532,66 @@ public class XSDHandler {
         fTolerateDuplicates = componentManager.getFeature(TOLERATE_DUPLICATES, false);
 
         try {
-            fSchemaParser.setFeature(
-                    CONTINUE_AFTER_FATAL_ERROR,
-                    fErrorReporter.getFeature(CONTINUE_AFTER_FATAL_ERROR));
-        } catch (XMLConfigurationException e) {
+            // Setting a parser property can be much more expensive
+            // than checking its value.  Don't set the ERROR_HANDLER
+            // or LOCALE properties unless they've actually changed.
+            if (fErrorHandler != fSchemaParser.getProperty(ERROR_HANDLER)) {
+                fSchemaParser.setProperty(ERROR_HANDLER, (fErrorHandler != null) ? fErrorHandler : new DefaultErrorHandler());
+                if (fAnnotationValidator != null) {
+                    fAnnotationValidator.setProperty(ERROR_HANDLER, (fErrorHandler != null) ? fErrorHandler : new DefaultErrorHandler());
+                }
+            }
+            if (fLocale != fSchemaParser.getProperty(LOCALE)) {
+                fSchemaParser.setProperty(LOCALE, fLocale);
+                if (fAnnotationValidator != null) {
+                    fAnnotationValidator.setProperty(LOCALE, fLocale);
+                }
+            }
         }
+        catch (XMLConfigurationException e) {}
+
+        try {
+            fSchemaParser.setFeature(CONTINUE_AFTER_FATAL_ERROR, fErrorReporter.getFeature(CONTINUE_AFTER_FATAL_ERROR));
+        } catch (XMLConfigurationException e) {}
 
         try {
             if (componentManager.getFeature(ALLOW_JAVA_ENCODINGS, false)) {
                 fSchemaParser.setFeature(ALLOW_JAVA_ENCODINGS, true);
             }
-        } catch (XMLConfigurationException e) {
-        }
+        } catch (XMLConfigurationException e) {}
+
         try {
             if (componentManager.getFeature(STANDARD_URI_CONFORMANT_FEATURE, false)) {
                 fSchemaParser.setFeature(STANDARD_URI_CONFORMANT_FEATURE, true);
             }
-        } catch (XMLConfigurationException e) {
-        }
+        } catch (XMLConfigurationException e) {}
 
         try {
-            fGrammarPool =
-                (XMLGrammarPool) componentManager.getProperty(XMLGRAMMAR_POOL);
+            fGrammarPool = (XMLGrammarPool) componentManager.getProperty(XMLGRAMMAR_POOL);
         } catch (XMLConfigurationException e) {
             fGrammarPool = null;
         }
+
         // security features
         try {
             if (componentManager.getFeature(DISALLOW_DOCTYPE, false)) {
                 fSchemaParser.setFeature(DISALLOW_DOCTYPE, true);
             }
-        } catch (XMLConfigurationException e) {
-        }
+        } catch (XMLConfigurationException e) {}
+
         try {
-            Object security = componentManager.getProperty(SECURITY_MANAGER, null);
-            if (security != null){
-                fSchemaParser.setProperty(SECURITY_MANAGER, security);
+            if (fSecurityManager != null) {
+                fSchemaParser.setProperty(SECURITY_MANAGER, fSecurityManager);
             }
-        } catch (XMLConfigurationException e) {
-        }
+        } catch (XMLConfigurationException e) {}
 
-        XMLSecurityPropertyManager securityPropertyMgr = (XMLSecurityPropertyManager)
-                componentManager.getProperty(XML_SECURITY_PROPERTY_MANAGER);
+        fSecurityPropertyMgr = (XMLSecurityPropertyManager) componentManager.getProperty(XML_SECURITY_PROPERTY_MANAGER);
+
         //Passing on the setting to the parser
-        fSchemaParser.setProperty(XML_SECURITY_PROPERTY_MANAGER, securityPropertyMgr);
+        fSchemaParser.setProperty(XML_SECURITY_PROPERTY_MANAGER, fSecurityPropertyMgr);
 
-        fAccessExternalDTD = securityPropertyMgr.getValue(
-                XMLSecurityPropertyManager.Property.ACCESS_EXTERNAL_DTD);
-
-        fAccessExternalSchema = securityPropertyMgr.getValue(
-                XMLSecurityPropertyManager.Property.ACCESS_EXTERNAL_SCHEMA);
+        fAccessExternalDTD = fSecurityPropertyMgr.getValue(XMLSecurityPropertyManager.Property.ACCESS_EXTERNAL_DTD);
+        fAccessExternalSchema = fSecurityPropertyMgr.getValue(XMLSecurityPropertyManager.Property.ACCESS_EXTERNAL_SCHEMA);
 
     } // reset(XMLComponentManager)
 
@@ -3791,7 +3785,7 @@ public class XSDHandler {
             fUnparsedRegistriesExt[declType].put(qName, currSchema);
         }
 
-    } // checkForDuplicateNames(String, Hashtable, Element, XSDocumentInfo):void
+    } // checkForDuplicateNames(String, Map, Element, XSDocumentInfo):void
 
     void checkForDuplicateNames(String qName, int declType, Element currComp) {
         int namespaceEnd = qName.indexOf(',');
@@ -3962,7 +3956,7 @@ public class XSDHandler {
     // this method takes a name of the form a:b, determines the URI mapped
     // to by a in the current SchemaNamespaceSupport object, and returns this
     // information in the form (nsURI,b) suitable for lookups in the global
-    // decl Hashtables.
+    // decl maps.
     // REVISIT: should have it return QName, instead of String. this would
     //          save lots of string concatenation time. we can use
     //          QName#equals() to compare two QNames, and use QName directly
@@ -4056,7 +4050,7 @@ public class XSDHandler {
          so long as there's some include/import/redefine path amongst them.
          If they rver reverse this decision the code's right here though...  - neilg
          // now look in fDependencyMap to see if this is reachable
-          if(((Vector)fDependencyMap.get(currSchema)).contains(declDocInfo)) {
+          if((fDependencyMap.get(currSchema)).contains(declDocInfo)) {
           return declDocInfo;
           }
           // obviously the requesting doc didn't include, redefine or
@@ -4077,9 +4071,9 @@ public class XSDHandler {
         if (DOMUtil.isHidden(startSchema.fSchemaElement, fHiddenNodes)) {
             // make it visible
             DOMUtil.setVisible(startSchema.fSchemaElement, fHiddenNodes);
-            Vector dependingSchemas = (Vector)fDependencyMap.get(startSchema);
+            Vector<XSDocumentInfo> dependingSchemas = fDependencyMap.get(startSchema);
             for (int i = 0; i < dependingSchemas.size(); i++) {
-                setSchemasVisible((XSDocumentInfo)dependingSchemas.elementAt(i));
+                setSchemasVisible(dependingSchemas.elementAt(i));
             }
         }
         // if it's visible already than so must be its children
@@ -4112,7 +4106,7 @@ public class XSDHandler {
             ElementImpl ele = (ElementImpl)e;
             // get system id from document object
             Document doc = ele.getOwnerDocument();
-            String sid = (String)fDoc2SystemId.get(DOMUtil.getRoot(doc));
+            String sid = fDoc2SystemId.get(DOMUtil.getRoot(doc));
             // line/column numbers are stored in the element node
             int line = ele.getLineNumber();
             int column = ele.getColumnNumber();

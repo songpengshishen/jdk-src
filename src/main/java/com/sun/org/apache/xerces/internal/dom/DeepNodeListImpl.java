@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -114,7 +114,7 @@ public class DeepNodeListImpl
     /** Returns the length of the node list. */
     public int getLength() {
         // Preload all matching elements. (Stops when we run out of subtree!)
-        item(Integer.MAX_VALUE);
+        item(java.lang.Integer.MAX_VALUE);
         return nodes.size();
     }
 

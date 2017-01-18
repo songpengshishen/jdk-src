@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -121,7 +121,7 @@ class ElementSchemePointer implements XPointerPart {
      * Parses the XPointer expression and tokenizes it into Strings
      * delimited by whitespace.
      *
-     * @see XPointerProcessor#parseXPointer(String)
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerProcessor#parseXPointer(java.lang.String)
      */
     public void parseXPointer(String xpointer) throws XNIException {
 
@@ -201,7 +201,7 @@ class ElementSchemePointer implements XPointerPart {
 
     /**
      * Returns the scheme name i.e element
-     * @see XPointerPart#getSchemeName()
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerPart#getSchemeName()
      */
     public String getSchemeName() {
         return fSchemeName;
@@ -210,7 +210,7 @@ class ElementSchemePointer implements XPointerPart {
     /**
      * Returns the scheme data
      *
-     * @see XPointerPart#getSchemeData()
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerPart#getSchemeData()
      */
     public String getSchemeData() {
         return fSchemeData;
@@ -219,7 +219,7 @@ class ElementSchemePointer implements XPointerPart {
     /**
      * Sets the scheme name
      *
-     * @see XPointerPart#setSchemeName(String)
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerPart#setSchemeName(java.lang.String)
      */
     public void setSchemeName(String schemeName) {
         fSchemeName = schemeName;
@@ -229,7 +229,7 @@ class ElementSchemePointer implements XPointerPart {
     /**
      * Sets the scheme data
      *
-     * @see XPointerPart#setSchemeData(String)
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerPart#setSchemeData(java.lang.String)
      */
     public void setSchemeData(String schemeData) {
         fSchemeData = schemeData;
@@ -240,7 +240,7 @@ class ElementSchemePointer implements XPointerPart {
      * Pointer is present and it is successfully resolved and if a child
      * sequence is present, the child sequence is resolved relative to it.
      *
-     * @see XPointerProcessor#resolveXPointer(QName, XMLAttributes, Augmentations, int event)
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerProcessor#resolveXPointer(com.sun.org.apache.xerces.internal.xni.QName, com.sun.org.apache.xerces.internal.xni.XMLAttributes, com.sun.org.apache.xerces.internal.xni.Augmentations, int event)
      */
     public boolean resolveXPointer(QName element, XMLAttributes attributes,
             Augmentations augs, int event) throws XNIException {
@@ -414,7 +414,7 @@ class ElementSchemePointer implements XPointerPart {
      * Returns true if the node matches or is a child of a matching element()
      * scheme XPointer.
      *
-     * @see XPointerProcessor#isFragmentResolved()
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerProcessor#isFragmentResolved()
      */
     public boolean isFragmentResolved() throws XNIException {
         // Return true if the Fragment was resolved and the current Node depth
@@ -426,7 +426,7 @@ class ElementSchemePointer implements XPointerPart {
      * Returns true if the XPointer expression resolves to a non-element child
      * of the current resource fragment.
      *
-     * @see XPointerPart#isChildFragmentResolved()
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerPart#isChildFragmentResolved()
      *
      */
     public boolean isChildFragmentResolved() {

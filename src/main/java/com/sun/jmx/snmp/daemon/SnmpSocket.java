@@ -30,7 +30,7 @@ import static com.sun.jmx.defaults.JmxProperties.SNMP_ADAPTOR_LOGGER;
  * limit is {@link SnmpAdaptorServer#bufferSize}.
  */
 
-final class SnmpSocket implements Runnable {
+final class SnmpSocket implements java.lang.Runnable {
 
 
     // VARIABLES
@@ -139,9 +139,9 @@ final class SnmpSocket implements Runnable {
         try {
             // We send an empty datagram packet to fix bug 4293791 (it's a jdk 1.1 bug)
             //
-            DatagramSocket sn = new DatagramSocket(0);
+            DatagramSocket sn = new java.net.DatagramSocket(0);
             byte[] ob = new byte[1];
-            DatagramPacket pk = new DatagramPacket(ob , 1, InetAddress.getLocalHost(), _socketPort);
+            DatagramPacket pk = new DatagramPacket(ob , 1, java.net.InetAddress.getLocalHost(), _socketPort);
             sn.send(pk);
             sn.close();
         } catch (Exception e) {}
@@ -173,6 +173,7 @@ final class SnmpSocket implements Runnable {
      * Dispatcher method for this socket thread. This is the dispatcher method
      * which goes in an endless-loop and waits for receiving datagram packets on the socket.
      */
+    @Override
     public void run() {
         Thread.currentThread().setPriority(8);
 
@@ -258,7 +259,8 @@ final class SnmpSocket implements Runnable {
      * when garbage collection determines that there are no more references to the object.
      * <P>Closes the datagram socket and stops the socket thread associated to this SNMP socket.
      */
-    public synchronized void finalize() {
+    @Override
+    protected synchronized void finalize() {
         close();
     }
 
@@ -274,7 +276,7 @@ final class SnmpSocket implements Runnable {
                 SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSocket.class.getName(),
                     "handleJavaError", "OutOfMemory error", thr);
             }
-            Thread.currentThread().yield();
+            Thread.yield();
             return ;
         }
         if (_socket != null) {
@@ -286,7 +288,7 @@ final class SnmpSocket implements Runnable {
             SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSocket.class.getName(),
                 "handleJavaError",  "Global Internal error");
         }
-        Thread.currentThread().yield();
+        Thread.yield();
     }
 
     private synchronized void handleDatagram(DatagramPacket dgrmpkt) {

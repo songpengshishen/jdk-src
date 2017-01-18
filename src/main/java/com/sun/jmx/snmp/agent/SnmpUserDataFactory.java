@@ -58,8 +58,8 @@ import com.sun.jmx.snmp.SnmpStatusException;
  *
  * <p><b>This API is a Sun Microsystems internal API  and is subject
  * to change without notice.</b></p>
- * @see SnmpMibRequest
- * @see SnmpMibAgent
+ * @see com.sun.jmx.snmp.agent.SnmpMibRequest
+ * @see com.sun.jmx.snmp.agent.SnmpMibAgent
  * @see com.sun.jmx.snmp.daemon.SnmpAdaptorServer
  *
  **/
@@ -74,7 +74,7 @@ public interface SnmpUserDataFactory {
      * will never access this object directly - it will simply pass
      * it to the <code>SnmpMibAgent</code> within
      * <code>SnmpMibRequest</code> objects - from where it can be retrieved
-     * through the {@link SnmpMibRequest#getUserData() getUserData()} accessor.
+     * through the {@link com.sun.jmx.snmp.agent.SnmpMibRequest#getUserData() getUserData()} accessor.
      * <code>null</code> is considered to be a valid return value.
      *
      * This method is called just after the SnmpPduPacket has been

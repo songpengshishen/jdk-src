@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 package com.sun.org.apache.bcel.internal.generic;
@@ -58,7 +58,7 @@ package com.sun.org.apache.bcel.internal.generic;
  * <http://www.apache.org/>.
  */
 import com.sun.org.apache.bcel.internal.Constants;
-import com.sun.org.apache.bcel.internal.util.Objects;
+import java.util.Objects;
 
 /**
  * Returnaddress, the type JSR or JSR_W instructions push upon the stack.

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -433,7 +433,7 @@ public class SmartTransformerFactoryImpl extends SAXTransformerFactory
     public XMLFilter newXMLFilter(Templates templates)
         throws TransformerConfigurationException {
         try {
-            return new TrAXFilter(templates);
+            return new com.sun.org.apache.xalan.internal.xsltc.trax.TrAXFilter(templates);
         }
         catch(TransformerConfigurationException e1) {
             if (_xsltcFactory == null) {

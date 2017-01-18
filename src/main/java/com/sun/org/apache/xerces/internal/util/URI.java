@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -20,9 +20,9 @@
 
 package com.sun.org.apache.xerces.internal.util;
 
-import com.sun.org.apache.xerces.internal.utils.Objects;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**********************************************************************
 * A class to represent a Uniform Resource Identifier (URI). This class

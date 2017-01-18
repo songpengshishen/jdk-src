@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000, 2006, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2000, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -48,16 +48,16 @@ public interface SnmpMibRequest {
      * Returns the list of varbind to be handled by the SNMP mib node.
      *
      * @return The element of the enumeration are instances of
-     *         {@link SnmpVarBind}
+     *         {@link com.sun.jmx.snmp.SnmpVarBind}
      */
-    public Enumeration getElements();
+    public Enumeration<SnmpVarBind> getElements();
 
     /**
      * Returns the vector of varbind to be handled by the SNMP mib node.
      * The caller shall not modify this vector.
      *
      * @return The element of the vector are instances of
-     *         {@link SnmpVarBind}
+     *         {@link com.sun.jmx.snmp.SnmpVarBind}
      */
     public Vector<SnmpVarBind> getSubList();
 
@@ -92,7 +92,7 @@ public interface SnmpMibRequest {
      **/
     public String getPrincipal();
     /**
-     * Gets the incoming request security level. This level is defined in {@link SnmpEngine SnmpEngine}. This parameter is returned only if <CODE> SnmpV3AdaptorServer </CODE> is the adaptor receiving this request. Otherwise -1 is returned.
+     * Gets the incoming request security level. This level is defined in {@link com.sun.jmx.snmp.SnmpEngine SnmpEngine}. This parameter is returned only if <CODE> SnmpV3AdaptorServer </CODE> is the adaptor receiving this request. Otherwise -1 is returned.
      * @return The security level.
      *
      * @since 1.5

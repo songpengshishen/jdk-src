@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -463,11 +463,11 @@ public class VariableStack implements Cloneable
    *
    * @return The evaluated value of the variable.
    *
-   * @throws TransformerException
+   * @throws javax.xml.transform.TransformerException
    */
   public XObject getVariableOrParam(
           XPathContext xctxt, com.sun.org.apache.xml.internal.utils.QName qname)
-            throws TransformerException
+            throws javax.xml.transform.TransformerException
   {
 
     // J2SE does not support Xalan interpretive
@@ -515,6 +515,6 @@ public class VariableStack implements Cloneable
     }
     */
 
-    throw new TransformerException(XSLMessages.createXPATHMessage(XPATHErrorResources.ER_VAR_NOT_RESOLVABLE, new Object[]{qname.toString()})); //"Variable not resolvable: " + qname);
+    throw new javax.xml.transform.TransformerException(XSLMessages.createXPATHMessage(XPATHErrorResources.ER_VAR_NOT_RESOLVABLE, new Object[]{qname.toString()})); //"Variable not resolvable: " + qname);
   }
 }  // end VariableStack

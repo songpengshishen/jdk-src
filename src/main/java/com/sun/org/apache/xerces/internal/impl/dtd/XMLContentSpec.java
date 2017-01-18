@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -232,7 +232,7 @@ public class XMLContentSpec {
      * Constructs a content spec from the values specified by the given
      * content spec provider and identifier.
      */
-    public XMLContentSpec(Provider provider,
+    public XMLContentSpec(XMLContentSpec.Provider provider,
                           int contentSpecIndex) {
         setValues(provider, contentSpecIndex);
     }
@@ -267,7 +267,7 @@ public class XMLContentSpec {
      * provider and identifier. If the specified content spec cannot be
      * provided, the values of this content spec are cleared.
      */
-    public void setValues(Provider provider,
+    public void setValues(XMLContentSpec.Provider provider,
                           int contentSpecIndex) {
         if (!provider.getContentSpec(contentSpecIndex, this)) {
             clear();

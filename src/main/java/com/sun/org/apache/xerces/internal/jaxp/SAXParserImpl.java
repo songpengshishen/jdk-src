@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Copyright (c) 2010, 2015, Oracle and/or its affiliates. All rights reserved.
  */
 /*
- * Copyright 2000-2005 The Apache Software Foundation.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
  *
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -39,7 +39,6 @@ import com.sun.org.apache.xerces.internal.xs.ElementPSVI;
 import com.sun.org.apache.xerces.internal.xs.PSVIProvider;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
@@ -116,18 +115,18 @@ public class SAXParserImpl extends javax.xml.parsers.SAXParser
 
     /**
      * Create a SAX parser with the associated features
-     * @param features Hashtable of SAX features, may be null
+     * @param features Map of SAX features, may be null
      */
-    SAXParserImpl(SAXParserFactoryImpl spf, Hashtable features)
+    SAXParserImpl(SAXParserFactoryImpl spf, Map<String, Boolean> features)
         throws SAXException {
         this(spf, features, false);
     }
 
     /**
      * Create a SAX parser with the associated features
-     * @param features Hashtable of SAX features, may be null
+     * @param features Map of SAX features, may be null
      */
-    SAXParserImpl(SAXParserFactoryImpl spf, Hashtable features, boolean secureProcessing)
+    SAXParserImpl(SAXParserFactoryImpl spf, Map<String, Boolean> features, boolean secureProcessing)
         throws SAXException
     {
         fSecurityManager = new XMLSecurityManager(secureProcessing);
@@ -165,14 +164,14 @@ public class SAXParserImpl extends javax.xml.parsers.SAXParser
              */
             if (features != null) {
 
-                Object temp = features.get(XMLConstants.FEATURE_SECURE_PROCESSING);
+                Boolean temp = features.get(XMLConstants.FEATURE_SECURE_PROCESSING);
                 if (temp != null) {
-                    boolean value = ((Boolean) temp).booleanValue();
-                    if (value && Constants.IS_JDK8_OR_ABOVE) {
+                    if (temp && Constants.IS_JDK8_OR_ABOVE) {
                         fSecurityPropertyMgr.setValue(XMLSecurityPropertyManager.Property.ACCESS_EXTERNAL_DTD,
                                 XMLSecurityPropertyManager.State.FSP, Constants.EXTERNAL_ACCESS_DEFAULT_FSP);
                         fSecurityPropertyMgr.setValue(XMLSecurityPropertyManager.Property.ACCESS_EXTERNAL_SCHEMA,
                                 XMLSecurityPropertyManager.State.FSP, Constants.EXTERNAL_ACCESS_DEFAULT_FSP);
+
                     }
                 }
             }
@@ -241,15 +240,11 @@ public class SAXParserImpl extends javax.xml.parsers.SAXParser
      * XXX Does not handle possible conflicts between SAX feature names and
      * JAXP specific feature names, eg. SAXParserFactory.isValidating()
      */
-    private void setFeatures(Hashtable features)
+    private void setFeatures(Map<String, Boolean> features)
         throws SAXNotSupportedException, SAXNotRecognizedException {
         if (features != null) {
-            Iterator entries = features.entrySet().iterator();
-            while (entries.hasNext()) {
-                Map.Entry entry = (Map.Entry) entries.next();
-                String feature = (String) entry.getKey();
-                boolean value = ((Boolean) entry.getValue()).booleanValue();
-                xmlReader.setFeature0(feature, value);
+            for (Map.Entry<String, Boolean> entry : features.entrySet()) {
+                xmlReader.setFeature0(entry.getKey(), entry.getValue());
             }
         }
     }
@@ -422,8 +417,8 @@ public class SAXParserImpl extends javax.xml.parsers.SAXParser
                     super.setProperty(SECURITY_MANAGER, fSecurityManager);
                 } catch (SAXException e) {
                     throw new UnsupportedOperationException(
-                        SAXMessageFormatter.formatMessage(fConfiguration.getLocale(),
-                        "property-not-recognized", new Object [] {SECURITY_MANAGER}), e);
+                    SAXMessageFormatter.formatMessage(fConfiguration.getLocale(),
+                    "property-not-recognized", new Object [] {SECURITY_MANAGER}), e);
                 }
             }
             if (fSecurityPropertyMgr == null) {
@@ -432,8 +427,8 @@ public class SAXParserImpl extends javax.xml.parsers.SAXParser
                     super.setProperty(XML_SECURITY_PROPERTY_MANAGER, fSecurityPropertyMgr);
                 } catch (SAXException e) {
                     throw new UnsupportedOperationException(
-                        SAXMessageFormatter.formatMessage(fConfiguration.getLocale(),
-                        "property-not-recognized", new Object [] {XML_SECURITY_PROPERTY_MANAGER}), e);
+                    SAXMessageFormatter.formatMessage(fConfiguration.getLocale(),
+                    "property-not-recognized", new Object [] {SECURITY_MANAGER}), e);
                 }
             }
         }

@@ -123,7 +123,7 @@ public interface CommunicatorServerMBean {
      * @return true if the value of this MBean's State attribute is the
      *  same as the <VAR>state</VAR> parameter; false otherwise.
      */
-    public boolean waitState(int state, long timeOut) ;
+    public boolean waitState(int state , long timeOut) ;
 
     /**
      * Gets the state of this <CODE>CommunicatorServer</CODE> as an integer.
@@ -158,10 +158,10 @@ public interface CommunicatorServerMBean {
      *
      * @param port The port number used by this <CODE>CommunicatorServer</CODE>.
      *
-     * @exception IllegalStateException This method has been invoked
+     * @exception java.lang.IllegalStateException This method has been invoked
      * while the communicator was ONLINE or STARTING.
      */
-    public void setPort(int port) throws IllegalStateException ;
+    public void setPort(int port) throws java.lang.IllegalStateException ;
 
     /**
      * Gets the protocol being used by this <CODE>CommunicatorServer</CODE>.

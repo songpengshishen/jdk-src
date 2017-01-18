@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -68,8 +68,8 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLParserConfiguration;
 import com.sun.org.apache.xerces.internal.xpointer.XPointerHandler;
 import com.sun.org.apache.xerces.internal.xpointer.XPointerProcessor;
 import com.sun.org.apache.xerces.internal.utils.ObjectFactory;
-import com.sun.org.apache.xerces.internal.utils.Objects;
 import com.sun.org.apache.xerces.internal.utils.XMLSecurityPropertyManager;
+import java.util.Objects;
 
 /**
  * <p>
@@ -1554,7 +1554,7 @@ public class XIncludeHandler
                 reportFatalError("HrefFragmentIdentifierIllegal", new Object[] {href});
             }
         }
-        catch (MalformedURIException exc) {
+        catch (URI.MalformedURIException exc) {
             String newHref = escapeHref(href);
             if (href != newHref) {
                 href = newHref;
@@ -1564,7 +1564,7 @@ public class XIncludeHandler
                         reportFatalError("HrefFragmentIdentifierIllegal", new Object[] {href});
                     }
                 }
-                catch (MalformedURIException exc2) {
+                catch (URI.MalformedURIException exc2) {
                     reportFatalError("HrefSyntacticallyInvalid", new Object[] {href});
                 }
             }

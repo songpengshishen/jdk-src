@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -64,10 +64,10 @@ class WriterToASCI extends Writer implements WriterChain
    *
    * @exception  IOException  If an I/O error occurs
    *
-   * @throws IOException
+   * @throws java.io.IOException
    */
   public void write(char chars[], int start, int length)
-          throws IOException
+          throws java.io.IOException
   {
 
     int n = length+start;
@@ -119,7 +119,7 @@ class WriterToASCI extends Writer implements WriterChain
    *
    * @exception  IOException  If an I/O error occurs
    */
-  public void flush() throws IOException
+  public void flush() throws java.io.IOException
   {
     m_os.flush();
   }
@@ -131,7 +131,7 @@ class WriterToASCI extends Writer implements WriterChain
    *
    * @exception  IOException  If an I/O error occurs
    */
-  public void close() throws IOException
+  public void close() throws java.io.IOException
   {
     m_os.close();
   }

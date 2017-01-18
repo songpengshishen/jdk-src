@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -16,9 +16,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/*
- * $Id: ErrorMessages_ja.java /st_wptg_1.7.0.79.0jdk/1 2015/01/23 10:16:51 gmolloy Exp $
  */
 
 package com.sun.org.apache.xalan.internal.xsltc.compiler.util;
@@ -599,6 +596,9 @@ public class ErrorMessages_ja extends ListResourceBundle {
          */
         {ErrorMsg.JAXP_INVALID_ATTR_ERR,
         "TransformerFactory\u306F\u5C5E\u6027''{0}''\u3092\u8A8D\u8B58\u3057\u307E\u305B\u3093\u3002"},
+
+        {ErrorMsg.JAXP_INVALID_ATTR_VALUE_ERR,
+        "''{0}''\u5C5E\u6027\u306B\u6307\u5B9A\u3055\u308C\u305F\u5024\u304C\u6B63\u3057\u304F\u3042\u308A\u307E\u305B\u3093\u3002"},
 
         /*
          * Note to translators:  "setResult()" and "startDocument()" are Java

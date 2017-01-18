@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -40,7 +40,7 @@ import org.w3c.dom.xpath.XPathNSResolver;
  * construct an implementation of <code>XPathNSResolver</code> from a node,
  * or the interface may be implemented by any application.</p>
  *
- * @see XPathNSResolver
+ * @see org.w3c.dom.xpath.XPathNSResolver
  * @xsl.usage internal
  */
 class XPathNSResolverImpl extends PrefixResolverDefault implements XPathNSResolver {
@@ -54,7 +54,7 @@ class XPathNSResolverImpl extends PrefixResolverDefault implements XPathNSResolv
         }
 
         /**
-         * @see XPathNSResolver#lookupNamespaceURI(String)
+         * @see org.w3c.dom.xpath.XPathNSResolver#lookupNamespaceURI(String)
          */
         public String lookupNamespaceURI(String prefix) {
                 return super.getNamespaceForPrefix(prefix);

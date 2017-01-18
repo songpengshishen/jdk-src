@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -54,7 +54,7 @@ import org.w3c.dom.xpath.XPathNSResolver;
  * sources that may provide support for special extension functions or
  * variables which are not defined in this specification.</p>
  *
- * @see XPathEvaluator
+ * @see org.w3c.dom.xpath.XPathEvaluator
  *
  * @xsl.usage internal
  */
@@ -77,7 +77,7 @@ public final class XPathEvaluatorImpl implements XPathEvaluator {
                  * @exception DOMException
          *   NAMESPACE_ERR: Always throws this exceptionn
                  *
-                 * @see PrefixResolver#getNamespaceForPrefix(String, Node)
+                 * @see com.sun.org.apache.xml.internal.utils.PrefixResolver#getNamespaceForPrefix(String, Node)
                  */
                 public String getNamespaceForPrefix(String prefix, Node context) {
             String fmsg = XPATHMessages.createXPATHMessage(XPATHErrorResources.ER_NULL_RESOLVER, null);
@@ -88,21 +88,21 @@ public final class XPathEvaluatorImpl implements XPathEvaluator {
                  * @exception DOMException
          *   NAMESPACE_ERR: Always throws this exceptionn
          *
-                 * @see PrefixResolver#getNamespaceForPrefix(String)
+                 * @see com.sun.org.apache.xml.internal.utils.PrefixResolver#getNamespaceForPrefix(String)
                  */
                 public String getNamespaceForPrefix(String prefix) {
                         return getNamespaceForPrefix(prefix,null);
                 }
 
                 /**
-                 * @see PrefixResolver#handlesNullPrefixes()
+                 * @see com.sun.org.apache.xml.internal.utils.PrefixResolver#handlesNullPrefixes()
                  */
                 public boolean handlesNullPrefixes() {
                         return false;
                 }
 
                 /**
-                 * @see PrefixResolver#getBaseIdentifier()
+                 * @see com.sun.org.apache.xml.internal.utils.PrefixResolver#getBaseIdentifier()
                  */
                 public String getBaseIdentifier() {
                         return null;
@@ -157,7 +157,7 @@ public final class XPathEvaluatorImpl implements XPathEvaluator {
      *   which cannot be resolved by the specified
      *   <code>XPathNSResolver</code>.
      *
-         * @see XPathEvaluator#createExpression(String, XPathNSResolver)
+         * @see org.w3c.dom.xpath.XPathEvaluator#createExpression(String, XPathNSResolver)
          */
         public XPathExpression createExpression(
                 String expression,
@@ -198,7 +198,7 @@ public final class XPathEvaluatorImpl implements XPathEvaluator {
      * @return <code>XPathNSResolver</code> which resolves namespaces with
      *   respect to the definitions in scope for a specified node.
      *
-         * @see XPathEvaluator#createNSResolver(Node)
+         * @see org.w3c.dom.xpath.XPathEvaluator#createNSResolver(Node)
          */
         public XPathNSResolver createNSResolver(Node nodeResolver) {
 
@@ -255,7 +255,7 @@ public final class XPathEvaluatorImpl implements XPathEvaluator {
      *   <br>NOT_SUPPORTED_ERR: The Node is not a type permitted as an XPath
      *   context node.
          *
-         * @see XPathEvaluator#evaluate(String, Node, XPathNSResolver, short, XPathResult)
+         * @see org.w3c.dom.xpath.XPathEvaluator#evaluate(String, Node, XPathNSResolver, short, XPathResult)
          */
         public Object evaluate(
                 String expression,

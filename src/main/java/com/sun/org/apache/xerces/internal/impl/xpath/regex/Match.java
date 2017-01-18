@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -29,9 +29,9 @@ import java.text.CharacterIterator;
  *
  * @see RegularExpression#matches(char[], int, int, Match)
  * @see RegularExpression#matches(char[], Match)
- * @see RegularExpression#matches(CharacterIterator, Match)
- * @see RegularExpression#matches(String, int, int, Match)
- * @see RegularExpression#matches(String, Match)
+ * @see RegularExpression#matches(java.text.CharacterIterator, Match)
+ * @see RegularExpression#matches(java.lang.String, int, int, Match)
+ * @see RegularExpression#matches(java.lang.String, Match)
  * @author TAMURA Kent &lt;kent@trl.ibm.co.jp&gt;
  */
 public class Match implements Cloneable {

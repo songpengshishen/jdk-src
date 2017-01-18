@@ -49,7 +49,7 @@ public class SnmpScopedPduRequest extends SnmpScopedPduPacket
     }
     /**
      * Error status setter. Statuses are defined in
-     * {@link SnmpDefinitions SnmpDefinitions}.
+     * {@link com.sun.jmx.snmp.SnmpDefinitions SnmpDefinitions}.
      * @param s Error status.
      */
     public void setErrorStatus(int s) {
@@ -65,7 +65,7 @@ public class SnmpScopedPduRequest extends SnmpScopedPduPacket
     public int getErrorIndex() { return errorIndex; }
     /**
      * Error status getter. Statuses are defined in
-     * {@link SnmpDefinitions SnmpDefinitions}.
+     * {@link com.sun.jmx.snmp.SnmpDefinitions SnmpDefinitions}.
      * @return Error status.
      */
     public int getErrorStatus() { return errorStatus; }

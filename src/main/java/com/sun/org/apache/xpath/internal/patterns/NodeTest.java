@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -351,7 +351,7 @@ public class NodeTest extends Expression
    * Tell what node type to test, if not DTMFilter.SHOW_ALL.
    *
    * @param whatToShow Bit set defined mainly by
-   *        {@link DTMFilter}.
+   *        {@link com.sun.org.apache.xml.internal.dtm.DTMFilter}.
    * @return the node type for the whatToShow.  Since whatToShow can specify
    *         multiple types, it will return the first bit tested that is on,
    *         so the caller of this function should take care that this is
@@ -410,7 +410,7 @@ public class NodeTest extends Expression
    *
    *
    * @param whatToShow Bit set defined mainly by
-   *        {@link DTMFilter}.
+   *        {@link com.sun.org.apache.xml.internal.dtm.DTMFilter}.
    */
   public static void debugWhatToShow(int whatToShow)
   {
@@ -516,11 +516,11 @@ public class NodeTest extends Expression
    * @param xctxt XPath runtime context.
    * @param context The node being tested.
    *
-   * @return {@link NodeTest#SCORE_NODETEST},
-   *         {@link NodeTest#SCORE_NONE},
-   *         {@link NodeTest#SCORE_NSWILD},
-   *         {@link NodeTest#SCORE_QNAME}, or
-   *         {@link NodeTest#SCORE_OTHER}.
+   * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST},
+   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE},
+   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NSWILD},
+   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_QNAME}, or
+   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}.
    *
    * @throws javax.xml.transform.TransformerException
    */
@@ -590,11 +590,11 @@ public class NodeTest extends Expression
    * @param xctxt XPath runtime context.
    * @param context The node being tested.
    *
-   * @return {@link NodeTest#SCORE_NODETEST},
-   *         {@link NodeTest#SCORE_NONE},
-   *         {@link NodeTest#SCORE_NSWILD},
-   *         {@link NodeTest#SCORE_QNAME}, or
-   *         {@link NodeTest#SCORE_OTHER}.
+   * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST},
+   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE},
+   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NSWILD},
+   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_QNAME}, or
+   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}.
    *
    * @throws javax.xml.transform.TransformerException
    */
@@ -661,11 +661,11 @@ public class NodeTest extends Expression
    *
    * @param xctxt XPath runtime context.
    *
-   * @return {@link NodeTest#SCORE_NODETEST},
-   *         {@link NodeTest#SCORE_NONE},
-   *         {@link NodeTest#SCORE_NSWILD},
-   *         {@link NodeTest#SCORE_QNAME}, or
-   *         {@link NodeTest#SCORE_OTHER}.
+   * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST},
+   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE},
+   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NSWILD},
+   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_QNAME}, or
+   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}.
    *
    * @throws javax.xml.transform.TransformerException
    */

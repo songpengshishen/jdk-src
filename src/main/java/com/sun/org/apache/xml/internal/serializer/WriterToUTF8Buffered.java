@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -176,10 +176,10 @@ final class WriterToUTF8Buffered extends Writer implements WriterChain
    *
    * @exception  IOException  If an I/O error occurs
    *
-   * @throws IOException
+   * @throws java.io.IOException
    */
   public void write(final char chars[], final int start, final int length)
-          throws IOException
+          throws java.io.IOException
   {
 
     // We multiply the length by three since this is the maximum length
@@ -462,9 +462,9 @@ final class WriterToUTF8Buffered extends Writer implements WriterChain
    *
    * @exception  IOException  If an I/O error occurs
    *
-   * @throws IOException
+   * @throws java.io.IOException
    */
-  public void flush() throws IOException
+  public void flush() throws java.io.IOException
   {
     flushBuffer();
     m_os.flush();
@@ -477,9 +477,9 @@ final class WriterToUTF8Buffered extends Writer implements WriterChain
    *
    * @exception  IOException  If an I/O error occurs
    *
-   * @throws IOException
+   * @throws java.io.IOException
    */
-  public void close() throws IOException
+  public void close() throws java.io.IOException
   {
     flushBuffer();
     m_os.close();

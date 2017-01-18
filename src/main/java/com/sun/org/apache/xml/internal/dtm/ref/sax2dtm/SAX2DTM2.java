@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -2079,7 +2079,7 @@ public class SAX2DTM2 extends SAX2DTM
    * @param attributes The specified or defaulted attributes.
    * @throws SAXException Any SAX exception, possibly
    *            wrapping another exception.
-   * @see ContentHandler#startElement
+   * @see org.xml.sax.ContentHandler#startElement
    */
   public void startElement(String uri, String localName, String qName, Attributes attributes)
       throws SAXException
@@ -2223,7 +2223,7 @@ public class SAX2DTM2 extends SAX2DTM
    *        empty string if qualified names are not available.
    * @throws SAXException Any SAX exception, possibly
    *            wrapping another exception.
-   * @see ContentHandler#endElement
+   * @see org.xml.sax.ContentHandler#endElement
    */
   public void endElement(String uri, String localName, String qName)
           throws SAXException
@@ -2279,7 +2279,7 @@ public class SAX2DTM2 extends SAX2DTM
    *
    * @throws SAXException Any SAX exception, possibly
    *            wrapping another exception.
-   * @see ContentHandler#startDocument
+   * @see org.xml.sax.ContentHandler#startDocument
    */
   public void startDocument() throws SAXException
   {
@@ -2299,7 +2299,7 @@ public class SAX2DTM2 extends SAX2DTM
    *
    * @throws SAXException Any SAX exception, possibly
    *            wrapping another exception.
-   * @see ContentHandler#endDocument
+   * @see org.xml.sax.ContentHandler#endDocument
    */
   public void endDocument() throws SAXException
   {
@@ -2452,7 +2452,7 @@ public class SAX2DTM2 extends SAX2DTM
    *             none is supplied.
    * @throws SAXException Any SAX exception, possibly
    *            wrapping another exception.
-   * @see ContentHandler#processingInstruction
+   * @see org.xml.sax.ContentHandler#processingInstruction
    */
   public void processingInstruction(String target, String data)
           throws SAXException
@@ -3145,11 +3145,7 @@ public class SAX2DTM2 extends SAX2DTM
                                   m_data.elementAt(-dataIndex+1));
       }
     }
-    else if (DTM.ELEMENT_NODE == type)
-    {
-      return getStringValueX(nodeHandle);
-    }
-    else if (DTM.DOCUMENT_FRAGMENT_NODE == type
+    else if (DTM.ELEMENT_NODE == type || DTM.DOCUMENT_FRAGMENT_NODE == type
              || DTM.DOCUMENT_NODE == type)
     {
       return null;

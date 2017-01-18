@@ -12,7 +12,7 @@ package com.sun.jmx.snmp;
 import java.io.Serializable;
 
 /**
- * This class holds information for a MIB variable contained in an {@link SnmpVarBindList}.
+ * This class holds information for a MIB variable contained in an {@link com.sun.jmx.snmp.SnmpVarBindList}.
  * An <CODE>SnmpVarBind</CODE> consists of three parts:<P>
  * <DL>
  * <DD>- The corresponding OID object for the MIB variable.
@@ -154,7 +154,7 @@ public class SnmpVarBind implements SnmpDataTypeEnums, Cloneable, Serializable {
         if (name.startsWith(".")) {
             this.oid = new SnmpOid(name) ;
         } else {
-            SnmpOidRecord record= null;
+            SnmpOidRecord record;
             try {
                 int index = name.indexOf('.') ;
                 handleLong(name, index);
@@ -542,7 +542,6 @@ public class SnmpVarBind implements SnmpDataTypeEnums, Cloneable, Serializable {
      */
     final public void addInstance(long inst) {
         oid.append(inst) ;
-        return ;
     }
 
     /**
@@ -554,7 +553,6 @@ public class SnmpVarBind implements SnmpDataTypeEnums, Cloneable, Serializable {
      */
     final public void addInstance(long[] inst) throws SnmpStatusException {
         oid.addToOid(inst) ;
-        return ;
     }
 
     /**
@@ -643,7 +641,7 @@ public class SnmpVarBind implements SnmpDataTypeEnums, Cloneable, Serializable {
      * @return The SNMP variable clone.
      */
     @Override
-    public Object clone() {
+    public SnmpVarBind clone() {
         // FindBugs will issue a warning here, because super.clone()
         // is not called. But this is actually OK because we construct
         // a brand new object.
@@ -693,14 +691,14 @@ public class SnmpVarBind implements SnmpDataTypeEnums, Cloneable, Serializable {
      */
     @Override
     final public String toString() {
-        StringBuffer s = new StringBuffer(400) ;
-        s.append("Object ID : " + this.oid.toString()) ;
+        final StringBuilder s = new StringBuilder(400) ;
+        s.append("Object ID : ").append(this.oid.toString()) ;
 
         if (isValidValue()) {
-            s.append("  (Syntax : " + this.value.getTypeName() + ")\n") ;
-            s.append("Value : " + this.value.toString()) ;
+            s.append("  (Syntax : ").append(this.value.getTypeName()).append(")\n") ;
+            s.append("Value : ").append(this.value.toString()) ;
         } else {
-            s.append("\n" + "Value Exception : " + getValueStatusLegend()) ;
+            s.append("\n" + "Value Exception : ").append(getValueStatusLegend()) ;
         }
         return s.toString() ;
     }

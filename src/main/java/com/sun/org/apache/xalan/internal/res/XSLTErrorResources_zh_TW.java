@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -16,9 +16,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/*
- * $Id: XSLTErrorResources_zh_TW.java /st_wptg_1.7.0.79.0jdk/1 2015/01/23 10:45:37 gmolloy Exp $
  */
 package com.sun.org.apache.xalan.internal.res;
 
@@ -1268,7 +1265,7 @@ public class XSLTErrorResources_zh_TW extends ListResourceBundle
       "\u627E\u4E0D\u5230\u5341\u9032\u4F4D\u683C\u5F0F\u7684\u5BA3\u544A: {0}"},
 
     { WG_OLD_XSLT_NS,
-     "\u907A\u6F0F\u6216\u4E0D\u6B63\u78BA\u7684 XSLT \u547D\u540D\u7A7A\u9593\u3002 "},
+     "\u907A\u6F0F\u6216\u4E0D\u6B63\u78BA\u7684 XSLT \u547D\u540D\u7A7A\u9593\u3002"},
 
     { WG_ONE_DEFAULT_XSLDECIMALFORMAT_ALLOWED,
       "\u53EA\u5141\u8A31\u4E00\u500B\u9810\u8A2D\u7684 xsl:decimal-format \u5BA3\u544A\u3002"},

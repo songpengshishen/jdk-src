@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -401,7 +401,7 @@ public interface XMLAttributes {
      * @param attributeIndex The attribute index.
      * @return Augmentations
      */
-    public Augmentations getAugmentations(int attributeIndex);
+    public Augmentations getAugmentations (int attributeIndex);
 
     /**
      * Look up an augmentation by namespace name.
@@ -411,7 +411,7 @@ public interface XMLAttributes {
      * @param localPart
      * @return Augmentations
      */
-    public Augmentations getAugmentations(String uri, String localPart);
+    public Augmentations getAugmentations (String uri, String localPart);
 
 
     /**

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -325,7 +325,7 @@ public class IncrementalSAXSource_Xerces
         private boolean parseSomeSetup(InputSource source)
                 throws SAXException, IOException, IllegalAccessException,
                                          java.lang.reflect.InvocationTargetException,
-                                         InstantiationException
+                                         java.lang.InstantiationException
         {
                 if(fConfigSetInput!=null)
                 {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002, 2007, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2002, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -60,7 +60,7 @@ public class SnmpProperties {
         InputStream is = new FileInputStream(file);
         props.load(is);
         is.close();
-        for (final Enumeration e = props.keys(); e.hasMoreElements() ; ) {
+        for (final Enumeration<?> e = props.keys(); e.hasMoreElements() ; ) {
             final String key = (String) e.nextElement();
             System.setProperty(key,props.getProperty(key));
         }

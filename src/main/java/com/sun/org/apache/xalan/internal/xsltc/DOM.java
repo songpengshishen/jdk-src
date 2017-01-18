@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Copyright (c) 2005, 2016, Oracle and/or its affiliates. All rights reserved.
  */
 /*
- * Copyright 2001-2004 The Apache Software Foundation.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -17,19 +17,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
- * $Id: DOM.java,v 1.2.4.1 2005/08/31 10:18:49 pvedula Exp $
- */
 
 package com.sun.org.apache.xalan.internal.xsltc;
 
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 import com.sun.org.apache.xml.internal.dtm.DTMAxisIterator;
-
+import com.sun.org.apache.xml.internal.serializer.SerializationHandler;
+import java.util.Map;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import com.sun.org.apache.xml.internal.serializer.SerializationHandler;
 
 /**
  * @author Jacek Ambroziak
@@ -63,7 +58,7 @@ public interface DOM {
     public DTMAxisIterator getNthDescendant(int node, int n, boolean includeself);
     public DTMAxisIterator getNamespaceAxisIterator(final int axis, final int ns);
     public DTMAxisIterator getNodeValueIterator(DTMAxisIterator iter, int returnType,
-                                                String value, boolean op);
+                                             String value, boolean op);
     public DTMAxisIterator orderNodes(DTMAxisIterator source, int node);
     public String getNodeName(final int node);
     public String getNodeNameX(final int node);
@@ -103,5 +98,6 @@ public interface DOM {
     public int getNSType(int node);
     public int getDocument();
     public String getUnparsedEntityURI(String name);
-    public Hashtable getElementsWithIDs();
+    public Map<String, Integer> getElementsWithIDs();
+    public void release();
 }

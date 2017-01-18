@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -102,7 +102,7 @@ public abstract class ToSAXHandler extends SerializerBase
     }
     /**
      * Do nothing.
-     * @see LexicalHandler#startDTD(String, String, String)
+     * @see org.xml.sax.ext.LexicalHandler#startDTD(String, String, String)
      */
     public void startDTD(String arg0, String arg1, String arg2)
         throws SAXException
@@ -115,7 +115,7 @@ public abstract class ToSAXHandler extends SerializerBase
      *
      * @param characters The string of characters to process.
      *
-     * @throws SAXException
+     * @throws org.xml.sax.SAXException
      *
      * @see ExtendedContentHandler#characters(String)
      */
@@ -159,7 +159,7 @@ public abstract class ToSAXHandler extends SerializerBase
     /**
      * Do nothing as this is an abstract class. All subclasses will need to
      * define their behavior if it is different.
-     * @see ContentHandler#processingInstruction(String, String)
+     * @see org.xml.sax.ContentHandler#processingInstruction(String, String)
      */
     public void processingInstruction(String target, String data)
         throws SAXException
@@ -181,15 +181,15 @@ public abstract class ToSAXHandler extends SerializerBase
      * SAX method additional namespace or attribute information can occur before
      * or after this call, that is associated with this element.
      *
-     * @throws SAXException Any SAX exception, possibly
+     * @throws org.xml.sax.SAXException Any SAX exception, possibly
      *            wrapping another exception.
-     * @see ContentHandler#startElement
-     * @see ContentHandler#endElement
+     * @see org.xml.sax.ContentHandler#startElement
+     * @see org.xml.sax.ContentHandler#endElement
      * @see org.xml.sax.AttributeList
      *
-     * @throws SAXException
+     * @throws org.xml.sax.SAXException
      *
-     * @see ContentHandler#startElement(String,String,String,Attributes)
+     * @see org.xml.sax.ContentHandler#startElement(String,String,String,Attributes)
      */
     public void startElement(
         String arg0,
@@ -234,7 +234,7 @@ public abstract class ToSAXHandler extends SerializerBase
     /**
      * Does nothing. The setting of CDATA section elements has an impact on
      * stream serializers.
-     * @see SerializationHandler#setCdataSectionElements(Vector)
+     * @see SerializationHandler#setCdataSectionElements(java.util.Vector)
      */
     public void setCdataSectionElements(Vector URI_and_localNames)
     {
@@ -344,10 +344,10 @@ public abstract class ToSAXHandler extends SerializerBase
      * This method gets the node's value as a String and uses that String as if
      * it were an input character notification.
      * @param node the Node to serialize
-     * @throws SAXException
+     * @throws org.xml.sax.SAXException
      */
     public void characters(org.w3c.dom.Node node)
-        throws SAXException
+        throws org.xml.sax.SAXException
     {
         // remember the current node
         if (m_state != null)
@@ -364,7 +364,7 @@ public abstract class ToSAXHandler extends SerializerBase
     }
 
     /**
-     * @see ErrorHandler#fatalError(SAXParseException)
+     * @see org.xml.sax.ErrorHandler#fatalError(SAXParseException)
      */
     public void fatalError(SAXParseException exc) throws SAXException {
         super.fatalError(exc);
@@ -377,7 +377,7 @@ public abstract class ToSAXHandler extends SerializerBase
     }
 
     /**
-     * @see ErrorHandler#error(SAXParseException)
+     * @see org.xml.sax.ErrorHandler#error(SAXParseException)
      */
     public void error(SAXParseException exc) throws SAXException {
         super.error(exc);
@@ -388,7 +388,7 @@ public abstract class ToSAXHandler extends SerializerBase
     }
 
     /**
-     * @see ErrorHandler#warning(SAXParseException)
+     * @see org.xml.sax.ErrorHandler#warning(SAXParseException)
      */
     public void warning(SAXParseException exc) throws SAXException {
         super.warning(exc);

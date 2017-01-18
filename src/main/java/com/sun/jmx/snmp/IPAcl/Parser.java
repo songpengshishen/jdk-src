@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2006, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -1040,7 +1040,7 @@ jjtree.openNodeScope(jjtn000);Token t;
   private boolean jj_rescan = false;
   private int jj_gc = 0;
 
-  public Parser(InputStream stream) {
+  public Parser(java.io.InputStream stream) {
     jj_input_stream = new ASCII_CharStream(stream, 1, 1);
     token_source = new ParserTokenManager(jj_input_stream);
     token = new Token();
@@ -1050,7 +1050,7 @@ jjtree.openNodeScope(jjtn000);Token t;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
-  public void ReInit(InputStream stream) {
+  public void ReInit(java.io.InputStream stream) {
     jj_input_stream.ReInit(stream, 1, 1);
     token_source.ReInit(jj_input_stream);
     token = new Token();
@@ -1061,7 +1061,7 @@ jjtree.openNodeScope(jjtn000);Token t;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
-  public Parser(Reader stream) {
+  public Parser(java.io.Reader stream) {
     jj_input_stream = new ASCII_CharStream(stream, 1, 1);
     token_source = new ParserTokenManager(jj_input_stream);
     token = new Token();
@@ -1071,7 +1071,7 @@ jjtree.openNodeScope(jjtn000);Token t;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
-  public void ReInit(Reader stream) {
+  public void ReInit(java.io.Reader stream) {
     jj_input_stream.ReInit(stream, 1, 1);
     token_source.ReInit(jj_input_stream);
     token = new Token();
@@ -1168,7 +1168,7 @@ jjtree.openNodeScope(jjtn000);Token t;
       return (jj_ntk = jj_nt.kind);
   }
 
-  private java.util.Vector jj_expentries = new java.util.Vector();
+  private java.util.Vector<int[]> jj_expentries = new java.util.Vector<>();
   private int[] jj_expentry;
   private int jj_kind = -1;
   private int[] jj_lasttokens = new int[100];
@@ -1184,8 +1184,8 @@ jjtree.openNodeScope(jjtn000);Token t;
         jj_expentry[i] = jj_lasttokens[i];
       }
       boolean exists = false;
-      for (java.util.Enumeration enumv = jj_expentries.elements(); enumv.hasMoreElements();) {
-        int[] oldentry = (int[])(enumv.nextElement());
+      for (java.util.Enumeration<int[]> enumv = jj_expentries.elements(); enumv.hasMoreElements();) {
+        int[] oldentry = enumv.nextElement();
         if (oldentry.length == jj_expentry.length) {
           exists = true;
           for (int i = 0; i < jj_expentry.length; i++) {
@@ -1236,7 +1236,7 @@ jjtree.openNodeScope(jjtn000);Token t;
     jj_add_error_token(0, 0);
     int[][] exptokseq = new int[jj_expentries.size()][];
     for (int i = 0; i < jj_expentries.size(); i++) {
-      exptokseq[i] = (int[])jj_expentries.elementAt(i);
+      exptokseq[i] = jj_expentries.elementAt(i);
     }
     return new ParseException(token, exptokseq, tokenImage);
   }

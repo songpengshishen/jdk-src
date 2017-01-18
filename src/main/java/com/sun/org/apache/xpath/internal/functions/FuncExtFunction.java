@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -84,7 +84,7 @@ public class FuncExtFunction extends Function
    * to be offset to the current stack frame).
    * NEEDSDOC @param globalsSize
    */
-  public void fixupVariables(Vector vars, int globalsSize)
+  public void fixupVariables(java.util.Vector vars, int globalsSize)
   {
 
     if (null != m_argVec)
@@ -164,8 +164,8 @@ public class FuncExtFunction extends Function
    *                  ExtensionsTable#extFunction in order to allow caching
    *                  of the method.
    */
-  public FuncExtFunction(String namespace,
-                         String extensionName, Object methodKey)
+  public FuncExtFunction(java.lang.String namespace,
+                         java.lang.String extensionName, Object methodKey)
   {
     //try{throw new Exception("FuncExtFunction() " + namespace + " " + extensionName);} catch (Exception e){e.printStackTrace();}
     m_namespace = namespace;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -77,7 +77,7 @@ public interface XPointerProcessor {
      *
      */
     public boolean resolveXPointer(QName element, XMLAttributes attributes,
-                                   Augmentations augs, int event) throws XNIException;
+            Augmentations augs, int event) throws XNIException;
 
     /**
      * Returns true if the XPointer expression resolves to the current resource fragment

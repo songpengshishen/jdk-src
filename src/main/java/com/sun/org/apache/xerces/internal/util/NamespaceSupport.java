@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -144,7 +144,7 @@ public class NamespaceSupport implements NamespaceContext {
     //
 
     /**
-     * @see NamespaceContext#reset()
+     * @see com.sun.org.apache.xerces.internal.xni.NamespaceContext#reset()
      */
     public void reset() {
 
@@ -167,7 +167,7 @@ public class NamespaceSupport implements NamespaceContext {
 
 
     /**
-     * @see NamespaceContext#pushContext()
+     * @see com.sun.org.apache.xerces.internal.xni.NamespaceContext#pushContext()
      */
     public void pushContext() {
 
@@ -185,7 +185,7 @@ public class NamespaceSupport implements NamespaceContext {
 
 
     /**
-     * @see NamespaceContext#popContext()
+     * @see com.sun.org.apache.xerces.internal.xni.NamespaceContext#popContext()
      */
     public void popContext() {
         fNamespaceSize = fContext[fCurrentContext--];
@@ -193,7 +193,7 @@ public class NamespaceSupport implements NamespaceContext {
     } // popContext()
 
     /**
-     * @see NamespaceContext#declarePrefix(String, String)
+     * @see com.sun.org.apache.xerces.internal.xni.NamespaceContext#declarePrefix(String, String)
      */
     public boolean declarePrefix(String prefix, String uri) {
         // ignore "xml" and "xmlns" prefixes
@@ -231,7 +231,7 @@ public class NamespaceSupport implements NamespaceContext {
     } // declarePrefix(String,String):boolean
 
     /**
-     * @see NamespaceContext#getURI(String)
+     * @see com.sun.org.apache.xerces.internal.xni.NamespaceContext#getURI(String)
      */
     public String getURI(String prefix) {
 
@@ -249,7 +249,7 @@ public class NamespaceSupport implements NamespaceContext {
 
 
     /**
-     * @see NamespaceContext#getPrefix(String)
+     * @see com.sun.org.apache.xerces.internal.xni.NamespaceContext#getPrefix(String)
      */
     public String getPrefix(String uri) {
 
@@ -267,14 +267,14 @@ public class NamespaceSupport implements NamespaceContext {
     } // getPrefix(String):String
 
     /**
-     * @see NamespaceContext#getDeclaredPrefixCount()
+     * @see com.sun.org.apache.xerces.internal.xni.NamespaceContext#getDeclaredPrefixCount()
      */
     public int getDeclaredPrefixCount() {
         return (fNamespaceSize - fContext[fCurrentContext]) / 2;
     } // getDeclaredPrefixCount():int
 
     /**
-     * @see NamespaceContext#getDeclaredPrefixAt(int)
+     * @see com.sun.org.apache.xerces.internal.xni.NamespaceContext#getDeclaredPrefixAt(int)
      */
     public String getDeclaredPrefixAt(int index) {
         return fNamespace[fContext[fCurrentContext] + index * 2];
@@ -305,7 +305,7 @@ public class NamespaceSupport implements NamespaceContext {
         return new IteratorPrefixes(fPrefixes, count);
     }//getPrefixes
     /**
-     * @see NamespaceContext#getAllPrefixes()
+     * @see com.sun.org.apache.xerces.internal.xni.NamespaceContext#getAllPrefixes()
      */
     public Enumeration getAllPrefixes() {
         int count = 0;
@@ -406,14 +406,14 @@ public class NamespaceSupport implements NamespaceContext {
         }
 
         /**
-         * @see Enumeration#hasMoreElements()
+         * @see java.util.Enumeration#hasMoreElements()
          */
         public boolean hasNext() {
             return (counter < size);
         }
 
         /**
-         * @see Enumeration#nextElement()
+         * @see java.util.Enumeration#nextElement()
          */
         public Object next() {
             if (counter< size){
@@ -452,14 +452,14 @@ public class NamespaceSupport implements NamespaceContext {
         }
 
         /**
-         * @see Enumeration#hasMoreElements()
+         * @see java.util.Enumeration#hasMoreElements()
          */
         public boolean hasMoreElements() {
             return (counter< size);
         }
 
         /**
-         * @see Enumeration#nextElement()
+         * @see java.util.Enumeration#nextElement()
          */
         public Object nextElement() {
             if (counter< size){

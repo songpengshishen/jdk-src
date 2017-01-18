@@ -9,14 +9,11 @@ package com.sun.jmx.snmp.daemon;
 
 // java imports
 //
-import java.util.Vector;
-import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.Stack;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.io.InterruptedIOException;
 
 // jmx imports
 //
@@ -24,7 +21,6 @@ import static com.sun.jmx.defaults.JmxProperties.SNMP_ADAPTOR_LOGGER;
 import com.sun.jmx.snmp.SnmpDefinitions;
 import com.sun.jmx.snmp.SnmpStatusException;
 import com.sun.jmx.snmp.SnmpVarBindList;
-import com.sun.jmx.snmp.SnmpScopedPduRequest;
 
 /**
  * This class is used for sending INFORM REQUESTS from an agent to a manager.
@@ -59,13 +55,13 @@ class SnmpSession implements SnmpDefinitions, Runnable {
      * This table maintains the list of inform requests.
      */
     private transient Hashtable<SnmpInformRequest, SnmpInformRequest> informRequestList =
-            new Hashtable<SnmpInformRequest, SnmpInformRequest>();
+            new Hashtable<>();
     /**
      * This table maintains the list of inform responses.
      * A FIFO queue is needed here.
      */
     private transient Stack<SnmpInformRequest> informRespq =
-            new Stack<SnmpInformRequest>();
+            new Stack<>();
     /**
      * The dispatcher that will service all inform responses to inform requests generated
      * using this session object. An SnmpSession object creates one or more inform requests.
@@ -240,7 +236,6 @@ class SnmpSession implements SnmpDefinitions, Runnable {
             }
         }
         resetSyncMode() ;
-        return ;
     }
 
     /**
@@ -248,6 +243,7 @@ class SnmpSession implements SnmpDefinitions, Runnable {
      * which goes in an endless-loop and waits for servicing inform requests
      * which received a reply from the manager.
      */
+    @Override
     public void run() {
         myThread = Thread.currentThread();
         myThread.setPriority(Thread.NORM_PRIORITY);
@@ -296,7 +292,7 @@ class SnmpSession implements SnmpDefinitions, Runnable {
                     SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSession.class.getName(),
                         "processResponse", "Out of memory error in session thread", ome);
                 }
-                Thread.currentThread().yield();
+                Thread.yield();
                 continue ;   // re-process the request.
             }
         }
@@ -350,10 +346,10 @@ class SnmpSession implements SnmpDefinitions, Runnable {
             isBeingCancelled = true;
 
             list = new SnmpInformRequest[informRequestList.size()];
-            java.util.Iterator it = informRequestList.values().iterator();
+            java.util.Iterator<SnmpInformRequest> it = informRequestList.values().iterator();
             int i = 0;
             while(it.hasNext()) {
-                SnmpInformRequest req = (SnmpInformRequest)it.next();
+                SnmpInformRequest req = it.next();
                 list[i++] = req;
                 it.remove();
             }
@@ -384,7 +380,6 @@ class SnmpSession implements SnmpDefinitions, Runnable {
                     "addResponse", "Adaptor not ONLINE or session thread dead, so inform response is dropped..." + reqc.getRequestId());
             }
         }
-        return ;
     }
 
     private synchronized SnmpInformRequest nextResponse() {
@@ -457,7 +452,8 @@ class SnmpSession implements SnmpDefinitions, Runnable {
      * <P>Removes all the requests for this SNMP session, closes the socket and
      * sets all the references to the <CODE>SnmpSession</CODE> object to <CODE>null</CODE>.
      */
-    public void finalize() {
+    @Override
+    protected void finalize() {
 
         if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
             SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSession.class.getName(),

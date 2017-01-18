@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1999, 2003, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -130,16 +130,17 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      *
      * @param c The number of managers.
      *
-     * @exception IllegalStateException This method has been invoked
+     * @exception java.lang.IllegalStateException This method has been invoked
      * while the communicator was <CODE>ONLINE</CODE> or <CODE>STARTING</CODE>.
      */
-    public void setMaxActiveClientCount(int c) throws IllegalStateException;
+    public void setMaxActiveClientCount(int c) throws java.lang.IllegalStateException;
 
     /**
      * Returns the protocol of this SNMP protocol adaptor.
      *
      * @return The string "snmp".
      */
+    @Override
     public String getProtocol();
 
     /**
@@ -155,10 +156,10 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      *
      * @param s The buffer size.
      *
-     * @exception IllegalStateException This method has been invoked
+     * @exception java.lang.IllegalStateException This method has been invoked
      * while the communicator was <CODE>ONLINE</CODE> or <CODE>STARTING</CODE>.
      */
-    public void setBufferSize(Integer s) throws IllegalStateException;
+    public void setBufferSize(Integer s) throws java.lang.IllegalStateException;
 
     /**
      * Gets the number of times to try sending an inform request before giving up.
@@ -203,7 +204,7 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * Set the user-data factory of this SNMP protocol adaptor.
      *
      * @param factory The factory object (null means no factory).
-     * @see SnmpUserDataFactory
+     * @see com.sun.jmx.snmp.agent.SnmpUserDataFactory
      */
     public void setUserDataFactory(SnmpUserDataFactory factory);
 
@@ -211,7 +212,7 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * Get the user-data factory associated with this SNMP protocol adaptor.
      *
      * @return The factory object (null means no factory).
-     * @see SnmpUserDataFactory
+     * @see com.sun.jmx.snmp.agent.SnmpUserDataFactory
      */
     public SnmpUserDataFactory getUserDataFactory();
 
@@ -424,8 +425,8 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
 
     /**
      * Adds a new MIB in the SNMP MIB handler.
-     * This method is called automatically by {@link SnmpMibAgent#setSnmpAdaptor(SnmpMibHandler)}
-     * and {@link SnmpMibAgent#setSnmpAdaptorName(ObjectName)}
+     * This method is called automatically by {@link com.sun.jmx.snmp.agent.SnmpMibAgent#setSnmpAdaptor(SnmpMibHandler)}
+     * and {@link com.sun.jmx.snmp.agent.SnmpMibAgent#setSnmpAdaptorName(ObjectName)}
      * and should not be called directly.
      *
      * @param mib The MIB to add.
@@ -452,8 +453,8 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
 
     /**
      * Removes the specified MIB from the SNMP protocol adaptor.
-     * This method is called automatically by {@link SnmpMibAgent#setSnmpAdaptor(SnmpMibHandler)}
-     * and {@link SnmpMibAgent#setSnmpAdaptorName(ObjectName)}
+     * This method is called automatically by {@link com.sun.jmx.snmp.agent.SnmpMibAgent#setSnmpAdaptor(SnmpMibHandler)}
+     * and {@link com.sun.jmx.snmp.agent.SnmpMibAgent#setSnmpAdaptorName(ObjectName)}
      * and should not be called directly.
      *
      * @param mib The MIB to be removed.
@@ -472,7 +473,7 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * @param specific The specific number of the trap.
      * @param varBindList A list of <CODE>SnmpVarBind</CODE> instances or null.
      *
-     * @exception IOException An I/O error occured while sending the trap.
+     * @exception IOException An I/O error occurred while sending the trap.
      * @exception SnmpStatusException If the trap exceeds the limit defined by <CODE>bufferSize</CODE>.
      */
     public void snmpV1Trap(int generic, int specific, SnmpVarBindList varBindList) throws IOException, SnmpStatusException;
@@ -562,7 +563,7 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * @param trapOid The OID identifying the trap.
      * @param varBindList A list of <CODE>SnmpVarBind</CODE> instances or null.
      *
-     * @exception IOException An I/O error occured while sending the trap.
+     * @exception IOException An I/O error occurred while sending the trap.
      * @exception SnmpStatusException If the trap exceeds the limit defined by <CODE>bufferSize</CODE>.
      */
     public void snmpV2Trap(SnmpOid trapOid, SnmpVarBindList varBindList) throws IOException, SnmpStatusException;
@@ -629,14 +630,15 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * @param trapOid The OID identifying the trap.
      * @param varBindList A list of <CODE>SnmpVarBind</CODE> instances or null.
      *
-     * @return A vector of {@link SnmpInformRequest} objects.
+     * @return A vector of {@link com.sun.jmx.snmp.daemon.SnmpInformRequest} objects.
      * <P>If there is no destination host for this inform request, the returned vector will be empty.
      *
      * @exception IllegalStateException  This method has been invoked while the SNMP adaptor server was not active.
      * @exception IOException An I/O error occurred while sending the inform request.
      * @exception SnmpStatusException If the inform request exceeds the limit defined by <CODE>bufferSize</CODE>.
      */
-    public Vector snmpInformRequest(SnmpInformHandler cb, SnmpOid trapOid, SnmpVarBindList varBindList)
+    public Vector<?> snmpInformRequest(SnmpInformHandler cb, SnmpOid trapOid,
+            SnmpVarBindList varBindList)
         throws IllegalStateException, IOException, SnmpStatusException;
 
     /**

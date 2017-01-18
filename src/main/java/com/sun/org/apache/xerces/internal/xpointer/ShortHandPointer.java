@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -63,7 +63,7 @@ class ShortHandPointer implements XPointerPart {
     /**
      * The XPointerProcessor takes care of this.  Simply set the ShortHand Pointer here.
      *
-     * @see XPointerPart#parseXPointer(String)
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerPart#parseXPointer(java.lang.String)
      */
     public void parseXPointer(String part) throws XNIException {
         fShortHandPointer = part;
@@ -76,7 +76,7 @@ class ShortHandPointer implements XPointerPart {
      * Section 3.2 of the XPointer Framework Recommendation.
      * Note that in the current implementation only supports DTD determined ID's.
      *
-     * @see XPointerPart#resolveXPointer(QName, XMLAttributes, Augmentations, int event)
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerPart#resolveXPointer(com.sun.org.apache.xerces.internal.xni.QName, com.sun.org.apache.xerces.internal.xni.XMLAttributes, com.sun.org.apache.xerces.internal.xni.Augmentations, int event)
      */
     int fMatchingChildCount = 0;
     public boolean resolveXPointer(QName element, XMLAttributes attributes,
@@ -250,7 +250,7 @@ class ShortHandPointer implements XPointerPart {
 
     /**
      *
-     * @see XPointerPart#isFragmentResolved()
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerPart#isFragmentResolved()
      */
     public boolean isFragmentResolved() {
         return fIsFragmentResolved;
@@ -258,7 +258,7 @@ class ShortHandPointer implements XPointerPart {
 
     /**
      *
-     * @see XPointerPart#isChildFragmentResolved()
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerPart#isChildFragmentResolved()
      */
     public boolean isChildFragmentResolved() {
         return fIsFragmentResolved & ( fMatchingChildCount >  0);
@@ -267,28 +267,28 @@ class ShortHandPointer implements XPointerPart {
     /**
      * Returns the name of the ShortHand pointer
      *
-     * @see XPointerPart#getSchemeName()
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerPart#getSchemeName()
      */
     public String getSchemeName() {
         return fShortHandPointer;
     }
 
     /**
-     * @see XPointerPart#getSchemeData()
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerPart#getSchemeData()
      */
     public String getSchemeData() {
         return null;
     }
 
     /**
-     * @see XPointerPart#setSchemeName(String)
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerPart#setSchemeName(java.lang.String)
      */
     public void setSchemeName(String schemeName) {
         fShortHandPointer = schemeName;
     }
 
     /**
-     * @see XPointerPart#setSchemeData(String)
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerPart#setSchemeData(java.lang.String)
      */
     public void setSchemeData(String schemeData) {
         // NA

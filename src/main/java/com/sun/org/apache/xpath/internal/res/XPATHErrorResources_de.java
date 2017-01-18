@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -16,9 +16,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/*
- * $Id: XPATHErrorResources_de.java /st_wptg_1.7.0.79.0jdk/1 2015/01/23 11:23:27 gmolloy Exp $
  */
 package com.sun.org.apache.xpath.internal.res;
 
@@ -486,7 +483,7 @@ public static final String ER_IGNORABLE_WHITESPACE_NOT_HANDLED =
      "Fehler aufgetreten."},
 
   { ER_ILLEGAL_VARIABLE_REFERENCE,
-      "VariableReference au\u00DFerhalb des Kontextes oder ohne Definition f\u00FCr Variable angegeben. Name = {0}"},
+      "VariableReference au\u00DFerhalb des Kontexts oder ohne Definition f\u00FCr Variable angegeben. Name = {0}"},
 
   { ER_AXES_NOT_ALLOWED,
       "Nur \"child::\"- und \"attribute::\"-Achsen sind in Vergleichsmustern zul\u00E4ssig. Betreffende Achsen = {0}"},
@@ -625,10 +622,10 @@ public static final String ER_IGNORABLE_WHITESPACE_NOT_HANDLED =
        "NodeSet kann nicht zu einem vorherigen Knoten iterieren."},
 
   { ER_NODESETDTM_CANNOT_INDEX,
-       "NodeSetDTM kann keine Indizierungs- oder Z\u00E4hlfunktionen ausf\u00FChren."},
+       "NodeSetDTM kann keine Indexierungs- oder Z\u00E4hlfunktionen ausf\u00FChren."},
 
   { ER_NODESET_CANNOT_INDEX,
-       "NodeSet kann keine Indizierungs- oder Z\u00E4hlfunktionen ausf\u00FChren."},
+       "NodeSet kann keine Indexierungs- oder Z\u00E4hlfunktionen ausf\u00FChren."},
 
   { ER_CANNOT_CALL_SETSHOULDCACHENODE,
        "setShouldCacheNodes kann nicht aufgerufen werden, nachdem nextNode aufgerufen wurde."},
@@ -858,7 +855,7 @@ public static final String ER_IGNORABLE_WHITESPACE_NOT_HANDLED =
       "Option \"-E\" nicht unterst\u00FCtzt f\u00FCr DTM-Parser"},
 
   { WG_ILLEGAL_VARIABLE_REFERENCE,
-      "VariableReference au\u00DFerhalb des Kontextes oder ohne Definition f\u00FCr Variable angegeben. Name = {0}"},
+      "VariableReference au\u00DFerhalb des Kontexts oder ohne Definition f\u00FCr Variable angegeben. Name = {0}"},
 
   { WG_UNSUPPORTED_ENCODING,
      "Nicht unterst\u00FCtzte Codierung: {0}"},

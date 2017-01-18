@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -38,7 +38,7 @@ import org.w3c.dom.DOMException;
 /**
  * This class implements an optimized iterator for
  * descendant, descendant-or-self, or "//foo" patterns.
- * @see LocPathIterator
+ * @see com.sun.org.apache.xpath.internal.axes.LocPathIterator
  * @xsl.usage advanced
  */
 public class DescendantIterator extends LocPathIterator

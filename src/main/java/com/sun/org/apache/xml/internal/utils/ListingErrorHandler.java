@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -95,9 +95,9 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener
      *
      * @param exception The warning information encapsulated in a
      *                  SAX parse exception.
-     * @exception SAXException Any SAX exception, possibly
+     * @exception org.xml.sax.SAXException Any SAX exception, possibly
      * wrapping another exception; only if setThrowOnWarning is true.
-     * @see SAXParseException
+     * @see org.xml.sax.SAXParseException
      */
     public void warning (SAXParseException exception)
         throws SAXException
@@ -134,9 +134,9 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener
      *
      * @param exception The error information encapsulated in a
      *                  SAX parse exception.
-     * @exception SAXException Any SAX exception, possibly
+     * @exception org.xml.sax.SAXException Any SAX exception, possibly
      * wrapping another exception; only if setThrowOnErroris true.
-     * @see SAXParseException
+     * @see org.xml.sax.SAXParseException
      */
     public void error (SAXParseException exception)
         throws SAXException
@@ -166,9 +166,9 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener
      *
      * @param exception The error information encapsulated in a
      *                  SAX parse exception.
-     * @exception SAXException Any SAX exception, possibly
+     * @exception org.xml.sax.SAXException Any SAX exception, possibly
      * wrapping another exception; only if setThrowOnFatalError is true.
-     * @see SAXParseException
+     * @see org.xml.sax.SAXParseException
      */
     public void fatalError (SAXParseException exception)
         throws SAXException
@@ -198,10 +198,10 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener
      * @param exception The warning information encapsulated in a
      *                  transformer exception.
      *
-     * @throws TransformerException  only if
+     * @throws javax.xml.transform.TransformerException  only if
      * setThrowOnWarning is true.
      *
-     * @see TransformerException
+     * @see javax.xml.transform.TransformerException
      */
     public void warning(TransformerException exception)
         throws TransformerException
@@ -225,10 +225,10 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener
      * @param exception The error information encapsulated in a
      *                  transformer exception.
      *
-     * @throws TransformerException  only if
+     * @throws javax.xml.transform.TransformerException  only if
      * setThrowOnError is true.
      *
-     * @see TransformerException
+     * @see javax.xml.transform.TransformerException
      */
     public void error(TransformerException exception)
         throws TransformerException
@@ -253,10 +253,10 @@ public class ListingErrorHandler implements ErrorHandler, ErrorListener
      * @param exception The error information encapsulated in a
      *                  transformer exception.
      *
-     * @throws TransformerException  only if
+     * @throws javax.xml.transform.TransformerException  only if
      * setThrowOnError is true.
      *
-     * @see TransformerException
+     * @see javax.xml.transform.TransformerException
      */
     public void fatalError(TransformerException exception)
         throws TransformerException

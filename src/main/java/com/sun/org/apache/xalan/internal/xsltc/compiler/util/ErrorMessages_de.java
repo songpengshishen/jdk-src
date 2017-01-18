@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -16,9 +16,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/*
- * $Id: ErrorMessages_de.java /st_wptg_1.7.0.79.0jdk/1 2015/01/23 11:23:27 gmolloy Exp $
  */
 
 package com.sun.org.apache.xalan.internal.xsltc.compiler.util;
@@ -599,6 +596,9 @@ public class ErrorMessages_de extends ListResourceBundle {
          */
         {ErrorMsg.JAXP_INVALID_ATTR_ERR,
         "TransformerFactory erkennt Attribut \"{0}\" nicht."},
+
+        {ErrorMsg.JAXP_INVALID_ATTR_VALUE_ERR,
+        "Falscher Wert f\u00FCr Attribut \"{0}\" angegeben."},
 
         /*
          * Note to translators:  "setResult()" and "startDocument()" are Java

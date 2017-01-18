@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -95,6 +95,15 @@ public interface XMLDTDScanner
      */
     public boolean scanDTDExternalSubset(boolean complete)
         throws IOException, XNIException;
+
+    /**
+     * Skip the DTD if javax.xml.stream.supportDTD is false.
+     * @param supportDTD The value of the property javax.xml.stream.supportDTD.
+     * @return true if DTD is skipped, false otherwise.
+     * @throws java.io.IOException if i/o error occurs
+     */
+    public boolean skipDTD(boolean supportDTD)
+        throws IOException;
 
     public void setLimitAnalyzer(XMLLimitAnalyzer limitAnalyzer);
 } // interface XMLDTDScanner

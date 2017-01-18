@@ -1,32 +1,34 @@
 /*
- * Copyright (c) 2013 Oracle and/or its affiliates. All rights reserved.
- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ * Copyright (c) 2013, 2016, Oracle and/or its affiliates. All rights reserved.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
- * This code is free software; you can redistribute it and/or modify it
- * under the terms of the GNU General Public License version 2 only, as
- * published by the Free Software Foundation.  Oracle designates this
- * particular file as subject to the "Classpath" exception as provided
- * by Oracle in the LICENSE file that accompanied this code.
  *
- * This code is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
- * version 2 for more details (a copy is included in the LICENSE file that
- * accompanied this code).
  *
- * You should have received a copy of the GNU General Public License version
- * 2 along with this work; if not, write to the Free Software Foundation,
- * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  *
- * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
- * or visit www.oracle.com if you need additional information or have any
- * questions.
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  */
 
 package com.sun.org.apache.xerces.internal.utils;
 
 import com.sun.org.apache.xerces.internal.impl.Constants;
 import com.sun.org.apache.xerces.internal.util.SecurityManager;
+import java.util.concurrent.CopyOnWriteArrayList;
+import org.xml.sax.SAXException;
 
 /**
  * This class manages standard and implementation-specific limitations.
@@ -61,20 +63,33 @@ public final class XMLSecurityManager {
      */
     public static enum Limit {
 
-        ENTITY_EXPANSION_LIMIT(Constants.JDK_ENTITY_EXPANSION_LIMIT, Constants.SP_ENTITY_EXPANSION_LIMIT, 0, 64000),
-        MAX_OCCUR_NODE_LIMIT(Constants.JDK_MAX_OCCUR_LIMIT, Constants.SP_MAX_OCCUR_LIMIT, 0, 5000),
-        ELEMENT_ATTRIBUTE_LIMIT(Constants.JDK_ELEMENT_ATTRIBUTE_LIMIT, Constants.SP_ELEMENT_ATTRIBUTE_LIMIT, 0, 10000),
-        TOTAL_ENTITY_SIZE_LIMIT(Constants.JDK_TOTAL_ENTITY_SIZE_LIMIT, Constants.SP_TOTAL_ENTITY_SIZE_LIMIT, 0, 50000000),
-        GENEAL_ENTITY_SIZE_LIMIT(Constants.JDK_GENEAL_ENTITY_SIZE_LIMIT, Constants.SP_GENEAL_ENTITY_SIZE_LIMIT, 0, 0),
-        PARAMETER_ENTITY_SIZE_LIMIT(Constants.JDK_PARAMETER_ENTITY_SIZE_LIMIT, Constants.SP_PARAMETER_ENTITY_SIZE_LIMIT, 0, 1000000),
-        MAX_ELEMENT_DEPTH_LIMIT(Constants.JDK_MAX_ELEMENT_DEPTH, Constants.SP_MAX_ELEMENT_DEPTH, 0, 0);
+        ENTITY_EXPANSION_LIMIT("EntityExpansionLimit",
+                Constants.JDK_ENTITY_EXPANSION_LIMIT, Constants.SP_ENTITY_EXPANSION_LIMIT, 0, 64000),
+        MAX_OCCUR_NODE_LIMIT("MaxOccurLimit",
+                Constants.JDK_MAX_OCCUR_LIMIT, Constants.SP_MAX_OCCUR_LIMIT, 0, 5000),
+        ELEMENT_ATTRIBUTE_LIMIT("ElementAttributeLimit",
+                Constants.JDK_ELEMENT_ATTRIBUTE_LIMIT, Constants.SP_ELEMENT_ATTRIBUTE_LIMIT, 0, 10000),
+        TOTAL_ENTITY_SIZE_LIMIT("TotalEntitySizeLimit",
+                Constants.JDK_TOTAL_ENTITY_SIZE_LIMIT, Constants.SP_TOTAL_ENTITY_SIZE_LIMIT, 0, 50000000),
+        GENERAL_ENTITY_SIZE_LIMIT("MaxEntitySizeLimit",
+                Constants.JDK_GENERAL_ENTITY_SIZE_LIMIT, Constants.SP_GENERAL_ENTITY_SIZE_LIMIT, 0, 0),
+        PARAMETER_ENTITY_SIZE_LIMIT("MaxEntitySizeLimit",
+                Constants.JDK_PARAMETER_ENTITY_SIZE_LIMIT, Constants.SP_PARAMETER_ENTITY_SIZE_LIMIT, 0, 1000000),
+        MAX_ELEMENT_DEPTH_LIMIT("MaxElementDepthLimit",
+                Constants.JDK_MAX_ELEMENT_DEPTH, Constants.SP_MAX_ELEMENT_DEPTH, 0, 0),
+        MAX_NAME_LIMIT("MaxXMLNameLimit",
+                Constants.JDK_XML_NAME_LIMIT, Constants.SP_XML_NAME_LIMIT, 1000, 1000),
+        ENTITY_REPLACEMENT_LIMIT("EntityReplacementLimit",
+                Constants.JDK_ENTITY_REPLACEMENT_LIMIT, Constants.SP_ENTITY_REPLACEMENT_LIMIT, 0, 3000000);
 
+        final String key;
         final String apiProperty;
         final String systemProperty;
         final int defaultValue;
         final int secureValue;
 
-        Limit(String apiProperty, String systemProperty, int value, int secureValue) {
+        Limit(String key, String apiProperty, String systemProperty, int value, int secureValue) {
+            this.key = key;
             this.apiProperty = apiProperty;
             this.systemProperty = systemProperty;
             this.defaultValue = value;
@@ -89,6 +104,10 @@ public final class XMLSecurityManager {
             return (propertyName == null) ? false : systemProperty.equals(propertyName);
         }
 
+        public String key() {
+            return key;
+        }
+
         public String apiProperty() {
             return apiProperty;
         }
@@ -97,7 +116,7 @@ public final class XMLSecurityManager {
             return systemProperty;
         }
 
-        int defaultValue() {
+        public int defaultValue() {
             return defaultValue;
         }
 
@@ -152,7 +171,7 @@ public final class XMLSecurityManager {
     /**
      * Index of the special entityCountInfo property
      */
-    private int indexEntityCountInfo = 10000;
+    private final int indexEntityCountInfo = 10000;
     private String printEntityCountInfo = "";
 
     /**
@@ -433,7 +452,10 @@ public final class XMLSecurityManager {
         if (index == Limit.ELEMENT_ATTRIBUTE_LIMIT.ordinal() ||
                 index == Limit.ENTITY_EXPANSION_LIMIT.ordinal() ||
                 index == Limit.TOTAL_ENTITY_SIZE_LIMIT.ordinal() ||
-                index == Limit.MAX_ELEMENT_DEPTH_LIMIT.ordinal()) {
+                index == Limit.ENTITY_REPLACEMENT_LIMIT.ordinal() ||
+                index == Limit.MAX_ELEMENT_DEPTH_LIMIT.ordinal() ||
+                index == Limit.MAX_NAME_LIMIT.ordinal()
+                ) {
             return (limitAnalyzer.getTotalValue(index) > values[index]);
         } else {
             return (limitAnalyzer.getValue(index) > values[index]);
@@ -477,6 +499,23 @@ public final class XMLSecurityManager {
             }
         }
 
+    }
+
+    // Array list to store printed warnings for each SAX parser used
+    private static final CopyOnWriteArrayList<String> printedWarnings = new CopyOnWriteArrayList<>();
+
+    /**
+     * Prints out warnings if a parser does not support the specified feature/property.
+     *
+     * @param parserClassName the name of the parser class
+     * @param propertyName the property name
+     * @param exception the exception thrown by the parser
+     */
+    public static void printWarning(String parserClassName, String propertyName, SAXException exception) {
+        String key = parserClassName+":"+propertyName;
+        if (printedWarnings.addIfAbsent(key)) {
+            System.err.println( "Warning: "+parserClassName+": "+exception.getMessage());
+        }
     }
 
     /**

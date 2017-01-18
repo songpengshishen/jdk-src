@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -335,8 +335,7 @@ public final class Encodings extends Object
         // and returns it.
         private Properties loadProperties() throws MalformedURLException, IOException {
             Properties props = new Properties();
-            final InputStream is = openEncodingsFileStream();
-            try {
+            try (InputStream is = openEncodingsFileStream()) {
                 if (is != null) {
                     props.load(is);
                 } else {
@@ -346,10 +345,6 @@ public final class Encodings extends Object
                     // always human-friendly... :)
                     // But maybe report/log the resource problem?
                     // Any standard ways to report/log errors (in static context)?
-                }
-            } finally {
-                if (is != null) {
-                    is.close();
                 }
             }
             return props;
@@ -486,9 +481,9 @@ public final class Encodings extends Object
                     e.setValue(canonicals.get(toUpperCaseFast(e.getValue().javaName)));
                 }
 
-            } catch (MalformedURLException mue) {
+            } catch (java.net.MalformedURLException mue) {
                 throw new com.sun.org.apache.xml.internal.serializer.utils.WrappedRuntimeException(mue);
-            } catch (IOException ioe) {
+            } catch (java.io.IOException ioe) {
                 throw new com.sun.org.apache.xml.internal.serializer.utils.WrappedRuntimeException(ioe);
             }
         }

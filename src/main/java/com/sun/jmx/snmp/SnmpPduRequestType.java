@@ -40,7 +40,7 @@ public interface SnmpPduRequestType extends SnmpAckPdu {
     public void setErrorIndex(int i);
     /**
      * Error status setter. Statuses are defined in
-     * {@link SnmpDefinitions SnmpDefinitions}.
+     * {@link com.sun.jmx.snmp.SnmpDefinitions SnmpDefinitions}.
      * @param i Error status.
      */
     public void setErrorStatus(int i);
@@ -53,7 +53,7 @@ public interface SnmpPduRequestType extends SnmpAckPdu {
     public int getErrorIndex();
     /**
      * Error status getter. Statuses are defined in
-     * {@link SnmpDefinitions SnmpDefinitions}.
+     * {@link com.sun.jmx.snmp.SnmpDefinitions SnmpDefinitions}.
      * @return Error status.
      */
     public int getErrorStatus();

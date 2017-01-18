@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005, 2008, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -28,6 +28,8 @@ package com.sun.jmx.mbeanserver;
 import static com.sun.jmx.mbeanserver.Util.*;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.security.AccessController;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -50,13 +52,12 @@ import javax.management.NotCompliantMBeanException;
  * @since 1.6
  */
 class MBeanAnalyzer<M> {
-
     static interface MBeanVisitor<M> {
         public void visitAttribute(String attributeName,
-                                   M getter,
-                                   M setter);
+                M getter,
+                M setter);
         public void visitOperation(String operationName,
-                                   M operation);
+                M operation);
     }
 
     void visit(MBeanVisitor<M> visitor) {
@@ -107,6 +108,10 @@ class MBeanAnalyzer<M> {
         if (!mbeanType.isInterface()) {
             throw new NotCompliantMBeanException("Not an interface: " +
                     mbeanType.getName());
+        } else if (!Modifier.isPublic(mbeanType.getModifiers()) &&
+                   !Introspector.ALLOW_NONPUBLIC_MBEAN) {
+            throw new NotCompliantMBeanException("Interface is not public: " +
+                mbeanType.getName());
         }
 
         try {

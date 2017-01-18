@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -3019,7 +3019,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     }
 
     /**
-     * @see Object#toString()
+     * @see java.lang.Object#toString()
      */
     public String toString() {
         return this.fTargetNamespace+"," +this.fTypeName;

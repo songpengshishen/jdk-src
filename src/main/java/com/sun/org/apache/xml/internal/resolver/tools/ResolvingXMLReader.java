@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 // ResolvingXMLReader.java - An XMLReader that performs catalog resolution
@@ -39,7 +39,7 @@ import com.sun.org.apache.xml.internal.resolver.*;
  * </p>
  *
  * @see CatalogResolver
- * @see XMLReader
+ * @see org.xml.sax.XMLReader
  *
  * @author Norman Walsh
  * <a href="mailto:Norman.Walsh@Sun.COM">Norman.Walsh@Sun.COM</a>

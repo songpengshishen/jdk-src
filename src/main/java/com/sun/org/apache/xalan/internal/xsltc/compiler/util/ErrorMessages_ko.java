@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -16,9 +16,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/*
- * $Id: ErrorMessages_ko.java /st_wptg_1.7.0.79.0jdk/1 2015/01/23 11:34:58 gmolloy Exp $
  */
 
 package com.sun.org.apache.xalan.internal.xsltc.compiler.util;
@@ -303,7 +300,7 @@ public class ErrorMessages_ko extends ListResourceBundle {
          * not recognized.
          */
         {ErrorMsg.ILLEGAL_BINARY_OP_ERR,
-        "\uC774\uC9C4 \uD45C\uD604\uC2DD\uC5D0 \uB300\uD574 \uC54C \uC218 \uC5C6\uB294 \uC5F0\uC0B0\uC790\uC785\uB2C8\uB2E4."},
+        "\uBC14\uC774\uB108\uB9AC \uD45C\uD604\uC2DD\uC5D0 \uB300\uD574 \uC54C \uC218 \uC5C6\uB294 \uC5F0\uC0B0\uC790\uC785\uB2C8\uB2E4."},
 
         /*
          * Note to translators:  This message is produced if a reference to a
@@ -599,6 +596,9 @@ public class ErrorMessages_ko extends ListResourceBundle {
          */
         {ErrorMsg.JAXP_INVALID_ATTR_ERR,
         "TransformerFactory\uC5D0\uC11C ''{0}'' \uC18D\uC131\uC744 \uC778\uC2DD\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4."},
+
+        {ErrorMsg.JAXP_INVALID_ATTR_VALUE_ERR,
+        "''{0}'' \uC18D\uC131\uC5D0 \uB300\uD574 \uC62C\uBC14\uB974\uC9C0 \uC54A\uC740 \uAC12\uC774 \uC9C0\uC815\uB418\uC5C8\uC2B5\uB2C8\uB2E4."},
 
         /*
          * Note to translators:  "setResult()" and "startDocument()" are Java

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -362,7 +362,7 @@ public class ElementNSImpl
                     try {
                         uri = new URI(uri).toString();
                     }
-                    catch (URI.MalformedURIException e) {
+                    catch (com.sun.org.apache.xerces.internal.util.URI.MalformedURIException e) {
                         // This may be a relative URI.
 
                         // Start from the base URI of the parent, or if this node has no parent, the owner node.
@@ -375,7 +375,7 @@ public class ElementNSImpl
                             try {
                                 uri = new URI(new URI(parentBaseURI), uri).toString();
                             }
-                            catch (URI.MalformedURIException ex){
+                            catch (com.sun.org.apache.xerces.internal.util.URI.MalformedURIException ex){
                                 // This should never happen: parent should have checked the URI and returned null if invalid.
                                 return null;
                             }
@@ -398,7 +398,7 @@ public class ElementNSImpl
                 //return valid absolute base URI
                return new URI(parentElementBaseURI).toString();
             }
-            catch (URI.MalformedURIException e){
+            catch (com.sun.org.apache.xerces.internal.util.URI.MalformedURIException e){
                 // REVISIT: what should happen in this case?
                 return null;
             }
@@ -412,7 +412,7 @@ public class ElementNSImpl
                 //return valid absolute base URI
                return new URI(baseURI).toString();
             }
-            catch (URI.MalformedURIException e){
+            catch (com.sun.org.apache.xerces.internal.util.URI.MalformedURIException e){
                 // REVISIT: what should happen in this case?
                 return null;
             }

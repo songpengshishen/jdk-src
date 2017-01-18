@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -22,8 +22,8 @@
  */
 package com.sun.org.apache.xml.internal.serializer.utils;
 
-import com.sun.org.apache.xalan.internal.utils.Objects;
 import java.io.IOException;
+import java.util.Objects;
 
 
 /**

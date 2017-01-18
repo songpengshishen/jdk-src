@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Copyright (c) 2015, Oracle and/or its affiliates. All rights reserved.
  */
 /*
- * Copyright 2000-2002,2004,2005 The Apache Software Foundation.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
  *
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -20,13 +20,14 @@
 
 package com.sun.org.apache.xerces.internal.impl.xpath;
 
-import java.util.Vector;
-
 import com.sun.org.apache.xerces.internal.util.SymbolTable;
-import com.sun.org.apache.xerces.internal.util.XMLSymbols;
 import com.sun.org.apache.xerces.internal.util.XMLChar;
+import com.sun.org.apache.xerces.internal.util.XMLSymbols;
 import com.sun.org.apache.xerces.internal.xni.NamespaceContext;
 import com.sun.org.apache.xerces.internal.xni.QName;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
 
 /**
  * Bare minimum XPath parser.
@@ -149,24 +150,24 @@ public class XPath {
         throws XPathException {
 
         // tokens
-        final Tokens xtokens = new Tokens(fSymbolTable);
+        final XPath.Tokens xtokens = new XPath.Tokens(fSymbolTable);
 
         // scanner
-        Scanner scanner = new Scanner(fSymbolTable) {
-            protected void addToken(Tokens tokens, int token)
+        XPath.Scanner scanner = new XPath.Scanner(fSymbolTable) {
+            protected void addToken(XPath.Tokens tokens, int token)
                 throws XPathException {
                 if (
-                    token == Tokens.EXPRTOKEN_ATSIGN ||
-                    token == Tokens.EXPRTOKEN_AXISNAME_ATTRIBUTE ||
-                    token == Tokens.EXPRTOKEN_NAMETEST_QNAME ||
-                    token == Tokens.EXPRTOKEN_OPERATOR_SLASH ||
-                    token == Tokens.EXPRTOKEN_PERIOD ||
-                    token == Tokens.EXPRTOKEN_NAMETEST_ANY ||
-                    token == Tokens.EXPRTOKEN_NAMETEST_NAMESPACE ||
-                    token == Tokens.EXPRTOKEN_OPERATOR_DOUBLE_SLASH ||
-                    token == Tokens.EXPRTOKEN_OPERATOR_UNION ||
-                    token == Tokens.EXPRTOKEN_AXISNAME_CHILD ||
-                    token == Tokens.EXPRTOKEN_DOUBLE_COLON
+                    token == XPath.Tokens.EXPRTOKEN_ATSIGN ||
+                    token == XPath.Tokens.EXPRTOKEN_AXISNAME_ATTRIBUTE ||
+                    token == XPath.Tokens.EXPRTOKEN_NAMETEST_QNAME ||
+                    token == XPath.Tokens.EXPRTOKEN_OPERATOR_SLASH ||
+                    token == XPath.Tokens.EXPRTOKEN_PERIOD ||
+                    token == XPath.Tokens.EXPRTOKEN_NAMETEST_ANY ||
+                    token == XPath.Tokens.EXPRTOKEN_NAMETEST_NAMESPACE ||
+                    token == XPath.Tokens.EXPRTOKEN_OPERATOR_DOUBLE_SLASH ||
+                    token == XPath.Tokens.EXPRTOKEN_OPERATOR_UNION ||
+                    token == XPath.Tokens.EXPRTOKEN_AXISNAME_CHILD ||
+                    token == XPath.Tokens.EXPRTOKEN_DOUBLE_COLON
                     ) {
                     super.addToken(tokens, token);
                     return;
@@ -199,14 +200,14 @@ public class XPath {
             final int token = xtokens.nextToken();
 
             switch (token) {
-                case  Tokens.EXPRTOKEN_OPERATOR_UNION :{
+                case  XPath.Tokens.EXPRTOKEN_OPERATOR_UNION :{
                     check(!expectingStep);
                     locationPathsVector.addElement(buildLocationPath(stepsVector));
                     expectingStep=true;
                     break;
                 }
 
-                case Tokens.EXPRTOKEN_ATSIGN: {
+                case XPath.Tokens.EXPRTOKEN_ATSIGN: {
                     check(expectingStep);
                     Step step = new Step(
                             new Axis(Axis.ATTRIBUTE),
@@ -215,9 +216,9 @@ public class XPath {
                     expectingStep=false;
                     break;
                 }
-                case Tokens.EXPRTOKEN_NAMETEST_ANY:
-                case Tokens.EXPRTOKEN_NAMETEST_NAMESPACE:
-                case Tokens.EXPRTOKEN_NAMETEST_QNAME: {
+                case XPath.Tokens.EXPRTOKEN_NAMETEST_ANY:
+                case XPath.Tokens.EXPRTOKEN_NAMETEST_NAMESPACE:
+                case XPath.Tokens.EXPRTOKEN_NAMETEST_QNAME: {
                     check(expectingStep);
                     Step step = new Step(
                             new Axis(Axis.CHILD),
@@ -227,7 +228,7 @@ public class XPath {
                     break;
                 }
 
-                case Tokens.EXPRTOKEN_PERIOD: {
+                case XPath.Tokens.EXPRTOKEN_PERIOD: {
                     check(expectingStep);
                     expectingStep=false;
 
@@ -244,7 +245,7 @@ public class XPath {
                         stepsVector.addElement(step);
 
                         if( xtokens.hasMore()
-                         && xtokens.peekToken() == Tokens.EXPRTOKEN_OPERATOR_DOUBLE_SLASH){
+                         && xtokens.peekToken() == XPath.Tokens.EXPRTOKEN_OPERATOR_DOUBLE_SLASH){
                             // consume '//'
                             xtokens.nextToken();
 
@@ -259,22 +260,22 @@ public class XPath {
                     break;
                 }
 
-                case Tokens.EXPRTOKEN_OPERATOR_DOUBLE_SLASH:{
+                case XPath.Tokens.EXPRTOKEN_OPERATOR_DOUBLE_SLASH:{
                     // this cannot appear in arbitrary position.
                     // it is only allowed right after '.' when
                     // '.' is the first token of a location path.
                     throw new XPathException("c-general-xpath");
                 }
-                case Tokens.EXPRTOKEN_OPERATOR_SLASH: {
+                case XPath.Tokens.EXPRTOKEN_OPERATOR_SLASH: {
                     check(!expectingStep);
                     expectingStep=true;
                     break;
                 }
-                case Tokens.EXPRTOKEN_AXISNAME_ATTRIBUTE: {
+                case XPath.Tokens.EXPRTOKEN_AXISNAME_ATTRIBUTE: {
                      check(expectingStep);
                      expectingDoubleColon = true;
 
-                     if (xtokens.nextToken() == Tokens.EXPRTOKEN_DOUBLE_COLON){
+                     if (xtokens.nextToken() == XPath.Tokens.EXPRTOKEN_DOUBLE_COLON){
                          Step step = new Step(
                          new Axis(Axis.ATTRIBUTE),
                                  parseNodeTest(xtokens.nextToken(),xtokens,context));
@@ -284,12 +285,12 @@ public class XPath {
                      }
                      break;
                 }
-                case Tokens.EXPRTOKEN_AXISNAME_CHILD:{
+                case XPath.Tokens.EXPRTOKEN_AXISNAME_CHILD:{
                     check(expectingStep);
                     expectingDoubleColon = true;
                     break;
                 }
-                case Tokens.EXPRTOKEN_DOUBLE_COLON :{
+                case XPath.Tokens.EXPRTOKEN_DOUBLE_COLON :{
                     check(expectingStep);
                     check(expectingDoubleColon);
                     expectingDoubleColon = false;
@@ -323,11 +324,11 @@ public class XPath {
     private NodeTest parseNodeTest( int typeToken, Tokens xtokens, NamespaceContext context )
         throws XPathException {
         switch(typeToken) {
-        case Tokens.EXPRTOKEN_NAMETEST_ANY:
+        case XPath.Tokens.EXPRTOKEN_NAMETEST_ANY:
             return new NodeTest(NodeTest.WILDCARD);
 
-        case Tokens.EXPRTOKEN_NAMETEST_NAMESPACE:
-        case Tokens.EXPRTOKEN_NAMETEST_QNAME:
+        case XPath.Tokens.EXPRTOKEN_NAMETEST_NAMESPACE:
+        case XPath.Tokens.EXPRTOKEN_NAMETEST_QNAME:
             // consume QName token
             String prefix = xtokens.nextTokenAsString();
             String uri = null;
@@ -338,7 +339,7 @@ public class XPath {
                 throw new XPathException("c-general-xpath-ns");
             }
 
-            if (typeToken== Tokens.EXPRTOKEN_NAMETEST_NAMESPACE)
+            if (typeToken==XPath.Tokens.EXPRTOKEN_NAMETEST_NAMESPACE)
                 return new NodeTest(prefix,uri);
 
             String localpart = xtokens.nextTokenAsString();
@@ -858,10 +859,10 @@ public class XPath {
         private SymbolTable fSymbolTable;
 
         // REVISIT: Code something better here. -Ac
-        private java.util.Hashtable fSymbolMapping = new java.util.Hashtable();
+        private Map<String, Integer> fSymbolMapping = new HashMap<>();
 
         // REVISIT: Code something better here. -Ac
-        private java.util.Hashtable fTokenNames = new java.util.Hashtable();
+        private Map<Integer, String> fTokenNames = new HashMap<>();
 
         /**
          * Current position in the token list.
@@ -882,57 +883,57 @@ public class XPath {
                 "self",
             };
             for (int i = 0; i < symbols.length; i++) {
-                fSymbolMapping.put(fSymbolTable.addSymbol(symbols[i]), new Integer(i));
+                fSymbolMapping.put(fSymbolTable.addSymbol(symbols[i]), i);
             }
-            fTokenNames.put(new Integer(EXPRTOKEN_OPEN_PAREN), "EXPRTOKEN_OPEN_PAREN");
-            fTokenNames.put(new Integer(EXPRTOKEN_CLOSE_PAREN), "EXPRTOKEN_CLOSE_PAREN");
-            fTokenNames.put(new Integer(EXPRTOKEN_OPEN_BRACKET), "EXPRTOKEN_OPEN_BRACKET");
-            fTokenNames.put(new Integer(EXPRTOKEN_CLOSE_BRACKET), "EXPRTOKEN_CLOSE_BRACKET");
-            fTokenNames.put(new Integer(EXPRTOKEN_PERIOD), "EXPRTOKEN_PERIOD");
-            fTokenNames.put(new Integer(EXPRTOKEN_DOUBLE_PERIOD), "EXPRTOKEN_DOUBLE_PERIOD");
-            fTokenNames.put(new Integer(EXPRTOKEN_ATSIGN), "EXPRTOKEN_ATSIGN");
-            fTokenNames.put(new Integer(EXPRTOKEN_COMMA), "EXPRTOKEN_COMMA");
-            fTokenNames.put(new Integer(EXPRTOKEN_DOUBLE_COLON), "EXPRTOKEN_DOUBLE_COLON");
-            fTokenNames.put(new Integer(EXPRTOKEN_NAMETEST_ANY), "EXPRTOKEN_NAMETEST_ANY");
-            fTokenNames.put(new Integer(EXPRTOKEN_NAMETEST_NAMESPACE), "EXPRTOKEN_NAMETEST_NAMESPACE");
-            fTokenNames.put(new Integer(EXPRTOKEN_NAMETEST_QNAME), "EXPRTOKEN_NAMETEST_QNAME");
-            fTokenNames.put(new Integer(EXPRTOKEN_NODETYPE_COMMENT), "EXPRTOKEN_NODETYPE_COMMENT");
-            fTokenNames.put(new Integer(EXPRTOKEN_NODETYPE_TEXT), "EXPRTOKEN_NODETYPE_TEXT");
-            fTokenNames.put(new Integer(EXPRTOKEN_NODETYPE_PI), "EXPRTOKEN_NODETYPE_PI");
-            fTokenNames.put(new Integer(EXPRTOKEN_NODETYPE_NODE), "EXPRTOKEN_NODETYPE_NODE");
-            fTokenNames.put(new Integer(EXPRTOKEN_OPERATOR_AND), "EXPRTOKEN_OPERATOR_AND");
-            fTokenNames.put(new Integer(EXPRTOKEN_OPERATOR_OR), "EXPRTOKEN_OPERATOR_OR");
-            fTokenNames.put(new Integer(EXPRTOKEN_OPERATOR_MOD), "EXPRTOKEN_OPERATOR_MOD");
-            fTokenNames.put(new Integer(EXPRTOKEN_OPERATOR_DIV), "EXPRTOKEN_OPERATOR_DIV");
-            fTokenNames.put(new Integer(EXPRTOKEN_OPERATOR_MULT), "EXPRTOKEN_OPERATOR_MULT");
-            fTokenNames.put(new Integer(EXPRTOKEN_OPERATOR_SLASH), "EXPRTOKEN_OPERATOR_SLASH");
-            fTokenNames.put(new Integer(EXPRTOKEN_OPERATOR_DOUBLE_SLASH), "EXPRTOKEN_OPERATOR_DOUBLE_SLASH");
-            fTokenNames.put(new Integer(EXPRTOKEN_OPERATOR_UNION), "EXPRTOKEN_OPERATOR_UNION");
-            fTokenNames.put(new Integer(EXPRTOKEN_OPERATOR_PLUS), "EXPRTOKEN_OPERATOR_PLUS");
-            fTokenNames.put(new Integer(EXPRTOKEN_OPERATOR_MINUS), "EXPRTOKEN_OPERATOR_MINUS");
-            fTokenNames.put(new Integer(EXPRTOKEN_OPERATOR_EQUAL), "EXPRTOKEN_OPERATOR_EQUAL");
-            fTokenNames.put(new Integer(EXPRTOKEN_OPERATOR_NOT_EQUAL), "EXPRTOKEN_OPERATOR_NOT_EQUAL");
-            fTokenNames.put(new Integer(EXPRTOKEN_OPERATOR_LESS), "EXPRTOKEN_OPERATOR_LESS");
-            fTokenNames.put(new Integer(EXPRTOKEN_OPERATOR_LESS_EQUAL), "EXPRTOKEN_OPERATOR_LESS_EQUAL");
-            fTokenNames.put(new Integer(EXPRTOKEN_OPERATOR_GREATER), "EXPRTOKEN_OPERATOR_GREATER");
-            fTokenNames.put(new Integer(EXPRTOKEN_OPERATOR_GREATER_EQUAL), "EXPRTOKEN_OPERATOR_GREATER_EQUAL");
-            fTokenNames.put(new Integer(EXPRTOKEN_FUNCTION_NAME), "EXPRTOKEN_FUNCTION_NAME");
-            fTokenNames.put(new Integer(EXPRTOKEN_AXISNAME_ANCESTOR), "EXPRTOKEN_AXISNAME_ANCESTOR");
-            fTokenNames.put(new Integer(EXPRTOKEN_AXISNAME_ANCESTOR_OR_SELF), "EXPRTOKEN_AXISNAME_ANCESTOR_OR_SELF");
-            fTokenNames.put(new Integer(EXPRTOKEN_AXISNAME_ATTRIBUTE), "EXPRTOKEN_AXISNAME_ATTRIBUTE");
-            fTokenNames.put(new Integer(EXPRTOKEN_AXISNAME_CHILD), "EXPRTOKEN_AXISNAME_CHILD");
-            fTokenNames.put(new Integer(EXPRTOKEN_AXISNAME_DESCENDANT), "EXPRTOKEN_AXISNAME_DESCENDANT");
-            fTokenNames.put(new Integer(EXPRTOKEN_AXISNAME_DESCENDANT_OR_SELF), "EXPRTOKEN_AXISNAME_DESCENDANT_OR_SELF");
-            fTokenNames.put(new Integer(EXPRTOKEN_AXISNAME_FOLLOWING), "EXPRTOKEN_AXISNAME_FOLLOWING");
-            fTokenNames.put(new Integer(EXPRTOKEN_AXISNAME_FOLLOWING_SIBLING), "EXPRTOKEN_AXISNAME_FOLLOWING_SIBLING");
-            fTokenNames.put(new Integer(EXPRTOKEN_AXISNAME_NAMESPACE), "EXPRTOKEN_AXISNAME_NAMESPACE");
-            fTokenNames.put(new Integer(EXPRTOKEN_AXISNAME_PARENT), "EXPRTOKEN_AXISNAME_PARENT");
-            fTokenNames.put(new Integer(EXPRTOKEN_AXISNAME_PRECEDING), "EXPRTOKEN_AXISNAME_PRECEDING");
-            fTokenNames.put(new Integer(EXPRTOKEN_AXISNAME_PRECEDING_SIBLING), "EXPRTOKEN_AXISNAME_PRECEDING_SIBLING");
-            fTokenNames.put(new Integer(EXPRTOKEN_AXISNAME_SELF), "EXPRTOKEN_AXISNAME_SELF");
-            fTokenNames.put(new Integer(EXPRTOKEN_LITERAL), "EXPRTOKEN_LITERAL");
-            fTokenNames.put(new Integer(EXPRTOKEN_NUMBER), "EXPRTOKEN_NUMBER");
-            fTokenNames.put(new Integer(EXPRTOKEN_VARIABLE_REFERENCE), "EXPRTOKEN_VARIABLE_REFERENCE");
+            fTokenNames.put(EXPRTOKEN_OPEN_PAREN, "EXPRTOKEN_OPEN_PAREN");
+            fTokenNames.put(EXPRTOKEN_CLOSE_PAREN, "EXPRTOKEN_CLOSE_PAREN");
+            fTokenNames.put(EXPRTOKEN_OPEN_BRACKET, "EXPRTOKEN_OPEN_BRACKET");
+            fTokenNames.put(EXPRTOKEN_CLOSE_BRACKET, "EXPRTOKEN_CLOSE_BRACKET");
+            fTokenNames.put(EXPRTOKEN_PERIOD, "EXPRTOKEN_PERIOD");
+            fTokenNames.put(EXPRTOKEN_DOUBLE_PERIOD, "EXPRTOKEN_DOUBLE_PERIOD");
+            fTokenNames.put(EXPRTOKEN_ATSIGN, "EXPRTOKEN_ATSIGN");
+            fTokenNames.put(EXPRTOKEN_COMMA, "EXPRTOKEN_COMMA");
+            fTokenNames.put(EXPRTOKEN_DOUBLE_COLON, "EXPRTOKEN_DOUBLE_COLON");
+            fTokenNames.put(EXPRTOKEN_NAMETEST_ANY, "EXPRTOKEN_NAMETEST_ANY");
+            fTokenNames.put(EXPRTOKEN_NAMETEST_NAMESPACE, "EXPRTOKEN_NAMETEST_NAMESPACE");
+            fTokenNames.put(EXPRTOKEN_NAMETEST_QNAME, "EXPRTOKEN_NAMETEST_QNAME");
+            fTokenNames.put(EXPRTOKEN_NODETYPE_COMMENT, "EXPRTOKEN_NODETYPE_COMMENT");
+            fTokenNames.put(EXPRTOKEN_NODETYPE_TEXT, "EXPRTOKEN_NODETYPE_TEXT");
+            fTokenNames.put(EXPRTOKEN_NODETYPE_PI, "EXPRTOKEN_NODETYPE_PI");
+            fTokenNames.put(EXPRTOKEN_NODETYPE_NODE, "EXPRTOKEN_NODETYPE_NODE");
+            fTokenNames.put(EXPRTOKEN_OPERATOR_AND, "EXPRTOKEN_OPERATOR_AND");
+            fTokenNames.put(EXPRTOKEN_OPERATOR_OR, "EXPRTOKEN_OPERATOR_OR");
+            fTokenNames.put(EXPRTOKEN_OPERATOR_MOD, "EXPRTOKEN_OPERATOR_MOD");
+            fTokenNames.put(EXPRTOKEN_OPERATOR_DIV, "EXPRTOKEN_OPERATOR_DIV");
+            fTokenNames.put(EXPRTOKEN_OPERATOR_MULT, "EXPRTOKEN_OPERATOR_MULT");
+            fTokenNames.put(EXPRTOKEN_OPERATOR_SLASH, "EXPRTOKEN_OPERATOR_SLASH");
+            fTokenNames.put(EXPRTOKEN_OPERATOR_DOUBLE_SLASH, "EXPRTOKEN_OPERATOR_DOUBLE_SLASH");
+            fTokenNames.put(EXPRTOKEN_OPERATOR_UNION, "EXPRTOKEN_OPERATOR_UNION");
+            fTokenNames.put(EXPRTOKEN_OPERATOR_PLUS, "EXPRTOKEN_OPERATOR_PLUS");
+            fTokenNames.put(EXPRTOKEN_OPERATOR_MINUS, "EXPRTOKEN_OPERATOR_MINUS");
+            fTokenNames.put(EXPRTOKEN_OPERATOR_EQUAL, "EXPRTOKEN_OPERATOR_EQUAL");
+            fTokenNames.put(EXPRTOKEN_OPERATOR_NOT_EQUAL, "EXPRTOKEN_OPERATOR_NOT_EQUAL");
+            fTokenNames.put(EXPRTOKEN_OPERATOR_LESS, "EXPRTOKEN_OPERATOR_LESS");
+            fTokenNames.put(EXPRTOKEN_OPERATOR_LESS_EQUAL, "EXPRTOKEN_OPERATOR_LESS_EQUAL");
+            fTokenNames.put(EXPRTOKEN_OPERATOR_GREATER, "EXPRTOKEN_OPERATOR_GREATER");
+            fTokenNames.put(EXPRTOKEN_OPERATOR_GREATER_EQUAL, "EXPRTOKEN_OPERATOR_GREATER_EQUAL");
+            fTokenNames.put(EXPRTOKEN_FUNCTION_NAME, "EXPRTOKEN_FUNCTION_NAME");
+            fTokenNames.put(EXPRTOKEN_AXISNAME_ANCESTOR, "EXPRTOKEN_AXISNAME_ANCESTOR");
+            fTokenNames.put(EXPRTOKEN_AXISNAME_ANCESTOR_OR_SELF, "EXPRTOKEN_AXISNAME_ANCESTOR_OR_SELF");
+            fTokenNames.put(EXPRTOKEN_AXISNAME_ATTRIBUTE, "EXPRTOKEN_AXISNAME_ATTRIBUTE");
+            fTokenNames.put(EXPRTOKEN_AXISNAME_CHILD, "EXPRTOKEN_AXISNAME_CHILD");
+            fTokenNames.put(EXPRTOKEN_AXISNAME_DESCENDANT, "EXPRTOKEN_AXISNAME_DESCENDANT");
+            fTokenNames.put(EXPRTOKEN_AXISNAME_DESCENDANT_OR_SELF, "EXPRTOKEN_AXISNAME_DESCENDANT_OR_SELF");
+            fTokenNames.put(EXPRTOKEN_AXISNAME_FOLLOWING, "EXPRTOKEN_AXISNAME_FOLLOWING");
+            fTokenNames.put(EXPRTOKEN_AXISNAME_FOLLOWING_SIBLING, "EXPRTOKEN_AXISNAME_FOLLOWING_SIBLING");
+            fTokenNames.put(EXPRTOKEN_AXISNAME_NAMESPACE, "EXPRTOKEN_AXISNAME_NAMESPACE");
+            fTokenNames.put(EXPRTOKEN_AXISNAME_PARENT, "EXPRTOKEN_AXISNAME_PARENT");
+            fTokenNames.put(EXPRTOKEN_AXISNAME_PRECEDING, "EXPRTOKEN_AXISNAME_PRECEDING");
+            fTokenNames.put(EXPRTOKEN_AXISNAME_PRECEDING_SIBLING, "EXPRTOKEN_AXISNAME_PRECEDING_SIBLING");
+            fTokenNames.put(EXPRTOKEN_AXISNAME_SELF, "EXPRTOKEN_AXISNAME_SELF");
+            fTokenNames.put(EXPRTOKEN_LITERAL, "EXPRTOKEN_LITERAL");
+            fTokenNames.put(EXPRTOKEN_NUMBER, "EXPRTOKEN_NUMBER");
+            fTokenNames.put(EXPRTOKEN_VARIABLE_REFERENCE, "EXPRTOKEN_VARIABLE_REFERENCE");
         }
 
         //
@@ -946,16 +947,21 @@ public class XPath {
 //        }
 //
         public String getTokenString(int token) {
-            return (String)fTokenNames.get(new Integer(token));
+            return fTokenNames.get(token);
         }
 
         public void addToken(String tokenStr) {
-            Integer tokenInt = (Integer)fTokenNames.get(tokenStr);
+            Integer tokenInt = null;
+            for (Map.Entry<Integer, String> entry : fTokenNames.entrySet()) {
+                if (entry.getValue().equals(tokenStr)) {
+                    tokenInt = entry.getKey();
+                }
+            }
             if (tokenInt == null) {
-                tokenInt = new Integer(fTokenNames.size());
+                tokenInt = fTokenNames.size();
                 fTokenNames.put(tokenInt, tokenStr);
             }
-            addToken(tokenInt.intValue());
+            addToken(tokenInt);
         }
 
         public void addToken(int token) {
@@ -1324,7 +1330,7 @@ public class XPath {
          *
          */
         public boolean scanExpr(SymbolTable symbolTable,
-                                Tokens tokens, String data,
+                                XPath.Tokens tokens, String data,
                                 int currentOffset, int endOffset)
             throws XPathException {
 
@@ -1358,28 +1364,28 @@ public class XPath {
                 byte chartype = (ch >= 0x80) ? CHARTYPE_NONASCII : fASCIICharMap[ch];
                 switch (chartype) {
                 case CHARTYPE_OPEN_PAREN:       // '('
-                    addToken(tokens, Tokens.EXPRTOKEN_OPEN_PAREN);
+                    addToken(tokens, XPath.Tokens.EXPRTOKEN_OPEN_PAREN);
                     starIsMultiplyOperator = false;
                     if (++currentOffset == endOffset) {
                         break;
                     }
                     break;
                 case CHARTYPE_CLOSE_PAREN:      // ')'
-                    addToken(tokens, Tokens.EXPRTOKEN_CLOSE_PAREN);
+                    addToken(tokens, XPath.Tokens.EXPRTOKEN_CLOSE_PAREN);
                     starIsMultiplyOperator = true;
                     if (++currentOffset == endOffset) {
                         break;
                     }
                     break;
                 case CHARTYPE_OPEN_BRACKET:     // '['
-                    addToken(tokens, Tokens.EXPRTOKEN_OPEN_BRACKET);
+                    addToken(tokens, XPath.Tokens.EXPRTOKEN_OPEN_BRACKET);
                     starIsMultiplyOperator = false;
                     if (++currentOffset == endOffset) {
                         break;
                     }
                     break;
                 case CHARTYPE_CLOSE_BRACKET:    // ']'
-                    addToken(tokens, Tokens.EXPRTOKEN_CLOSE_BRACKET);
+                    addToken(tokens, XPath.Tokens.EXPRTOKEN_CLOSE_BRACKET);
                     starIsMultiplyOperator = true;
                     if (++currentOffset == endOffset) {
                         break;
@@ -1391,26 +1397,26 @@ public class XPath {
                 //
                 case CHARTYPE_PERIOD:           // '.', '..' or '.' Digits
                     if (currentOffset + 1 == endOffset) {
-                        addToken(tokens, Tokens.EXPRTOKEN_PERIOD);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_PERIOD);
                         starIsMultiplyOperator = true;
                         currentOffset++;
                         break;
                     }
                     ch = data.charAt(currentOffset + 1);
                     if (ch == '.') {            // '..'
-                        addToken(tokens, Tokens.EXPRTOKEN_DOUBLE_PERIOD);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_DOUBLE_PERIOD);
                         starIsMultiplyOperator = true;
                         currentOffset += 2;
                     } else if (ch >= '0' && ch <= '9') {
-                        addToken(tokens, Tokens.EXPRTOKEN_NUMBER);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_NUMBER);
                         starIsMultiplyOperator = true;
                         currentOffset = scanNumber(tokens, data, endOffset, currentOffset/*, encoding*/);
                     } else if (ch == '/') {
-                        addToken(tokens, Tokens.EXPRTOKEN_PERIOD);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_PERIOD);
                         starIsMultiplyOperator = true;
                         currentOffset++;
                     } else if (ch == '|') {
-                        addToken(tokens, Tokens.EXPRTOKEN_PERIOD);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_PERIOD);
                         starIsMultiplyOperator = true;
                         currentOffset++;
                         break;
@@ -1423,7 +1429,7 @@ public class XPath {
                             ch = data.charAt(currentOffset);
                         } while (ch == ' ' || ch == 0x0A || ch == 0x09 || ch == 0x0D);
                         if (currentOffset == endOffset || ch == '|' || ch == '/') {
-                            addToken(tokens, Tokens.EXPRTOKEN_PERIOD);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_PERIOD);
                             starIsMultiplyOperator = true;
                             break;
                         }
@@ -1436,14 +1442,14 @@ public class XPath {
                     }
                     break;
                 case CHARTYPE_ATSIGN:           // '@'
-                    addToken(tokens, Tokens.EXPRTOKEN_ATSIGN);
+                    addToken(tokens, XPath.Tokens.EXPRTOKEN_ATSIGN);
                     starIsMultiplyOperator = false;
                     if (++currentOffset == endOffset) {
                         break;
                     }
                     break;
                 case CHARTYPE_COMMA:            // ','
-                    addToken(tokens, Tokens.EXPRTOKEN_COMMA);
+                    addToken(tokens, XPath.Tokens.EXPRTOKEN_COMMA);
                     starIsMultiplyOperator = false;
                     if (++currentOffset == endOffset) {
                         break;
@@ -1459,7 +1465,7 @@ public class XPath {
                 // System.out.println("abort 1b");
                         return false; // REVISIT
                     }
-                    addToken(tokens, Tokens.EXPRTOKEN_DOUBLE_COLON);
+                    addToken(tokens, XPath.Tokens.EXPRTOKEN_DOUBLE_COLON);
                     starIsMultiplyOperator = false;
                     if (++currentOffset == endOffset) {
                         break;
@@ -1467,45 +1473,45 @@ public class XPath {
                     break;
                 case CHARTYPE_SLASH:            // '/' and '//'
                     if (++currentOffset == endOffset) {
-                        addToken(tokens, Tokens.EXPRTOKEN_OPERATOR_SLASH);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_OPERATOR_SLASH);
                         starIsMultiplyOperator = false;
                         break;
                     }
                     ch = data.charAt(currentOffset);
                     if (ch == '/') { // '//'
-                        addToken(tokens, Tokens.EXPRTOKEN_OPERATOR_DOUBLE_SLASH);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_OPERATOR_DOUBLE_SLASH);
                         starIsMultiplyOperator = false;
                         if (++currentOffset == endOffset) {
                             break;
                         }
                     } else {
-                        addToken(tokens, Tokens.EXPRTOKEN_OPERATOR_SLASH);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_OPERATOR_SLASH);
                         starIsMultiplyOperator = false;
                     }
                     break;
                 case CHARTYPE_UNION:            // '|'
-                    addToken(tokens, Tokens.EXPRTOKEN_OPERATOR_UNION);
+                    addToken(tokens, XPath.Tokens.EXPRTOKEN_OPERATOR_UNION);
                     starIsMultiplyOperator = false;
                     if (++currentOffset == endOffset) {
                         break;
                     }
                     break;
                 case CHARTYPE_PLUS:             // '+'
-                    addToken(tokens, Tokens.EXPRTOKEN_OPERATOR_PLUS);
+                    addToken(tokens, XPath.Tokens.EXPRTOKEN_OPERATOR_PLUS);
                     starIsMultiplyOperator = false;
                     if (++currentOffset == endOffset) {
                         break;
                     }
                     break;
                 case CHARTYPE_MINUS:            // '-'
-                    addToken(tokens, Tokens.EXPRTOKEN_OPERATOR_MINUS);
+                    addToken(tokens, XPath.Tokens.EXPRTOKEN_OPERATOR_MINUS);
                     starIsMultiplyOperator = false;
                     if (++currentOffset == endOffset) {
                         break;
                     }
                     break;
                 case CHARTYPE_EQUAL:            // '='
-                    addToken(tokens, Tokens.EXPRTOKEN_OPERATOR_EQUAL);
+                    addToken(tokens, XPath.Tokens.EXPRTOKEN_OPERATOR_EQUAL);
                     starIsMultiplyOperator = false;
                     if (++currentOffset == endOffset) {
                         break;
@@ -1521,7 +1527,7 @@ public class XPath {
                 // System.out.println("abort 2b");
                         return false; // REVISIT
                     }
-                    addToken(tokens, Tokens.EXPRTOKEN_OPERATOR_NOT_EQUAL);
+                    addToken(tokens, XPath.Tokens.EXPRTOKEN_OPERATOR_NOT_EQUAL);
                     starIsMultiplyOperator = false;
                     if (++currentOffset == endOffset) {
                         break;
@@ -1529,37 +1535,37 @@ public class XPath {
                     break;
                 case CHARTYPE_LESS: // '<' and '<='
                     if (++currentOffset == endOffset) {
-                        addToken(tokens, Tokens.EXPRTOKEN_OPERATOR_LESS);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_OPERATOR_LESS);
                         starIsMultiplyOperator = false;
                         break;
                     }
                     ch = data.charAt(currentOffset);
                     if (ch == '=') { // '<='
-                        addToken(tokens, Tokens.EXPRTOKEN_OPERATOR_LESS_EQUAL);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_OPERATOR_LESS_EQUAL);
                         starIsMultiplyOperator = false;
                         if (++currentOffset == endOffset) {
                             break;
                         }
                     } else {
-                        addToken(tokens, Tokens.EXPRTOKEN_OPERATOR_LESS);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_OPERATOR_LESS);
                         starIsMultiplyOperator = false;
                     }
                     break;
                 case CHARTYPE_GREATER: // '>' and '>='
                     if (++currentOffset == endOffset) {
-                        addToken(tokens, Tokens.EXPRTOKEN_OPERATOR_GREATER);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_OPERATOR_GREATER);
                         starIsMultiplyOperator = false;
                         break;
                     }
                     ch = data.charAt(currentOffset);
                     if (ch == '=') { // '>='
-                        addToken(tokens, Tokens.EXPRTOKEN_OPERATOR_GREATER_EQUAL);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_OPERATOR_GREATER_EQUAL);
                         starIsMultiplyOperator = false;
                         if (++currentOffset == endOffset) {
                             break;
                         }
                     } else {
-                        addToken(tokens, Tokens.EXPRTOKEN_OPERATOR_GREATER);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_OPERATOR_GREATER);
                         starIsMultiplyOperator = false;
                     }
                     break;
@@ -1582,7 +1588,7 @@ public class XPath {
                         ch = data.charAt(currentOffset);
                     }
                     int litLength = currentOffset - litOffset;
-                    addToken(tokens, Tokens.EXPRTOKEN_LITERAL);
+                    addToken(tokens, XPath.Tokens.EXPRTOKEN_LITERAL);
                     starIsMultiplyOperator = true;
                     tokens.addToken(symbolTable.addSymbol(data.substring(litOffset, litOffset + litLength)));
                     if (++currentOffset == endOffset) {
@@ -1594,7 +1600,7 @@ public class XPath {
                 // [31] Digits ::= [0-9]+
                 //
                 case CHARTYPE_DIGIT:
-                    addToken(tokens, Tokens.EXPRTOKEN_NUMBER);
+                    addToken(tokens, XPath.Tokens.EXPRTOKEN_NUMBER);
                     starIsMultiplyOperator = true;
                     currentOffset = scanNumber(tokens, data, endOffset, currentOffset/*, encoding*/);
                     break;
@@ -1641,7 +1647,7 @@ public class XPath {
                         }
                         nameHandle = symbolTable.addSymbol(data.substring(nameOffset, currentOffset));
                     }
-                    addToken(tokens, Tokens.EXPRTOKEN_VARIABLE_REFERENCE);
+                    addToken(tokens, XPath.Tokens.EXPRTOKEN_VARIABLE_REFERENCE);
                     starIsMultiplyOperator = true;
                     tokens.addToken(prefixHandle);
                     tokens.addToken(nameHandle);
@@ -1660,10 +1666,10 @@ public class XPath {
                     // Otherwise, the token must not be recognized as a MultiplyOperator.
                     //
                     if (starIsMultiplyOperator) {
-                        addToken(tokens, Tokens.EXPRTOKEN_OPERATOR_MULT);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_OPERATOR_MULT);
                         starIsMultiplyOperator = false;
                     } else {
-                        addToken(tokens, Tokens.EXPRTOKEN_NAMETEST_ANY);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_NAMETEST_ANY);
                         starIsMultiplyOperator = true;
                     }
                     if (++currentOffset == endOffset) {
@@ -1767,16 +1773,16 @@ public class XPath {
                     //
                     if (starIsMultiplyOperator) {
                         if (nameHandle == fAndSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_OPERATOR_AND);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_OPERATOR_AND);
                             starIsMultiplyOperator = false;
                         } else if (nameHandle == fOrSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_OPERATOR_OR);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_OPERATOR_OR);
                             starIsMultiplyOperator = false;
                         } else if (nameHandle == fModSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_OPERATOR_MOD);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_OPERATOR_MOD);
                             starIsMultiplyOperator = false;
                         } else if (nameHandle == fDivSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_OPERATOR_DIV);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_OPERATOR_DIV);
                             starIsMultiplyOperator = false;
                         } else {
                 // System.out.println("abort 6");
@@ -1797,19 +1803,19 @@ public class XPath {
                     //
                     if (ch == '(' && !isNameTestNCName && !isAxisName) {
                         if (nameHandle == fCommentSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_NODETYPE_COMMENT);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_NODETYPE_COMMENT);
                         } else if (nameHandle == fTextSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_NODETYPE_TEXT);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_NODETYPE_TEXT);
                         } else if (nameHandle == fPISymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_NODETYPE_PI);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_NODETYPE_PI);
                         } else if (nameHandle == fNodeSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_NODETYPE_NODE);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_NODETYPE_NODE);
                         } else {
-                            addToken(tokens, Tokens.EXPRTOKEN_FUNCTION_NAME);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_FUNCTION_NAME);
                             tokens.addToken(prefixHandle);
                             tokens.addToken(nameHandle);
                         }
-                        addToken(tokens, Tokens.EXPRTOKEN_OPEN_PAREN);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_OPEN_PAREN);
                         starIsMultiplyOperator = false;
                         if (++currentOffset == endOffset) {
                             break;
@@ -1824,31 +1830,31 @@ public class XPath {
                         (ch == ':' && currentOffset + 1 < endOffset &&
                          data.charAt(currentOffset + 1) == ':')) {
                         if (nameHandle == fAncestorSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_AXISNAME_ANCESTOR);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_AXISNAME_ANCESTOR);
                         } else if (nameHandle == fAncestorOrSelfSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_AXISNAME_ANCESTOR_OR_SELF);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_AXISNAME_ANCESTOR_OR_SELF);
                         } else if (nameHandle == fAttributeSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_AXISNAME_ATTRIBUTE);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_AXISNAME_ATTRIBUTE);
                         } else if (nameHandle == fChildSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_AXISNAME_CHILD);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_AXISNAME_CHILD);
                         } else if (nameHandle == fDescendantSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_AXISNAME_DESCENDANT);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_AXISNAME_DESCENDANT);
                         } else if (nameHandle == fDescendantOrSelfSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_AXISNAME_DESCENDANT_OR_SELF);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_AXISNAME_DESCENDANT_OR_SELF);
                         } else if (nameHandle == fFollowingSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_AXISNAME_FOLLOWING);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_AXISNAME_FOLLOWING);
                         } else if (nameHandle == fFollowingSiblingSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_AXISNAME_FOLLOWING_SIBLING);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_AXISNAME_FOLLOWING_SIBLING);
                         } else if (nameHandle == fNamespaceSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_AXISNAME_NAMESPACE);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_AXISNAME_NAMESPACE);
                         } else if (nameHandle == fParentSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_AXISNAME_PARENT);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_AXISNAME_PARENT);
                         } else if (nameHandle == fPrecedingSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_AXISNAME_PRECEDING);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_AXISNAME_PRECEDING);
                         } else if (nameHandle == fPrecedingSiblingSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_AXISNAME_PRECEDING_SIBLING);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_AXISNAME_PRECEDING_SIBLING);
                         } else if (nameHandle == fSelfSymbol) {
-                            addToken(tokens, Tokens.EXPRTOKEN_AXISNAME_SELF);
+                            addToken(tokens, XPath.Tokens.EXPRTOKEN_AXISNAME_SELF);
                         } else {
                 // System.out.println("abort 9");
                             return false; // REVISIT
@@ -1857,7 +1863,7 @@ public class XPath {
                 // System.out.println("abort 10");
                             return false; // REVISIT - "NCName:* ::" where "AxisName ::" is required
                         }
-                        addToken(tokens, Tokens.EXPRTOKEN_DOUBLE_COLON);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_DOUBLE_COLON);
                         starIsMultiplyOperator = false;
                         if (!isAxisName) {
                             currentOffset++;
@@ -1872,11 +1878,11 @@ public class XPath {
                     //  FunctionName, or an AxisName.
                     //
                     if (isNameTestNCName) {
-                        addToken(tokens, Tokens.EXPRTOKEN_NAMETEST_NAMESPACE);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_NAMETEST_NAMESPACE);
                         starIsMultiplyOperator = true;
                         tokens.addToken(nameHandle);
                     } else {
-                        addToken(tokens, Tokens.EXPRTOKEN_NAMETEST_QNAME);
+                        addToken(tokens, XPath.Tokens.EXPRTOKEN_NAMETEST_QNAME);
                         starIsMultiplyOperator = true;
                         tokens.addToken(prefixHandle);
                         tokens.addToken(nameHandle);
@@ -1884,7 +1890,7 @@ public class XPath {
                     break;
                 }
             }
-            if (Tokens.DUMP_TOKENS) {
+            if (XPath.Tokens.DUMP_TOKENS) {
                 tokens.dumpTokens();
             }
             return true;
@@ -1939,7 +1945,7 @@ public class XPath {
         // [30] Number ::= Digits ('.' Digits?)? | '.' Digits
         // [31] Digits ::= [0-9]+
         //
-        private int scanNumber(Tokens tokens, String/*byte[]*/ data, int endOffset, int currentOffset/*, EncodingSupport encoding*/) {
+        private int scanNumber(XPath.Tokens tokens, String/*byte[]*/ data, int endOffset, int currentOffset/*, EncodingSupport encoding*/) {
             int ch = data.charAt(currentOffset);
             int whole = 0;
             int part = 0;
@@ -1988,7 +1994,7 @@ public class XPath {
          * XPath expression. This is a convenient way of allowing only
          * a subset of XPath.
          */
-        protected void addToken(Tokens tokens, int token)
+        protected void addToken(XPath.Tokens tokens, int token)
             throws XPathException {
             tokens.addToken(token);
         } // addToken(int)

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -43,8 +43,11 @@ import java.util.List;
  * @author Jonathan Gibbons
  * @since 1.6
  */
+@jdk.Exported
 public interface NewArrayTree extends ExpressionTree {
     Tree getType();
     List<? extends ExpressionTree> getDimensions();
     List<? extends ExpressionTree> getInitializers();
+    List<? extends AnnotationTree> getAnnotations();
+    List<? extends List<? extends AnnotationTree>> getDimAnnotations();
 }

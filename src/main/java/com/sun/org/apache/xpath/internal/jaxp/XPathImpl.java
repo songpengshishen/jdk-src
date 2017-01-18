@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -188,15 +188,15 @@ public class XPathImpl implements javax.xml.xpath.XPath {
 
     private XObject eval(String expression, Object contextItem)
         throws javax.xml.transform.TransformerException {
-        XPath xpath = new XPath( expression,
-            null, prefixResolver, XPath.SELECT );
-        XPathContext xpathSupport = null;
+        com.sun.org.apache.xpath.internal.XPath xpath = new com.sun.org.apache.xpath.internal.XPath( expression,
+            null, prefixResolver, com.sun.org.apache.xpath.internal.XPath.SELECT );
+        com.sun.org.apache.xpath.internal.XPathContext xpathSupport = null;
         if ( functionResolver != null ) {
             JAXPExtensionsProvider jep = new JAXPExtensionsProvider(
                     functionResolver, featureSecureProcessing, featureManager );
-            xpathSupport = new XPathContext( jep );
+            xpathSupport = new com.sun.org.apache.xpath.internal.XPathContext( jep );
         } else {
-            xpathSupport = new XPathContext();
+            xpathSupport = new com.sun.org.apache.xpath.internal.XPathContext();
         }
 
         XObject xobj = null;
@@ -272,7 +272,7 @@ public class XPathImpl implements javax.xml.xpath.XPath {
 
             XObject resultObject = eval( expression, item );
             return getResultAsType( resultObject, returnType );
-        } catch ( NullPointerException npe ) {
+        } catch ( java.lang.NullPointerException npe ) {
             // If VariableResolver returns null Or if we get
             // NullPointerException at this stage for some other reason
             // then we have to reurn XPathException
@@ -389,8 +389,8 @@ public class XPathImpl implements javax.xml.xpath.XPath {
             throw new NullPointerException ( fmsg );
         }
         try {
-            XPath xpath = new XPath (expression, null,
-                    prefixResolver, XPath.SELECT );
+            com.sun.org.apache.xpath.internal.XPath xpath = new XPath (expression, null,
+                    prefixResolver, com.sun.org.apache.xpath.internal.XPath.SELECT );
             // Can have errorListener
             XPathExpressionImpl ximpl = new XPathExpressionImpl (xpath,
                     prefixResolver, functionResolver, variableResolver,

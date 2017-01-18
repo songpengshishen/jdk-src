@@ -33,9 +33,9 @@ package com.sun.jmx.snmp;
  * <P>
  * You will not usually need to use this class, except if you
  * decide to implement your own
- * {@link SnmpPduFactory SnmpPduFactory} object.
+ * {@link com.sun.jmx.snmp.SnmpPduFactory SnmpPduFactory} object.
  * <P>
- * The <CODE>SnmpPduTrap</CODE> extends {@link SnmpPduPacket SnmpPduPacket}
+ * The <CODE>SnmpPduTrap</CODE> extends {@link com.sun.jmx.snmp.SnmpPduPacket SnmpPduPacket}
  * and defines attributes specific to an SNMPv1 trap (see RFC1157).
  *
  * <p><b>This API is a Sun Microsystems internal API  and is subject
@@ -61,7 +61,7 @@ public class SnmpPduTrap extends SnmpPduPacket {
      * Generic trap number.
      * <BR>
      * The possible values are defined in
-     * {@link SnmpDefinitions#trapColdStart SnmpDefinitions}.
+     * {@link com.sun.jmx.snmp.SnmpDefinitions#trapColdStart SnmpDefinitions}.
      * @serial
      */
     public int            genericTrap ;
@@ -83,8 +83,8 @@ public class SnmpPduTrap extends SnmpPduPacket {
     /**
      * Builds a new trap PDU.
      * <BR><CODE>type</CODE> and <CODE>version</CODE> fields are initialized with
-     * {@link SnmpDefinitions#pduV1TrapPdu pduV1TrapPdu}
-     * and {@link SnmpDefinitions#snmpVersionOne snmpVersionOne}.
+     * {@link com.sun.jmx.snmp.SnmpDefinitions#pduV1TrapPdu pduV1TrapPdu}
+     * and {@link com.sun.jmx.snmp.SnmpDefinitions#snmpVersionOne snmpVersionOne}.
      */
     public SnmpPduTrap() {
         type = pduV1TrapPdu ;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -36,6 +36,7 @@ import com.sun.org.apache.xerces.internal.util.FeatureState;
 import com.sun.org.apache.xerces.internal.util.PropertyState;
 import com.sun.org.apache.xerces.internal.util.Status;
 import com.sun.org.apache.xerces.internal.util.SymbolTable;
+import com.sun.org.apache.xerces.internal.utils.XMLSecurityPropertyManager;
 import com.sun.org.apache.xerces.internal.xni.XMLLocator;
 import com.sun.org.apache.xerces.internal.xni.XNIException;
 import com.sun.org.apache.xerces.internal.xni.grammars.XMLGrammarPool;
@@ -157,12 +158,12 @@ public class NonValidatingConfiguration
     protected static final String LOCALE =
         Constants.XERCES_PROPERTY_PREFIX + Constants.LOCALE_PROPERTY;
 
-    /** Property identifier: Security property manager. */
-    protected static final String XML_SECURITY_PROPERTY_MANAGER =
-            Constants.XML_SECURITY_PROPERTY_MANAGER;
+      /** Property identifier: Security property manager. */
+      protected static final String XML_SECURITY_PROPERTY_MANAGER =
+              Constants.XML_SECURITY_PROPERTY_MANAGER;
 
-    /** Property identifier: Security manager. */
-    private static final String SECURITY_MANAGER = Constants.SECURITY_MANAGER;
+     /** Property identifier: Security manager. */
+     private static final String SECURITY_MANAGER = Constants.SECURITY_MANAGER;
 
     // debugging
 
@@ -375,6 +376,8 @@ public class NonValidatingConfiguration
             // do nothing
             // REVISIT: What is the right thing to do? -Ac
         }
+
+        setProperty(XML_SECURITY_PROPERTY_MANAGER, new XMLSecurityPropertyManager());
     } // <init>(SymbolTable,XMLGrammarPool)
 
     //
@@ -548,7 +551,7 @@ public class NonValidatingConfiguration
      * @param source The input source.
      *
      * @exception XNIException Throws exception on XNI error.
-     * @exception IOException Throws exception on i/o error.
+     * @exception java.io.IOException Throws exception on i/o error.
      */
     public void parse(XMLInputSource source) throws XNIException, IOException {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2001, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2001, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -33,11 +33,11 @@ package com.sun.naming.internal;
  */
 
 
-class NamedWeakReference extends java.lang.ref.WeakReference {
+class NamedWeakReference<T> extends java.lang.ref.WeakReference<T> {
 
     private final String name;
 
-    NamedWeakReference(Object referent, String name) {
+    NamedWeakReference(T referent, String name) {
         super(referent);
         this.name = name;
     }

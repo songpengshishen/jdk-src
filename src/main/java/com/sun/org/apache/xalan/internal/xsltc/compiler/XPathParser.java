@@ -18,13 +18,13 @@ import com.sun.org.apache.xalan.internal.xsltc.compiler.util.ErrorMsg;
 
 /** CUP v0.10j generated parser.
   */
-public class XPathParser extends lr_parser {
+public class XPathParser extends com.sun.java_cup.internal.runtime.lr_parser {
 
   /** Default constructor. */
   public XPathParser() {super();}
 
   /** Constructor which sets the default scanner. */
-  public XPathParser(Scanner s) {super(s);}
+  public XPathParser(com.sun.java_cup.internal.runtime.Scanner s) {super(s);}
 
   /** Production table. */
   protected static final short _production_table[][] =
@@ -830,12 +830,12 @@ public class XPathParser extends lr_parser {
     }
 
   /** Invoke a user supplied parse action. */
-  public Symbol do_action(
+  public com.sun.java_cup.internal.runtime.Symbol do_action(
     int                        act_num,
-    lr_parser parser,
-    Stack            stack,
+    com.sun.java_cup.internal.runtime.lr_parser parser,
+    java.util.Stack            stack,
     int                        top)
-    throws Exception
+    throws java.lang.Exception
   {
     /* call code in generated class */
     return action_obj.CUP$XPathParser$do_action(act_num, parser, stack, top);
@@ -1118,15 +1118,15 @@ class CUP$XPathParser$actions {
   }
 
   /** Method with the actual generated action code. */
-  public final Symbol CUP$XPathParser$do_action(
+  public final com.sun.java_cup.internal.runtime.Symbol CUP$XPathParser$do_action(
     int                        CUP$XPathParser$act_num,
-    lr_parser CUP$XPathParser$parser,
-    Stack            CUP$XPathParser$stack,
+    com.sun.java_cup.internal.runtime.lr_parser CUP$XPathParser$parser,
+    java.util.Stack            CUP$XPathParser$stack,
     int                        CUP$XPathParser$top)
-    throws Exception
+    throws java.lang.Exception
     {
       /* Symbol object for return from actions */
-      Symbol CUP$XPathParser$result;
+      com.sun.java_cup.internal.runtime.Symbol CUP$XPathParser$result;
 
       /* select the action based on the action number */
       switch (CUP$XPathParser$act_num)
@@ -1136,7 +1136,7 @@ class CUP$XPathParser$actions {
             {
               QName RESULT = null;
                  RESULT = parser.getQNameIgnoreDefaultNs("id");
-              CUP$XPathParser$result = new Symbol(37/*QName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(37/*QName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1145,7 +1145,7 @@ class CUP$XPathParser$actions {
             {
               QName RESULT = null;
                  RESULT = parser.getQNameIgnoreDefaultNs("self");
-              CUP$XPathParser$result = new Symbol(37/*QName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(37/*QName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1154,7 +1154,7 @@ class CUP$XPathParser$actions {
             {
               QName RESULT = null;
                  RESULT = parser.getQNameIgnoreDefaultNs("preceding-sibling");
-              CUP$XPathParser$result = new Symbol(37/*QName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(37/*QName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1163,7 +1163,7 @@ class CUP$XPathParser$actions {
             {
               QName RESULT = null;
                  RESULT = parser.getQNameIgnoreDefaultNs("preceding");
-              CUP$XPathParser$result = new Symbol(37/*QName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(37/*QName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1172,7 +1172,7 @@ class CUP$XPathParser$actions {
             {
               QName RESULT = null;
                  RESULT = parser.getQNameIgnoreDefaultNs("parent");
-              CUP$XPathParser$result = new Symbol(37/*QName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(37/*QName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1181,7 +1181,7 @@ class CUP$XPathParser$actions {
             {
               QName RESULT = null;
                  RESULT = parser.getQNameIgnoreDefaultNs("namespace");
-              CUP$XPathParser$result = new Symbol(37/*QName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(37/*QName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1190,7 +1190,7 @@ class CUP$XPathParser$actions {
             {
               QName RESULT = null;
                  RESULT = parser.getQNameIgnoreDefaultNs("following-sibling");
-              CUP$XPathParser$result = new Symbol(37/*QName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(37/*QName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1199,7 +1199,7 @@ class CUP$XPathParser$actions {
             {
               QName RESULT = null;
                  RESULT = parser.getQNameIgnoreDefaultNs("following");
-              CUP$XPathParser$result = new Symbol(37/*QName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(37/*QName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1208,7 +1208,7 @@ class CUP$XPathParser$actions {
             {
               QName RESULT = null;
                  RESULT = parser.getQNameIgnoreDefaultNs("decendant-or-self");
-              CUP$XPathParser$result = new Symbol(37/*QName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(37/*QName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1217,7 +1217,7 @@ class CUP$XPathParser$actions {
             {
               QName RESULT = null;
                  RESULT = parser.getQNameIgnoreDefaultNs("decendant");
-              CUP$XPathParser$result = new Symbol(37/*QName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(37/*QName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1226,7 +1226,7 @@ class CUP$XPathParser$actions {
             {
               QName RESULT = null;
                  RESULT = parser.getQNameIgnoreDefaultNs("child");
-              CUP$XPathParser$result = new Symbol(37/*QName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(37/*QName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1235,7 +1235,7 @@ class CUP$XPathParser$actions {
             {
               QName RESULT = null;
                  RESULT = parser.getQNameIgnoreDefaultNs("attribute");
-              CUP$XPathParser$result = new Symbol(37/*QName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(37/*QName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1244,7 +1244,7 @@ class CUP$XPathParser$actions {
             {
               QName RESULT = null;
                  RESULT = parser.getQNameIgnoreDefaultNs("ancestor-or-self");
-              CUP$XPathParser$result = new Symbol(37/*QName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(37/*QName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1253,7 +1253,7 @@ class CUP$XPathParser$actions {
             {
               QName RESULT = null;
                  RESULT = parser.getQNameIgnoreDefaultNs("child");
-              CUP$XPathParser$result = new Symbol(37/*QName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(37/*QName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1262,7 +1262,7 @@ class CUP$XPathParser$actions {
             {
               QName RESULT = null;
                  RESULT = parser.getQNameIgnoreDefaultNs("key");
-              CUP$XPathParser$result = new Symbol(37/*QName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(37/*QName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1271,7 +1271,7 @@ class CUP$XPathParser$actions {
             {
               QName RESULT = null;
                  RESULT = parser.getQNameIgnoreDefaultNs("mod");
-              CUP$XPathParser$result = new Symbol(37/*QName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(37/*QName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1280,7 +1280,7 @@ class CUP$XPathParser$actions {
             {
               QName RESULT = null;
                  RESULT = parser.getQNameIgnoreDefaultNs("div");
-              CUP$XPathParser$result = new Symbol(37/*QName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(37/*QName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1288,11 +1288,11 @@ class CUP$XPathParser$actions {
           case 123: // QName ::= QNAME
             {
               QName RESULT = null;
-                int qnameleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int qnameright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                String qname = (String)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int qnameleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int qnameright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                String qname = (String)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = parser.getQNameIgnoreDefaultNs(qname);
-              CUP$XPathParser$result = new Symbol(37/*QName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(37/*QName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1300,11 +1300,11 @@ class CUP$XPathParser$actions {
           case 122: // NameTest ::= QName
             {
               Object RESULT = null;
-                int qnleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int qnright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                QName qn = (QName)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int qnleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int qnright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                QName qn = (QName)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = qn;
-              CUP$XPathParser$result = new Symbol(26/*NameTest*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(26/*NameTest*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1313,7 +1313,7 @@ class CUP$XPathParser$actions {
             {
               Object RESULT = null;
                  RESULT = null;
-              CUP$XPathParser$result = new Symbol(26/*NameTest*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(26/*NameTest*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1322,7 +1322,7 @@ class CUP$XPathParser$actions {
             {
               Object RESULT = null;
                  RESULT = new Integer(NodeTest.PI);
-              CUP$XPathParser$result = new Symbol(25/*NodeTest*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(25/*NodeTest*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1330,9 +1330,9 @@ class CUP$XPathParser$actions {
           case 119: // NodeTest ::= PIPARAM LPAREN Literal RPAREN
             {
               Object RESULT = null;
-                int lleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int lright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                String l = (String)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int lleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int lright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                String l = (String)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
 
            QName name = parser.getQNameIgnoreDefaultNs("name");
            Expression exp = new EqualityExpr(Operators.EQ,
@@ -1342,7 +1342,7 @@ class CUP$XPathParser$actions {
            predicates.addElement(new Predicate(exp));
            RESULT = new Step(Axis.CHILD, NodeTest.PI, predicates);
 
-              CUP$XPathParser$result = new Symbol(25/*NodeTest*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(25/*NodeTest*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1351,7 +1351,7 @@ class CUP$XPathParser$actions {
             {
               Object RESULT = null;
                  RESULT = new Integer(NodeTest.COMMENT);
-              CUP$XPathParser$result = new Symbol(25/*NodeTest*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(25/*NodeTest*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1360,7 +1360,7 @@ class CUP$XPathParser$actions {
             {
               Object RESULT = null;
                  RESULT = new Integer(NodeTest.TEXT);
-              CUP$XPathParser$result = new Symbol(25/*NodeTest*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(25/*NodeTest*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1369,7 +1369,7 @@ class CUP$XPathParser$actions {
             {
               Object RESULT = null;
                  RESULT = new Integer(NodeTest.ANODE);
-              CUP$XPathParser$result = new Symbol(25/*NodeTest*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(25/*NodeTest*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1377,11 +1377,11 @@ class CUP$XPathParser$actions {
           case 115: // NodeTest ::= NameTest
             {
               Object RESULT = null;
-                int ntleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ntright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Object nt = (Object)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int ntleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ntright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Object nt = (Object)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = nt;
-              CUP$XPathParser$result = new Symbol(25/*NodeTest*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(25/*NodeTest*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1389,11 +1389,11 @@ class CUP$XPathParser$actions {
           case 114: // Argument ::= Expr
             {
               Expression RESULT = null;
-                int exleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int exright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression ex = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int exleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int exright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression ex = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = ex;
-              CUP$XPathParser$result = new Symbol(3/*Argument*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(3/*Argument*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1401,13 +1401,13 @@ class CUP$XPathParser$actions {
           case 113: // VariableName ::= QName
             {
               QName RESULT = null;
-                int vnameleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int vnameright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                QName vname = (QName)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int vnameleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int vnameright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                QName vname = (QName)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
 
             RESULT = vname;
 
-              CUP$XPathParser$result = new Symbol(39/*VariableName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(39/*VariableName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1415,13 +1415,13 @@ class CUP$XPathParser$actions {
           case 112: // FunctionName ::= QName
             {
               QName RESULT = null;
-                int fnameleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int fnameright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                QName fname = (QName)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int fnameleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int fnameright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                QName fname = (QName)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
 
             RESULT = fname;
 
-              CUP$XPathParser$result = new Symbol(38/*FunctionName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(38/*FunctionName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1429,14 +1429,14 @@ class CUP$XPathParser$actions {
           case 111: // NonemptyArgumentList ::= Argument COMMA NonemptyArgumentList
             {
               Vector RESULT = null;
-                int argleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int argright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Expression arg = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int arglleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int arglright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Vector argl = (Vector)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int argleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int argright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Expression arg = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int arglleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int arglright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Vector argl = (Vector)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  argl.insertElementAt(arg, 0); RESULT = argl;
-              CUP$XPathParser$result = new Symbol(36/*NonemptyArgumentList*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(36/*NonemptyArgumentList*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1444,15 +1444,15 @@ class CUP$XPathParser$actions {
           case 110: // NonemptyArgumentList ::= Argument
             {
               Vector RESULT = null;
-                int argleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int argright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression arg = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int argleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int argright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression arg = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
 
             Vector temp = new Vector();
             temp.addElement(arg);
             RESULT = temp;
 
-              CUP$XPathParser$result = new Symbol(36/*NonemptyArgumentList*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(36/*NonemptyArgumentList*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1460,12 +1460,12 @@ class CUP$XPathParser$actions {
           case 109: // FunctionCall ::= FunctionName LPAREN NonemptyArgumentList RPAREN
             {
               Expression RESULT = null;
-                int fnameleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).left;
-                int fnameright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).right;
-                QName fname = (QName)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).value;
-                int arglleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int arglright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                Vector argl = (Vector)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int fnameleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).left;
+                int fnameright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).right;
+                QName fname = (QName)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).value;
+                int arglleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int arglright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                Vector argl = (Vector)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
 
           if (fname == parser.getQNameIgnoreDefaultNs("concat")) {
             RESULT = new ConcatCall(fname, argl);
@@ -1550,7 +1550,7 @@ class CUP$XPathParser$actions {
             RESULT = new FunctionCall(fname, argl);
           }
 
-              CUP$XPathParser$result = new Symbol(16/*FunctionCall*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(16/*FunctionCall*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1558,9 +1558,9 @@ class CUP$XPathParser$actions {
           case 108: // FunctionCall ::= FunctionName LPAREN RPAREN
             {
               Expression RESULT = null;
-                int fnameleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int fnameright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                QName fname = (QName)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int fnameleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int fnameright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                QName fname = (QName)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
 
 
           if (fname == parser.getQNameIgnoreDefaultNs("current")) {
@@ -1606,7 +1606,7 @@ class CUP$XPathParser$actions {
             RESULT = new FunctionCall(fname, parser.EmptyArgs);
           }
 
-              CUP$XPathParser$result = new Symbol(16/*FunctionCall*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(16/*FunctionCall*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1614,9 +1614,9 @@ class CUP$XPathParser$actions {
           case 107: // VariableReference ::= DOLLAR VariableName
             {
               Expression RESULT = null;
-                int varNameleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int varNameright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                QName varName = (QName)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int varNameleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int varNameright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                QName varName = (QName)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
 
             // An empty qname prefix for a variable or parameter reference
             // should map to the null namespace and not the default URI.
@@ -1638,7 +1638,7 @@ class CUP$XPathParser$actions {
                 RESULT = new UnresolvedRef(varName);
             }
 
-              CUP$XPathParser$result = new Symbol(15/*VariableReference*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(15/*VariableReference*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1646,11 +1646,11 @@ class CUP$XPathParser$actions {
           case 106: // PrimaryExpr ::= FunctionCall
             {
               Expression RESULT = null;
-                int fcleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int fcright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression fc = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int fcleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int fcright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression fc = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = fc;
-              CUP$XPathParser$result = new Symbol(17/*PrimaryExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(17/*PrimaryExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1658,11 +1658,11 @@ class CUP$XPathParser$actions {
           case 105: // PrimaryExpr ::= REAL
             {
               Expression RESULT = null;
-                int numleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int numright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Double num = (Double)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int numleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int numright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Double num = (Double)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new RealExpr(num.doubleValue());
-              CUP$XPathParser$result = new Symbol(17/*PrimaryExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(17/*PrimaryExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1670,9 +1670,9 @@ class CUP$XPathParser$actions {
           case 104: // PrimaryExpr ::= INT
             {
               Expression RESULT = null;
-                int numleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int numright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Long num = (Long)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int numleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int numright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Long num = (Long)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
 
            long value = num.longValue();
            if (value < Integer.MIN_VALUE || value > Integer.MAX_VALUE) {
@@ -1689,7 +1689,7 @@ class CUP$XPathParser$actions {
                    RESULT = new IntExpr(num.intValue());
            }
 
-              CUP$XPathParser$result = new Symbol(17/*PrimaryExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(17/*PrimaryExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1697,9 +1697,9 @@ class CUP$XPathParser$actions {
           case 103: // PrimaryExpr ::= Literal
             {
               Expression RESULT = null;
-                int stringleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int stringright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                String string = (String)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int stringleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int stringright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                String string = (String)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
 
         /*
         * If the string appears to have the syntax of a QName, store
@@ -1717,7 +1717,7 @@ class CUP$XPathParser$actions {
         RESULT = (namespace == null) ? new LiteralExpr(string)
                      : new LiteralExpr(string, namespace);
 
-              CUP$XPathParser$result = new Symbol(17/*PrimaryExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(17/*PrimaryExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1725,11 +1725,11 @@ class CUP$XPathParser$actions {
           case 102: // PrimaryExpr ::= LPAREN Expr RPAREN
             {
               Expression RESULT = null;
-                int exleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int exright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                Expression ex = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int exleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int exright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                Expression ex = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
                  RESULT = ex;
-              CUP$XPathParser$result = new Symbol(17/*PrimaryExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(17/*PrimaryExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1737,11 +1737,11 @@ class CUP$XPathParser$actions {
           case 101: // PrimaryExpr ::= VariableReference
             {
               Expression RESULT = null;
-                int vrleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int vrright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression vr = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int vrleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int vrright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression vr = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = vr;
-              CUP$XPathParser$result = new Symbol(17/*PrimaryExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(17/*PrimaryExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1749,14 +1749,14 @@ class CUP$XPathParser$actions {
           case 100: // FilterExpr ::= PrimaryExpr Predicates
             {
               Expression RESULT = null;
-                int primaryleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int primaryright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                Expression primary = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
-                int ppleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ppright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Vector pp = (Vector)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int primaryleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int primaryright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                Expression primary = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int ppleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ppright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Vector pp = (Vector)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new FilterExpr(primary, pp);
-              CUP$XPathParser$result = new Symbol(6/*FilterExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(6/*FilterExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1764,11 +1764,11 @@ class CUP$XPathParser$actions {
           case 99: // FilterExpr ::= PrimaryExpr
             {
               Expression RESULT = null;
-                int primaryleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int primaryright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression primary = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int primaryleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int primaryright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression primary = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = primary;
-              CUP$XPathParser$result = new Symbol(6/*FilterExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(6/*FilterExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1777,7 +1777,7 @@ class CUP$XPathParser$actions {
             {
               Expression RESULT = null;
                  RESULT = new Step(Axis.PARENT, NodeTest.ANODE, null);
-              CUP$XPathParser$result = new Symbol(20/*AbbreviatedStep*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(20/*AbbreviatedStep*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1786,7 +1786,7 @@ class CUP$XPathParser$actions {
             {
               Expression RESULT = null;
                  RESULT = new Step(Axis.SELF, NodeTest.ANODE, null);
-              CUP$XPathParser$result = new Symbol(20/*AbbreviatedStep*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(20/*AbbreviatedStep*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1795,7 +1795,7 @@ class CUP$XPathParser$actions {
             {
               Integer RESULT = null;
                  RESULT = new Integer(Axis.SELF);
-              CUP$XPathParser$result = new Symbol(40/*AxisName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(40/*AxisName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1804,7 +1804,7 @@ class CUP$XPathParser$actions {
             {
               Integer RESULT = null;
                  RESULT = new Integer(Axis.PRECEDINGSIBLING);
-              CUP$XPathParser$result = new Symbol(40/*AxisName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(40/*AxisName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1813,7 +1813,7 @@ class CUP$XPathParser$actions {
             {
               Integer RESULT = null;
                  RESULT = new Integer(Axis.PRECEDING);
-              CUP$XPathParser$result = new Symbol(40/*AxisName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(40/*AxisName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1822,7 +1822,7 @@ class CUP$XPathParser$actions {
             {
               Integer RESULT = null;
                  RESULT = new Integer(Axis.PARENT);
-              CUP$XPathParser$result = new Symbol(40/*AxisName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(40/*AxisName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1831,7 +1831,7 @@ class CUP$XPathParser$actions {
             {
               Integer RESULT = null;
                  RESULT = new Integer(Axis.NAMESPACE);
-              CUP$XPathParser$result = new Symbol(40/*AxisName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(40/*AxisName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1840,7 +1840,7 @@ class CUP$XPathParser$actions {
             {
               Integer RESULT = null;
                  RESULT = new Integer(Axis.FOLLOWINGSIBLING);
-              CUP$XPathParser$result = new Symbol(40/*AxisName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(40/*AxisName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1849,7 +1849,7 @@ class CUP$XPathParser$actions {
             {
               Integer RESULT = null;
                  RESULT = new Integer(Axis.FOLLOWING);
-              CUP$XPathParser$result = new Symbol(40/*AxisName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(40/*AxisName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1858,7 +1858,7 @@ class CUP$XPathParser$actions {
             {
               Integer RESULT = null;
                  RESULT = new Integer(Axis.DESCENDANTORSELF);
-              CUP$XPathParser$result = new Symbol(40/*AxisName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(40/*AxisName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1867,7 +1867,7 @@ class CUP$XPathParser$actions {
             {
               Integer RESULT = null;
                  RESULT = new Integer(Axis.DESCENDANT);
-              CUP$XPathParser$result = new Symbol(40/*AxisName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(40/*AxisName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1876,7 +1876,7 @@ class CUP$XPathParser$actions {
             {
               Integer RESULT = null;
                  RESULT = new Integer(Axis.CHILD);
-              CUP$XPathParser$result = new Symbol(40/*AxisName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(40/*AxisName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1885,7 +1885,7 @@ class CUP$XPathParser$actions {
             {
               Integer RESULT = null;
                  RESULT = new Integer(Axis.ATTRIBUTE);
-              CUP$XPathParser$result = new Symbol(40/*AxisName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(40/*AxisName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1894,7 +1894,7 @@ class CUP$XPathParser$actions {
             {
               Integer RESULT = null;
                  RESULT = new Integer(Axis.ANCESTORORSELF);
-              CUP$XPathParser$result = new Symbol(40/*AxisName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(40/*AxisName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1903,7 +1903,7 @@ class CUP$XPathParser$actions {
             {
               Integer RESULT = null;
                  RESULT = new Integer(Axis.ANCESTOR);
-              CUP$XPathParser$result = new Symbol(40/*AxisName*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(40/*AxisName*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1912,7 +1912,7 @@ class CUP$XPathParser$actions {
             {
               Integer RESULT = null;
                  RESULT = new Integer(Axis.ATTRIBUTE);
-              CUP$XPathParser$result = new Symbol(41/*AxisSpecifier*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(41/*AxisSpecifier*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1920,11 +1920,11 @@ class CUP$XPathParser$actions {
           case 82: // AxisSpecifier ::= AxisName DCOLON
             {
               Integer RESULT = null;
-                int anleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int anright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                Integer an = (Integer)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int anleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int anright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                Integer an = (Integer)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
                  RESULT = an;
-              CUP$XPathParser$result = new Symbol(41/*AxisSpecifier*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(41/*AxisSpecifier*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1932,11 +1932,11 @@ class CUP$XPathParser$actions {
           case 81: // Step ::= AbbreviatedStep
             {
               Expression RESULT = null;
-                int abbrevleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int abbrevright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression abbrev = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int abbrevleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int abbrevright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression abbrev = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = abbrev;
-              CUP$XPathParser$result = new Symbol(7/*Step*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(7/*Step*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1944,17 +1944,17 @@ class CUP$XPathParser$actions {
           case 80: // Step ::= AxisSpecifier NodeTest
             {
               Expression RESULT = null;
-                int axisleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int axisright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                Integer axis = (Integer)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
-                int ntestleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ntestright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Object ntest = (Object)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int axisleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int axisright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                Integer axis = (Integer)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int ntestleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ntestright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Object ntest = (Object)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new Step(axis.intValue(),
                              parser.findNodeType(axis.intValue(), ntest),
                              null);
 
-              CUP$XPathParser$result = new Symbol(7/*Step*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(7/*Step*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1962,20 +1962,20 @@ class CUP$XPathParser$actions {
           case 79: // Step ::= AxisSpecifier NodeTest Predicates
             {
               Expression RESULT = null;
-                int axisleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int axisright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Integer axis = (Integer)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int ntestleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int ntestright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                Object ntest = (Object)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
-                int ppleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ppright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Vector pp = (Vector)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int axisleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int axisright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Integer axis = (Integer)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int ntestleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int ntestright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                Object ntest = (Object)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int ppleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ppright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Vector pp = (Vector)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new Step(axis.intValue(),
                              parser.findNodeType(axis.intValue(), ntest),
                              pp);
 
-              CUP$XPathParser$result = new Symbol(7/*Step*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(7/*Step*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -1983,12 +1983,12 @@ class CUP$XPathParser$actions {
           case 78: // Step ::= NodeTest Predicates
             {
               Expression RESULT = null;
-                int ntestleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int ntestright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                Object ntest = (Object)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
-                int ppleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ppright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Vector pp = (Vector)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int ntestleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int ntestright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                Object ntest = (Object)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int ppleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ppright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Vector pp = (Vector)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
 
             if (ntest instanceof Step) {
                 Step step = (Step)ntest;
@@ -2000,7 +2000,7 @@ class CUP$XPathParser$actions {
                              parser.findNodeType(Axis.CHILD, ntest), pp);
             }
 
-              CUP$XPathParser$result = new Symbol(7/*Step*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(7/*Step*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2008,9 +2008,9 @@ class CUP$XPathParser$actions {
           case 77: // Step ::= NodeTest
             {
               Expression RESULT = null;
-                int ntestleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ntestright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Object ntest = (Object)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int ntestleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ntestright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Object ntest = (Object)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
 
             if (ntest instanceof Step) {
                 RESULT = (Step)ntest;
@@ -2021,7 +2021,7 @@ class CUP$XPathParser$actions {
                              null);
             }
 
-              CUP$XPathParser$result = new Symbol(7/*Step*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(7/*Step*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2029,9 +2029,9 @@ class CUP$XPathParser$actions {
           case 76: // AbbreviatedAbsoluteLocationPath ::= DSLASH RelativeLocationPath
             {
               Expression RESULT = null;
-                int rlpleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int rlpright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression rlp = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int rlpleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int rlpright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression rlp = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
 
            //
            // Expand '//' into '/descendant-or-self::node()/' or
@@ -2047,7 +2047,7 @@ class CUP$XPathParser$actions {
            RESULT = new AbsoluteLocationPath(parser.insertStep(step,
                                 (RelativeLocationPath) rlp));
 
-              CUP$XPathParser$result = new Symbol(24/*AbbreviatedAbsoluteLocationPath*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(24/*AbbreviatedAbsoluteLocationPath*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2055,12 +2055,12 @@ class CUP$XPathParser$actions {
           case 75: // AbbreviatedRelativeLocationPath ::= RelativeLocationPath DSLASH Step
             {
               Expression RESULT = null;
-                int rlpleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int rlpright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Expression rlp = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int stepleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int stepright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression step = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int rlpleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int rlpright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Expression rlp = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int stepleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int stepright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression step = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
 
            final Step right  = (Step)step;
            final int  axis   = right.getAxis();
@@ -2114,7 +2114,7 @@ class CUP$XPathParser$actions {
                RESULT = new ParentLocationPath(left, ppl);
            }
 
-              CUP$XPathParser$result = new Symbol(22/*AbbreviatedRelativeLocationPath*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(22/*AbbreviatedRelativeLocationPath*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2122,11 +2122,11 @@ class CUP$XPathParser$actions {
           case 74: // AbsoluteLocationPath ::= AbbreviatedAbsoluteLocationPath
             {
               Expression RESULT = null;
-                int aalpleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int aalpright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression aalp = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int aalpleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int aalpright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression aalp = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = aalp;
-              CUP$XPathParser$result = new Symbol(23/*AbsoluteLocationPath*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(23/*AbsoluteLocationPath*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2134,11 +2134,11 @@ class CUP$XPathParser$actions {
           case 73: // AbsoluteLocationPath ::= SLASH RelativeLocationPath
             {
               Expression RESULT = null;
-                int rlpleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int rlpright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression rlp = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int rlpleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int rlpright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression rlp = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new AbsoluteLocationPath(rlp);
-              CUP$XPathParser$result = new Symbol(23/*AbsoluteLocationPath*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(23/*AbsoluteLocationPath*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2147,7 +2147,7 @@ class CUP$XPathParser$actions {
             {
               Expression RESULT = null;
                  RESULT = new AbsoluteLocationPath();
-              CUP$XPathParser$result = new Symbol(23/*AbsoluteLocationPath*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(23/*AbsoluteLocationPath*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2155,11 +2155,11 @@ class CUP$XPathParser$actions {
           case 71: // RelativeLocationPath ::= AbbreviatedRelativeLocationPath
             {
               Expression RESULT = null;
-                int arlpleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int arlpright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression arlp = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int arlpleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int arlpright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression arlp = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = arlp;
-              CUP$XPathParser$result = new Symbol(21/*RelativeLocationPath*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(21/*RelativeLocationPath*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2167,12 +2167,12 @@ class CUP$XPathParser$actions {
           case 70: // RelativeLocationPath ::= RelativeLocationPath SLASH Step
             {
               Expression RESULT = null;
-                int rlpleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int rlpright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Expression rlp = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int stepleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int stepright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression step = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int rlpleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int rlpright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Expression rlp = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int stepleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int stepright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression step = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
 
         if (rlp instanceof Step && ((Step) rlp).isAbbreviatedDot()) {
               RESULT = step;       // Remove './' from the middle
@@ -2185,7 +2185,7 @@ class CUP$XPathParser$actions {
                 new ParentLocationPath((RelativeLocationPath) rlp, step);
            }
 
-              CUP$XPathParser$result = new Symbol(21/*RelativeLocationPath*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(21/*RelativeLocationPath*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2193,11 +2193,11 @@ class CUP$XPathParser$actions {
           case 69: // RelativeLocationPath ::= Step
             {
               Expression RESULT = null;
-                int stepleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int stepright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression step = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int stepleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int stepright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression step = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = step;
-              CUP$XPathParser$result = new Symbol(21/*RelativeLocationPath*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(21/*RelativeLocationPath*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2205,11 +2205,11 @@ class CUP$XPathParser$actions {
           case 68: // LocationPath ::= AbsoluteLocationPath
             {
               Expression RESULT = null;
-                int alpleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int alpright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression alp = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int alpleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int alpright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression alp = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = alp;
-              CUP$XPathParser$result = new Symbol(4/*LocationPath*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(4/*LocationPath*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2217,11 +2217,11 @@ class CUP$XPathParser$actions {
           case 67: // LocationPath ::= RelativeLocationPath
             {
               Expression RESULT = null;
-                int rlpleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int rlpright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression rlp = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int rlpleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int rlpright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression rlp = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = rlp;
-              CUP$XPathParser$result = new Symbol(4/*LocationPath*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(4/*LocationPath*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2229,12 +2229,12 @@ class CUP$XPathParser$actions {
           case 66: // PathExpr ::= FilterExpr DSLASH RelativeLocationPath
             {
               Expression RESULT = null;
-                int fexpleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int fexpright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Expression fexp = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int rlpleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int rlpright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression rlp = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int fexpleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int fexpright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Expression fexp = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int rlpleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int rlpright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression rlp = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
 
            //
            // Expand '//' into '/descendant-or-self::node()/' or
@@ -2254,7 +2254,7 @@ class CUP$XPathParser$actions {
            }
            RESULT = fpp;
 
-              CUP$XPathParser$result = new Symbol(19/*PathExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(19/*PathExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2262,14 +2262,14 @@ class CUP$XPathParser$actions {
           case 65: // PathExpr ::= FilterExpr SLASH RelativeLocationPath
             {
               Expression RESULT = null;
-                int fexpleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int fexpright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Expression fexp = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int rlpleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int rlpright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression rlp = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int fexpleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int fexpright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Expression fexp = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int rlpleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int rlpright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression rlp = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new FilterParentPath(fexp, rlp);
-              CUP$XPathParser$result = new Symbol(19/*PathExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(19/*PathExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2277,11 +2277,11 @@ class CUP$XPathParser$actions {
           case 64: // PathExpr ::= FilterExpr
             {
               Expression RESULT = null;
-                int fexpleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int fexpright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression fexp = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int fexpleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int fexpright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression fexp = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = fexp;
-              CUP$XPathParser$result = new Symbol(19/*PathExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(19/*PathExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2289,11 +2289,11 @@ class CUP$XPathParser$actions {
           case 63: // PathExpr ::= LocationPath
             {
               Expression RESULT = null;
-                int lpleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int lpright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression lp = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int lpleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int lpright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression lp = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = lp;
-              CUP$XPathParser$result = new Symbol(19/*PathExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(19/*PathExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2301,14 +2301,14 @@ class CUP$XPathParser$actions {
           case 62: // UnionExpr ::= PathExpr VBAR UnionExpr
             {
               Expression RESULT = null;
-                int peleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int peright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Expression pe = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int restleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int restright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression rest = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int peleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int peright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Expression pe = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int restleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int restright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression rest = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new UnionPathExpr(pe, rest);
-              CUP$XPathParser$result = new Symbol(18/*UnionExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(18/*UnionExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2316,11 +2316,11 @@ class CUP$XPathParser$actions {
           case 61: // UnionExpr ::= PathExpr
             {
               Expression RESULT = null;
-                int peleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int peright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression pe = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int peleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int peright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression pe = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = pe;
-              CUP$XPathParser$result = new Symbol(18/*UnionExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(18/*UnionExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2328,11 +2328,11 @@ class CUP$XPathParser$actions {
           case 60: // UnaryExpr ::= MINUS UnaryExpr
             {
               Expression RESULT = null;
-                int ueleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ueright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression ue = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int ueleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ueright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression ue = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new UnaryOpExpr(ue);
-              CUP$XPathParser$result = new Symbol(14/*UnaryExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(14/*UnaryExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2340,11 +2340,11 @@ class CUP$XPathParser$actions {
           case 59: // UnaryExpr ::= UnionExpr
             {
               Expression RESULT = null;
-                int ueleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ueright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression ue = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int ueleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ueright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression ue = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = ue;
-              CUP$XPathParser$result = new Symbol(14/*UnaryExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(14/*UnaryExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2352,14 +2352,14 @@ class CUP$XPathParser$actions {
           case 58: // MultiplicativeExpr ::= MultiplicativeExpr MOD UnaryExpr
             {
               Expression RESULT = null;
-                int meleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int meright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Expression me = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int ueleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ueright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression ue = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int meleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int meright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Expression me = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int ueleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ueright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression ue = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new BinOpExpr(BinOpExpr.MOD, me, ue);
-              CUP$XPathParser$result = new Symbol(13/*MultiplicativeExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(13/*MultiplicativeExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2367,14 +2367,14 @@ class CUP$XPathParser$actions {
           case 57: // MultiplicativeExpr ::= MultiplicativeExpr DIV UnaryExpr
             {
               Expression RESULT = null;
-                int meleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int meright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Expression me = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int ueleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ueright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression ue = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int meleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int meright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Expression me = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int ueleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ueright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression ue = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new BinOpExpr(BinOpExpr.DIV, me, ue);
-              CUP$XPathParser$result = new Symbol(13/*MultiplicativeExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(13/*MultiplicativeExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2382,14 +2382,14 @@ class CUP$XPathParser$actions {
           case 56: // MultiplicativeExpr ::= MultiplicativeExpr STAR UnaryExpr
             {
               Expression RESULT = null;
-                int meleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int meright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Expression me = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int ueleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ueright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression ue = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int meleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int meright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Expression me = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int ueleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ueright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression ue = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new BinOpExpr(BinOpExpr.TIMES, me, ue);
-              CUP$XPathParser$result = new Symbol(13/*MultiplicativeExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(13/*MultiplicativeExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2397,11 +2397,11 @@ class CUP$XPathParser$actions {
           case 55: // MultiplicativeExpr ::= UnaryExpr
             {
               Expression RESULT = null;
-                int ueleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ueright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression ue = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int ueleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ueright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression ue = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = ue;
-              CUP$XPathParser$result = new Symbol(13/*MultiplicativeExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(13/*MultiplicativeExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2409,14 +2409,14 @@ class CUP$XPathParser$actions {
           case 54: // AdditiveExpr ::= AdditiveExpr MINUS MultiplicativeExpr
             {
               Expression RESULT = null;
-                int aeleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int aeright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Expression ae = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int meleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int meright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression me = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int aeleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int aeright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Expression ae = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int meleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int meright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression me = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new BinOpExpr(BinOpExpr.MINUS, ae, me);
-              CUP$XPathParser$result = new Symbol(12/*AdditiveExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(12/*AdditiveExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2424,14 +2424,14 @@ class CUP$XPathParser$actions {
           case 53: // AdditiveExpr ::= AdditiveExpr PLUS MultiplicativeExpr
             {
               Expression RESULT = null;
-                int aeleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int aeright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Expression ae = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int meleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int meright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression me = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int aeleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int aeright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Expression ae = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int meleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int meright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression me = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new BinOpExpr(BinOpExpr.PLUS, ae, me);
-              CUP$XPathParser$result = new Symbol(12/*AdditiveExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(12/*AdditiveExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2439,11 +2439,11 @@ class CUP$XPathParser$actions {
           case 52: // AdditiveExpr ::= MultiplicativeExpr
             {
               Expression RESULT = null;
-                int meleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int meright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression me = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int meleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int meright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression me = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = me;
-              CUP$XPathParser$result = new Symbol(12/*AdditiveExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(12/*AdditiveExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2451,14 +2451,14 @@ class CUP$XPathParser$actions {
           case 51: // RelationalExpr ::= RelationalExpr GE AdditiveExpr
             {
               Expression RESULT = null;
-                int releft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int reright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Expression re = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int aeleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int aeright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression ae = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int releft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int reright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Expression re = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int aeleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int aeright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression ae = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new RelationalExpr(Operators.GE, re, ae);
-              CUP$XPathParser$result = new Symbol(11/*RelationalExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(11/*RelationalExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2466,14 +2466,14 @@ class CUP$XPathParser$actions {
           case 50: // RelationalExpr ::= RelationalExpr LE AdditiveExpr
             {
               Expression RESULT = null;
-                int releft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int reright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Expression re = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int aeleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int aeright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression ae = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int releft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int reright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Expression re = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int aeleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int aeright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression ae = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new RelationalExpr(Operators.LE, re, ae);
-              CUP$XPathParser$result = new Symbol(11/*RelationalExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(11/*RelationalExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2481,14 +2481,14 @@ class CUP$XPathParser$actions {
           case 49: // RelationalExpr ::= RelationalExpr GT AdditiveExpr
             {
               Expression RESULT = null;
-                int releft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int reright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Expression re = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int aeleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int aeright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression ae = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int releft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int reright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Expression re = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int aeleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int aeright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression ae = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new RelationalExpr(Operators.GT, re, ae);
-              CUP$XPathParser$result = new Symbol(11/*RelationalExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(11/*RelationalExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2496,14 +2496,14 @@ class CUP$XPathParser$actions {
           case 48: // RelationalExpr ::= RelationalExpr LT AdditiveExpr
             {
               Expression RESULT = null;
-                int releft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int reright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Expression re = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int aeleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int aeright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression ae = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int releft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int reright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Expression re = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int aeleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int aeright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression ae = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new RelationalExpr(Operators.LT, re, ae);
-              CUP$XPathParser$result = new Symbol(11/*RelationalExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(11/*RelationalExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2511,11 +2511,11 @@ class CUP$XPathParser$actions {
           case 47: // RelationalExpr ::= AdditiveExpr
             {
               Expression RESULT = null;
-                int aeleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int aeright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression ae = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int aeleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int aeright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression ae = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = ae;
-              CUP$XPathParser$result = new Symbol(11/*RelationalExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(11/*RelationalExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2523,14 +2523,14 @@ class CUP$XPathParser$actions {
           case 46: // EqualityExpr ::= EqualityExpr NE RelationalExpr
             {
               Expression RESULT = null;
-                int eeleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int eeright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Expression ee = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int releft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int reright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression re = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int eeleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int eeright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Expression ee = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int releft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int reright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression re = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new EqualityExpr(Operators.NE, ee, re);
-              CUP$XPathParser$result = new Symbol(10/*EqualityExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(10/*EqualityExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2538,14 +2538,14 @@ class CUP$XPathParser$actions {
           case 45: // EqualityExpr ::= EqualityExpr EQ RelationalExpr
             {
               Expression RESULT = null;
-                int eeleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int eeright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Expression ee = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int releft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int reright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression re = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int eeleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int eeright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Expression ee = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int releft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int reright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression re = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new EqualityExpr(Operators.EQ, ee, re);
-              CUP$XPathParser$result = new Symbol(10/*EqualityExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(10/*EqualityExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2553,11 +2553,11 @@ class CUP$XPathParser$actions {
           case 44: // EqualityExpr ::= RelationalExpr
             {
               Expression RESULT = null;
-                int releft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int reright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression re = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int releft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int reright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression re = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = re;
-              CUP$XPathParser$result = new Symbol(10/*EqualityExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(10/*EqualityExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2565,14 +2565,14 @@ class CUP$XPathParser$actions {
           case 43: // AndExpr ::= AndExpr AND EqualityExpr
             {
               Expression RESULT = null;
-                int aeleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int aeright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Expression ae = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int eeleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int eeright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression ee = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int aeleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int aeright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Expression ae = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int eeleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int eeright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression ee = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new LogicalExpr(LogicalExpr.AND, ae, ee);
-              CUP$XPathParser$result = new Symbol(9/*AndExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(9/*AndExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2580,11 +2580,11 @@ class CUP$XPathParser$actions {
           case 42: // AndExpr ::= EqualityExpr
             {
               Expression RESULT = null;
-                int eleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int eright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression e = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int eleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int eright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression e = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = e;
-              CUP$XPathParser$result = new Symbol(9/*AndExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(9/*AndExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2592,14 +2592,14 @@ class CUP$XPathParser$actions {
           case 41: // OrExpr ::= OrExpr OR AndExpr
             {
               Expression RESULT = null;
-                int oeleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int oeright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Expression oe = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int aeleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int aeright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression ae = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int oeleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int oeright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Expression oe = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int aeleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int aeright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression ae = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new LogicalExpr(LogicalExpr.OR, oe, ae);
-              CUP$XPathParser$result = new Symbol(8/*OrExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(8/*OrExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2607,11 +2607,11 @@ class CUP$XPathParser$actions {
           case 40: // OrExpr ::= AndExpr
             {
               Expression RESULT = null;
-                int aeleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int aeright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression ae = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int aeleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int aeright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression ae = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = ae;
-              CUP$XPathParser$result = new Symbol(8/*OrExpr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(8/*OrExpr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2619,11 +2619,11 @@ class CUP$XPathParser$actions {
           case 39: // Expr ::= OrExpr
             {
               Expression RESULT = null;
-                int exleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int exright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression ex = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int exleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int exright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression ex = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = ex;
-              CUP$XPathParser$result = new Symbol(2/*Expr*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(2/*Expr*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2631,13 +2631,13 @@ class CUP$XPathParser$actions {
           case 38: // Predicate ::= LBRACK Expr RBRACK
             {
               Expression RESULT = null;
-                int eleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int eright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                Expression e = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int eleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int eright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                Expression e = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
 
                 RESULT = new Predicate(e);
 
-              CUP$XPathParser$result = new Symbol(5/*Predicate*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(5/*Predicate*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2645,14 +2645,14 @@ class CUP$XPathParser$actions {
           case 37: // Predicates ::= Predicate Predicates
             {
               Vector RESULT = null;
-                int pleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int pright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                Expression p = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
-                int ppleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ppright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Vector pp = (Vector)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int pleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int pright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                Expression p = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int ppleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ppright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Vector pp = (Vector)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  pp.insertElementAt(p, 0); RESULT = pp;
-              CUP$XPathParser$result = new Symbol(35/*Predicates*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(35/*Predicates*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2660,15 +2660,15 @@ class CUP$XPathParser$actions {
           case 36: // Predicates ::= Predicate
             {
               Vector RESULT = null;
-                int pleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int pright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression p = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int pleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int pright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression p = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
 
                 Vector temp = new Vector();
                 temp.addElement(p);
                 RESULT = temp;
 
-              CUP$XPathParser$result = new Symbol(35/*Predicates*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(35/*Predicates*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2677,7 +2677,7 @@ class CUP$XPathParser$actions {
             {
               Integer RESULT = null;
                  RESULT = new Integer(Axis.ATTRIBUTE);
-              CUP$XPathParser$result = new Symbol(42/*ChildOrAttributeAxisSpecifier*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(42/*ChildOrAttributeAxisSpecifier*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2686,7 +2686,7 @@ class CUP$XPathParser$actions {
             {
               Integer RESULT = null;
                  RESULT = new Integer(Axis.CHILD);
-              CUP$XPathParser$result = new Symbol(42/*ChildOrAttributeAxisSpecifier*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(42/*ChildOrAttributeAxisSpecifier*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2695,7 +2695,7 @@ class CUP$XPathParser$actions {
             {
               Integer RESULT = null;
                  RESULT = new Integer(Axis.ATTRIBUTE);
-              CUP$XPathParser$result = new Symbol(42/*ChildOrAttributeAxisSpecifier*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(42/*ChildOrAttributeAxisSpecifier*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2703,11 +2703,11 @@ class CUP$XPathParser$actions {
           case 32: // NameTestPattern ::= QName
             {
               Object RESULT = null;
-                int qnleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int qnright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                QName qn = (QName)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int qnleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int qnright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                QName qn = (QName)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = qn;
-              CUP$XPathParser$result = new Symbol(34/*NameTestPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(34/*NameTestPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2716,7 +2716,7 @@ class CUP$XPathParser$actions {
             {
               Object RESULT = null;
                  RESULT = null;
-              CUP$XPathParser$result = new Symbol(34/*NameTestPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(34/*NameTestPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2725,7 +2725,7 @@ class CUP$XPathParser$actions {
             {
               Object RESULT = null;
                  RESULT = new Integer(NodeTest.PI);
-              CUP$XPathParser$result = new Symbol(33/*NodeTestPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(33/*NodeTestPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2734,7 +2734,7 @@ class CUP$XPathParser$actions {
             {
               Object RESULT = null;
                  RESULT = new Integer(NodeTest.COMMENT);
-              CUP$XPathParser$result = new Symbol(33/*NodeTestPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(33/*NodeTestPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2743,7 +2743,7 @@ class CUP$XPathParser$actions {
             {
               Object RESULT = null;
                  RESULT = new Integer(NodeTest.TEXT);
-              CUP$XPathParser$result = new Symbol(33/*NodeTestPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(33/*NodeTestPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2752,7 +2752,7 @@ class CUP$XPathParser$actions {
             {
               Object RESULT = null;
                  RESULT = new Integer(NodeTest.ANODE);
-              CUP$XPathParser$result = new Symbol(33/*NodeTestPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(33/*NodeTestPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2760,11 +2760,11 @@ class CUP$XPathParser$actions {
           case 26: // NodeTestPattern ::= NameTestPattern
             {
               Object RESULT = null;
-                int ntleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ntright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Object nt = (Object)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int ntleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ntright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Object nt = (Object)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = nt;
-              CUP$XPathParser$result = new Symbol(33/*NodeTestPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(33/*NodeTestPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2772,20 +2772,20 @@ class CUP$XPathParser$actions {
           case 25: // StepPattern ::= ChildOrAttributeAxisSpecifier ProcessingInstructionPattern Predicates
             {
               StepPattern RESULT = null;
-                int axisleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int axisright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Integer axis = (Integer)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int pipleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int pipright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                StepPattern pip = (StepPattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
-                int ppleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ppright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Vector pp = (Vector)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int axisleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int axisright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Integer axis = (Integer)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int pipleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int pipright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                StepPattern pip = (StepPattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int ppleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ppright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Vector pp = (Vector)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
 
                // TODO: report error if axis is attribute
                RESULT = (ProcessingInstructionPattern)pip.setPredicates(pp);
 
-              CUP$XPathParser$result = new Symbol(32/*StepPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(32/*StepPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2793,16 +2793,16 @@ class CUP$XPathParser$actions {
           case 24: // StepPattern ::= ChildOrAttributeAxisSpecifier ProcessingInstructionPattern
             {
               StepPattern RESULT = null;
-                int axisleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int axisright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                Integer axis = (Integer)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
-                int pipleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int pipright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                StepPattern pip = (StepPattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int axisleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int axisright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                Integer axis = (Integer)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int pipleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int pipright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                StepPattern pip = (StepPattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
 
                RESULT = pip;    // TODO: report error if axis is attribute
 
-              CUP$XPathParser$result = new Symbol(32/*StepPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(32/*StepPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2810,19 +2810,19 @@ class CUP$XPathParser$actions {
           case 23: // StepPattern ::= ChildOrAttributeAxisSpecifier NodeTestPattern Predicates
             {
               StepPattern RESULT = null;
-                int axisleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int axisright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Integer axis = (Integer)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int ntleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int ntright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                Object nt = (Object)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
-                int ppleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ppright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Vector pp = (Vector)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int axisleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int axisright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Integer axis = (Integer)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int ntleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int ntright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                Object nt = (Object)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int ppleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ppright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Vector pp = (Vector)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
 
                RESULT = parser.createStepPattern(axis.intValue(), nt, pp);
 
-              CUP$XPathParser$result = new Symbol(32/*StepPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(32/*StepPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2830,16 +2830,16 @@ class CUP$XPathParser$actions {
           case 22: // StepPattern ::= ChildOrAttributeAxisSpecifier NodeTestPattern
             {
               StepPattern RESULT = null;
-                int axisleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int axisright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                Integer axis = (Integer)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
-                int ntleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ntright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Object nt = (Object)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int axisleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int axisright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                Integer axis = (Integer)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int ntleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ntright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Object nt = (Object)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
 
                RESULT = parser.createStepPattern(axis.intValue(), nt, null);
 
-              CUP$XPathParser$result = new Symbol(32/*StepPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(32/*StepPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2847,14 +2847,14 @@ class CUP$XPathParser$actions {
           case 21: // StepPattern ::= ProcessingInstructionPattern Predicates
             {
               StepPattern RESULT = null;
-                int pipleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int pipright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                StepPattern pip = (StepPattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
-                int ppleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ppright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Vector pp = (Vector)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int pipleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int pipright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                StepPattern pip = (StepPattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int ppleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ppright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Vector pp = (Vector)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = (ProcessingInstructionPattern)pip.setPredicates(pp);
-              CUP$XPathParser$result = new Symbol(32/*StepPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(32/*StepPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2862,11 +2862,11 @@ class CUP$XPathParser$actions {
           case 20: // StepPattern ::= ProcessingInstructionPattern
             {
               StepPattern RESULT = null;
-                int pipleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int pipright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                StepPattern pip = (StepPattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int pipleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int pipright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                StepPattern pip = (StepPattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = pip;
-              CUP$XPathParser$result = new Symbol(32/*StepPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(32/*StepPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2874,16 +2874,16 @@ class CUP$XPathParser$actions {
           case 19: // StepPattern ::= NodeTestPattern Predicates
             {
               StepPattern RESULT = null;
-                int ntleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int ntright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                Object nt = (Object)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
-                int ppleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ppright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Vector pp = (Vector)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int ntleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int ntright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                Object nt = (Object)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int ppleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ppright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Vector pp = (Vector)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
 
                 RESULT = parser.createStepPattern(Axis.CHILD, nt, pp);
 
-              CUP$XPathParser$result = new Symbol(32/*StepPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(32/*StepPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2891,13 +2891,13 @@ class CUP$XPathParser$actions {
           case 18: // StepPattern ::= NodeTestPattern
             {
               StepPattern RESULT = null;
-                int ntleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ntright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Object nt = (Object)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int ntleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ntright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Object nt = (Object)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
 
                 RESULT = parser.createStepPattern(Axis.CHILD, nt, null);
 
-              CUP$XPathParser$result = new Symbol(32/*StepPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(32/*StepPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2905,14 +2905,14 @@ class CUP$XPathParser$actions {
           case 17: // RelativePathPattern ::= StepPattern DSLASH RelativePathPattern
             {
               RelativePathPattern RESULT = null;
-                int spleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int spright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                StepPattern sp = (StepPattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int rppleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int rppright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                RelativePathPattern rpp = (RelativePathPattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int spleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int spright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                StepPattern sp = (StepPattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int rppleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int rppright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                RelativePathPattern rpp = (RelativePathPattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new AncestorPattern(sp, rpp);
-              CUP$XPathParser$result = new Symbol(31/*RelativePathPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(31/*RelativePathPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2920,14 +2920,14 @@ class CUP$XPathParser$actions {
           case 16: // RelativePathPattern ::= StepPattern SLASH RelativePathPattern
             {
               RelativePathPattern RESULT = null;
-                int spleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int spright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                StepPattern sp = (StepPattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int rppleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int rppright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                RelativePathPattern rpp = (RelativePathPattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int spleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int spright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                StepPattern sp = (StepPattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int rppleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int rppright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                RelativePathPattern rpp = (RelativePathPattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new ParentPattern(sp, rpp);
-              CUP$XPathParser$result = new Symbol(31/*RelativePathPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(31/*RelativePathPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2935,11 +2935,11 @@ class CUP$XPathParser$actions {
           case 15: // RelativePathPattern ::= StepPattern
             {
               RelativePathPattern RESULT = null;
-                int spleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int spright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                StepPattern sp = (StepPattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int spleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int spright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                StepPattern sp = (StepPattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = sp;
-              CUP$XPathParser$result = new Symbol(31/*RelativePathPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(31/*RelativePathPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2947,11 +2947,11 @@ class CUP$XPathParser$actions {
           case 14: // ProcessingInstructionPattern ::= PIPARAM LPAREN Literal RPAREN
             {
               StepPattern RESULT = null;
-                int lleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int lright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                String l = (String)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int lleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int lright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                String l = (String)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
                  RESULT = new ProcessingInstructionPattern(l);
-              CUP$XPathParser$result = new Symbol(30/*ProcessingInstructionPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(30/*ProcessingInstructionPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2959,14 +2959,14 @@ class CUP$XPathParser$actions {
           case 13: // IdKeyPattern ::= KEY LPAREN Literal COMMA Literal RPAREN
             {
               IdKeyPattern RESULT = null;
-                int l1left = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).left;
-                int l1right = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).right;
-                String l1 = (String)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).value;
-                int l2left = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int l2right = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                String l2 = (String)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int l1left = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).left;
+                int l1right = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).right;
+                String l1 = (String)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).value;
+                int l2left = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int l2right = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                String l2 = (String)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
                  RESULT = new KeyPattern(l1, l2);
-              CUP$XPathParser$result = new Symbol(27/*IdKeyPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-5)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(27/*IdKeyPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-5)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2974,13 +2974,13 @@ class CUP$XPathParser$actions {
           case 12: // IdKeyPattern ::= ID LPAREN Literal RPAREN
             {
               IdKeyPattern RESULT = null;
-                int lleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int lright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                String l = (String)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int lleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int lright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                String l = (String)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
                  RESULT = new IdPattern(l);
                parser.setHasIdCall(true);
 
-              CUP$XPathParser$result = new Symbol(27/*IdKeyPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(27/*IdKeyPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-3)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -2988,11 +2988,11 @@ class CUP$XPathParser$actions {
           case 11: // LocationPathPattern ::= RelativePathPattern
             {
               Pattern RESULT = null;
-                int rppleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int rppright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                RelativePathPattern rpp = (RelativePathPattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int rppleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int rppright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                RelativePathPattern rpp = (RelativePathPattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = rpp;
-              CUP$XPathParser$result = new Symbol(29/*LocationPathPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(29/*LocationPathPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -3000,11 +3000,11 @@ class CUP$XPathParser$actions {
           case 10: // LocationPathPattern ::= DSLASH RelativePathPattern
             {
               Pattern RESULT = null;
-                int rppleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int rppright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                RelativePathPattern rpp = (RelativePathPattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int rppleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int rppright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                RelativePathPattern rpp = (RelativePathPattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new AncestorPattern(rpp);
-              CUP$XPathParser$result = new Symbol(29/*LocationPathPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(29/*LocationPathPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -3012,14 +3012,14 @@ class CUP$XPathParser$actions {
           case 9: // LocationPathPattern ::= IdKeyPattern DSLASH RelativePathPattern
             {
               Pattern RESULT = null;
-                int ikpleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int ikpright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                IdKeyPattern ikp = (IdKeyPattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int rppleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int rppright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                RelativePathPattern rpp = (RelativePathPattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int ikpleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int ikpright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                IdKeyPattern ikp = (IdKeyPattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int rppleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int rppright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                RelativePathPattern rpp = (RelativePathPattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new AncestorPattern(ikp, rpp);
-              CUP$XPathParser$result = new Symbol(29/*LocationPathPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(29/*LocationPathPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -3027,14 +3027,14 @@ class CUP$XPathParser$actions {
           case 8: // LocationPathPattern ::= IdKeyPattern SLASH RelativePathPattern
             {
               Pattern RESULT = null;
-                int ikpleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int ikpright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                IdKeyPattern ikp = (IdKeyPattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int rppleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int rppright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                RelativePathPattern rpp = (RelativePathPattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int ikpleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int ikpright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                IdKeyPattern ikp = (IdKeyPattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int rppleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int rppright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                RelativePathPattern rpp = (RelativePathPattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new ParentPattern(ikp, rpp);
-              CUP$XPathParser$result = new Symbol(29/*LocationPathPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(29/*LocationPathPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -3042,11 +3042,11 @@ class CUP$XPathParser$actions {
           case 7: // LocationPathPattern ::= IdKeyPattern
             {
               Pattern RESULT = null;
-                int ikpleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int ikpright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                IdKeyPattern ikp = (IdKeyPattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int ikpleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int ikpright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                IdKeyPattern ikp = (IdKeyPattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = ikp;
-              CUP$XPathParser$result = new Symbol(29/*LocationPathPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(29/*LocationPathPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -3054,11 +3054,11 @@ class CUP$XPathParser$actions {
           case 6: // LocationPathPattern ::= SLASH RelativePathPattern
             {
               Pattern RESULT = null;
-                int rppleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int rppright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                RelativePathPattern rpp = (RelativePathPattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int rppleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int rppright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                RelativePathPattern rpp = (RelativePathPattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new AbsolutePathPattern(rpp);
-              CUP$XPathParser$result = new Symbol(29/*LocationPathPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(29/*LocationPathPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -3067,7 +3067,7 @@ class CUP$XPathParser$actions {
             {
               Pattern RESULT = null;
                  RESULT = new AbsolutePathPattern(null);
-              CUP$XPathParser$result = new Symbol(29/*LocationPathPattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(29/*LocationPathPattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -3075,14 +3075,14 @@ class CUP$XPathParser$actions {
           case 4: // Pattern ::= LocationPathPattern VBAR Pattern
             {
               Pattern RESULT = null;
-                int lppleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
-                int lppright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
-                Pattern lpp = (Pattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
-                int pleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int pright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Pattern p = (Pattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int lppleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left;
+                int lppright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).right;
+                Pattern lpp = (Pattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).value;
+                int pleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int pright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Pattern p = (Pattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = new AlternativePattern(lpp, p);
-              CUP$XPathParser$result = new Symbol(28/*Pattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(28/*Pattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-2)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -3090,11 +3090,11 @@ class CUP$XPathParser$actions {
           case 3: // Pattern ::= LocationPathPattern
             {
               Pattern RESULT = null;
-                int lppleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int lppright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Pattern lpp = (Pattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int lppleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int lppright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Pattern lpp = (Pattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = lpp;
-              CUP$XPathParser$result = new Symbol(28/*Pattern*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(28/*Pattern*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -3102,11 +3102,11 @@ class CUP$XPathParser$actions {
           case 2: // TopLevel ::= EXPRESSION Expr
             {
               SyntaxTreeNode RESULT = null;
-                int exprleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int exprright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Expression expr = (Expression)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int exprleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int exprright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Expression expr = (Expression)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = expr;
-              CUP$XPathParser$result = new Symbol(1/*TopLevel*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(1/*TopLevel*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -3114,11 +3114,11 @@ class CUP$XPathParser$actions {
           case 1: // TopLevel ::= PATTERN Pattern
             {
               SyntaxTreeNode RESULT = null;
-                int patternleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
-                int patternright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
-                Pattern pattern = (Pattern)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
+                int patternleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).left;
+                int patternright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right;
+                Pattern pattern = (Pattern)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).value;
                  RESULT = pattern;
-              CUP$XPathParser$result = new Symbol(1/*TopLevel*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(1/*TopLevel*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           return CUP$XPathParser$result;
 
@@ -3126,11 +3126,11 @@ class CUP$XPathParser$actions {
           case 0: // $START ::= TopLevel EOF
             {
               Object RESULT = null;
-                int start_valleft = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
-                int start_valright = ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
-                SyntaxTreeNode start_val = (SyntaxTreeNode)((Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
+                int start_valleft = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left;
+                int start_valright = ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).right;
+                SyntaxTreeNode start_val = (SyntaxTreeNode)((com.sun.java_cup.internal.runtime.Symbol) CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).value;
                 RESULT = start_val;
-              CUP$XPathParser$result = new Symbol(0/*$START*/, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
+              CUP$XPathParser$result = new com.sun.java_cup.internal.runtime.Symbol(0/*$START*/, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-1)).left, ((com.sun.java_cup.internal.runtime.Symbol)CUP$XPathParser$stack.elementAt(CUP$XPathParser$top-0)).right, RESULT);
             }
           /* ACCEPT */
           CUP$XPathParser$parser.done_parsing();

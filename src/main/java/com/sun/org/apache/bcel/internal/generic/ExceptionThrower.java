@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 package com.sun.org.apache.bcel.internal.generic;
@@ -78,5 +78,5 @@ package com.sun.org.apache.bcel.internal.generic;
  * @author  <A HREF="http://www.inf.fu-berlin.de/~ehaase">Enver Haase</A>
  */
 public interface ExceptionThrower {
-  public Class[] getExceptions();
+  public java.lang.Class[] getExceptions();
 }

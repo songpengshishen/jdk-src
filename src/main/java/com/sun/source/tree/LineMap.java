@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2006, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -31,6 +31,7 @@ package com.sun.source.tree;
  *
  * @since 1.6
  */
+@jdk.Exported
 public interface LineMap {
     /**
      * Find the start position of a line.
@@ -38,8 +39,8 @@ public interface LineMap {
      * @param line line number (beginning at 1)
      * @return     position of first character in line
      * @throws  IndexOutOfBoundsException
-     *           if <tt>lineNumber < 1</tt>
-     *           if <tt>lineNumber > no. of lines</tt>
+     *           if {@code lineNumber < 1}
+     *           if {@code lineNumber > no. of lines}
      */
     long getStartPosition(long line);
 

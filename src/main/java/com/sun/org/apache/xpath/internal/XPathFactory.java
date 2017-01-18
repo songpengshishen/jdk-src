@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -42,8 +42,8 @@ public interface XPathFactory
    *                purposes.
    * @param prefixResolver This will be called in order to resolve prefixes
    *        to namespace URIs.
-   * @param type One of {@link XPath#SELECT} or
-   *             {@link XPath#MATCH}.
+   * @param type One of {@link com.sun.org.apache.xpath.internal.XPath#SELECT} or
+   *             {@link com.sun.org.apache.xpath.internal.XPath#MATCH}.
    *
    * @return an XPath ready for execution.
    */

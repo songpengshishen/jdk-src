@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 package com.sun.org.apache.bcel.internal.generic;
@@ -124,7 +124,7 @@ public abstract class CPInstruction extends Instruction
     if(c instanceof ConstantClass)
       str = str.replace('.', '/');
 
-    return Constants.OPCODE_NAMES[opcode] + " " + str;
+    return com.sun.org.apache.bcel.internal.Constants.OPCODE_NAMES[opcode] + " " + str;
   }
 
   /**
@@ -159,7 +159,7 @@ public abstract class CPInstruction extends Instruction
    */
   public Type getType(ConstantPoolGen cpg) {
     ConstantPool cp   = cpg.getConstantPool();
-    String       name = cp.getConstantString(index, Constants.CONSTANT_Class);
+    String       name = cp.getConstantString(index, com.sun.org.apache.bcel.internal.Constants.CONSTANT_Class);
 
     if(!name.startsWith("["))
       name = "L" + name + ";";

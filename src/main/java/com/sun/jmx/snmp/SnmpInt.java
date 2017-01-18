@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2007, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -232,7 +232,7 @@ public class SnmpInt extends SnmpValue {
             newclone = (SnmpInt) super.clone() ;
             newclone.value = value ;
         } catch (CloneNotSupportedException e) {
-            throw new InternalError() ; // vm bug.
+            throw new InternalError(e) ; // vm bug.
         }
         return newclone ;
     }

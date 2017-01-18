@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -79,7 +79,7 @@ public final class BooleanType extends Type {
      * translation to int is undefined since booleans are always converted to
      * reals in arithmetic expressions.
      *
-     * @see     Type#translateTo
+     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             Type type) {
@@ -104,7 +104,7 @@ public final class BooleanType extends Type {
      * stack is zero, then the string 'false' is pushed. Otherwise, the string
      * 'true' is pushed.
      *
-     * @see     Type#translateTo
+     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             StringType type) {
@@ -121,7 +121,7 @@ public final class BooleanType extends Type {
      * Expects a boolean on the stack and pushes a real. The value "true" is
      * converted to 1.0 and the value "false" to 0.0.
      *
-     * @see     Type#translateTo
+     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             RealType type) {
@@ -133,7 +133,7 @@ public final class BooleanType extends Type {
      * Boxed booleans are represented by an instance of
      * <code>java.lang.Boolean</code>.
      *
-     * @see     Type#translateTo
+     * @see     com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
     public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
                             ReferenceType type) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -90,14 +90,14 @@ public class SimpleLocator implements XMLLocator {
         return null;
     }
     /**
-     * @see XMLLocator#setColumnNumber(int)
+     * @see com.sun.org.apache.xerces.internal.xni.XMLLocator#setColumnNumber(int)
      */
     public void setColumnNumber(int col) {
         this.column = col;
     }
 
     /**
-     * @see XMLLocator#setLineNumber(int)
+     * @see com.sun.org.apache.xerces.internal.xni.XMLLocator#setLineNumber(int)
      */
     public void setLineNumber(int line) {
         this.line = line;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -68,7 +68,7 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
      */
 
     public boolean functionAvailable(String ns, String funcName)
-          throws TransformerException {
+          throws javax.xml.transform.TransformerException {
       try {
         if ( funcName == null ) {
             String fmsg = XSLMessages.createXPATHMessage(
@@ -77,8 +77,8 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
             throw new NullPointerException ( fmsg );
         }
         //Find the XPathFunction corresponding to namespace and funcName
-        QName myQName = new QName( ns, funcName );
-        XPathFunction xpathFunction =
+        javax.xml.namespace.QName myQName = new QName( ns, funcName );
+        javax.xml.xpath.XPathFunction xpathFunction =
             resolver.resolveFunction ( myQName, 0 );
         if (  xpathFunction == null ) {
             return false;
@@ -96,7 +96,7 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
      * Is the extension element available?
      */
     public boolean elementAvailable(String ns, String elemName)
-          throws TransformerException {
+          throws javax.xml.transform.TransformerException {
         return false;
     }
 
@@ -104,7 +104,7 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
      * Execute the extension function.
      */
     public Object extFunction(String ns, String funcName, Vector argVec,
-        Object methodKey) throws TransformerException {
+        Object methodKey) throws javax.xml.transform.TransformerException {
         try {
 
             if ( funcName == null ) {
@@ -114,7 +114,7 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
                 throw new NullPointerException ( fmsg );
             }
             //Find the XPathFunction corresponding to namespace and funcName
-            QName myQName = new QName( ns, funcName );
+            javax.xml.namespace.QName myQName = new QName( ns, funcName );
 
             // JAXP 1.3 spec says When XMLConstants.FEATURE_SECURE_PROCESSING
             // feature is set then invocation of extension functions need to
@@ -130,7 +130,7 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
             // default values )
             int arity = argVec.size();
 
-            XPathFunction xpathFunction =
+            javax.xml.xpath.XPathFunction xpathFunction =
                 resolver.resolveFunction ( myQName, arity );
 
             // not using methodKey
@@ -155,7 +155,7 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
             // further execution by throwing WrappedRuntimeException
             throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException ( xfe );
         } catch ( Exception e ) {
-            throw new TransformerException ( e );
+            throw new javax.xml.transform.TransformerException ( e );
         }
 
     }
@@ -165,13 +165,13 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
      */
     public Object extFunction(FuncExtFunction extFunction,
                               Vector argVec)
-        throws TransformerException {
+        throws javax.xml.transform.TransformerException {
         try {
             String namespace = extFunction.getNamespace();
             String functionName = extFunction.getFunctionName();
             int arity = extFunction.getArgCount();
-            QName myQName =
-                new QName( namespace, functionName );
+            javax.xml.namespace.QName myQName =
+                new javax.xml.namespace.QName( namespace, functionName );
 
             // JAXP 1.3 spec says  When XMLConstants.FEATURE_SECURE_PROCESSING
             // feature is set then invocation of extension functions need to
@@ -207,7 +207,7 @@ public class JAXPExtensionsProvider implements ExtensionsProvider {
             // further execution by throwing WrappedRuntimeException
             throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException ( xfe );
         } catch ( Exception e ) {
-            throw new TransformerException ( e );
+            throw new javax.xml.transform.TransformerException ( e );
         }
     }
 

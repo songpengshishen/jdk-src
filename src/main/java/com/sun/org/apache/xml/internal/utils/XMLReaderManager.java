@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -128,8 +128,8 @@ public class XMLReaderManager {
                     try {
                         reader.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, _secureProcessing);
                     } catch (SAXNotRecognizedException e) {
-                        System.err.println("Warning:  " + reader.getClass().getName() + ": "
-                                + e.getMessage());
+                        XMLSecurityManager.printWarning(reader.getClass().getName(),
+                                XMLConstants.FEATURE_SECURE_PROCESSING, e);
                     }
                 } catch (Exception e) {
                    try {
@@ -172,23 +172,25 @@ public class XMLReaderManager {
             //reader is cached, but this property might have been reset
             reader.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, _accessExternalDTD);
         } catch (SAXException se) {
-            System.err.println("Warning:  " + reader.getClass().getName() + ": "
-                        + se.getMessage());
+            XMLSecurityManager.printWarning(reader.getClass().getName(),
+                    XMLConstants.ACCESS_EXTERNAL_DTD, se);
         }
 
+        String lastProperty = "";
         try {
             if (_xmlSecurityManager != null) {
                 for (XMLSecurityManager.Limit limit : XMLSecurityManager.Limit.values()) {
-                    reader.setProperty(limit.apiProperty(),
+                    lastProperty = limit.apiProperty();
+                    reader.setProperty(lastProperty,
                             _xmlSecurityManager.getLimitValueAsString(limit));
                 }
                 if (_xmlSecurityManager.printEntityCountInfo()) {
+                    lastProperty = XalanConstants.JDK_ENTITY_COUNT_INFO;
                     reader.setProperty(XalanConstants.JDK_ENTITY_COUNT_INFO, XalanConstants.JDK_YES);
                 }
             }
         } catch (SAXException se) {
-            System.err.println("Warning:  " + reader.getClass().getName() + ": "
-                        + se.getMessage());
+            XMLSecurityManager.printWarning(reader.getClass().getName(), lastProperty, se);
         }
 
         return reader;

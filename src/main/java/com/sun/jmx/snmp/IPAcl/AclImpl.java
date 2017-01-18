@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2007, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -49,7 +49,7 @@ import java.util.Enumeration;
  * If positive, the permissions are to be granted to the associated principal.
  * If negative, the permissions are to be denied.
  *
- * @see Acl
+ * @see java.security.acl.Acl
  */
 
 class AclImpl extends OwnerImpl implements Acl, Serializable {
@@ -66,7 +66,7 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    */
   public AclImpl (PrincipalImpl owner, String name) {
         super(owner);
-        entryList = new Vector<AclEntry>();
+        entryList = new Vector<>();
         aclName = name;
   }
 
@@ -79,8 +79,9 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    *
    * @exception NotOwnerException if the caller principal is not an owner
    *            of this ACL.
-   * @see Principal
+   * @see java.security.Principal
    */
+  @Override
   public void setName(Principal caller, String name)
         throws NotOwnerException {
           if (!isOwner(caller))
@@ -93,6 +94,7 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    *
    * @return the name of this ACL.
    */
+  @Override
   public String getName(){
         return aclName;
   }
@@ -111,8 +113,9 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    *       or negative) for the same principal is already present in this ACL.
    * @exception NotOwnerException if the caller principal is not an owner of
    *       this ACL.
-   * @see Principal
+   * @see java.security.Principal
    */
+  @Override
   public boolean addEntry(Principal caller, AclEntry entry)
         throws NotOwnerException {
           if (!isOwner(caller))
@@ -141,9 +144,10 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    * @return true on success, false if the entry is not part of this ACL.
    * @exception NotOwnerException if the caller principal is not an owner
    *   of this Acl.
-   * @see Principal
-   * @see AclEntry
+   * @see java.security.Principal
+   * @see java.security.acl.AclEntry
    */
+  @Override
   public boolean removeEntry(Principal caller, AclEntry entry)
         throws NotOwnerException {
           if (!isOwner(caller))
@@ -159,7 +163,7 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    *        of this ACL.
    * @exception NotOwnerException if the caller principal is not an owner of
    *        this Acl.
-   * @see Principal
+   * @see java.security.Principal
    */
   public void removeAll(Principal caller)
         throws NotOwnerException {
@@ -183,10 +187,11 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    * @param user the principal whose permission set is to be returned.
    * @return the permission set specifying the permissions the principal
    *     is allowed.
-   * @see Principal
+   * @see java.security.Principal
    */
+  @Override
   public Enumeration<Permission> getPermissions(Principal user){
-        Vector<Permission> empty = new Vector<Permission>();
+        Vector<Permission> empty = new Vector<>();
         for (Enumeration<AclEntry> e = entryList.elements();e.hasMoreElements();){
           AclEntry ent = e.nextElement();
           if (ent.getPrincipal().equals(user))
@@ -201,6 +206,7 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    *
    * @return an enumeration of the entries in this ACL.
    */
+  @Override
   public Enumeration<AclEntry> entries(){
         return entryList.elements();
   }
@@ -218,13 +224,14 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    * @param perm the permission to be checked for.
    * @return true if the principal has the specified permission,
    *         false otherwise.
-   * @see Principal
+   * @see java.security.Principal
    * @see java.security.Permission
    */
+  @Override
   public boolean checkPermission(Principal user,
-                                 Permission perm) {
-        for (Enumeration e = entryList.elements();e.hasMoreElements();){
-          AclEntry ent = (AclEntry) e.nextElement();
+                                 java.security.acl.Permission perm) {
+        for (Enumeration<AclEntry> e = entryList.elements();e.hasMoreElements();){
+          AclEntry ent = e.nextElement();
           if (ent.getPrincipal().equals(user))
                 if (ent.checkPermission(perm)) return true;
         }
@@ -245,12 +252,12 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    * @param perm the permission to be checked for.
    * @return true if the principal has the specified permission, false
    *        otherwise.
-   * @see Principal
+   * @see java.security.Principal
    * @see java.security.Permission
    */
   public boolean checkPermission(Principal user, String community,
-                                 Permission perm) {
-        for (Enumeration e = entryList.elements();e.hasMoreElements();){
+                                 java.security.acl.Permission perm) {
+        for (Enumeration<AclEntry> e = entryList.elements();e.hasMoreElements();){
           AclEntryImpl ent = (AclEntryImpl) e.nextElement();
           if (ent.getPrincipal().equals(user))
                 if (ent.checkPermission(perm) && ent.checkCommunity(community)) return true;
@@ -265,11 +272,11 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    *
    * @return true if the specified community string is defined, false
    *      otherwise.
-   * @see Principal
+   * @see java.security.Principal
    * @see java.security.Permission
    */
   public boolean checkCommunity(String community) {
-        for (Enumeration e = entryList.elements();e.hasMoreElements();){
+        for (Enumeration<AclEntry> e = entryList.elements();e.hasMoreElements();){
           AclEntryImpl ent = (AclEntryImpl) e.nextElement();
           if (ent.checkCommunity(community)) return true;
         }
@@ -281,6 +288,7 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    *
    * @return a string representation of the ACL contents.
    */
+  @Override
   public String toString(){
         return ("AclImpl: "+ getName());
   }

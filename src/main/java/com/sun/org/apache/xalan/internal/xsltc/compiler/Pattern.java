@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -48,7 +48,7 @@ public abstract class Pattern extends Expression {
      * make sure to backpatch both true and false lists. True lists are the
      * default, in the sense that they always <em>"fall through"</em>. If this
      * is not the intended semantics (e.g., see
-     * {@link AlternativePattern#translate})
+     * {@link com.sun.org.apache.xalan.internal.xsltc.compiler.AlternativePattern#translate})
      * then a GOTO must be appended to the instruction list after calling
      * <code>translate</code>.
      */

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -2164,8 +2164,8 @@ public class RegularExpression implements java.io.Serializable {
      * captures matched text, and <span class="REGEX"><kbd>(:?</kbd><var>X</var><kbd>)</kbd></span>
      * does not capture.
      *
-     * @see #RegularExpression(String,int)
-     * @see #setPattern(String,int)
+     * @see #RegularExpression(java.lang.String,int)
+     * @see #setPattern(java.lang.String,int)
     static final int MARK_PARENS = 1<<0;
      */
 
@@ -2192,8 +2192,8 @@ public class RegularExpression implements java.io.Serializable {
     /**
      * This option redefines <span class="REGEX"><kbd>\d \D \w \W \s \S</kbd></span>.
      *
-     * @see #RegularExpression(String,int)
-     * @see #setPattern(String,int)
+     * @see #RegularExpression(java.lang.String,int)
+     * @see #setPattern(java.lang.String,int)
      * @see #UNICODE_WORD_BOUNDARY
      */
     static final int USE_UNICODE_CATEGORY = 1<<5; // "u"
@@ -2207,8 +2207,8 @@ public class RegularExpression implements java.io.Serializable {
      * <p>By this option, the engine checks word boundaries with the method of
      * 'Unicode Regular Expression Guidelines' Revision 4.
      *
-     * @see #RegularExpression(String,int)
-     * @see #setPattern(String,int)
+     * @see #RegularExpression(java.lang.String,int)
+     * @see #setPattern(java.lang.String,int)
      */
     static final int UNICODE_WORD_BOUNDARY = 1<<6; // "w"
 
@@ -2327,8 +2327,8 @@ public class RegularExpression implements java.io.Serializable {
      * The order of letters in it may be different from a string specified
      * in a constructor or <code>setPattern()</code>.
      *
-     * @see #RegularExpression(String,String)
-     * @see #setPattern(String,String)
+     * @see #RegularExpression(java.lang.String,java.lang.String)
+     * @see #setPattern(java.lang.String,java.lang.String)
      */
     public String getOptions() {
         return REUtil.createOptionString(this.options);

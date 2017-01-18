@@ -20,11 +20,11 @@ import java.util.Vector;
  * and the corresponding SMI type of the variable.
  * <P>
  * If you need to load a specific <CODE>SnmpOidTable</CODE>, just call the static method
- * {@link SnmpOid#setSnmpOidTable <CODE>SnmpOid.setSnmpOidTable(<I>myOidTable</I>)</CODE>}.
+ * {@link com.sun.jmx.snmp.SnmpOid#setSnmpOidTable <CODE>SnmpOid.setSnmpOidTable(<I>myOidTable</I>)</CODE>}.
  *
  * <p><b>This API is a Sun Microsystems internal API  and is subject
  * to change without notice.</b></p>
- * @see SnmpOidRecord
+ * @see com.sun.jmx.snmp.SnmpOidRecord
  *
  *
  */
@@ -33,7 +33,7 @@ import java.util.Vector;
 public interface SnmpOidTable {
 
     /**
-     * Searches for a MIB variable given its logical name and returns an {@link SnmpOidRecord} object
+     * Searches for a MIB variable given its logical name and returns an {@link com.sun.jmx.snmp.SnmpOidRecord} object
      * containing information on the variable.
      *
      * @param name The name of the MIB variable.
@@ -45,7 +45,7 @@ public interface SnmpOidTable {
 
 
     /**
-     * Searches for a MIB variable given its OID and returns an {@link SnmpOidRecord} object
+     * Searches for a MIB variable given its OID and returns an {@link com.sun.jmx.snmp.SnmpOidRecord} object
      * containing information on the variable.
      *
      * @param oid The OID of the MIB variable.
@@ -58,7 +58,7 @@ public interface SnmpOidTable {
 
     /**
      * Returns a list that can be used to traverse all the entries this <CODE>SnmpOidTable</CODE>.
-     * @return A Vector of {@link SnmpOidRecord} objects.
+     * @return A Vector of {@link com.sun.jmx.snmp.SnmpOidRecord} objects.
      */
     public Vector<?> getAllEntries();
 }

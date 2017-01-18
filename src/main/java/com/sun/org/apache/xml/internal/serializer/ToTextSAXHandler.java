@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -55,7 +55,7 @@ public final class ToTextSAXHandler extends ToSAXHandler
     }
 
     /**
-     * @see ContentHandler#endElement(String, String, String)
+     * @see org.xml.sax.ContentHandler#endElement(String, String, String)
      */
     public void endElement(String arg0, String arg1, String arg2)
         throws SAXException
@@ -78,13 +78,13 @@ public final class ToTextSAXHandler extends ToSAXHandler
     }
 
     public void comment(char ch[], int start, int length)
-        throws SAXException
+        throws org.xml.sax.SAXException
     {
         if (m_tracer != null)
             super.fireCommentEvent(ch, start, length);
     }
 
-    public void comment(String data) throws SAXException
+    public void comment(String data) throws org.xml.sax.SAXException
     {
         final int length = data.length();
         if (length > m_charsBuff.length)
@@ -229,14 +229,14 @@ public final class ToTextSAXHandler extends ToSAXHandler
     }
 
     /**
-     * @see ContentHandler#endPrefixMapping(String)
+     * @see org.xml.sax.ContentHandler#endPrefixMapping(String)
      */
     public void endPrefixMapping(String arg0) throws SAXException
     {
     }
 
     /**
-     * @see ContentHandler#ignorableWhitespace(char[], int, int)
+     * @see org.xml.sax.ContentHandler#ignorableWhitespace(char[], int, int)
      */
     public void ignorableWhitespace(char[] arg0, int arg1, int arg2)
         throws SAXException
@@ -245,7 +245,7 @@ public final class ToTextSAXHandler extends ToSAXHandler
 
     /**
      * From XSLTC
-     * @see ContentHandler#processingInstruction(String, String)
+     * @see org.xml.sax.ContentHandler#processingInstruction(String, String)
      */
     public void processingInstruction(String arg0, String arg1)
         throws SAXException
@@ -255,7 +255,7 @@ public final class ToTextSAXHandler extends ToSAXHandler
     }
 
     /**
-     * @see ContentHandler#setDocumentLocator(Locator)
+     * @see org.xml.sax.ContentHandler#setDocumentLocator(Locator)
      */
     public void setDocumentLocator(Locator arg0)
     {
@@ -263,14 +263,14 @@ public final class ToTextSAXHandler extends ToSAXHandler
     }
 
     /**
-     * @see ContentHandler#skippedEntity(String)
+     * @see org.xml.sax.ContentHandler#skippedEntity(String)
      */
     public void skippedEntity(String arg0) throws SAXException
     {
     }
 
     /**
-     * @see ContentHandler#startElement(String, String, String, Attributes)
+     * @see org.xml.sax.ContentHandler#startElement(String, String, String, Attributes)
      */
     public void startElement(
         String arg0,
@@ -284,21 +284,21 @@ public final class ToTextSAXHandler extends ToSAXHandler
     }
 
     /**
-     * @see LexicalHandler#endCDATA()
+     * @see org.xml.sax.ext.LexicalHandler#endCDATA()
      */
     public void endCDATA() throws SAXException
     {
     }
 
     /**
-     * @see LexicalHandler#endDTD()
+     * @see org.xml.sax.ext.LexicalHandler#endDTD()
      */
     public void endDTD() throws SAXException
     {
     }
 
     /**
-     * @see LexicalHandler#startCDATA()
+     * @see org.xml.sax.ext.LexicalHandler#startCDATA()
      */
     public void startCDATA() throws SAXException
     {
@@ -306,7 +306,7 @@ public final class ToTextSAXHandler extends ToSAXHandler
 
 
     /**
-     * @see LexicalHandler#startEntity(String)
+     * @see org.xml.sax.ext.LexicalHandler#startEntity(String)
      */
     public void startEntity(String arg0) throws SAXException
     {
@@ -334,7 +334,7 @@ public final class ToTextSAXHandler extends ToSAXHandler
 
     /**
      * From XSLTC
-     * @see ContentHandler#endDocument()
+     * @see org.xml.sax.ContentHandler#endDocument()
      */
     public void endDocument() throws SAXException {
 
@@ -363,7 +363,7 @@ public final class ToTextSAXHandler extends ToSAXHandler
 
     }
     /**
-         * @see ContentHandler#characters(char[], int, int)
+         * @see org.xml.sax.ContentHandler#characters(char[], int, int)
      */
     public void characters(char[] characters, int offset, int length)
     throws SAXException
@@ -397,7 +397,7 @@ public final class ToTextSAXHandler extends ToSAXHandler
 
 
     public void startPrefixMapping(String prefix, String uri)
-        throws SAXException
+        throws org.xml.sax.SAXException
     {
         // no namespace support for HTML
     }

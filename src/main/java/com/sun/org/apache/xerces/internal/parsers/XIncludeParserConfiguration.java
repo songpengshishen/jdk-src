@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -37,7 +37,7 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLDocumentSource;
  * <code>XIncludeHandler</code>.
  *
  * @author Peter McCracken, IBM
- * @see XIncludeHandler
+ * @see com.sun.org.apache.xerces.internal.xinclude.XIncludeHandler
  */
 public class XIncludeParserConfiguration extends XML11Configuration {
 

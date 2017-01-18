@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -204,7 +204,7 @@ public class Compiler extends OpMap
    * @param operation non-null reference to parent operation.
    * @param opPos The op map position of the parent operation.
    *
-   * @return reference to {@link Operation} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.operations.Operation} instance.
    *
    * @throws TransformerException if there is a syntax or other error.
    */
@@ -246,7 +246,7 @@ public class Compiler extends OpMap
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link Or} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.operations.Or} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -260,7 +260,7 @@ public class Compiler extends OpMap
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link And} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.operations.And} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -274,7 +274,7 @@ public class Compiler extends OpMap
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link NotEquals} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.operations.NotEquals} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -288,7 +288,7 @@ public class Compiler extends OpMap
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link Equals} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.operations.Equals} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -302,7 +302,7 @@ public class Compiler extends OpMap
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link Lte} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.operations.Lte} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -316,7 +316,7 @@ public class Compiler extends OpMap
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link Lt} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.operations.Lt} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -330,7 +330,7 @@ public class Compiler extends OpMap
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link Gte} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.operations.Gte} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -344,7 +344,7 @@ public class Compiler extends OpMap
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link Gt} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.operations.Gt} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -358,7 +358,7 @@ public class Compiler extends OpMap
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link Plus} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.operations.Plus} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -372,7 +372,7 @@ public class Compiler extends OpMap
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link Minus} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.operations.Minus} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -386,7 +386,7 @@ public class Compiler extends OpMap
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link Mult} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.operations.Mult} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -400,7 +400,7 @@ public class Compiler extends OpMap
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link Div} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.operations.Div} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -414,7 +414,7 @@ public class Compiler extends OpMap
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link Mod} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.operations.Mod} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -442,7 +442,7 @@ public class Compiler extends OpMap
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link Neg} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.operations.Neg} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -498,7 +498,7 @@ public class Compiler extends OpMap
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link XString} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.objects.XString} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -515,7 +515,7 @@ public class Compiler extends OpMap
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link XNumber} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.objects.XNumber} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -532,7 +532,7 @@ public class Compiler extends OpMap
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link Variable} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.operations.Variable} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -544,11 +544,11 @@ public class Compiler extends OpMap
     opPos = getFirstChildPos(opPos);
 
     int nsPos = getOp(opPos);
-    String namespace
+    java.lang.String namespace
       = (OpCodes.EMPTY == nsPos) ? null
-                                   : (String) getTokenQueue().elementAt(nsPos);
-    String localname
-      = (String) getTokenQueue().elementAt(getOp(opPos+1));
+                                   : (java.lang.String) getTokenQueue().elementAt(nsPos);
+    java.lang.String localname
+      = (java.lang.String) getTokenQueue().elementAt(getOp(opPos+1));
     QName qname = new QName(namespace, localname);
 
     var.setQName(qname);
@@ -673,7 +673,7 @@ public class Compiler extends OpMap
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link UnionPattern} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.patterns.UnionPattern} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -719,7 +719,7 @@ public class Compiler extends OpMap
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link StepPattern} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.patterns.StepPattern} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -816,7 +816,7 @@ private static final boolean DEBUG = false;
    * @param stepCount The number of steps to expect.
    * @param ancestorPattern The owning StepPattern, which may be null.
    *
-   * @return reference to {@link StepPattern} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.patterns.StepPattern} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -942,7 +942,7 @@ private static final boolean DEBUG = false;
    *
    * @param opPos The position of the first predicate the m_opMap array.
    *
-   * @return reference to array of {@link Expression} instances.
+   * @return reference to array of {@link com.sun.org.apache.xpath.internal.Expression} instances.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -993,7 +993,7 @@ private static final boolean DEBUG = false;
    *
    * @param opPos The position of the first predicate the m_opMap array.
    * @param predicates An empty pre-determined array of
-   *            {@link Expression}s, that will be filled in.
+   *            {@link com.sun.org.apache.xpath.internal.Expression}s, that will be filled in.
    *
    * @throws TransformerException
    */
@@ -1013,7 +1013,7 @@ private static final boolean DEBUG = false;
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link Function} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.functions.Function} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -1058,7 +1058,7 @@ private static final boolean DEBUG = false;
       }
       catch (WrongNumberArgsException wnae)
       {
-        String name = m_functionTable.getFunctionName(funcID);
+        java.lang.String name = m_functionTable.getFunctionName(funcID);
 
         m_errorHandler.fatalError( new TransformerException(
                   XSLMessages.createXPATHMessage(XPATHErrorResources.ER_ONLY_ALLOWS,
@@ -1095,7 +1095,7 @@ private static final boolean DEBUG = false;
    *
    * @param opPos The current position in the m_opMap array.
    *
-   * @return reference to {@link FuncExtFunction} instance.
+   * @return reference to {@link com.sun.org.apache.xpath.internal.functions.FuncExtFunction} instance.
    *
    * @throws TransformerException if a error occurs creating the Expression.
    */
@@ -1107,12 +1107,12 @@ private static final boolean DEBUG = false;
 
     opPos = getFirstChildPos(opPos);
 
-    String ns = (String) getTokenQueue().elementAt(getOp(opPos));
+    java.lang.String ns = (java.lang.String) getTokenQueue().elementAt(getOp(opPos));
 
     opPos++;
 
-    String funcName =
-      (String) getTokenQueue().elementAt(getOp(opPos));
+    java.lang.String funcName =
+      (java.lang.String) getTokenQueue().elementAt(getOp(opPos));
 
     opPos++;
 
@@ -1149,7 +1149,7 @@ private static final boolean DEBUG = false;
    * Warn the user of an problem.
    *
    * @param msg An error msgkey that corresponds to one of the constants found
-   *            in {@link XPATHErrorResources}, which is
+   *            in {@link com.sun.org.apache.xpath.internal.res.XPATHErrorResources}, which is
    *            a key for a format string.
    * @param args An array of arguments represented in the format string, which
    *             may be null.
@@ -1160,7 +1160,7 @@ private static final boolean DEBUG = false;
   public void warn(String msg, Object[] args) throws TransformerException
   {
 
-    String fmsg = XSLMessages.createXPATHWarning(msg, args);
+    java.lang.String fmsg = XSLMessages.createXPATHWarning(msg, args);
 
     if (null != m_errorHandler)
     {
@@ -1184,12 +1184,12 @@ private static final boolean DEBUG = false;
    *
    * @throws RuntimeException if the b argument is false.
    */
-  public void assertion(boolean b, String msg)
+  public void assertion(boolean b, java.lang.String msg)
   {
 
     if (!b)
     {
-      String fMsg = XSLMessages.createXPATHMessage(
+      java.lang.String fMsg = XSLMessages.createXPATHMessage(
         XPATHErrorResources.ER_INCORRECT_PROGRAMMER_ASSERTION,
         new Object[]{ msg });
 
@@ -1202,7 +1202,7 @@ private static final boolean DEBUG = false;
    * exception.
    *
    * @param msg An error msgkey that corresponds to one of the constants found
-   *            in {@link XPATHErrorResources}, which is
+   *            in {@link com.sun.org.apache.xpath.internal.res.XPATHErrorResources}, which is
    *            a key for a format string.
    * @param args An array of arguments represented in the format string, which
    *             may be null.
@@ -1213,7 +1213,7 @@ private static final boolean DEBUG = false;
   public void error(String msg, Object[] args) throws TransformerException
   {
 
-    String fmsg = XSLMessages.createXPATHMessage(msg, args);
+    java.lang.String fmsg = XSLMessages.createXPATHMessage(msg, args);
 
 
     if (null != m_errorHandler)

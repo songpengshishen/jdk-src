@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -136,7 +136,7 @@ public  class XPathFactoryImpl extends XPathFactory {
          * @return New <code>XPath</code>
          */
         public javax.xml.xpath.XPath newXPath() {
-            return new XPathImpl(
+            return new com.sun.org.apache.xpath.internal.jaxp.XPathImpl(
                     xPathVariableResolver, xPathFunctionResolver,
                     !_isNotSecureProcessing, _useServicesMechanism,
                     _featureManager );
@@ -156,7 +156,7 @@ public  class XPathFactoryImpl extends XPathFactory {
          * value but be unable to change its state.
          * </p>
          *
-         * <p>See {@link XPathFactory} for full documentation
+         * <p>See {@link javax.xml.xpath.XPathFactory} for full documentation
          * of specific features.</p>
          *
          * @param name Feature name.

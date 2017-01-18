@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -59,12 +59,12 @@ abstract interface ExtendedContentHandler extends org.xml.sax.ContentHandler
      * @throws SAXException
      */
     public void addAttribute(
-            String uri,
-            String localName,
-            String rawName,
-            String type,
-            String value,
-            boolean XSLAttribute)
+        String uri,
+        String localName,
+        String rawName,
+        String type,
+        String value,
+        boolean XSLAttribute)
         throws SAXException;
     /**
      * Add attributes to the current element
@@ -72,7 +72,7 @@ abstract interface ExtendedContentHandler extends org.xml.sax.ContentHandler
      * @throws SAXException
      */
     public void addAttributes(org.xml.sax.Attributes atts)
-        throws SAXException;
+        throws org.xml.sax.SAXException;
     /**
      * Add an attribute to the current element. The namespace URI of the
      * attribute will be calculated from the prefix of qName. The local name
@@ -96,7 +96,7 @@ abstract interface ExtendedContentHandler extends org.xml.sax.ContentHandler
      * @param node a DOM Node containing text.
      * @throws SAXException
      */
-    public void characters(org.w3c.dom.Node node) throws SAXException;
+    public void characters(org.w3c.dom.Node node) throws org.xml.sax.SAXException;
     /**
      * This method is used to notify that an element has ended. Unlike the
      * standard SAX method
@@ -125,7 +125,7 @@ abstract interface ExtendedContentHandler extends org.xml.sax.ContentHandler
      * @throws SAXException
      */
     public void startElement(String uri, String localName, String qName)
-        throws SAXException;
+        throws org.xml.sax.SAXException;
 
     /**
      * This method is used to notify of the start of an element
@@ -168,9 +168,9 @@ abstract interface ExtendedContentHandler extends org.xml.sax.ContentHandler
      * @throws SAXException
      */
     public boolean startPrefixMapping(
-            String prefix,
-            String uri,
-            boolean shouldFlush)
+        String prefix,
+        String uri,
+        boolean shouldFlush)
         throws SAXException;
     /**
      * Notify of an entity reference.
@@ -264,10 +264,10 @@ abstract interface ExtendedContentHandler extends org.xml.sax.ContentHandler
      * @throws SAXException
      */
     public void addAttribute(
-            String uri,
-            String localName,
-            String rawName,
-            String type,
-            String value)
+        String uri,
+        String localName,
+        String rawName,
+        String type,
+        String value)
         throws SAXException;
 }

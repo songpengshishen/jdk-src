@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -60,7 +60,7 @@ public class XPathExpressionImpl  implements javax.xml.xpath.XPathExpression{
     private XPathFunctionResolver functionResolver;
     private XPathVariableResolver variableResolver;
     private JAXPPrefixResolver prefixResolver;
-    private XPath xpath;
+    private com.sun.org.apache.xpath.internal.XPath xpath;
 
     // By default Extension Functions are allowed in XPath Expressions. If
     // Secure Processing Feature is set on XPathFactory then the invocation of
@@ -79,7 +79,7 @@ public class XPathExpressionImpl  implements javax.xml.xpath.XPathExpression{
              false, true, new FeatureManager());
     };
 
-    protected XPathExpressionImpl(XPath xpath,
+    protected XPathExpressionImpl(com.sun.org.apache.xpath.internal.XPath xpath,
             JAXPPrefixResolver prefixResolver,
             XPathFunctionResolver functionResolver,
             XPathVariableResolver variableResolver ) {
@@ -87,7 +87,7 @@ public class XPathExpressionImpl  implements javax.xml.xpath.XPathExpression{
              false, true, new FeatureManager());
     };
 
-    protected XPathExpressionImpl(XPath xpath,
+    protected XPathExpressionImpl(com.sun.org.apache.xpath.internal.XPath xpath,
             JAXPPrefixResolver prefixResolver,XPathFunctionResolver functionResolver,
             XPathVariableResolver variableResolver, boolean featureSecureProcessing,
             boolean useServicesMechanism, FeatureManager featureManager ) {
@@ -100,25 +100,25 @@ public class XPathExpressionImpl  implements javax.xml.xpath.XPathExpression{
         this.featureManager = featureManager;
     };
 
-    public void setXPath (XPath xpath ) {
+    public void setXPath (com.sun.org.apache.xpath.internal.XPath xpath ) {
         this.xpath = xpath;
     }
 
     public Object eval(Object item, QName returnType)
-            throws TransformerException {
+            throws javax.xml.transform.TransformerException {
         XObject resultObject = eval ( item );
         return getResultAsType( resultObject, returnType );
     }
 
     private XObject eval ( Object contextItem )
-            throws TransformerException {
-        XPathContext xpathSupport = null;
+            throws javax.xml.transform.TransformerException {
+        com.sun.org.apache.xpath.internal.XPathContext xpathSupport = null;
         if ( functionResolver != null ) {
             JAXPExtensionsProvider jep = new JAXPExtensionsProvider(
                     functionResolver, featureSecureProcessing, featureManager );
-            xpathSupport = new XPathContext( jep );
+            xpathSupport = new com.sun.org.apache.xpath.internal.XPathContext( jep );
         } else {
-            xpathSupport = new XPathContext();
+            xpathSupport = new com.sun.org.apache.xpath.internal.XPathContext();
         }
 
         xpathSupport.setVarStack(new JAXPVariableStack(variableResolver));
@@ -189,12 +189,12 @@ public class XPathExpressionImpl  implements javax.xml.xpath.XPathExpression{
         }
         try {
             return eval( item, returnType);
-        } catch ( NullPointerException npe ) {
+        } catch ( java.lang.NullPointerException npe ) {
             // If VariableResolver returns null Or if we get
             // NullPointerException at this stage for some other reason
             // then we have to reurn XPathException
             throw new XPathExpressionException ( npe );
-        } catch ( TransformerException te ) {
+        } catch ( javax.xml.transform.TransformerException te ) {
             Throwable nestedException = te.getException();
             if ( nestedException instanceof javax.xml.xpath.XPathFunctionException ) {
                 throw (javax.xml.xpath.XPathFunctionException)nestedException;
@@ -346,7 +346,7 @@ public class XPathExpressionImpl  implements javax.xml.xpath.XPathExpression{
      }
 
      private Object getResultAsType( XObject resultObject, QName returnType )
-        throws TransformerException {
+        throws javax.xml.transform.TransformerException {
         // XPathConstants.STRING
         if ( returnType.equals( XPathConstants.STRING ) ) {
             return resultObject.str();

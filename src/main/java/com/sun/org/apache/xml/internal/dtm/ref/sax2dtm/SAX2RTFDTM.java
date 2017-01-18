@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -280,7 +280,7 @@ public class SAX2RTFDTM extends SAX2DTM
   public void pushRewindMark()
   {
     if(m_indexing || m_elemIndexes!=null)
-      throw new NullPointerException("Coding error; Don't try to mark/rewind an indexed DTM");
+      throw new java.lang.NullPointerException("Coding error; Don't try to mark/rewind an indexed DTM");
 
     // Values from DTMDefaultBase
     // %REVIEW% Can the namespace stack sizes ever differ? If not, save space!

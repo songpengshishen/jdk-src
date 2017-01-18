@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -31,7 +31,7 @@ import com.sun.org.apache.xpath.internal.compiler.Compiler;
  * This class implements an optimized iterator for
  * "node()" patterns, that is, any children of the
  * context node.
- * @see LocPathIterator
+ * @see com.sun.org.apache.xpath.internal.axes.LocPathIterator
  * @xsl.usage advanced
  */
 public class ChildIterator extends LocPathIterator

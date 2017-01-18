@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -46,7 +46,7 @@ public interface FieldActivator {
      * @param initialDepth  the depth at which the selector began matching
      */
     public void startValueScopeFor(IdentityConstraint identityConstraint,
-                                   int initialDepth);
+            int initialDepth);
 
     /**
      * Request to activate the specified field. This method returns the

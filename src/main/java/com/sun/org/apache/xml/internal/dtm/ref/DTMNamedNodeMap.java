@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -274,7 +274,7 @@ public class DTMNamedNodeMap implements NamedNodeMap
    * Simple implementation of DOMException.
    * @xsl.usage internal
    */
-  public class DTMException extends DOMException
+  public class DTMException extends org.w3c.dom.DOMException
   {
           static final long serialVersionUID = -8290238117162437678L;
     /**

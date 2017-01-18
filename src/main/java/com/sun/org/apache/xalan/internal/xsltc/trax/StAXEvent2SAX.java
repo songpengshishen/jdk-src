@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2005, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -75,7 +75,6 @@ public class StAXEvent2SAX implements XMLReader, Locator {
     private ContentHandler _sax = null;
     private LexicalHandler _lex = null;
     private SAXImpl _saxImpl = null;
-    //private Hashtable _nsPrefixes = new Hashtable();
     private String version = null;
     private String encoding = null;
 
@@ -404,7 +403,7 @@ public class StAXEvent2SAX implements XMLReader, Locator {
 
         // gather non-namespace attrs
         for (Iterator i = event.getAttributes(); i.hasNext();) {
-            Attribute staxAttr = (Attribute)i.next();
+            Attribute staxAttr = (javax.xml.stream.events.Attribute)i.next();
 
             String uri = staxAttr.getName().getNamespaceURI();
             if (uri == null) {

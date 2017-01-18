@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2006, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -129,7 +129,7 @@ public class SnmpNull extends SnmpValue {
             newclone = (SnmpNull) super.clone() ;
             newclone.tag = tag ;
         } catch (CloneNotSupportedException e) {
-            throw new InternalError() ; // vm bug.
+            throw new InternalError(e) ; // vm bug.
         }
         return newclone ;
     }
@@ -144,7 +144,7 @@ public class SnmpNull extends SnmpValue {
 
     /**
      * Checks if this <CODE>SnmpNull</CODE> object corresponds to a <CODE>noSuchObject</CODE> value.
-     * @return <CODE>true</CODE> if the tag equals {@link SnmpDataTypeEnums#errNoSuchObjectTag},
+     * @return <CODE>true</CODE> if the tag equals {@link com.sun.jmx.snmp.SnmpDataTypeEnums#errNoSuchObjectTag},
      * <CODE>false</CODE> otherwise.
      */
     public boolean isNoSuchObjectValue() {
@@ -153,7 +153,7 @@ public class SnmpNull extends SnmpValue {
 
     /**
      * Checks if this <CODE>SnmpNull</CODE> object corresponds to a <CODE>noSuchInstance</CODE> value.
-     * @return <CODE>true</CODE> if the tag equals {@link SnmpDataTypeEnums#errNoSuchInstanceTag},
+     * @return <CODE>true</CODE> if the tag equals {@link com.sun.jmx.snmp.SnmpDataTypeEnums#errNoSuchInstanceTag},
      * <CODE>false</CODE> otherwise.
      */
     public boolean isNoSuchInstanceValue() {
@@ -162,7 +162,7 @@ public class SnmpNull extends SnmpValue {
 
     /**
      * Checks if this <CODE>SnmpNull</CODE> object corresponds to an <CODE>endOfMibView</CODE> value.
-     * @return <CODE>true</CODE> if the tag equals {@link SnmpDataTypeEnums#errEndOfMibViewTag},
+     * @return <CODE>true</CODE> if the tag equals {@link com.sun.jmx.snmp.SnmpDataTypeEnums#errEndOfMibViewTag},
      * <CODE>false</CODE> otherwise.
      */
     public boolean isEndOfMibViewValue() {

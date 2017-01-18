@@ -15,13 +15,13 @@ import java.net.InetAddress;
  * <P>
  * You will not usually need to use this class, except if you
  * decide to implement your own
- * {@link SnmpPduFactory SnmpPduFactory} object.
+ * {@link com.sun.jmx.snmp.SnmpPduFactory SnmpPduFactory} object.
  * <P>
  * Classes are derived from <CODE>SnmpPduPacket</CODE> to
  * represent the different forms of SNMP packets
- * ({@link SnmpPduRequest SnmpPduRequest},
- * {@link SnmpPduTrap SnmpPduTrap},
- * {@link SnmpPduBulk SnmpPduBulk}).
+ * ({@link com.sun.jmx.snmp.SnmpPduRequest SnmpPduRequest},
+ * {@link com.sun.jmx.snmp.SnmpPduTrap SnmpPduTrap},
+ * {@link com.sun.jmx.snmp.SnmpPduBulk SnmpPduBulk}).
  * <BR>The <CODE>SnmpPduPacket</CODE> class defines the attributes
  * common to every form of SNMP packets.
  *

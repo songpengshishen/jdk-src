@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -170,8 +170,8 @@ public class DOMParser
      *
      * @param systemId The system identifier (URI).
      *
-     * @exception SAXException Throws exception on SAX error.
-     * @exception IOException Throws exception on i/o error.
+     * @exception org.xml.sax.SAXException Throws exception on SAX error.
+     * @exception java.io.IOException Throws exception on i/o error.
      */
     public void parse(String systemId) throws SAXException, IOException {
 
@@ -225,8 +225,8 @@ public class DOMParser
      *
      * @param inputSource
      *
-     * @exception SAXException
-     * @exception IOException
+     * @exception org.xml.sax.SAXException
+     * @exception java.io.IOException
      */
     public void parse(InputSource inputSource)
         throws SAXException, IOException {
@@ -364,7 +364,7 @@ public class DOMParser
      * handler immediately.</p>
      *
      * @param errorHandler The error handler.
-     * @exception NullPointerException If the handler
+     * @exception java.lang.NullPointerException If the handler
      *            argument is null.
      * @see #getErrorHandler
      */
@@ -475,7 +475,7 @@ public class DOMParser
      * @param featureId The unique identifier (URI) of the feature
      *                  being set.
      * @return The current state of the feature.
-     * @exception SAXNotRecognizedException If the
+     * @exception org.xml.sax.SAXNotRecognizedException If the
      *            requested feature is not known.
      * @exception SAXNotSupportedException If the
      *            requested feature is known but not supported.
@@ -608,7 +608,7 @@ public class DOMParser
      * @param propertyId The unique identifier (URI) of the property
      *                   being set.
      * @return The current value of the property.
-     * @exception SAXNotRecognizedException If the
+     * @exception org.xml.sax.SAXNotRecognizedException If the
      *            requested property is not known.
      * @exception SAXNotSupportedException If the
      *            requested property is known but not supported.

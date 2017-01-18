@@ -8,7 +8,7 @@
 package com.sun.jmx.snmp;
 
 /**
- * Represents an entry of an {@link SnmpOidTable SnmpOidTable}. It contains the name of the MIB variable,
+ * Represents an entry of an {@link com.sun.jmx.snmp.SnmpOidTable SnmpOidTable}. It contains the name of the MIB variable,
  * the corresponding OID and its type.
  * The type is represented using one of the following:
  * <UL>
@@ -31,7 +31,7 @@ package com.sun.jmx.snmp;
  *
  * <p><b>This API is a Sun Microsystems internal API  and is subject
  * to change without notice.</b></p>
- * @see SnmpOidTable
+ * @see com.sun.jmx.snmp.SnmpOidTable
  */
 
 public class SnmpOidRecord {

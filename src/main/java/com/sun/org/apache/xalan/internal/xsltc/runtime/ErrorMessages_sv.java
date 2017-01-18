@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -16,9 +16,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/*
- * $Id: ErrorMessages_sv.java /st_wptg_1.7.0.79.0jdk/1 2015/01/23 10:05:13 gmolloy Exp $
  */
 
 package com.sun.org.apache.xalan.internal.xsltc.runtime;
@@ -94,14 +91,14 @@ public class ErrorMessages_sv extends ListResourceBundle {
          * is a class name.  Used for internal errors in the processor.
          */
         {BasisLibrary.RUN_TIME_INTERNAL_ERR,
-        "Internt k\u00F6rningsfel i ''{0}''"},
+        "Internt exekveringsfel i ''{0}''"},
 
         /*
          * Note to translators:  <xsl:copy> is a keyword that should not be
          * translated.
          */
         {BasisLibrary.RUN_TIME_COPY_ERR,
-        "K\u00F6rningsfel vid k\u00F6rning av <xsl:copy>."},
+        "Exekveringsexekveringsfel av <xsl:copy>."},
 
         /*
          * Note to translators:  The substitution text refers to data types.

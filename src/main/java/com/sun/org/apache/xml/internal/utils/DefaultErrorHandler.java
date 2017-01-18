@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -177,9 +177,9 @@ public class DefaultErrorHandler implements ErrorHandler, ErrorListener
    *
    * @param exception The warning information encapsulated in a
    *                  SAX parse exception.
-   * @throws TransformerException Any SAX exception, possibly
+   * @throws javax.xml.transform.TransformerException Any SAX exception, possibly
    *            wrapping another exception.
-   * @see TransformerException
+   * @see javax.xml.transform.TransformerException
    */
   public void warning(TransformerException exception) throws TransformerException
   {
@@ -206,9 +206,9 @@ public class DefaultErrorHandler implements ErrorHandler, ErrorListener
    *
    * @param exception The error information encapsulated in a
    *                  SAX parse exception.
-   * @throws TransformerException Any SAX exception, possibly
+   * @throws javax.xml.transform.TransformerException Any SAX exception, possibly
    *            wrapping another exception.
-   * @see TransformerException
+   * @see javax.xml.transform.TransformerException
    */
   public void error(TransformerException exception) throws TransformerException
   {
@@ -239,9 +239,9 @@ public class DefaultErrorHandler implements ErrorHandler, ErrorListener
    *
    * @param exception The error information encapsulated in a
    *                  SAX parse exception.
-   * @throws TransformerException Any SAX exception, possibly
+   * @throws javax.xml.transform.TransformerException Any SAX exception, possibly
    *            wrapping another exception.
-   * @see TransformerException
+   * @see javax.xml.transform.TransformerException
    */
   public void fatalError(TransformerException exception) throws TransformerException
   {
@@ -293,7 +293,7 @@ public class DefaultErrorHandler implements ErrorHandler, ErrorListener
     printLocation(new PrintWriter(pw), exception);
   }
 
-  public static void printLocation(PrintStream pw, SAXParseException exception)
+  public static void printLocation(java.io.PrintStream pw, org.xml.sax.SAXParseException exception)
   {
     printLocation(new PrintWriter(pw), exception);
   }

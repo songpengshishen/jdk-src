@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1999, 2007, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -33,7 +33,6 @@ package com.sun.jmx.snmp.daemon;
 import java.io.ObjectInputStream;
 import java.io.IOException;
 import java.net.InetAddress;
-import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.Vector;
 import java.util.NoSuchElementException;
@@ -50,8 +49,6 @@ import javax.management.NotificationBroadcasterSupport;
 import javax.management.MBeanNotificationInfo;
 import javax.management.AttributeChangeNotification;
 import javax.management.ListenerNotFoundException;
-import javax.management.loading.ClassLoaderRepository;
-import javax.management.MBeanServerFactory;
 
 import static com.sun.jmx.defaults.JmxProperties.SNMP_ADAPTOR_LOGGER;
 
@@ -105,7 +102,7 @@ import javax.management.remote.MBeanServerForwarder;
  * <p>
  * When the value of the <CODE>State</CODE> attribute changes the
  * <CODE>CommunicatorServer</CODE> sends a
- * <tt>{@link AttributeChangeNotification}</tt> to the
+ * <tt>{@link javax.management.AttributeChangeNotification}</tt> to the
  * registered listeners, if any.
  *
  * <p><b>This API is a Sun Microsystems internal API  and is subject
@@ -225,9 +222,8 @@ public abstract class CommunicatorServer
     private transient Object stateLock = new Object();
 
     private transient Vector<ClientHandler>
-            clientHandlerVector = new Vector<ClientHandler>() ;
+            clientHandlerVector = new Vector<>() ;
 
-    private transient Thread fatherThread = Thread.currentThread() ;
     private transient Thread mainThread = null ;
 
     private volatile boolean stopRequested = false ;
@@ -328,6 +324,7 @@ public abstract class CommunicatorServer
      * Has no effect if this <CODE>CommunicatorServer</CODE> is
      * <CODE>ONLINE</CODE> or <CODE>STOPPING</CODE>.
      */
+    @Override
     public void start() {
         try {
             start(0);
@@ -346,6 +343,7 @@ public abstract class CommunicatorServer
      * Has no effect if this <CODE>CommunicatorServer</CODE> is
      * <CODE>OFFLINE</CODE> or  <CODE>STOPPING</CODE>.
      */
+    @Override
     public void stop() {
         synchronized (stateLock) {
             if (state == OFFLINE || state == STOPPING) {
@@ -393,6 +391,7 @@ public abstract class CommunicatorServer
      *
      * @return True if connector is <CODE>ONLINE</CODE>; false otherwise.
      */
+    @Override
     public boolean isActive() {
         synchronized (stateLock) {
             return (state == ONLINE);
@@ -431,6 +430,7 @@ public abstract class CommunicatorServer
      * @return true if the value of this MBean's State attribute is the
      *      same as the <VAR>wantedState</VAR> parameter; false otherwise.
      */
+    @Override
     public boolean waitState(int wantedState, long timeOut) {
         if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
             SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag,
@@ -595,6 +595,7 @@ public abstract class CommunicatorServer
      * @return <CODE>ONLINE</CODE>, <CODE>OFFLINE</CODE>,
      *         <CODE>STARTING</CODE> or <CODE>STOPPING</CODE>.
      */
+    @Override
     public int getState() {
         synchronized (stateLock) {
             return state ;
@@ -607,6 +608,7 @@ public abstract class CommunicatorServer
      * @return One of the strings "ONLINE", "OFFLINE", "STARTING" or
      *         "STOPPING".
      */
+    @Override
     public String getStateString() {
         return getStringForState(state) ;
     }
@@ -616,6 +618,7 @@ public abstract class CommunicatorServer
      *
      * @return The host name used by this <CODE>CommunicatorServer</CODE>.
      */
+    @Override
     public String getHost() {
         try {
             host = InetAddress.getLocalHost().getHostName();
@@ -630,6 +633,7 @@ public abstract class CommunicatorServer
      *
      * @return The port number used by this <CODE>CommunicatorServer</CODE>.
      */
+    @Override
     public int getPort() {
         synchronized (stateLock) {
             return port ;
@@ -642,10 +646,11 @@ public abstract class CommunicatorServer
      * @param port The port number used by this
      *             <CODE>CommunicatorServer</CODE>.
      *
-     * @exception IllegalStateException This method has been invoked
+     * @exception java.lang.IllegalStateException This method has been invoked
      * while the communicator was ONLINE or STARTING.
      */
-    public void setPort(int port) throws IllegalStateException {
+    @Override
+    public void setPort(int port) throws java.lang.IllegalStateException {
         synchronized (stateLock) {
             if ((state == ONLINE) || (state == STARTING))
                 throw new IllegalStateException("Stop server before " +
@@ -659,7 +664,8 @@ public abstract class CommunicatorServer
      * Gets the protocol being used by this <CODE>CommunicatorServer</CODE>.
      * @return The protocol as a string.
      */
-    public abstract String getProtocol() ;
+    @Override
+    public abstract String getProtocol();
 
     /**
      * Gets the number of clients that have been processed by this
@@ -704,11 +710,11 @@ public abstract class CommunicatorServer
      *
      * @param c The number of clients.
      *
-     * @exception IllegalStateException This method has been invoked
+     * @exception java.lang.IllegalStateException This method has been invoked
      * while the communicator was ONLINE or STARTING.
      */
     void setMaxActiveClientCount(int c)
-        throws IllegalStateException {
+        throws java.lang.IllegalStateException {
         synchronized (stateLock) {
             if ((state == ONLINE) || (state == STARTING)) {
                 throw new IllegalStateException(
@@ -754,6 +760,7 @@ public abstract class CommunicatorServer
      * <p>
      * The <CODE>run</CODE> method executed by this connector's main thread.
      */
+    @Override
     public void run() {
 
         // Fix jaw.00667.B
@@ -851,7 +858,7 @@ public abstract class CommunicatorServer
         } finally {
             synchronized (stateLock) {
                 interrupted = true;
-                Thread.currentThread().interrupted();
+                Thread.interrupted();
             }
 
             // ----------------------
@@ -970,7 +977,7 @@ public abstract class CommunicatorServer
             "MBeanServer argument must be MBean server where this " +
             "server is registered, or an MBeanServerForwarder " +
             "leading to that server";
-        Vector<MBeanServer> seenMBS = new Vector<MBeanServer>();
+        Vector<MBeanServer> seenMBS = new Vector<>();
         for (MBeanServer mbs = newMBS;
              mbs != bottomMBS;
              mbs = ((MBeanServerForwarder) mbs).getMBeanServer()) {
@@ -1153,8 +1160,7 @@ public abstract class CommunicatorServer
         state = OFFLINE;
         stopRequested = false;
         servedClientCount = 0;
-        clientHandlerVector = new Vector<ClientHandler>();
-        fatherThread = Thread.currentThread();
+        clientHandlerVector = new Vector<>();
         mainThread = null;
         notifCount = 0;
         notifInfos = null;
@@ -1171,7 +1177,7 @@ public abstract class CommunicatorServer
      * Adds a listener for the notifications emitted by this
      * CommunicatorServer.
      * There is only one type of notifications sent by the CommunicatorServer:
-     * they are <tt>{@link AttributeChangeNotification}</tt>,
+     * they are <tt>{@link javax.management.AttributeChangeNotification}</tt>,
      * sent when the <tt>State</tt> attribute of this CommunicatorServer
      * changes.
      *
@@ -1184,10 +1190,11 @@ public abstract class CommunicatorServer
      *
      * @exception IllegalArgumentException Listener parameter is null.
      */
+    @Override
     public void addNotificationListener(NotificationListener listener,
                                         NotificationFilter filter,
                                         Object handback)
-        throws IllegalArgumentException {
+        throws java.lang.IllegalArgumentException {
 
         if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
             SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
@@ -1207,6 +1214,7 @@ public abstract class CommunicatorServer
      *
      * @exception ListenerNotFoundException The listener is not registered.
      */
+    @Override
     public void removeNotificationListener(NotificationListener listener)
         throws ListenerNotFoundException {
 
@@ -1221,10 +1229,11 @@ public abstract class CommunicatorServer
      * Returns an array of MBeanNotificationInfo objects describing
      * the notification types sent by this CommunicatorServer.
      * There is only one type of notifications sent by the CommunicatorServer:
-     * it is <tt>{@link AttributeChangeNotification}</tt>,
+     * it is <tt>{@link javax.management.AttributeChangeNotification}</tt>,
      * sent when the <tt>State</tt> attribute of this CommunicatorServer
      * changes.
      */
+    @Override
     public MBeanNotificationInfo[] getNotificationInfo() {
 
         // Initialize notifInfos on first call to getNotificationInfo()
@@ -1239,7 +1248,7 @@ public abstract class CommunicatorServer
                      "of this CommunicatorServer instance has changed.");
         }
 
-        return notifInfos;
+        return notifInfos.clone();
     }
 
     /**
@@ -1304,8 +1313,9 @@ public abstract class CommunicatorServer
      *           the <CODE>MBeanServer</CODE> and re-thrown
      *           as an <CODE>MBeanRegistrationException</CODE>.
      */
+    @Override
     public ObjectName preRegister(MBeanServer server, ObjectName name)
-            throws Exception {
+            throws java.lang.Exception {
         objectName = name;
         synchronized (this) {
             if (bottomMBS != null) {
@@ -1325,6 +1335,7 @@ public abstract class CommunicatorServer
      *       successfully registered in the <CODE>MBeanServer</CODE>.
      *       The value false means that the registration phase has failed.
      */
+    @Override
     public void postRegister(Boolean registrationDone) {
         if (!registrationDone.booleanValue()) {
             synchronized (this) {
@@ -1340,7 +1351,8 @@ public abstract class CommunicatorServer
      *            the <CODE>MBeanServer</CODE> and re-thrown
      *            as an <CODE>MBeanRegistrationException</CODE>.
      */
-    public void preDeregister() throws Exception {
+    @Override
+    public void preDeregister() throws java.lang.Exception {
         synchronized (this) {
             topMBS = bottomMBS = null;
         }
@@ -1354,22 +1366,8 @@ public abstract class CommunicatorServer
     /**
      * Do nothing.
      */
+    @Override
     public void postDeregister(){
-    }
-
-    /**
-     * Load a class using the default loader repository
-     **/
-    Class loadClass(String className)
-        throws ClassNotFoundException {
-        try {
-            return Class.forName(className);
-        } catch (ClassNotFoundException e) {
-            final ClassLoaderRepository clr =
-                MBeanServerFactory.getClassLoaderRepository(bottomMBS);
-            if (clr == null) throw new ClassNotFoundException(className);
-            return clr.loadClass(className);
-        }
     }
 
 }

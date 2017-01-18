@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -178,8 +178,8 @@ public class Process
     /**
      * The default diagnostic writer...
      */
-    PrintWriter diagnosticsWriter = new PrintWriter(System.err, true);
-    PrintWriter dumpWriter = diagnosticsWriter;
+    java.io.PrintWriter diagnosticsWriter = new PrintWriter(System.err, true);
+    java.io.PrintWriter dumpWriter = diagnosticsWriter;
     ResourceBundle resbundle =
       (SecuritySupport.getResourceBundle(
         com.sun.org.apache.xml.internal.utils.res.XResourceBundle.ERROR_RESOURCES));
@@ -960,7 +960,7 @@ public class Process
 
                 reader = jaxpParser.getXMLReader();
               }
-              catch (ParserConfigurationException ex)
+              catch (javax.xml.parsers.ParserConfigurationException ex)
               {
                 throw new org.xml.sax.SAXException(ex);
               }
@@ -1037,7 +1037,7 @@ public class Process
 
                   reader = jaxpParser.getXMLReader();
                 }
-                catch (ParserConfigurationException ex)
+                catch (javax.xml.parsers.ParserConfigurationException ex)
                 {
                   throw new org.xml.sax.SAXException(ex);
                 }

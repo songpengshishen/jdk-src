@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -89,7 +89,7 @@ public class LocatorWrapper implements XMLLocator {
      * if no character offset is available.<p>
      *
      * <p>As this information is not available from
-     * {@link Locator},
+     * {@link org.xml.sax.Locator},
      * always return <code>-1</code>.</p>
      */
     public int getCharacterOffset() {
@@ -100,7 +100,7 @@ public class LocatorWrapper implements XMLLocator {
      * <p>Returns the XML version of the current entity.</p>
      *
      * <p>As this information is not available from
-     * {@link Locator},
+     * {@link org.xml.sax.Locator},
      * always return <code>null</code>.</p>
      */
     public String getXMLVersion() {

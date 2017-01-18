@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -55,7 +55,7 @@ public abstract class SerializerBase
      * @param name Name of element
      */
     protected void fireEndElem(String name)
-        throws SAXException
+        throws org.xml.sax.SAXException
     {
         if (m_tracer != null)
         {
@@ -71,7 +71,7 @@ public abstract class SerializerBase
      * @param length  number of characters to output
      */
     protected void fireCharEvent(char[] chars, int start, int length)
-        throws SAXException
+        throws org.xml.sax.SAXException
     {
         if (m_tracer != null)
         {
@@ -499,10 +499,10 @@ public abstract class SerializerBase
      * Report the end of an entity.
      *
      * @param name The name of the entity that is ending.
-     * @throws SAXException The application may raise an exception.
+     * @throws org.xml.sax.SAXException The application may raise an exception.
      * @see #startEntity
      */
-    public void endEntity(String name) throws SAXException
+    public void endEntity(String name) throws org.xml.sax.SAXException
     {
         if (name.equals("[dtd]"))
             m_inExternalDTD = false;
@@ -941,9 +941,9 @@ public abstract class SerializerBase
      *
      * @param name Name of entity
      *
-     * @throws SAXException
+     * @throws org.xml.sax.SAXException
      */
-    public void entityReference(String name) throws SAXException
+    public void entityReference(String name) throws org.xml.sax.SAXException
     {
 
         flushPending();
@@ -988,10 +988,10 @@ public abstract class SerializerBase
      * This method gets the nodes value as a String and uses that String as if
      * it were an input character notification.
      * @param node the Node to serialize
-     * @throws SAXException
+     * @throws org.xml.sax.SAXException
      */
     public void characters(org.w3c.dom.Node node)
-        throws SAXException
+        throws org.xml.sax.SAXException
     {
         flushPending();
         String data = node.getNodeValue();
@@ -1035,7 +1035,7 @@ public abstract class SerializerBase
      * @param name Name of entity
      */
     protected void fireStartEntity(String name)
-        throws SAXException
+        throws org.xml.sax.SAXException
     {
         if (m_tracer != null)
         {
@@ -1088,7 +1088,7 @@ public abstract class SerializerBase
      * @param length  number of characters to output
      */
     protected void fireCDATAEvent(char[] chars, int start, int length)
-        throws SAXException
+        throws org.xml.sax.SAXException
     {
                 if (m_tracer != null)
         {
@@ -1104,7 +1104,7 @@ public abstract class SerializerBase
      * @param length  number of characters to output
      */
     protected void fireCommentEvent(char[] chars, int start, int length)
-        throws SAXException
+        throws org.xml.sax.SAXException
     {
                 if (m_tracer != null)
         {
@@ -1119,7 +1119,7 @@ public abstract class SerializerBase
      * @param name Name of entity
      */
     public void fireEndEntity(String name)
-        throws SAXException
+        throws org.xml.sax.SAXException
     {
         if (m_tracer != null)
             flushMyWriter();
@@ -1130,7 +1130,7 @@ public abstract class SerializerBase
      * To fire off start document trace  event
      */
      protected void fireStartDoc()
-        throws SAXException
+        throws org.xml.sax.SAXException
     {
         if (m_tracer != null)
         {
@@ -1144,7 +1144,7 @@ public abstract class SerializerBase
      * To fire off end document trace event
      */
     protected void fireEndDoc()
-        throws SAXException
+        throws org.xml.sax.SAXException
     {
         if (m_tracer != null)
         {
@@ -1161,7 +1161,7 @@ public abstract class SerializerBase
      *
      */
     protected void fireStartElem(String elemName)
-        throws SAXException
+        throws org.xml.sax.SAXException
     {
         if (m_tracer != null)
         {
@@ -1189,7 +1189,7 @@ public abstract class SerializerBase
      * @param name Name of PI
      */
     protected void fireEscapingEvent(String name, String data)
-        throws SAXException
+        throws org.xml.sax.SAXException
     {
 
         if (m_tracer != null)
@@ -1205,7 +1205,7 @@ public abstract class SerializerBase
      * @param name Name of entity reference
      */
     protected void fireEntityReference(String name)
-        throws SAXException
+        throws org.xml.sax.SAXException
     {
         if (m_tracer != null)
         {
@@ -1223,12 +1223,12 @@ public abstract class SerializerBase
      * other methods in this interface or in DTDHandler (except for
      * setDocumentLocator).</p>
      *
-     * @throws SAXException Any SAX exception, possibly
+     * @throws org.xml.sax.SAXException Any SAX exception, possibly
      *            wrapping another exception.
      *
-     * @throws SAXException
+     * @throws org.xml.sax.SAXException
      */
-    public void startDocument() throws SAXException
+    public void startDocument() throws org.xml.sax.SAXException
     {
 
         // if we do get called with startDocument(), handle it right away
@@ -1253,7 +1253,7 @@ public abstract class SerializerBase
      *
      * @throws SAXException
      */
-    protected void startDocumentInternal() throws SAXException
+    protected void startDocumentInternal() throws org.xml.sax.SAXException
     {
         if (m_tracer != null)
             this.fireStartDoc();
@@ -1281,7 +1281,7 @@ public abstract class SerializerBase
      * generated an error message.
      * @param locator the source locator
      *
-     * @see ExtendedContentHandler#setSourceLocator(SourceLocator)
+     * @see ExtendedContentHandler#setSourceLocator(javax.xml.transform.SourceLocator)
      */
     public void setSourceLocator(SourceLocator locator)
     {
@@ -1358,7 +1358,7 @@ public abstract class SerializerBase
     /**
      * This method adds an attribute the the current element,
      * but should not be used for an xsl:attribute child.
-     * @see ExtendedContentHandler#addAttribute(String, String, String, String, String)
+     * @see ExtendedContentHandler#addAttribute(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
      */
     public void addAttribute(String uri, String localName, String rawName, String type, String value) throws SAXException
     {
@@ -1369,7 +1369,7 @@ public abstract class SerializerBase
     }
 
     /**
-     * @see org.xml.sax.DTDHandler#notationDecl(String, String, String)
+     * @see org.xml.sax.DTDHandler#notationDecl(java.lang.String, java.lang.String, java.lang.String)
      */
     public void notationDecl(String arg0, String arg1, String arg2)
         throws SAXException {
@@ -1378,7 +1378,7 @@ public abstract class SerializerBase
     }
 
     /**
-     * @see org.xml.sax.DTDHandler#unparsedEntityDecl(String, String, String, String)
+     * @see org.xml.sax.DTDHandler#unparsedEntityDecl(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
      */
     public void unparsedEntityDecl(
         String arg0,

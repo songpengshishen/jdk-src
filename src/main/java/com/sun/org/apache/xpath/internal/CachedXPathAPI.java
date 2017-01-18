@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -231,7 +231,7 @@ public class CachedXPathAPI
    *  @param contextNode The node to start searching from.
    *  @param str A valid XPath string.
    *  @return An XObject, which can be used to obtain a string, number, nodelist, etc, should never be null.
-   *  @see XObject
+   *  @see com.sun.org.apache.xpath.internal.objects.XObject
    *  @see com.sun.org.apache.xpath.internal.objects.XNull
    *  @see com.sun.org.apache.xpath.internal.objects.XBoolean
    *  @see com.sun.org.apache.xpath.internal.objects.XNumber
@@ -257,7 +257,7 @@ public class CachedXPathAPI
    *  @param str A valid XPath string.
    *  @param namespaceNode The node from which prefixes in the XPath will be resolved to namespaces.
    *  @return An XObject, which can be used to obtain a string, number, nodelist, etc, should never be null.
-   *  @see XObject
+   *  @see com.sun.org.apache.xpath.internal.objects.XObject
    *  @see com.sun.org.apache.xpath.internal.objects.XNull
    *  @see com.sun.org.apache.xpath.internal.objects.XBoolean
    *  @see com.sun.org.apache.xpath.internal.objects.XNumber
@@ -306,7 +306,7 @@ public class CachedXPathAPI
    *   @param prefixResolver Will be called if the parser encounters namespace
    *                         prefixes, to resolve the prefixes to URLs.
    *   @return An XObject, which can be used to obtain a string, number, nodelist, etc, should never be null.
-   *   @see XObject
+   *   @see com.sun.org.apache.xpath.internal.objects.XObject
    *   @see com.sun.org.apache.xpath.internal.objects.XNull
    *   @see com.sun.org.apache.xpath.internal.objects.XBoolean
    *   @see com.sun.org.apache.xpath.internal.objects.XNumber

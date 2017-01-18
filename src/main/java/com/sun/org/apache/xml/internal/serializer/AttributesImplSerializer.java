@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Copyright (c) 2015, Oracle and/or its affiliates. All rights reserved.
  */
 /*
- * Copyright 2003-2004 The Apache Software Foundation.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -23,18 +23,18 @@
 
 package com.sun.org.apache.xml.internal.serializer;
 
-import java.util.Hashtable;
-
+import java.util.HashMap;
+import java.util.Map;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.AttributesImpl;
 
 /**
  * This class extends org.xml.sax.helpers.AttributesImpl which implements org.
- * xml.sax.Attributes. But for optimization this class adds a Hashtable for
+ * xml.sax.Attributes. But for optimization this class adds a Map for
  * faster lookup of an index by qName, which is commonly done in the stream
  * serializer.
  *
- * @see Attributes
+ * @see org.xml.sax.Attributes
  *
  * @xsl.usage internal
  */
@@ -48,7 +48,7 @@ public final class AttributesImplSerializer extends AttributesImpl
      * The keys to the hashtable to find the index are either
      * "prefix:localName"  or "{uri}localName".
      */
-    private final Hashtable m_indexFromQName = new Hashtable();
+    private final Map<String, Integer> m_indexFromQName = new HashMap<>();
 
     private final StringBuffer m_buff = new StringBuffer();
 
@@ -60,7 +60,7 @@ public final class AttributesImplSerializer extends AttributesImpl
 
     /**
      * One less than the number of attributes before switching to
-     * the Hashtable.
+     * the Map.
      */
     private static final int MAXMinus1 = MAX - 1;
 
@@ -68,7 +68,7 @@ public final class AttributesImplSerializer extends AttributesImpl
      * This method gets the index of an attribute given its qName.
      * @param qname the qualified name of the attribute, e.g. "prefix1:locName1"
      * @return the integer index of the attribute.
-     * @see Attributes#getIndex(String)
+     * @see org.xml.sax.Attributes#getIndex(String)
      */
     public final int getIndex(String qname)
     {
@@ -82,8 +82,8 @@ public final class AttributesImplSerializer extends AttributesImpl
             return index;
         }
         // we have too many attributes and the super class is slow
-        // so find it quickly using our Hashtable.
-        Integer i = (Integer)m_indexFromQName.get(qname);
+        // so find it quickly using our Map.
+        Integer i = m_indexFromQName.get(qname);
         if (i == null)
             index = -1;
         else
@@ -99,7 +99,7 @@ public final class AttributesImplSerializer extends AttributesImpl
      * @param type the type of the attribute
      * @param val the value of the attribute
      *
-     * @see AttributesImpl#addAttribute(String, String, String, String, String)
+     * @see org.xml.sax.helpers.AttributesImpl#addAttribute(String, String, String, String, String)
      * @see #getIndex(String)
      */
     public final void addAttribute(
@@ -126,7 +126,7 @@ public final class AttributesImplSerializer extends AttributesImpl
         {
             /* add the key with the format of "prefix:localName" */
             /* we have just added the attibute, its index is the old length */
-            Integer i = new Integer(index);
+            Integer i = index;
             m_indexFromQName.put(qname, i);
 
             /* now add with key of the format "{uri}localName" */
@@ -135,14 +135,13 @@ public final class AttributesImplSerializer extends AttributesImpl
             String key = m_buff.toString();
             m_indexFromQName.put(key, i);
         }
-        return;
     }
 
     /**
      * We are switching over to having a hash table for quick look
      * up of attributes, but up until now we haven't kept any
-     * information in the Hashtable, so we now update the Hashtable.
-     * Future additional attributes will update the Hashtable as
+     * information in the Map, so we now update the Map.
+     * Future additional attributes will update the Map as
      * they are added.
      * @param numAtts
      */
@@ -151,7 +150,7 @@ public final class AttributesImplSerializer extends AttributesImpl
         for (int index = 0; index < numAtts; index++)
         {
             String qName = super.getQName(index);
-            Integer i = new Integer(index);
+            Integer i = index;
             m_indexFromQName.put(qName, i);
 
             // Add quick look-up to find with uri/local name pair
@@ -167,7 +166,7 @@ public final class AttributesImplSerializer extends AttributesImpl
     /**
      * This method clears the accumulated attributes.
      *
-     * @see AttributesImpl#clear()
+     * @see org.xml.sax.helpers.AttributesImpl#clear()
      */
     public final void clear()
     {
@@ -177,7 +176,7 @@ public final class AttributesImplSerializer extends AttributesImpl
         if (MAX <= len)
         {
             // if we have had enough attributes and are
-            // using the Hashtable, then clear the Hashtable too.
+            // using the Map, then clear the Map too.
             m_indexFromQName.clear();
         }
 
@@ -188,7 +187,7 @@ public final class AttributesImplSerializer extends AttributesImpl
      * it also keeps the hashtable up to date for quick lookup via
      * getIndex(qName).
      * @param atts the attributes to copy into these attributes.
-     * @see AttributesImpl#setAttributes(Attributes)
+     * @see org.xml.sax.helpers.AttributesImpl#setAttributes(Attributes)
      * @see #getIndex(String)
      */
     public final void setAttributes(Attributes atts)
@@ -210,7 +209,7 @@ public final class AttributesImplSerializer extends AttributesImpl
      * @param uri the URI of the attribute name.
      * @param localName the local namer (after the ':' ) of the attribute name.
      * @return the integer index of the attribute.
-     * @see Attributes#getIndex(String)
+     * @see org.xml.sax.Attributes#getIndex(String)
      */
     public final int getIndex(String uri, String localName)
     {
@@ -224,16 +223,16 @@ public final class AttributesImplSerializer extends AttributesImpl
             return index;
         }
         // we have too many attributes and the super class is slow
-        // so find it quickly using our Hashtable.
+        // so find it quickly using our Map.
         // Form the key of format "{uri}localName"
         m_buff.setLength(0);
         m_buff.append('{').append(uri).append('}').append(localName);
         String key = m_buff.toString();
-        Integer i = (Integer)m_indexFromQName.get(key);
+        Integer i = m_indexFromQName.get(key);
         if (i == null)
             index = -1;
         else
-            index = i.intValue();
+            index = i;
         return index;
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -181,11 +181,11 @@ public class Variable extends Expression implements PathComponent
    *
    * @return The result of the expression in the form of a <code>XObject</code>.
    *
-   * @throws TransformerException if a runtime exception
+   * @throws javax.xml.transform.TransformerException if a runtime exception
    *         occurs.
    */
   public XObject execute(XPathContext xctxt)
-    throws TransformerException
+    throws javax.xml.transform.TransformerException
   {
         return execute(xctxt, false);
   }
@@ -201,9 +201,9 @@ public class Variable extends Expression implements PathComponent
    *
    * @return The evaluated variable, or an empty nodeset if not found.
    *
-   * @throws TransformerException
+   * @throws javax.xml.transform.TransformerException
    */
-  public XObject execute(XPathContext xctxt, boolean destructiveOK) throws TransformerException
+  public XObject execute(XPathContext xctxt, boolean destructiveOK) throws javax.xml.transform.TransformerException
   {
     com.sun.org.apache.xml.internal.utils.PrefixResolver xprefixResolver = xctxt.getNamespaceContext();
 

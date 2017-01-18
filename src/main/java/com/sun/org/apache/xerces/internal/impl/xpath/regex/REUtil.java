@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -251,7 +251,7 @@ public final class REUtil {
      * Creates a RegularExpression instance.
      * This method caches created instances.
      *
-     * @see RegularExpression#RegularExpression(String, String)
+     * @see RegularExpression#RegularExpression(java.lang.String, java.lang.String)
      */
     public static RegularExpression createRegex(String pattern, String options)
         throws ParseException {
@@ -286,7 +286,7 @@ public final class REUtil {
 
     /**
      *
-     * @see RegularExpression#matches(String)
+     * @see RegularExpression#matches(java.lang.String)
      */
     public static boolean matches(String regex, String target) throws ParseException {
         return REUtil.createRegex(regex, null).matches(target);
@@ -294,7 +294,7 @@ public final class REUtil {
 
     /**
      *
-     * @see RegularExpression#matches(String)
+     * @see RegularExpression#matches(java.lang.String)
      */
     public static boolean matches(String regex, String options, String target) throws ParseException {
         return REUtil.createRegex(regex, options).matches(target);

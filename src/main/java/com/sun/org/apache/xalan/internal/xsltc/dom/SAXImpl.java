@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Copyright (c) 2015, 2016, Oracle and/or its affiliates. All rights reserved.
  */
 /*
- * Copyright 2001-2004 The Apache Software Foundation.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -17,46 +17,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
- * $Id: SAXImpl.java,v 1.5 2005/09/28 13:48:37 pvedula Exp $
- */
 
 package com.sun.org.apache.xalan.internal.xsltc.dom;
-
-import java.net.URL;
-import java.net.MalformedURLException;
-import java.util.Enumeration;
-
-import javax.xml.transform.Source;
-import javax.xml.transform.dom.DOMSource;
 
 import com.sun.org.apache.xalan.internal.xsltc.DOM;
 import com.sun.org.apache.xalan.internal.xsltc.DOMEnhancedForDTM;
 import com.sun.org.apache.xalan.internal.xsltc.StripFilter;
 import com.sun.org.apache.xalan.internal.xsltc.TransletException;
 import com.sun.org.apache.xalan.internal.xsltc.runtime.BasisLibrary;
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
-import com.sun.org.apache.xml.internal.dtm.DTM;
 import com.sun.org.apache.xml.internal.dtm.Axis;
+import com.sun.org.apache.xml.internal.dtm.DTM;
 import com.sun.org.apache.xml.internal.dtm.DTMAxisIterator;
 import com.sun.org.apache.xml.internal.dtm.DTMManager;
 import com.sun.org.apache.xml.internal.dtm.DTMWSFilter;
 import com.sun.org.apache.xml.internal.dtm.ref.DTMAxisIterNodeList;
 import com.sun.org.apache.xml.internal.dtm.ref.DTMDefaultBase;
-import com.sun.org.apache.xml.internal.dtm.ref.EmptyIterator;
 import com.sun.org.apache.xml.internal.dtm.ref.DTMNodeProxy;
+import com.sun.org.apache.xml.internal.dtm.ref.EmptyIterator;
 import com.sun.org.apache.xml.internal.dtm.ref.sax2dtm.SAX2DTM2;
 import com.sun.org.apache.xml.internal.serializer.SerializationHandler;
 import com.sun.org.apache.xml.internal.serializer.ToXMLSAXHandler;
-import com.sun.org.apache.xml.internal.utils.XMLStringFactory;
 import com.sun.org.apache.xml.internal.utils.SystemIDResolver;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import com.sun.org.apache.xml.internal.utils.XMLStringFactory;
+import java.util.HashMap;
+import java.util.Map;
+import javax.xml.transform.Source;
+import javax.xml.transform.dom.DOMSource;
 import org.w3c.dom.Document;
 import org.w3c.dom.DocumentType;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Entity;
-
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
@@ -87,7 +79,7 @@ public final class SAXImpl extends SAX2DTM2
 
     // Namespace prefix-to-uri mapping stuff
     private int       _uriCount     = 0;
-    private int       _prefixCount  = 0;
+    // private int       _prefixCount  = 0;
 
     // Stack used to keep track of what whitespace text nodes are protected
     // by xml:space="preserve" attributes and which nodes that are not.
@@ -95,11 +87,11 @@ public final class SAXImpl extends SAX2DTM2
     private int     _idx = 1;
     private boolean _preserve = false;
 
-    private static final String XML_STRING = "xml:";
+    // private static final String XML_STRING = "xml:";
     private static final String XML_PREFIX   = "xml";
     private static final String XMLSPACE_STRING = "xml:space";
     private static final String PRESERVE_STRING = "preserve";
-    private static final String XMLNS_PREFIX = "xmlns";
+    // private static final String XMLNS_PREFIX = "xmlns";
     private static final String XML_URI = "http://www.w3.org/XML/1998/namespace";
 
     private boolean _escaping = true;
@@ -119,7 +111,7 @@ public final class SAXImpl extends SAX2DTM2
     private int _namesSize = -1;
 
     // Namespace related stuff
-    private Hashtable _nsIndex = new Hashtable();
+    private Map<Integer, Integer> _nsIndex = new HashMap<>();
 
     // The initial size of the text buffer
     private int _size = 0;
@@ -128,16 +120,16 @@ public final class SAXImpl extends SAX2DTM2
     private BitArray  _dontEscape = null;
 
     // The URI to this document
-    private String    _documentURI = null;
+    // private String _documentURI = null;
     static private int _documentURIIndex = 0;
 
     // The owner Document when the input source is DOMSource.
     private Document _document;
 
-    // The hashtable for org.w3c.dom.Node to node id mapping.
+    // The Map for org.w3c.dom.Node to node id mapping.
     // This is only used when the input is a DOMSource and the
     // buildIdIndex flag is true.
-    private Hashtable _node2Ids = null;
+    private Map<Node, Integer> _node2Ids = null;
 
     // True if the input source is a DOMSource.
     private boolean _hasDOMSource = false;
@@ -148,8 +140,7 @@ public final class SAXImpl extends SAX2DTM2
     // Support for access/navigation through org.w3c.dom API
     private Node[] _nodes;
     private NodeList[] _nodeLists;
-    private final static String XML_LANG_ATTRIBUTE =
-        "http://www.w3.org/XML/1998/namespace:@lang";
+    // private final static String XML_LANG_ATTRIBUTE = "http://www.w3.org/XML/1998/namespace:@lang";
 
     /**
      * Define the origin of the document from which the tree was built
@@ -480,7 +471,7 @@ public final class SAXImpl extends SAX2DTM2
             return 0;
         }
         int eType = getIdForNamespace(s);
-        return ((Integer)_nsIndex.get(new Integer(eType))).intValue();
+        return _nsIndex.get(new Integer(eType));
     }
 
 
@@ -496,6 +487,7 @@ public final class SAXImpl extends SAX2DTM2
     /**
      * Sets up a translet-to-dom type mapping table
      */
+    /*
     private int[] setupMapping(String[] names, String[] uris, int[] types, int nNames) {
         // Padding with number of names, because they
         // may need to be added, i.e for RTFs. See copy03
@@ -507,6 +499,7 @@ public final class SAXImpl extends SAX2DTM2
         }
         return result;
     }
+    */
 
     /**
      * Returns the internal type associated with an expanded QName
@@ -679,9 +672,9 @@ public final class SAXImpl extends SAX2DTM2
 
         for (i=0; i<nsLength; i++) {
             int eType = getIdForNamespace(namespaces[i]);
-            Integer type = (Integer)_nsIndex.get(new Integer(eType));
+            Integer type = _nsIndex.get(eType);
             if (type != null) {
-                result[type.intValue()] = (short)i;
+                result[type] = (short)i;
             }
         }
 
@@ -699,7 +692,7 @@ public final class SAXImpl extends SAX2DTM2
 
         for (i = 0; i < length; i++) {
             int eType = getIdForNamespace(namespaces[i]);
-            Integer type = (Integer)_nsIndex.get(new Integer(eType));
+            Integer type = _nsIndex.get(eType);
             result[i] = (type == null) ? -1 : type.shortValue();
         }
 
@@ -752,7 +745,7 @@ public final class SAXImpl extends SAX2DTM2
             else {
                 _document = node.getOwnerDocument();
             }
-            _node2Ids = new Hashtable();
+            _node2Ids = new HashMap<>();
         }
     }
 
@@ -780,8 +773,8 @@ public final class SAXImpl extends SAX2DTM2
     {
         Node node = _document.getElementById(idString);
         if (node != null) {
-            Integer id = (Integer)_node2Ids.get(node);
-            return (id != null) ? id.intValue() : DTM.NULL;
+            Integer id = _node2Ids.get(node);
+            return (id != null) ? id : DTM.NULL;
         }
         else {
             return DTM.NULL;
@@ -880,7 +873,7 @@ public final class SAXImpl extends SAX2DTM2
     {
         super.startDocument();
 
-        _nsIndex.put(new Integer(0), new Integer(_uriCount++));
+        _nsIndex.put(0, _uriCount++);
         definePrefixAndUri(XML_PREFIX, XML_URI);
     }
 
@@ -987,8 +980,8 @@ public final class SAXImpl extends SAX2DTM2
     {
         // Check if the URI already exists before pushing on stack
         Integer eType = new Integer(getIdForNamespace(uri));
-        if ((Integer)_nsIndex.get(eType) == null) {
-            _nsIndex.put(eType, new Integer(_uriCount++));
+        if (_nsIndex.get(eType) == null) {
+            _nsIndex.put(eType, _uriCount++);
         }
     }
 
@@ -1235,9 +1228,6 @@ public final class SAXImpl extends SAX2DTM2
      */
     public DTMAxisIterator getNamespaceAxisIterator(int axis, int ns)
     {
-
-        DTMAxisIterator iterator = null;
-
         if (ns == NO_TYPE) {
             return EMPTYITERATOR;
         }
@@ -1551,7 +1541,6 @@ public final class SAXImpl extends SAX2DTM2
      */
     public DTMAxisIterator getNthDescendant(int type, int n, boolean includeself)
     {
-        DTMAxisIterator source = (DTMAxisIterator) new TypedDescendantIterator(type);
         return new NthDescendantIterator(n);
     }
 
@@ -1840,28 +1829,11 @@ public final class SAXImpl extends SAX2DTM2
     }
 
     /**
-     * %HZ% Need Javadoc
+     * Return the attributes map.
+     * @return the attributes map.
      */
-    public Hashtable getElementsWithIDs() {
-        if (m_idAttributes == null) {
-            return null;
-        }
-
-        // Convert a java.util.Hashtable to an xsltc.runtime.Hashtable
-        Enumeration idValues = m_idAttributes.keys();
-        if (!idValues.hasMoreElements()) {
-            return null;
-        }
-
-        Hashtable idAttrsTable = new Hashtable();
-
-        while (idValues.hasMoreElements()) {
-            Object idValue = idValues.nextElement();
-
-            idAttrsTable.put(idValue, m_idAttributes.get(idValue));
-        }
-
-        return idAttrsTable;
+    public Map<String, Integer> getElementsWithIDs() {
+        return m_idAttributes;
     }
 
     /**
@@ -1904,4 +1876,7 @@ public final class SAXImpl extends SAX2DTM2
         }
     }
 
+    public void release() {
+        _dtmManager.release(this, true);
+    }
 }

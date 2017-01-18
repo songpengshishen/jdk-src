@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -41,8 +41,8 @@ import com.sun.org.apache.xerces.internal.util.ParserConfigurationSettings;
 import com.sun.org.apache.xerces.internal.util.PropertyState;
 import com.sun.org.apache.xerces.internal.util.Status;
 import com.sun.org.apache.xerces.internal.util.SymbolTable;
-import com.sun.org.apache.xerces.internal.utils.XMLSecurityManager;
 import com.sun.org.apache.xerces.internal.utils.XMLSecurityPropertyManager;
+import com.sun.org.apache.xerces.internal.utils.XMLSecurityManager;
 import com.sun.org.apache.xerces.internal.xni.NamespaceContext;
 import com.sun.org.apache.xerces.internal.xni.XNIException;
 import com.sun.org.apache.xerces.internal.xni.parser.XMLComponent;
@@ -311,6 +311,7 @@ final class XMLSchemaValidatorComponentManager extends ParserConfigurationSettin
             if (_isSecureMode && !value) {
                 throw new XMLConfigurationException(Status.NOT_ALLOWED, XMLConstants.FEATURE_SECURE_PROCESSING);
             }
+
             fInitSecurityManager.setSecureProcessing(value);
             setProperty(SECURITY_MANAGER, fInitSecurityManager);
 
@@ -391,7 +392,6 @@ final class XMLSchemaValidatorComponentManager extends ParserConfigurationSettin
             fComponents.put(propertyId, value);
             return;
         }
-
         //check if the property is managed by security manager
         if (fInitSecurityManager == null ||
                 !fInitSecurityManager.setLimit(propertyId, XMLSecurityManager.State.APIPROPERTY, value)) {

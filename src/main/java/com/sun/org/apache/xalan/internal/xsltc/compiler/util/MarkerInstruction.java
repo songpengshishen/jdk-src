@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -48,7 +48,7 @@ abstract class MarkerInstruction extends Instruction {
     }
 
     /**
-     * {@link Visitor}s will know nothing about this
+     * {@link com.sun.org.apache.bcel.internal.generic.Visitor}s will know nothing about this
      * kind of {@link org.apche.bcel.generic.Instruction}, so this method does
      * nothing.
      */
@@ -59,7 +59,7 @@ abstract class MarkerInstruction extends Instruction {
      * The number of JVM stack entries consumed by the instruction.
      * This instruction is just a place holder, so it does not consume any
      * stack entries.
-     * @param cpg The {@link ConstantPoolGen} for the
+     * @param cpg The {@link com.sun.org.apache.bcel.internal.generic.ConstantPoolGen} for the
      * current {@link com.sun.org.apache.bcel.internal.generic.ClassGen}
      * @return <code>0</code> always
      */
@@ -70,7 +70,7 @@ abstract class MarkerInstruction extends Instruction {
      * The number of JVM stack entries produced by the instruction.
      * This instruction is just a place holder, so it does not produce any
      * stack entries.
-     * @param cpg The {@link ConstantPoolGen} for the
+     * @param cpg The {@link com.sun.org.apache.bcel.internal.generic.ConstantPoolGen} for the
      * current {@link com.sun.org.apache.bcel.internal.generic.ClassGen}
      * @return <code>0</code> always
      */

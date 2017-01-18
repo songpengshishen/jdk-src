@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -236,8 +236,8 @@ class XPathLexer implements com.sun.java_cup.internal.runtime.Scanner {
                              2028/*LS*/ == yy_buffer[yy_buffer_end-1] ||
                              2029/*PS*/ == yy_buffer[yy_buffer_end-1]);
         }
-        private String yytext () {
-                return (new String(yy_buffer,
+        private java.lang.String yytext () {
+                return (new java.lang.String(yy_buffer,
                         yy_buffer_start,
                         yy_buffer_end - yy_buffer_start));
         }
@@ -255,13 +255,13 @@ class XPathLexer implements com.sun.java_cup.internal.runtime.Scanner {
         }
         private final int YY_E_INTERNAL = 0;
         private final int YY_E_MATCH = 1;
-        private String yy_error_string[] = {
+        private java.lang.String yy_error_string[] = {
                 "Error: Internal error.\n",
                 "Error: Unmatched input.\n"
         };
         private void yy_error (int code,boolean fatal) {
-                System.out.print(yy_error_string[code]);
-                System.out.flush();
+                java.lang.System.out.print(yy_error_string[code]);
+                java.lang.System.out.flush();
                 if (fatal) {
                         throw new Error("Fatal Error.\n");
                 }
@@ -748,7 +748,7 @@ class XPathLexer implements com.sun.java_cup.internal.runtime.Scanner {
 ":13,-1:2,184:10,-1:3,76,184,76:3,-1:4,184:6,64,-1:2,76,-1:6,184:5,-1:3,184:" +
 "4,232,184:8,-1:2,184:10,-1:3,76,184,76:3");
 
-        public Symbol next_token ()
+        public com.sun.java_cup.internal.runtime.Symbol next_token ()
                 throws java.io.IOException,
 Exception
 

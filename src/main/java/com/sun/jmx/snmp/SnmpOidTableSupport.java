@@ -9,6 +9,7 @@ package com.sun.jmx.snmp;
 
 // java import
 //
+import java.util.Objects;
 import java.util.Vector;
 import java.util.Enumeration;
 import java.util.logging.Level;
@@ -16,9 +17,6 @@ import java.util.Hashtable;
 
 //RI import
 import static com.sun.jmx.defaults.JmxProperties.SNMP_LOGGER;
-import com.sun.jmx.snmp.SnmpOidTable;
-import com.sun.jmx.snmp.SnmpOidRecord;
-import com.sun.jmx.snmp.SnmpStatusException;
 
 /**
  * Contains metadata definitions for MIB variables.
@@ -27,11 +25,11 @@ import com.sun.jmx.snmp.SnmpStatusException;
  * and the corresponding SMI type of the variable.
  * <P>
  * If you need to load a specific <CODE>SnmpOidTable</CODE>, just call the static method
- * {@link SnmpOid#setSnmpOidTable <CODE>SnmpOid.setSnmpOidTable(<I>myOidTable</I>)</CODE>}.
+ * {@link com.sun.jmx.snmp.SnmpOid#setSnmpOidTable <CODE>SnmpOid.setSnmpOidTable(<I>myOidTable</I>)</CODE>}.
  * <P>
  * <p><b>This API is a Sun Microsystems internal API  and is subject
  * to change without notice.</b></p>
- * @see SnmpOidRecord
+ * @see com.sun.jmx.snmp.SnmpOidRecord
  *
  */
 
@@ -48,13 +46,14 @@ public class SnmpOidTableSupport implements SnmpOidTable {
     }
 
     /**
-     * Searches for a MIB variable given its logical name and returns an {@link SnmpOidRecord} object
+     * Searches for a MIB variable given its logical name and returns an {@link com.sun.jmx.snmp.SnmpOidRecord} object
      * containing information on the variable.
      *
      * @param name The name of the MIB variable.
      * @return The <CODE>SnmpOidRecord</CODE> object containing information on the variable.
      * @exception SnmpStatusException If the variable is not found.
      */
+    @Override
     public SnmpOidRecord resolveVarName(String name) throws SnmpStatusException {
 
         SnmpOidRecord var  = oidStore.get(name) ;
@@ -66,13 +65,14 @@ public class SnmpOidTableSupport implements SnmpOidTable {
     }
 
     /**
-     * Searches for a MIB variable given its OID and returns an {@link SnmpOidRecord} object
+     * Searches for a MIB variable given its OID and returns an {@link com.sun.jmx.snmp.SnmpOidRecord} object
      * containing information on the variable.
      *
      * @param oid The OID of the MIB variable.
      * @return The <CODE>SnmpOidRecord</CODE> object containing information on the variable.
      * @exception SnmpStatusException If the variable is not found.
      */
+    @Override
     public SnmpOidRecord resolveVarOid(String oid) throws SnmpStatusException {
 
         // Try to see if the variable name is actually an OID to resolve.
@@ -89,8 +89,8 @@ public class SnmpOidTableSupport implements SnmpOidTable {
 
         // Go through the oidStore ... Good luck !
         //
-        for(Enumeration list= oidStore.elements(); list.hasMoreElements(); ) {
-            SnmpOidRecord element= (SnmpOidRecord) list.nextElement();
+        for(Enumeration<SnmpOidRecord> list= oidStore.elements(); list.hasMoreElements(); ) {
+            SnmpOidRecord element= list.nextElement();
             if (element.getOid().equals(oid))
                 return element;
         }
@@ -100,11 +100,12 @@ public class SnmpOidTableSupport implements SnmpOidTable {
 
     /**
      * Returns a list that can be used to traverse all the entries in this <CODE>SnmpOidTable</CODE>.
-     * @return A vector of {@link SnmpOidRecord} objects.
+     * @return A vector of {@link com.sun.jmx.snmp.SnmpOidRecord} objects.
      */
+    @Override
     public Vector<SnmpOidRecord> getAllEntries() {
 
-        Vector<SnmpOidRecord> elementsVector = new Vector<SnmpOidRecord>();
+        Vector<SnmpOidRecord> elementsVector = new Vector<>();
         // get the locally defined elements ...
         for (Enumeration<SnmpOidRecord> e = oidStore.elements();
              e.hasMoreElements(); ) {
@@ -140,6 +141,7 @@ public class SnmpOidTableSupport implements SnmpOidTable {
      * @return <CODE>true</CODE> if <CODE>object</CODE> is an <CODE>SnmpOidTableSupport</CODE> instance and equals to this,
      * <CODE>false</CODE> otherwise.
      */
+    @Override
     public boolean equals(Object object) {
 
         if (!(object instanceof SnmpOidTableSupport)) {
@@ -147,6 +149,11 @@ public class SnmpOidTableSupport implements SnmpOidTable {
         }
         SnmpOidTableSupport val = (SnmpOidTableSupport) object;
         return myName.equals(val.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(myName);
     }
 
     /**
@@ -164,7 +171,6 @@ public class SnmpOidTableSupport implements SnmpOidTable {
 
 
 
-    private Hashtable<String, SnmpOidRecord> oidStore =
-            new Hashtable<String, SnmpOidRecord>();
+    private Hashtable<String, SnmpOidRecord> oidStore = new Hashtable<>();
     private String myName;
 }

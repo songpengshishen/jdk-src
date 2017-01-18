@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -165,12 +165,12 @@ public class PropertyManager {
         }
         else if(property == XMLInputFactory.IS_VALIDATING || property.equals(XMLInputFactory.IS_VALIDATING)){
             if( (value instanceof Boolean) && ((Boolean)value).booleanValue()){
-                throw new IllegalArgumentException("true value of isValidating not supported") ;
+                throw new java.lang.IllegalArgumentException("true value of isValidating not supported") ;
             }
         }
         else if(property == STRING_INTERNING || property.equals(STRING_INTERNING)){
             if( (value instanceof Boolean) && !((Boolean)value).booleanValue()){
-                throw new IllegalArgumentException("false value of " + STRING_INTERNING + "feature is not supported") ;
+                throw new java.lang.IllegalArgumentException("false value of " + STRING_INTERNING + "feature is not supported") ;
             }
         }
         else if(property == XMLInputFactory.RESOLVER || property.equals(XMLInputFactory.RESOLVER)){

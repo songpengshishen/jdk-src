@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -423,7 +423,7 @@ public class SchemaParsingConfig extends BasicParserConfiguration
      * @param featureId The unique identifier (URI) of the feature.
      * @param state The requested state of the feature (true or false).
      *
-     * @exception XMLConfigurationException If the
+     * @exception com.sun.org.apache.xerces.internal.xni.parser.XMLConfigurationException If the
      *            requested feature is not known.
      */
     public void setFeature(String featureId, boolean state)
@@ -670,7 +670,7 @@ public class SchemaParsingConfig extends BasicParserConfiguration
      * @param source The input source.
      *
      * @exception XNIException Throws exception on XNI error.
-     * @exception IOException Throws exception on i/o error.
+     * @exception java.io.IOException Throws exception on i/o error.
      */
     public void parse(XMLInputSource source) throws XNIException, IOException {
 

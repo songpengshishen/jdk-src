@@ -37,9 +37,9 @@ package com.sun.jmx.snmp;
  * <P>
  * An <CODE>SnmpPduFactory</CODE> object is attached to an
  * {@link com.sun.jmx.snmp.daemon.SnmpAdaptorServer SNMP protocol adaptor}
- * or an {@link SnmpPeer SnmpPeer}.
+ * or an {@link com.sun.jmx.snmp.SnmpPeer SnmpPeer}.
  * It is used each time an SNMP packet needs to be encoded or decoded.
- * <BR>{@link SnmpPduFactoryBER SnmpPduFactoryBER} is the default
+ * <BR>{@link com.sun.jmx.snmp.SnmpPduFactoryBER SnmpPduFactoryBER} is the default
  * implementation.
  * It simply applies the standard ASN.1 encoding and decoding
  * on the bytes of the SNMP packet.

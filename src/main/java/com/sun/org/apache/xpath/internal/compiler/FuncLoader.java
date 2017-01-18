@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -37,7 +37,7 @@ public class FuncLoader
 {
 
   /** The function ID, which may correspond to one of the FUNC_XXX values
-   *  found in {@link FunctionTable}, but may
+   *  found in {@link com.sun.org.apache.xpath.internal.compiler.FunctionTable}, but may
    *  be a value installed by an external module.  */
   private int m_funcID;
 
@@ -63,7 +63,7 @@ public class FuncLoader
    *             class, which, if it does not have a '.' in it, is assumed to
    *             be relative to 'com.sun.org.apache.xpath.internal.functions'.
    * @param funcID  The function ID, which may correspond to one of the FUNC_XXX
-   *    values found in {@link FunctionTable}, but may
+   *    values found in {@link com.sun.org.apache.xpath.internal.compiler.FunctionTable}, but may
    *    be a value installed by an external module.
    */
   public FuncLoader(String funcName, int funcID)
@@ -80,7 +80,7 @@ public class FuncLoader
    *
    * @return non-null reference to Function derivative.
    *
-   * @throws TransformerException if ClassNotFoundException,
+   * @throws javax.xml.transform.TransformerException if ClassNotFoundException,
    *    IllegalAccessException, or InstantiationException is thrown.
    */
   Function getFunction() throws TransformerException

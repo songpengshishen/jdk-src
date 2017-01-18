@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 // CatalogResolver.java - A SAX EntityResolver/JAXP URI Resolver
@@ -56,8 +56,8 @@ import com.sun.org.apache.xml.internal.resolver.helpers.FileURL;
  * Committee specification.</p>
  *
  * @see Catalog
- * @see EntityResolver
- * @see URIResolver
+ * @see org.xml.sax.EntityResolver
+ * @see javax.xml.transform.URIResolver
  *
  * @author Norman Walsh
  * <a href="mailto:Norman.Walsh@Sun.COM">Norman.Walsh@Sun.COM</a>
@@ -258,7 +258,7 @@ public class CatalogResolver implements EntityResolver, URIResolver {
           url = (href.length()==0 ? baseURL : new URL(baseURL, uri));
           result = url.toString();
         }
-      } catch (MalformedURLException mue) {
+      } catch (java.net.MalformedURLException mue) {
         // try to make an absolute URI from the current base
         String absBase = makeAbsolute(base);
         if (!absBase.equals(base)) {

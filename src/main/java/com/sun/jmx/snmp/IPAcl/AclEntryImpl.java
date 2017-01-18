@@ -43,7 +43,7 @@ import java.security.acl.AclEntry;
  * This ACL entry object contains a permission associated with a particular principal.
  * (A principal represents an entity such as an individual machine or a group).
  *
- * @see AclEntry
+ * @see java.security.acl.AclEntry
  */
 
 class AclEntryImpl implements AclEntry, Serializable {
@@ -119,7 +119,7 @@ class AclEntryImpl implements AclEntry, Serializable {
    *         not part of this entry's permission set.
    *
    */
-  public boolean addPermission(Permission perm){
+  public boolean addPermission(java.security.acl.Permission perm){
         if (permList.contains(perm)) return false;
         permList.addElement(perm);
         return true;
@@ -132,7 +132,7 @@ class AclEntryImpl implements AclEntry, Serializable {
    * @return true if the permission is removed, false if the permission
    *         was not part of this entry's permission set.
    */
-  public boolean removePermission(Permission perm){
+  public boolean removePermission(java.security.acl.Permission perm){
         if (!permList.contains(perm)) return false;
         permList.removeElement(perm);
         return true;
@@ -147,7 +147,7 @@ class AclEntryImpl implements AclEntry, Serializable {
    *         entry, false otherwise.
    */
 
-  public boolean checkPermission(Permission perm){
+  public boolean checkPermission(java.security.acl.Permission perm){
         return (permList.contains(perm));
   }
 

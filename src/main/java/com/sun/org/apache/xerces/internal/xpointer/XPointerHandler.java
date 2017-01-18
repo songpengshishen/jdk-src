@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -124,7 +124,7 @@ public final class XPointerHandler extends XIncludeHandler implements
     /**
      * Parses the XPointer framework expression and delegates scheme specific parsing.
      *
-     * @see XPointerProcessor#parseXPointer(String)
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerProcessor#parseXPointer(java.lang.String)
      */
     public void parseXPointer(String xpointer) throws XNIException {
 
@@ -281,7 +281,7 @@ public final class XPointerHandler extends XIncludeHandler implements
 
     /**
      *
-     * @see XPointerProcessor#resolveXPointer(QName, XMLAttributes, Augmentations, int event)
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerProcessor#resolveXPointer(com.sun.org.apache.xerces.internal.xni.QName, com.sun.org.apache.xerces.internal.xni.XMLAttributes, com.sun.org.apache.xerces.internal.xni.Augmentations, int event)
      */
     public boolean resolveXPointer(QName element, XMLAttributes attributes,
             Augmentations augs, int event) throws XNIException {
@@ -324,7 +324,7 @@ public final class XPointerHandler extends XIncludeHandler implements
     /**
      * Returns true if the Node fragment is resolved.
      *
-     * @see XPointerProcessor#isFragmentResolved()
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerProcessor#isFragmentResolved()
      */
     public boolean isFragmentResolved() throws XNIException {
         boolean resolved = (fXPointerPart != null) ? fXPointerPart.isFragmentResolved()
@@ -341,7 +341,7 @@ public final class XPointerHandler extends XIncludeHandler implements
      * Returns true if the XPointer expression resolves to a non-element child
      * of the current resource fragment.
      *
-     * @see XPointerPart#isChildFragmentResolved()
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerPart#isChildFragmentResolved()
      *
      */
     public boolean isChildFragmentResolved() throws XNIException {
@@ -353,7 +353,7 @@ public final class XPointerHandler extends XIncludeHandler implements
     /**
      * Returns true if the XPointer successfully found a sub-resource .
      *
-     * @see XPointerProcessor#isFragmentResolved()
+     * @see com.sun.org.apache.xerces.internal.xpointer.XPointerProcessor#isFragmentResolved()
      */
     public boolean isXPointerResolved() throws XNIException {
         return fIsXPointerResolved;

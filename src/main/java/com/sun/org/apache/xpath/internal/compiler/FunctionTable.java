@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -320,16 +320,16 @@ public class FunctionTable
    * Obtain a new Function object from a function ID.
    *
    * @param which  The function ID, which may correspond to one of the FUNC_XXX
-   *    values found in {@link FunctionTable}, but may
+   *    values found in {@link com.sun.org.apache.xpath.internal.compiler.FunctionTable}, but may
    *    be a value installed by an external module.
    *
    * @return a a new Function instance.
    *
-   * @throws TransformerException if ClassNotFoundException,
+   * @throws javax.xml.transform.TransformerException if ClassNotFoundException,
    *    IllegalAccessException, or InstantiationException is thrown.
    */
   Function getFunction(int which)
-          throws TransformerException
+          throws javax.xml.transform.TransformerException
   {
           try{
               if (which < NUM_BUILT_IN_FUNCS)
@@ -348,7 +348,7 @@ public class FunctionTable
    * Obtain a function ID from a given function name
    * @param key the function name in a java.lang.String format.
    * @return a function ID, which may correspond to one of the FUNC_XXX values
-   * found in {@link FunctionTable}, but may be a
+   * found in {@link com.sun.org.apache.xpath.internal.compiler.FunctionTable}, but may be a
    * value installed by an external module.
    */
   Object getFunctionID(String key){

@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
- * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Copyright (c) 2015, 2016, Oracle and/or its affiliates. All rights reserved.
  */
 /*
- * Copyright 2001-2004 The Apache Software Foundation.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -17,9 +17,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
- * $Id: DOMAdapter.java,v 1.2.4.1 2005/09/06 06:07:28 pvedula Exp $
- */
 
 package com.sun.org.apache.xalan.internal.xsltc.dom;
 
@@ -27,11 +24,10 @@ import com.sun.org.apache.xalan.internal.xsltc.DOM;
 import com.sun.org.apache.xalan.internal.xsltc.DOMEnhancedForDTM;
 import com.sun.org.apache.xalan.internal.xsltc.StripFilter;
 import com.sun.org.apache.xalan.internal.xsltc.TransletException;
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 import com.sun.org.apache.xml.internal.dtm.DTM;
 import com.sun.org.apache.xml.internal.dtm.DTMAxisIterator;
 import com.sun.org.apache.xml.internal.serializer.SerializationHandler;
-
+import java.util.Map;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -56,8 +52,6 @@ public final class DOMAdapter implements DOM {
     private int[]   _reverse = null;
     private short[] _NSmapping = null;
     private short[] _NSreverse = null;
-
-    private StripFilter _filter = null;
 
     private int _multiDOMMask;
 
@@ -166,9 +160,7 @@ public final class DOMAdapter implements DOM {
         }
     }
 
-    public void setFilter(StripFilter filter) {
-        _filter = filter;
-    }
+    public void setFilter(StripFilter filter) {}
 
     public DTMAxisIterator getTypedChildren(final int type) {
         final int[] reverse = getReverse();
@@ -462,7 +454,11 @@ public final class DOMAdapter implements DOM {
         return _dom.getUnparsedEntityURI(entity);
     }
 
-    public Hashtable getElementsWithIDs() {
+    public Map<String, Integer> getElementsWithIDs() {
         return _dom.getElementsWithIDs();
+    }
+
+    public void release() {
+        _dom.release();
     }
 }

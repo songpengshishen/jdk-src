@@ -52,13 +52,13 @@ class JDMAccess extends SimpleNode {
     if (access == ParserConstants.RO) {
        // We have a read-only access.
        //
-       entry.addPermission(SnmpAcl.getREAD());
+       entry.addPermission(com.sun.jmx.snmp.IPAcl.SnmpAcl.getREAD());
     }
     if (access == ParserConstants.RW) {
        // We have a read-write access.
        //
-       entry.addPermission(SnmpAcl.getREAD());
-       entry.addPermission(SnmpAcl.getWRITE());
+       entry.addPermission(com.sun.jmx.snmp.IPAcl.SnmpAcl.getREAD());
+       entry.addPermission(com.sun.jmx.snmp.IPAcl.SnmpAcl.getWRITE());
     }
   }
 }

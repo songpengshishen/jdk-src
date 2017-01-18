@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -491,13 +491,13 @@ public class DTMManagerDefault extends DTMManager
    *
    * @return a valid DTM handle.
    */
-  synchronized public int getDTMHandleFromNode(Node node)
+  synchronized public int getDTMHandleFromNode(org.w3c.dom.Node node)
   {
     if(null == node)
       throw new IllegalArgumentException(XMLMessages.createXMLMessage(XMLErrorResources.ER_NODE_NON_NULL, null)); //"node must be non-null for getDTMHandleFromNode!");
 
-    if (node instanceof DTMNodeProxy)
-      return ((DTMNodeProxy) node).getDTMNodeNumber();
+    if (node instanceof com.sun.org.apache.xml.internal.dtm.ref.DTMNodeProxy)
+      return ((com.sun.org.apache.xml.internal.dtm.ref.DTMNodeProxy) node).getDTMNodeNumber();
 
     else
     {
@@ -559,7 +559,7 @@ public class DTMManagerDefault extends DTMManager
         root = p;
       }
 
-      DOM2DTM dtm = (DOM2DTM) getDTM(new DOMSource(root),
+      DOM2DTM dtm = (DOM2DTM) getDTM(new javax.xml.transform.dom.DOMSource(root),
                                                                                                                                                  false, null, true, true);
 
       int handle;
@@ -650,7 +650,7 @@ public class DTMManagerDefault extends DTMManager
       // Performance critical function.
       return m_dtms[nodeHandle >>> IDENT_DTM_NODE_BITS];
     }
-    catch(ArrayIndexOutOfBoundsException e)
+    catch(java.lang.ArrayIndexOutOfBoundsException e)
     {
       if(nodeHandle==DTM.NULL)
                                 return null;            // Accept as a special case.

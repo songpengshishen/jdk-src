@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 package com.sun.org.apache.bcel.internal.util;
@@ -104,7 +104,7 @@ final class MethodHTML implements com.sun.org.apache.bcel.internal.Constants {
    * Print field of class.
    *
    * @param field field to print
-   * @exception IOException
+   * @exception java.io.IOException
    */
   private void writeField(Field field) throws IOException {
     String       type   = Utility.signatureToString(field.getSignature());

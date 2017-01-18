@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -254,7 +254,7 @@ public class DOMBuilder
    *
    * @param locator An object that can return the location of
    *                any SAX document event.
-   * @see Locator
+   * @see org.xml.sax.Locator
    */
   public void setDocumentLocator(Locator locator)
   {
@@ -311,7 +311,7 @@ public class DOMBuilder
    * @param name The element name.
    * @param atts The attributes attached to the element, if any.
    * @see #endElement
-   * @see Attributes
+   * @see org.xml.sax.Attributes
    */
   public void startElement(
           String ns, String localName, String name, Attributes atts)
@@ -372,7 +372,7 @@ public class DOMBuilder
 
       // append(elem);
     }
-    catch(Exception de)
+    catch(java.lang.Exception de)
     {
       // de.printStackTrace();
       throw new org.xml.sax.SAXException(de);
@@ -439,12 +439,12 @@ public class DOMBuilder
    * @param start The start position in the array.
    * @param length The number of characters to read from the array.
    * @see #ignorableWhitespace
-   * @see Locator
+   * @see org.xml.sax.Locator
    */
   public void characters(char ch[], int start, int length) throws org.xml.sax.SAXException
   {
     if(isOutsideDocElem()
-       && XMLCharacterRecognizer.isWhiteSpace(ch, start, length))
+       && com.sun.org.apache.xml.internal.utils.XMLCharacterRecognizer.isWhiteSpace(ch, start, length))
       return;  // avoid DOM006 Hierarchy request error
 
     if (m_inCData)
@@ -480,7 +480,7 @@ public class DOMBuilder
           throws org.xml.sax.SAXException
   {
     if(isOutsideDocElem()
-       && XMLCharacterRecognizer.isWhiteSpace(ch, start, length))
+       && com.sun.org.apache.xml.internal.utils.XMLCharacterRecognizer.isWhiteSpace(ch, start, length))
       return;  // avoid DOM006 Hierarchy request error
 
 
@@ -655,12 +655,12 @@ public class DOMBuilder
    * @param start The start position in the array.
    * @param length The number of characters to read from the array.
    * @see #ignorableWhitespace
-   * @see Locator
+   * @see org.xml.sax.Locator
    */
   public void cdata(char ch[], int start, int length) throws org.xml.sax.SAXException
   {
     if(isOutsideDocElem()
-       && XMLCharacterRecognizer.isWhiteSpace(ch, start, length))
+       && com.sun.org.apache.xml.internal.utils.XMLCharacterRecognizer.isWhiteSpace(ch, start, length))
       return;  // avoid DOM006 Hierarchy request error
 
     String s = new String(ch, start, length);

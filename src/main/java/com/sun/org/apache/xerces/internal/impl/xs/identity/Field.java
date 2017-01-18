@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -44,7 +44,7 @@ public class Field {
     //
 
     /** Field XPath. */
-    protected XPath fXPath;
+    protected Field.XPath fXPath;
 
 
     /** Identity constraint. */
@@ -55,7 +55,7 @@ public class Field {
     //
 
     /** Constructs a field. */
-    public Field(XPath xpath,
+    public Field(Field.XPath xpath,
                  IdentityConstraint identityConstraint) {
         fXPath = xpath;
         fIdentityConstraint = identityConstraint;
@@ -79,7 +79,7 @@ public class Field {
 
     /** Creates a field matcher. */
     public XPathMatcher createMatcher(FieldActivator activator, ValueStore store) {
-        return new Matcher(fXPath, activator, store);
+        return new Field.Matcher(fXPath, activator, store);
     } // createMatcher(ValueStore):XPathMatcher
 
     //
@@ -124,9 +124,9 @@ public class Field {
             // verify that only one attribute is selected per branch
             for (int i=0;i<fLocationPaths.length;i++) {
                 for(int j=0; j<fLocationPaths[i].steps.length; j++) {
-                    Axis axis =
+                    com.sun.org.apache.xerces.internal.impl.xpath.XPath.Axis axis =
                         fLocationPaths[i].steps[j].axis;
-                    if (axis.type == Axis.ATTRIBUTE &&
+                    if (axis.type == XPath.Axis.ATTRIBUTE &&
                             (j < fLocationPaths[i].steps.length-1)) {
                         throw new XPathException("c-fields-xpaths");
                     }
@@ -159,7 +159,7 @@ public class Field {
         //
 
         /** Constructs a field matcher. */
-        public Matcher(XPath xpath, FieldActivator activator, ValueStore store) {
+        public Matcher(Field.XPath xpath, FieldActivator activator, ValueStore store) {
             super(xpath);
             fFieldActivator = activator;
             fStore = store;

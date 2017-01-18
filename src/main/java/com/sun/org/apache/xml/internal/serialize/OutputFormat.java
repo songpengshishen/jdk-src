@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -836,7 +836,7 @@ public class OutputFormat
 
     /**
      * Determine the output method for the specified document.
-     * If the document is an instance of {@link HTMLDocument}
+     * If the document is an instance of {@link org.w3c.dom.html.HTMLDocument}
      * then the method is said to be <tt>html</tt>. If the root
      * element is 'html' and all text nodes preceding the root
      * element are all whitespace, then the method is said to be

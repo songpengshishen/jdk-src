@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -24,10 +24,10 @@ package com.sun.org.apache.xml.internal.dtm.ref;
 
 import java.util.Vector;
 
-import com.sun.org.apache.xalan.internal.utils.Objects;
 import com.sun.org.apache.xml.internal.dtm.DTM;
 import com.sun.org.apache.xml.internal.dtm.DTMDOMException;
 import com.sun.org.apache.xpath.internal.NodeSet;
+import java.util.Objects;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.CDATASection;
@@ -180,7 +180,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Node
+   * @see org.w3c.dom.Node
    */
   @Override
   public final String getNodeName()
@@ -210,7 +210,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Node as of DOM Level 2
+   * @see org.w3c.dom.Node as of DOM Level 2
    */
   @Override
   public final String getLocalName()
@@ -220,7 +220,7 @@ public class DTMNodeProxy
 
   /**
    * @return The prefix for this node.
-   * @see Node as of DOM Level 2
+   * @see org.w3c.dom.Node as of DOM Level 2
    */
   @Override
   public final String getPrefix()
@@ -233,7 +233,7 @@ public class DTMNodeProxy
    * @param prefix
    *
    * @throws DOMException
-   * @see Node as of DOM Level 2 -- DTMNodeProxy is read-only
+   * @see org.w3c.dom.Node as of DOM Level 2 -- DTMNodeProxy is read-only
    */
   @Override
   public final void setPrefix(String prefix) throws DOMException
@@ -244,7 +244,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Node as of DOM Level 2
+   * @see org.w3c.dom.Node as of DOM Level 2
    */
   @Override
   public final String getNamespaceURI()
@@ -282,7 +282,7 @@ public class DTMNodeProxy
    * @param version
    *
    * @return false
-   * @see Node as of DOM Level 2
+   * @see org.w3c.dom.Node as of DOM Level 2
    */
   @Override
   public final boolean isSupported(String feature, String version)
@@ -296,7 +296,7 @@ public class DTMNodeProxy
    *
    *
    * @throws DOMException
-   * @see Node
+   * @see org.w3c.dom.Node
    */
   @Override
   public final String getNodeValue() throws DOMException
@@ -319,7 +319,7 @@ public class DTMNodeProxy
    * @param nodeValue
    *
    * @throws DOMException
-   * @see Node -- DTMNodeProxy is read-only
+   * @see org.w3c.dom.Node -- DTMNodeProxy is read-only
    */
   @Override
   public final void setNodeValue(String nodeValue) throws DOMException
@@ -330,7 +330,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Node
+   * @see org.w3c.dom.Node
    */
   @Override
   public final short getNodeType()
@@ -341,7 +341,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Node
+   * @see org.w3c.dom.Node
    */
   @Override
   public final Node getParentNode()
@@ -358,7 +358,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Node
+   * @see org.w3c.dom.Node
    */
   public final Node getOwnerNode()
   {
@@ -371,7 +371,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Node
+   * @see org.w3c.dom.Node
    */
   @Override
   public final NodeList getChildNodes()
@@ -388,7 +388,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Node
+   * @see org.w3c.dom.Node
    */
   @Override
   public final Node getFirstChild()
@@ -402,7 +402,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Node
+   * @see org.w3c.dom.Node
    */
   @Override
   public final Node getLastChild()
@@ -416,7 +416,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Node
+   * @see org.w3c.dom.Node
    */
   @Override
   public final Node getPreviousSibling()
@@ -430,7 +430,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Node
+   * @see org.w3c.dom.Node
    */
   @Override
   public final Node getNextSibling()
@@ -450,7 +450,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Node
+   * @see org.w3c.dom.Node
    */
   @Override
   public final NamedNodeMap getAttributes()
@@ -490,7 +490,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Node
+   * @see org.w3c.dom.Node
    */
   @Override
   public final Document getOwnerDocument()
@@ -507,7 +507,7 @@ public class DTMNodeProxy
    *
    *
    * @throws DOMException
-   * @see Node -- DTMNodeProxy is read-only
+   * @see org.w3c.dom.Node -- DTMNodeProxy is read-only
    */
   @Override
   public final Node insertBefore(Node newChild, Node refChild)
@@ -524,7 +524,7 @@ public class DTMNodeProxy
    *
    *
    * @throws DOMException
-   * @see Node -- DTMNodeProxy is read-only
+   * @see org.w3c.dom.Node -- DTMNodeProxy is read-only
    */
   @Override
   public final Node replaceChild(Node newChild, Node oldChild)
@@ -540,7 +540,7 @@ public class DTMNodeProxy
    *
    *
    * @throws DOMException
-   * @see Node -- DTMNodeProxy is read-only
+   * @see org.w3c.dom.Node -- DTMNodeProxy is read-only
    */
   @Override
   public final Node removeChild(Node oldChild) throws DOMException
@@ -555,7 +555,7 @@ public class DTMNodeProxy
    *
    *
    * @throws DOMException
-   * @see Node -- DTMNodeProxy is read-only
+   * @see org.w3c.dom.Node -- DTMNodeProxy is read-only
    */
   @Override
   public final Node appendChild(Node newChild) throws DOMException
@@ -566,7 +566,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Node
+   * @see org.w3c.dom.Node
    */
   @Override
   public final boolean hasChildNodes()
@@ -579,7 +579,7 @@ public class DTMNodeProxy
    * @param deep
    *
    *
-   * @see Node -- DTMNodeProxy is read-only
+   * @see org.w3c.dom.Node -- DTMNodeProxy is read-only
    */
   @Override
   public final Node cloneNode(boolean deep)
@@ -590,7 +590,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Document
+   * @see org.w3c.dom.Document
    */
   @Override
   public final DocumentType getDoctype()
@@ -601,7 +601,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Document
+   * @see org.w3c.dom.Document
    */
   @Override
   public final DOMImplementation getImplementation()
@@ -614,7 +614,7 @@ public class DTMNodeProxy
    * make it work in the well-formed cases but would that be confusing for others?
    *
    *
-   * @see Document
+   * @see org.w3c.dom.Document
    */
   @Override
   public final Element getDocumentElement()
@@ -662,7 +662,7 @@ public class DTMNodeProxy
    *
    *
    * @throws DOMException
-   * @see Document
+   * @see org.w3c.dom.Document
    */
   @Override
   public final Element createElement(String tagName) throws DOMException
@@ -673,7 +673,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Document
+   * @see org.w3c.dom.Document
    */
   @Override
   public final DocumentFragment createDocumentFragment()
@@ -686,7 +686,7 @@ public class DTMNodeProxy
    * @param data
    *
    *
-   * @see Document
+   * @see org.w3c.dom.Document
    */
   @Override
   public final Text createTextNode(String data)
@@ -699,7 +699,7 @@ public class DTMNodeProxy
    * @param data
    *
    *
-   * @see Document
+   * @see org.w3c.dom.Document
    */
   @Override
   public final Comment createComment(String data)
@@ -714,7 +714,7 @@ public class DTMNodeProxy
    *
    *
    * @throws DOMException
-   * @see Document
+   * @see org.w3c.dom.Document
    */
   @Override
   public final CDATASection createCDATASection(String data)
@@ -731,7 +731,7 @@ public class DTMNodeProxy
    *
    *
    * @throws DOMException
-   * @see Document
+   * @see org.w3c.dom.Document
    */
   @Override
   public final ProcessingInstruction createProcessingInstruction(
@@ -747,7 +747,7 @@ public class DTMNodeProxy
    *
    *
    * @throws DOMException
-   * @see Document
+   * @see org.w3c.dom.Document
    */
   @Override
   public final Attr createAttribute(String name) throws DOMException
@@ -762,7 +762,7 @@ public class DTMNodeProxy
    *
    *
    * @throws DOMException
-   * @see Document
+   * @see org.w3c.dom.Document
    */
   @Override
   public final EntityReference createEntityReference(String name)
@@ -775,7 +775,7 @@ public class DTMNodeProxy
    * @param tagname
    *
    *
-   * @see Document
+   * @see org.w3c.dom.Document
    */
   @Override
   public final NodeList getElementsByTagName(String tagname)
@@ -856,7 +856,7 @@ public class DTMNodeProxy
    *
    *
    * @throws DOMException
-   * @see Document as of DOM Level 2 -- DTMNodeProxy is read-only
+   * @see org.w3c.dom.Document as of DOM Level 2 -- DTMNodeProxy is read-only
    */
   @Override
   public final Node importNode(Node importedNode, boolean deep)
@@ -873,7 +873,7 @@ public class DTMNodeProxy
    *
    *
    * @throws DOMException
-   * @see Document as of DOM Level 2
+   * @see org.w3c.dom.Document as of DOM Level 2
    */
   @Override
   public final Element createElementNS(
@@ -890,7 +890,7 @@ public class DTMNodeProxy
    *
    *
    * @throws DOMException
-   * @see Document as of DOM Level 2
+   * @see org.w3c.dom.Document as of DOM Level 2
    */
   @Override
   public final Attr createAttributeNS(
@@ -905,7 +905,7 @@ public class DTMNodeProxy
    * @param localName
    *
    *
-   * @see Document as of DOM Level 2
+   * @see org.w3c.dom.Document as of DOM Level 2
    */
   @Override
   public final NodeList getElementsByTagNameNS(String namespaceURI,
@@ -993,7 +993,7 @@ public class DTMNodeProxy
    * @param elementId
    *
    *
-   * @see Document as of DOM Level 2
+   * @see org.w3c.dom.Document as of DOM Level 2
    */
   @Override
   public final Element getElementById(String elementId)
@@ -1008,7 +1008,7 @@ public class DTMNodeProxy
    *
    *
    * @throws DOMException
-   * @see Text
+   * @see org.w3c.dom.Text
    */
   @Override
   public final Text splitText(int offset) throws DOMException
@@ -1130,7 +1130,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Element
+   * @see org.w3c.dom.Element
    */
   @Override
   public final String getTagName()
@@ -1143,7 +1143,7 @@ public class DTMNodeProxy
    * @param name
    *
    *
-   * @see Element
+   * @see org.w3c.dom.Element
    */
   @Override
   public final String getAttribute(String name)
@@ -1159,7 +1159,7 @@ public class DTMNodeProxy
    * @param value
    *
    * @throws DOMException
-   * @see Element
+   * @see org.w3c.dom.Element
    */
   @Override
   public final void setAttribute(String name, String value)
@@ -1173,7 +1173,7 @@ public class DTMNodeProxy
    * @param name
    *
    * @throws DOMException
-   * @see Element
+   * @see org.w3c.dom.Element
    */
   @Override
   public final void removeAttribute(String name) throws DOMException
@@ -1186,7 +1186,7 @@ public class DTMNodeProxy
    * @param name
    *
    *
-   * @see Element
+   * @see org.w3c.dom.Element
    */
   @Override
   public final Attr getAttributeNode(String name)
@@ -1202,7 +1202,7 @@ public class DTMNodeProxy
    *
    *
    * @throws DOMException
-   * @see Element
+   * @see org.w3c.dom.Element
    */
   @Override
   public final Attr setAttributeNode(Attr newAttr) throws DOMException
@@ -1217,7 +1217,7 @@ public class DTMNodeProxy
    *
    *
    * @throws DOMException
-   * @see Element
+   * @see org.w3c.dom.Element
    */
   @Override
   public final Attr removeAttributeNode(Attr oldAttr) throws DOMException
@@ -1236,7 +1236,7 @@ public class DTMNodeProxy
     return DTM.NULL != dtm.getFirstAttribute(node);
   }
 
-  /** @see Element */
+  /** @see org.w3c.dom.Element */
   @Override
   public final void normalize()
   {
@@ -1249,7 +1249,7 @@ public class DTMNodeProxy
    * @param localName
    *
    *
-   * @see Element
+   * @see org.w3c.dom.Element
    */
   @Override
   public final String getAttributeNS(String namespaceURI, String localName)
@@ -1268,7 +1268,7 @@ public class DTMNodeProxy
    * @param value
    *
    * @throws DOMException
-   * @see Element
+   * @see org.w3c.dom.Element
    */
   @Override
   public final void setAttributeNS(
@@ -1284,7 +1284,7 @@ public class DTMNodeProxy
    * @param localName
    *
    * @throws DOMException
-   * @see Element
+   * @see org.w3c.dom.Element
    */
   @Override
   public final void removeAttributeNS(String namespaceURI, String localName)
@@ -1299,7 +1299,7 @@ public class DTMNodeProxy
    * @param localName
    *
    *
-   * @see Element
+   * @see org.w3c.dom.Element
    */
   @Override
   public final Attr getAttributeNodeNS(String namespaceURI, String localName)
@@ -1319,7 +1319,7 @@ public class DTMNodeProxy
    *
    *
    * @throws DOMException
-   * @see Element
+   * @see org.w3c.dom.Element
    */
   @Override
   public final Attr setAttributeNodeNS(Attr newAttr) throws DOMException
@@ -1330,7 +1330,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Attr
+   * @see org.w3c.dom.Attr
    */
   @Override
   public final String getName()
@@ -1341,7 +1341,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Attr
+   * @see org.w3c.dom.Attr
    */
   @Override
   public final boolean getSpecified()
@@ -1356,7 +1356,7 @@ public class DTMNodeProxy
   /**
    *
    *
-   * @see Attr
+   * @see org.w3c.dom.Attr
    */
   @Override
   public final String getValue()
@@ -1367,7 +1367,7 @@ public class DTMNodeProxy
   /**
    *
    * @param value
-   * @see Attr
+   * @see org.w3c.dom.Attr
    */
   @Override
   public final void setValue(String value)
@@ -1379,7 +1379,7 @@ public class DTMNodeProxy
    * Get the owner element of an attribute.
    *
    *
-   * @see Attr as of DOM Level 2
+   * @see org.w3c.dom.Attr as of DOM Level 2
    */
   @Override
   public final Element getOwnerElement()
@@ -2116,7 +2116,7 @@ public class DTMNodeProxy
      */
     @Override
     public String getTextContent() throws DOMException {
-        return getNodeValue();  // overriden in some subclasses
+        return dtm.getStringValue(node).toString();
     }
 
      /**

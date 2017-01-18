@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -16,9 +16,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-/*
- * $Id: XSLTErrorResources_de.java /st_wptg_1.7.0.79.0jdk/1 2015/01/23 11:23:27 gmolloy Exp $
  */
 package com.sun.org.apache.xalan.internal.res;
 
@@ -1359,10 +1356,10 @@ public class XSLTErrorResources_de extends ListResourceBundle
   { "optionLXCIN", "   [-LXCIN compiledStylesheetFileNameIn]"},
   { "optionLXCOUT", "   [-LXCOUT compiledStylesheetFileNameOutOut]"},
   { "optionPARSER", "   [-PARSER fully qualified class name of parser liaison]"},
-  {  "optionE", "   [-E (Entit\u00E4tsreferenzen nicht einblenden)]"},
-  {  "optionV",  "   [-E (Entit\u00E4tsreferenzen nicht einblenden)]"},
+  {  "optionE", "   [-E (Entityreferenzen nicht einblenden)]"},
+  {  "optionV",  "   [-E (Entityreferenzen nicht einblenden)]"},
   {  "optionQC", "   [-QC (Stille Musterkonfliktwarnungen)]"},
-  {  "optionQ", "   [-Q  (Stiller Modus)]"},
+  {  "optionQ", "   [-Q  (Silent-Modus)]"},
   {  "optionLF", "   [-LF (Nur Zeilenvorsch\u00FCbe bei Ausgabe verwenden {Standard ist CR/LF})]"},
   {  "optionCR", "   [-CR (Nur Zeilenschaltungen bei Ausgabe verwenden {Standard ist CR/LF})]"},
   { "optionESCAPE", "   [-ESCAPE (Escapezeichen {Standard ist <>&\"'\r\n}]"},
@@ -1384,7 +1381,7 @@ public class XSLTErrorResources_de extends ListResourceBundle
   { "noParsermsg4", "Wenn Sie nicht \u00FCber den XML-Parser f\u00FCr Java von IBM verf\u00FCgen, k\u00F6nnen Sie ihn hier herunterladen:"},
   { "noParsermsg5", "IBMs AlphaWorks: http://www.alphaworks.ibm.com/formula/xml"},
   { "optionURIRESOLVER", "   [-URIRESOLVER full class name (URIResolver f\u00FCr die Aufl\u00F6sung von URIs)]"},
-  { "optionENTITYRESOLVER",  "   [-ENTITYRESOLVER full class name (EntityResolver f\u00FCr die Aufl\u00F6sung von Entit\u00E4ten)]"},
+  { "optionENTITYRESOLVER",  "   [-ENTITYRESOLVER full class name (EntityResolver f\u00FCr die Aufl\u00F6sung von Entitys)]"},
   { "optionCONTENTHANDLER",  "   [-CONTENTHANDLER full class name (ContentHandler f\u00FCr die Serialisierung der Ausgabe)]"},
   {  "optionLINENUMBERS",  "   [-L use line numbers for source document]"},
   { "optionSECUREPROCESSING", "   [-SECURE (Feature f\u00FCr die sichere Verarbeitung auf \"true\" setzen.)]"},

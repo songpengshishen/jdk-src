@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2007, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -50,7 +50,7 @@ import static com.sun.jmx.defaults.JmxProperties.SNMP_LOGGER;
 import com.sun.jmx.snmp.InetAddressAcl;
 
 /**
- * Defines an implementation of the {@link InetAddressAcl InetAddressAcl} interface.
+ * Defines an implementation of the {@link com.sun.jmx.snmp.InetAddressAcl InetAddressAcl} interface.
  * <p>
  * In this implementation the ACL information is stored on a flat file and
  * its default location is "$JRE/lib/snmp.acl" - See
@@ -126,7 +126,7 @@ public class SnmpAcl implements InetAddressAcl, Serializable {
      *
      * @return An enumeration of the entries in this ACL.
      */
-    public Enumeration entries() {
+    public Enumeration<AclEntry> entries() {
         return acl.entries();
     }
 
@@ -137,11 +137,11 @@ public class SnmpAcl implements InetAddressAcl, Serializable {
     public Enumeration<String> communities() {
         HashSet<String> set = new HashSet<String>();
         Vector<String> res = new Vector<String>();
-        for (Enumeration e = acl.entries() ; e.hasMoreElements() ;) {
+        for (Enumeration<AclEntry> e = acl.entries() ; e.hasMoreElements() ;) {
             AclEntryImpl entry = (AclEntryImpl) e.nextElement();
-            for (Enumeration cs = entry.communities();
+            for (Enumeration<String> cs = entry.communities();
                  cs.hasMoreElements() ;) {
-                set.add((String) cs.nextElement());
+                set.add(cs.nextElement());
             }
         }
         String[] objs = set.toArray(new String[0]);
@@ -316,7 +316,7 @@ public class SnmpAcl implements InetAddressAcl, Serializable {
      *
      * @return An enumeration of the trap destinations (enumeration of <CODE>InetAddress</CODE>).
      */
-    public Enumeration getTrapDestinations() {
+    public Enumeration<InetAddress> getTrapDestinations() {
         return trapDestList.keys();
     }
 
@@ -327,16 +327,16 @@ public class SnmpAcl implements InetAddressAcl, Serializable {
      *
      * @return An enumeration of trap communities for a given host (enumeration of <CODE>String</CODE>).
      */
-    public Enumeration getTrapCommunities(InetAddress i) {
-        Vector list = null;
-        if ((list = (Vector)trapDestList.get(i)) != null ) {
+    public Enumeration<String> getTrapCommunities(InetAddress i) {
+        Vector<String> list = null;
+        if ((list = trapDestList.get(i)) != null ) {
             if (SNMP_LOGGER.isLoggable(Level.FINER)) {
                 SNMP_LOGGER.logp(Level.FINER, SnmpAcl.class.getName(),
                     "getTrapCommunities", "["+i.toString()+"] is in list");
             }
             return list.elements();
         } else {
-            list = new Vector();
+            list = new Vector<>();
             if (SNMP_LOGGER.isLoggable(Level.FINER)) {
                 SNMP_LOGGER.logp(Level.FINER, SnmpAcl.class.getName(),
                     "getTrapCommunities", "["+i.toString()+"] is not in list");
@@ -350,7 +350,7 @@ public class SnmpAcl implements InetAddressAcl, Serializable {
      *
      * @return An enumeration of the inform destinations (enumeration of <CODE>InetAddress</CODE>).
      */
-    public Enumeration getInformDestinations() {
+    public Enumeration<InetAddress> getInformDestinations() {
         return informDestList.keys();
     }
 
@@ -361,16 +361,16 @@ public class SnmpAcl implements InetAddressAcl, Serializable {
      *
      * @return An enumeration of inform communities for a given host (enumeration of <CODE>String</CODE>).
      */
-    public Enumeration getInformCommunities(InetAddress i) {
-        Vector list = null;
-        if ((list = (Vector)informDestList.get(i)) != null ) {
+    public Enumeration<String> getInformCommunities(InetAddress i) {
+        Vector<String> list = null;
+        if ((list = informDestList.get(i)) != null ) {
             if (SNMP_LOGGER.isLoggable(Level.FINER)) {
                 SNMP_LOGGER.logp(Level.FINER, SnmpAcl.class.getName(),
                     "getInformCommunities", "["+i.toString()+"] is in list");
             }
             return list.elements();
         } else {
-            list = new Vector();
+            list = new Vector<>();
             if (SNMP_LOGGER.isLoggable(Level.FINER)) {
                 SNMP_LOGGER.logp(Level.FINER, SnmpAcl.class.getName(),
                     "getInformCommunities", "["+i.toString()+"] is not in list");
@@ -426,15 +426,15 @@ public class SnmpAcl implements InetAddressAcl, Serializable {
                 throw new IllegalArgumentException(err.getMessage());
             }
 
-            for(Enumeration e = acl.entries(); e.hasMoreElements();) {
+            for(Enumeration<AclEntry> e = acl.entries(); e.hasMoreElements();) {
                 AclEntryImpl aa = (AclEntryImpl) e.nextElement();
                 if (SNMP_LOGGER.isLoggable(Level.FINER)) {
                     SNMP_LOGGER.logp(Level.FINER, SnmpAcl.class.getName(),
                             "readAuthorizedListFile",
                             "===> " + aa.getPrincipal().toString());
                 }
-                for (Enumeration eee = aa.permissions();eee.hasMoreElements();) {
-                    java.security.acl.Permission perm = (java.security.acl.Permission)eee.nextElement();
+                for (Enumeration<java.security.acl.Permission> eee = aa.permissions();eee.hasMoreElements();) {
+                    java.security.acl.Permission perm = eee.nextElement();
                     if (SNMP_LOGGER.isLoggable(Level.FINER)) {
                         SNMP_LOGGER.logp(Level.FINER, SnmpAcl.class.getName(),
                                 "readAuthorizedListFile", "perm = " + perm);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -48,7 +48,7 @@ public class FuncRound extends FunctionOneArg
           final double val= obj.num();
           if (val >= -0.5 && val < 0) return new XNumber(-0.0);
           if (val == 0.0) return new XNumber(val);
-          return new XNumber(Math.floor(val
+          return new XNumber(java.lang.Math.floor(val
                                             + 0.5));
   }
 }

@@ -76,15 +76,13 @@ final class SnmpQManager implements Serializable {
 
     public void addRequest(SnmpInformRequest reqc) {
         newq.addRequest(reqc) ;
-        return ;
     }
 
     public void addWaiting(SnmpInformRequest reqc) {
         waitq.addWaiting(reqc) ;
-        return ;
     }
 
-    public Vector getAllOutstandingRequest(long range) {
+    public Vector<SnmpInformRequest> getAllOutstandingRequest(long range) {
         return newq.getAllOutstandingRequest(range) ;
     }
 
@@ -98,7 +96,7 @@ final class SnmpQManager implements Serializable {
     }
 
     public SnmpInformRequest removeRequest(long reqid) {
-        SnmpInformRequest reqc = null ;
+        SnmpInformRequest reqc;
 
         if ((reqc = newq.removeRequest(reqid)) == null)
             reqc = waitq.removeRequest(reqid) ;
@@ -136,7 +134,6 @@ class SendQ extends Vector<SnmpInformRequest> {
             notifyClients() ;
         } else
             insertElementAt(req, i) ;
-        return ;
     }
 
     public synchronized boolean waitUntilReady() {
@@ -156,9 +153,9 @@ class SendQ extends Vector<SnmpInformRequest> {
         }
     }
 
-    public synchronized Vector getAllOutstandingRequest(long margin) {
+    public synchronized Vector<SnmpInformRequest> getAllOutstandingRequest(long margin) {
         int i ;
-        Vector<SnmpInformRequest> outreq = new Vector<SnmpInformRequest>();
+        Vector<SnmpInformRequest> outreq = new Vector<>();
         while (true) {
             if (waitUntilReady() == true) {
                 long refTime = System.currentTimeMillis() + margin ;
@@ -240,7 +237,6 @@ class WaitQ extends Vector<SnmpInformRequest> {
             notifyClients() ;
         } else
             insertElementAt(req, i) ;
-        return ;
     }
 
     public synchronized boolean waitUntilReady() {

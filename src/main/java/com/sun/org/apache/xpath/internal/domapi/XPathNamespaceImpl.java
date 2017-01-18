@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -93,146 +93,146 @@ class XPathNamespaceImpl implements XPathNamespace {
     }
 
     /**
-     * @see Node#getNodeName()
+     * @see org.w3c.dom.Node#getNodeName()
      */
     public String getNodeName() {
         return "#namespace";
     }
 
     /**
-     * @see Node#getNodeValue()
+     * @see org.w3c.dom.Node#getNodeValue()
      */
     public String getNodeValue() throws DOMException {
         return m_attributeNode.getNodeValue();
     }
 
     /**
-     * @see Node#setNodeValue(String)
+     * @see org.w3c.dom.Node#setNodeValue(String)
      */
     public void setNodeValue(String arg0) throws DOMException {
     }
 
     /**
-     * @see Node#getNodeType()
+     * @see org.w3c.dom.Node#getNodeType()
      */
     public short getNodeType() {
         return XPathNamespace.XPATH_NAMESPACE_NODE;
     }
 
     /**
-     * @see Node#getParentNode()
+     * @see org.w3c.dom.Node#getParentNode()
      */
     public Node getParentNode() {
         return m_attributeNode.getParentNode();
     }
 
     /**
-     * @see Node#getChildNodes()
+     * @see org.w3c.dom.Node#getChildNodes()
      */
     public NodeList getChildNodes() {
         return m_attributeNode.getChildNodes();
     }
 
     /**
-     * @see Node#getFirstChild()
+     * @see org.w3c.dom.Node#getFirstChild()
      */
     public Node getFirstChild() {
         return m_attributeNode.getFirstChild();
     }
 
     /**
-     * @see Node#getLastChild()
+     * @see org.w3c.dom.Node#getLastChild()
      */
     public Node getLastChild() {
         return m_attributeNode.getLastChild();
     }
 
     /**
-     * @see Node#getPreviousSibling()
+     * @see org.w3c.dom.Node#getPreviousSibling()
      */
     public Node getPreviousSibling() {
         return m_attributeNode.getPreviousSibling();
     }
 
     /**
-     * @see Node#getNextSibling()
+     * @see org.w3c.dom.Node#getNextSibling()
      */
     public Node getNextSibling() {
         return m_attributeNode.getNextSibling();
     }
 
     /**
-     * @see Node#getAttributes()
+     * @see org.w3c.dom.Node#getAttributes()
      */
     public NamedNodeMap getAttributes() {
         return m_attributeNode.getAttributes();
     }
 
     /**
-     * @see Node#getOwnerDocument()
+     * @see org.w3c.dom.Node#getOwnerDocument()
      */
     public Document getOwnerDocument() {
         return m_attributeNode.getOwnerDocument();
     }
 
     /**
-     * @see Node#insertBefore(Node, Node)
+     * @see org.w3c.dom.Node#insertBefore(Node, Node)
      */
     public Node insertBefore(Node arg0, Node arg1) throws DOMException {
         return null;
     }
 
     /**
-     * @see Node#replaceChild(Node, Node)
+     * @see org.w3c.dom.Node#replaceChild(Node, Node)
      */
     public Node replaceChild(Node arg0, Node arg1) throws DOMException {
         return null;
     }
 
     /**
-     * @see Node#removeChild(Node)
+     * @see org.w3c.dom.Node#removeChild(Node)
      */
     public Node removeChild(Node arg0) throws DOMException {
         return null;
     }
 
     /**
-     * @see Node#appendChild(Node)
+     * @see org.w3c.dom.Node#appendChild(Node)
      */
     public Node appendChild(Node arg0) throws DOMException {
         return null;
     }
 
     /**
-     * @see Node#hasChildNodes()
+     * @see org.w3c.dom.Node#hasChildNodes()
      */
     public boolean hasChildNodes() {
         return false;
     }
 
     /**
-     * @see Node#cloneNode(boolean)
+     * @see org.w3c.dom.Node#cloneNode(boolean)
      */
     public Node cloneNode(boolean arg0) {
         throw new DOMException(DOMException.NOT_SUPPORTED_ERR,null);
     }
 
     /**
-     * @see Node#normalize()
+     * @see org.w3c.dom.Node#normalize()
      */
     public void normalize() {
         m_attributeNode.normalize();
     }
 
     /**
-     * @see Node#isSupported(String, String)
+     * @see org.w3c.dom.Node#isSupported(String, String)
      */
     public boolean isSupported(String arg0, String arg1) {
         return m_attributeNode.isSupported(arg0, arg1);
     }
 
     /**
-     * @see Node#getNamespaceURI()
+     * @see org.w3c.dom.Node#getNamespaceURI()
      */
     public String getNamespaceURI() {
 
@@ -242,20 +242,20 @@ class XPathNamespaceImpl implements XPathNamespace {
     }
 
     /**
-     * @see Node#getPrefix()
+     * @see org.w3c.dom.Node#getPrefix()
      */
     public String getPrefix() {
         return m_attributeNode.getPrefix();
     }
 
     /**
-     * @see Node#setPrefix(String)
+     * @see org.w3c.dom.Node#setPrefix(String)
      */
     public void setPrefix(String arg0) throws DOMException {
     }
 
     /**
-     * @see Node#getLocalName()
+     * @see org.w3c.dom.Node#getLocalName()
      */
     public String getLocalName() {
 
@@ -264,7 +264,7 @@ class XPathNamespaceImpl implements XPathNamespace {
     }
 
     /**
-     * @see Node#hasAttributes()
+     * @see org.w3c.dom.Node#hasAttributes()
      */
     public boolean hasAttributes() {
         return m_attributeNode.hasAttributes();

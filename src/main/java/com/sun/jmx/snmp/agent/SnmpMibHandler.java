@@ -49,8 +49,8 @@ public interface SnmpMibHandler {
 
     /**
      * Adds a new MIB in the SNMP MIB handler.
-     * This method is called automatically by {@link SnmpMibAgent#setSnmpAdaptor(SnmpMibHandler)} and
-     * {@link SnmpMibAgent#setSnmpAdaptorName(ObjectName)} and should not be called directly.
+     * This method is called automatically by {@link com.sun.jmx.snmp.agent.SnmpMibAgent#setSnmpAdaptor(SnmpMibHandler)} and
+     * {@link com.sun.jmx.snmp.agent.SnmpMibAgent#setSnmpAdaptorName(ObjectName)} and should not be called directly.
      *
      * @param mib The MIB to add.
      *
@@ -106,8 +106,8 @@ public interface SnmpMibHandler {
 
     /**
      * Removes the specified MIB from the SNMP protocol adaptor.
-     * This method is called automatically by {@link SnmpMibAgent#setSnmpAdaptor(SnmpMibHandler)} and
-     * {@link SnmpMibAgent#setSnmpAdaptorName(ObjectName)} and should not be called directly.
+     * This method is called automatically by {@link com.sun.jmx.snmp.agent.SnmpMibAgent#setSnmpAdaptor(SnmpMibHandler)} and
+     * {@link com.sun.jmx.snmp.agent.SnmpMibAgent#setSnmpAdaptorName(ObjectName)} and should not be called directly.
      *
      * @param mib The MIB to be removed.
      *
@@ -117,8 +117,8 @@ public interface SnmpMibHandler {
     public boolean removeMib(SnmpMibAgent mib);
   /**
      * Removes the specified MIB from the SNMP protocol adaptor.
-     * This method is called automatically by {@link SnmpMibAgent#setSnmpAdaptor(SnmpMibHandler)} and
-     * {@link SnmpMibAgent#setSnmpAdaptorName(ObjectName)} and should not be called directly.
+     * This method is called automatically by {@link com.sun.jmx.snmp.agent.SnmpMibAgent#setSnmpAdaptor(SnmpMibHandler)} and
+     * {@link com.sun.jmx.snmp.agent.SnmpMibAgent#setSnmpAdaptorName(ObjectName)} and should not be called directly.
      *
      * @param mib The MIB to be removed.
      * @param oids The oid the MIB was previously registered for.

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2008, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -169,7 +169,7 @@ public abstract class MXBeanMapping {
             return (Class<?>) javaType;
         try {
             String className = openType.getClassName();
-            return Class.forName(className, false, null);
+            return Class.forName(className, false, MXBeanMapping.class.getClassLoader());
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);  // should not happen
         }

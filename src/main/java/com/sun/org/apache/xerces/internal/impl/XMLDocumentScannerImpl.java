@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2003, 2006, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2003, 2016, Oracle and/or its affiliates. All rights reserved.
  */
 
 /*
- * Copyright 2005 The Apache Software Foundation.
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,7 +20,6 @@
  */
 
 package com.sun.org.apache.xerces.internal.impl;
-
 
 import com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDDescription;
 import com.sun.org.apache.xerces.internal.impl.validation.ValidationManager;
@@ -31,7 +31,6 @@ import com.sun.org.apache.xerces.internal.utils.SecuritySupport;
 import com.sun.org.apache.xerces.internal.xni.Augmentations;
 import com.sun.org.apache.xerces.internal.xni.NamespaceContext;
 import com.sun.org.apache.xerces.internal.xni.XMLResourceIdentifier;
-import com.sun.org.apache.xerces.internal.xni.XMLString;
 import com.sun.org.apache.xerces.internal.xni.XNIException;
 import com.sun.org.apache.xerces.internal.xni.parser.XMLComponentManager;
 import com.sun.org.apache.xerces.internal.xni.parser.XMLConfigurationException;
@@ -224,9 +223,6 @@ public class XMLDocumentScannerImpl
 
     /** A DTD Description. */
     private final XMLDTDDescription fDTDDescription = new XMLDTDDescription(null, null, null, null, null);
-
-    /** String. */
-    private XMLString fString = new XMLString();
 
     private static final char [] DOCTYPE = {'D','O','C','T','Y','P','E'};
     private static final char [] COMMENTSTRING = {'-','-'};
@@ -573,7 +569,7 @@ public class XMLDocumentScannerImpl
             } else{
                 //else we have reached the end of document prematurely
                 //so throw EOFException.
-                throw new EOFException();
+                throw new java.io.EOFException();
             }
 
             //this is taken care in wrapper which generates XNI callbacks, There are no next events
@@ -636,7 +632,7 @@ public class XMLDocumentScannerImpl
         }
 
         // root element name
-        fDoctypeName = fEntityScanner.scanName();
+        fDoctypeName = fEntityScanner.scanName(NameType.DOCTYPE);
         if (fDoctypeName == null) {
             reportFatalError("MSG_ROOT_ELEMENT_TYPE_REQUIRED", null);
         }
@@ -676,10 +672,10 @@ public class XMLDocumentScannerImpl
 
         // is there an internal subset?
         boolean internalSubset = true;
-        if (!fEntityScanner.skipChar('[')) {
+        if (!fEntityScanner.skipChar('[', null)) {
             internalSubset = false;
             fEntityScanner.skipSpaces();
-            if (!fEntityScanner.skipChar('>')) {
+            if (!fEntityScanner.skipChar('>', null)) {
                 reportFatalError("DoctypedeclUnterminated", new Object[]{fDoctypeName});
             }
             fMarkupDepth--;
@@ -758,7 +754,7 @@ public class XMLDocumentScannerImpl
                         fStringBuffer.clear();
                         fStringBuffer.append("xml");
                         while (XMLChar.isName(fEntityScanner.peekChar())) {
-                            fStringBuffer.append((char)fEntityScanner.scanChar());
+                            fStringBuffer.append((char)fEntityScanner.scanChar(null));
                         }
                         String target = fSymbolTable.addSymbol(fStringBuffer.ch, fStringBuffer.offset, fStringBuffer.length);
                         //this function should fill the data.. and set the fEvent object to this event.
@@ -836,9 +832,9 @@ public class XMLDocumentScannerImpl
                     switch (fScannerState) {
                         case SCANNER_STATE_PROLOG: {
                             fEntityScanner.skipSpaces();
-                            if (fEntityScanner.skipChar('<')) {
+                            if (fEntityScanner.skipChar('<', null)) {
                                 setScannerState(SCANNER_STATE_START_OF_MARKUP);
-                            } else if (fEntityScanner.skipChar('&')) {
+                            } else if (fEntityScanner.skipChar('&', NameType.REFERENCE)) {
                                 setScannerState(SCANNER_STATE_REFERENCE);
                             } else {
                                 setScannerState(SCANNER_STATE_CONTENT);
@@ -848,12 +844,15 @@ public class XMLDocumentScannerImpl
 
                         case SCANNER_STATE_START_OF_MARKUP: {
                             fMarkupDepth++;
-
-                            if (fEntityScanner.skipChar('?')) {
-                                setScannerState(SCANNER_STATE_PI);
-                            } else if (fEntityScanner.skipChar('!')) {
-                                if (fEntityScanner.skipChar('-')) {
-                                    if (!fEntityScanner.skipChar('-')) {
+                            if (isValidNameStartChar(fEntityScanner.peekChar()) ||
+                                    isValidNameStartHighSurrogate(fEntityScanner.peekChar())) {
+                                setScannerState(SCANNER_STATE_ROOT_ELEMENT);
+                                setDriver(fContentDriver);
+                                //from now onwards this would be handled by fContentDriver,in the same next() call
+                                return fContentDriver.next();
+                            } else if (fEntityScanner.skipChar('!', null)) {
+                                if (fEntityScanner.skipChar('-', null)) {
+                                    if (!fEntityScanner.skipChar('-', null)) {
                                         reportFatalError("InvalidCommentStart",
                                                 null);
                                     }
@@ -873,12 +872,8 @@ public class XMLDocumentScannerImpl
                                     reportFatalError("MarkupNotRecognizedInProlog",
                                             null);
                                 }
-                            } else if (XMLChar.isNameStart(fEntityScanner.peekChar())) {
-                                setScannerState(SCANNER_STATE_ROOT_ELEMENT);
-                                setDriver(fContentDriver);
-                                //from now onwards this would be handled by fContentDriver,in the same next() call
-                                return fContentDriver.next();
-
+                            } else if (fEntityScanner.skipChar('?', null)) {
+                                setScannerState(SCANNER_STATE_PI);
                             } else {
                                 reportFatalError("MarkupNotRecognizedInProlog",
                                         null);
@@ -997,7 +992,7 @@ public class XMLDocumentScannerImpl
 
                     case SCANNER_STATE_CONTENT: {
                         reportFatalError("ContentIllegalInProlog", null);
-                        fEntityScanner.scanChar();
+                        fEntityScanner.scanChar(null);
                     }
                     case SCANNER_STATE_REFERENCE: {
                         reportFatalError("ReferenceIllegalInProlog", null);
@@ -1096,11 +1091,14 @@ public class XMLDocumentScannerImpl
                     again = false;
                     switch (fScannerState) {
                         case SCANNER_STATE_DTD_INTERNAL_DECLS: {
+                            boolean moreToScan = false;
+                            if (!fDTDScanner.skipDTD(fSupportDTD)) {
                             // REVISIT: Should there be a feature for
                             //          the "complete" parameter?
                             boolean completeDTD = true;
 
-                            boolean moreToScan = fDTDScanner.scanDTDInternalSubset(completeDTD, fStandalone, fHasExternalDTD && fLoadExternalDTD);
+                                moreToScan = fDTDScanner.scanDTDInternalSubset(completeDTD, fStandalone, fHasExternalDTD && fLoadExternalDTD);
+                            }
                             Entity entity = fEntityScanner.getCurrentEntity();
                             if(entity instanceof Entity.ScannedEntity){
                                 fEndPos=((Entity.ScannedEntity)entity).position;
@@ -1108,12 +1106,11 @@ public class XMLDocumentScannerImpl
                             fReadingDTD=false;
                             if (!moreToScan) {
                                 // end doctype declaration
-                                if (!fEntityScanner.skipChar(']')) {
-                                    reportFatalError("EXPECTED_SQUARE_BRACKET_TO_CLOSE_INTERNAL_SUBSET",
-                                            null);
+                                if (!fEntityScanner.skipChar(']', null)) {
+                                    reportFatalError("DoctypedeclNotClosed", new Object[]{fDoctypeName});
                                 }
                                 fEntityScanner.skipSpaces();
-                                if (!fEntityScanner.skipChar('>')) {
+                                if (!fEntityScanner.skipChar('>', null)) {
                                     reportFatalError("DoctypedeclUnterminated", new Object[]{fDoctypeName});
                                 }
                                 fMarkupDepth--;
@@ -1377,7 +1374,7 @@ public class XMLDocumentScannerImpl
                             if(fScannerState == SCANNER_STATE_TERMINATED ){
                                 return XMLEvent.END_DOCUMENT ;
                             }
-                            if (fEntityScanner.skipChar('<')) {
+                            if (fEntityScanner.skipChar('<', null)) {
                                 setScannerState(SCANNER_STATE_START_OF_MARKUP);
                             } else {
                                 setScannerState(SCANNER_STATE_CONTENT);
@@ -1386,14 +1383,15 @@ public class XMLDocumentScannerImpl
                         }
                         case SCANNER_STATE_START_OF_MARKUP: {
                             fMarkupDepth++;
-                            if (fEntityScanner.skipChar('?')) {
+                            if (fEntityScanner.skipChar('?', null)) {
                                 setScannerState(SCANNER_STATE_PI);
-                            } else if (fEntityScanner.skipChar('!')) {
+                            } else if (fEntityScanner.skipChar('!', null)) {
                                 setScannerState(SCANNER_STATE_COMMENT);
-                            } else if (fEntityScanner.skipChar('/')) {
+                            } else if (fEntityScanner.skipChar('/', null)) {
                                 reportFatalError("MarkupNotRecognizedInMisc",
                                         null);
-                            } else if (XMLChar.isNameStart(fEntityScanner.peekChar())) {
+                            } else if (isValidNameStartChar(fEntityScanner.peekChar()) ||
+                                    isValidNameStartHighSurrogate(fEntityScanner.peekChar())) {
                                 reportFatalError("MarkupNotRecognizedInMisc",
                                         null);
                                 scanStartElement();
@@ -1432,7 +1430,7 @@ public class XMLDocumentScannerImpl
                         } else{
                             reportFatalError("ContentIllegalInTrailingMisc",
                                     null);
-                            fEntityScanner.scanChar();
+                            fEntityScanner.scanChar(null);
                             setScannerState(SCANNER_STATE_TRAILING_MISC);
                             return XMLEvent.CHARACTERS;
                         }

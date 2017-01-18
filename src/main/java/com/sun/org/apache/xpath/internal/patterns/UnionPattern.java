@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -108,11 +108,11 @@ public class UnionPattern extends Expression
    *
    * @param xctxt XPath runtime context.
    *
-   * @return {@link NodeTest#SCORE_NODETEST},
-   *         {@link NodeTest#SCORE_NONE},
-   *         {@link NodeTest#SCORE_NSWILD},
-   *         {@link NodeTest#SCORE_QNAME}, or
-   *         {@link NodeTest#SCORE_OTHER}.
+   * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST},
+   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE},
+   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NSWILD},
+   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_QNAME}, or
+   *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}.
    *
    * @throws javax.xml.transform.TransformerException
    */

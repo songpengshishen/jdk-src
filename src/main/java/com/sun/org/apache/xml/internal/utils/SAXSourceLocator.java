@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -71,7 +71,7 @@ public class SAXSourceLocator extends LocatorImpl
    *
    * @param locator Source locator
    */
-  public SAXSourceLocator(SourceLocator locator)
+  public SAXSourceLocator(javax.xml.transform.SourceLocator locator)
   {
     m_locator = null;
     this.setColumnNumber(locator.getColumnNumber());

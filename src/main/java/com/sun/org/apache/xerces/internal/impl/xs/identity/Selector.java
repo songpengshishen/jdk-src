@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -44,7 +44,7 @@ public class Selector {
     //
 
     /** XPath. */
-    protected final XPath fXPath;
+    protected final Selector.XPath fXPath;
 
     /** Identity constraint. */
     protected final IdentityConstraint fIdentityConstraint;
@@ -58,7 +58,7 @@ public class Selector {
     //
 
     /** Constructs a selector. */
-    public Selector(XPath xpath,
+    public Selector(Selector.XPath xpath,
                     IdentityConstraint identityConstraint) {
         fXPath = xpath;
         fIdentityConstraint = identityConstraint;
@@ -86,7 +86,7 @@ public class Selector {
      *                          used in correctly handling recursive elements.
      */
     public XPathMatcher createMatcher(FieldActivator activator, int initialDepth) {
-        return new Matcher(fXPath, activator, initialDepth);
+        return new Selector.Matcher(fXPath, activator, initialDepth);
     } // createMatcher(FieldActivator):XPathMatcher
 
     //
@@ -121,9 +121,9 @@ public class Selector {
             super(normalize(xpath), symbolTable, context);
             // verify that an attribute is not selected
             for (int i=0;i<fLocationPaths.length;i++) {
-                Axis axis =
+                com.sun.org.apache.xerces.internal.impl.xpath.XPath.Axis axis =
                 fLocationPaths[i].steps[fLocationPaths[i].steps.length-1].axis;
-                if (axis.type == Axis.ATTRIBUTE) {
+                if (axis.type == XPath.Axis.ATTRIBUTE) {
                     throw new XPathException("c-selector-xpath");
                 }
             }
@@ -186,7 +186,7 @@ public class Selector {
         //
 
         /** Constructs a selector matcher. */
-        public Matcher(XPath xpath, FieldActivator activator,
+        public Matcher(Selector.XPath xpath, FieldActivator activator,
                 int initialDepth) {
             super(xpath);
             fFieldActivator = activator;

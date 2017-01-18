@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -527,6 +527,16 @@ public class UTF8Reader
                         return out - offset;
                     }
                     invalidByte(4, 4, b2);
+                }
+
+                // check if output buffer is large enough to hold 2 surrogate chars
+                if (out + 1 >= ch.length) {
+                    fBuffer[0] = (byte)b0;
+                    fBuffer[1] = (byte)b1;
+                    fBuffer[2] = (byte)b2;
+                    fBuffer[3] = (byte)b3;
+                    fOffset = 4;
+                    return out - offset;
                 }
 
                 // decode bytes into surrogate characters

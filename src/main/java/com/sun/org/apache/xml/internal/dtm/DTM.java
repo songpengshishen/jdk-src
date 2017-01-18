@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -819,7 +819,7 @@ public interface DTM
    * @throws org.xml.sax.SAXException
    */
   public void dispatchCharactersEvents(
-          int nodeHandle, org.xml.sax.ContentHandler ch, boolean normalize)
+    int nodeHandle, org.xml.sax.ContentHandler ch, boolean normalize)
       throws org.xml.sax.SAXException;
 
   /**

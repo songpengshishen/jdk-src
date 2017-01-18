@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2001, 2006, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2001, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -59,6 +59,7 @@ public class SnmpErrorHandlerAgent extends SnmpMibAgent
      * @exception IllegalAccessException The MIB cannot be initialized.
      */
 
+    @Override
     public void init() throws IllegalAccessException {
     }
 
@@ -69,11 +70,12 @@ public class SnmpErrorHandlerAgent extends SnmpMibAgent
      * @param server The MBean server to register the service with.
      * @param name The object name.
      *
-     * @return The passed name paramter.
+     * @return The passed name parameter.
      *
-     * @exception Exception
+     * @exception java.lang.Exception
      */
 
+    @Override
     public ObjectName preRegister(MBeanServer server, ObjectName name)
         throws Exception {
         return name;
@@ -87,6 +89,7 @@ public class SnmpErrorHandlerAgent extends SnmpMibAgent
      * @return The returned oid is null.
      */
 
+    @Override
     public long[] getRootOid() {
         return null;
     }
@@ -96,9 +99,10 @@ public class SnmpErrorHandlerAgent extends SnmpMibAgent
      *
      * @param inRequest The SnmpMibRequest object holding the list of variable to be retrieved.
      *
-     * @exception SnmpStatusException An error occured during the operation.
+     * @exception SnmpStatusException An error occurred during the operation.
      */
 
+    @Override
     public void get(SnmpMibRequest inRequest) throws SnmpStatusException {
 
         SNMP_ADAPTOR_LOGGER.logp(Level.FINEST,
@@ -108,9 +112,9 @@ public class SnmpErrorHandlerAgent extends SnmpMibAgent
         if(inRequest.getVersion() == SnmpDefinitions.snmpVersionOne)
             throw new SnmpStatusException(SnmpStatusException.noSuchName);
 
-        Enumeration l = inRequest.getElements();
+        Enumeration<SnmpVarBind> l = inRequest.getElements();
         while(l.hasMoreElements()) {
-            SnmpVarBind varbind = (SnmpVarBind) l.nextElement();
+            SnmpVarBind varbind = l.nextElement();
             varbind.setNoSuchObject();
         }
     }
@@ -128,6 +132,7 @@ public class SnmpErrorHandlerAgent extends SnmpMibAgent
      *    cannot be performed.
      */
 
+    @Override
     public void check(SnmpMibRequest inRequest) throws SnmpStatusException {
 
         SNMP_ADAPTOR_LOGGER.logp(Level.FINEST,
@@ -142,9 +147,10 @@ public class SnmpErrorHandlerAgent extends SnmpMibAgent
      *
      * @param inRequest The SnmpMibRequest object holding the list of variable to be set.
      *
-     * @exception SnmpStatusException An error occured during the operation.
+     * @exception SnmpStatusException An error occurred during the operation.
      */
 
+    @Override
     public void set(SnmpMibRequest inRequest) throws SnmpStatusException {
 
         SNMP_ADAPTOR_LOGGER.logp(Level.FINEST,
@@ -159,9 +165,10 @@ public class SnmpErrorHandlerAgent extends SnmpMibAgent
      *
      * @param inRequest The SnmpMibRequest object holding the list of variables to be retrieved.
      *
-     * @exception SnmpStatusException An error occured during the operation.
+     * @exception SnmpStatusException An error occurred during the operation.
      */
 
+    @Override
     public void getNext(SnmpMibRequest inRequest) throws SnmpStatusException {
 
         SNMP_ADAPTOR_LOGGER.logp(Level.FINEST,
@@ -171,9 +178,9 @@ public class SnmpErrorHandlerAgent extends SnmpMibAgent
         if(inRequest.getVersion() == SnmpDefinitions.snmpVersionOne)
             throw new SnmpStatusException(SnmpStatusException.noSuchName);
 
-        Enumeration l = inRequest.getElements();
+        Enumeration<SnmpVarBind> l = inRequest.getElements();
         while(l.hasMoreElements()) {
-            SnmpVarBind varbind = (SnmpVarBind) l.nextElement();
+            SnmpVarBind varbind = l.nextElement();
             varbind.setEndOfMibView();
         }
     }
@@ -183,9 +190,10 @@ public class SnmpErrorHandlerAgent extends SnmpMibAgent
      *
      * @param inRequest The SnmpMibRequest object holding the list of variable to be retrieved.
      *
-     * @exception SnmpStatusException An error occured during the operation.
+     * @exception SnmpStatusException An error occurred during the operation.
      */
 
+    @Override
     public void getBulk(SnmpMibRequest inRequest, int nonRepeat, int maxRepeat)
         throws SnmpStatusException {
 
@@ -196,9 +204,9 @@ public class SnmpErrorHandlerAgent extends SnmpMibAgent
         if(inRequest.getVersion() == SnmpDefinitions.snmpVersionOne)
             throw new SnmpStatusException(SnmpDefinitions.snmpRspGenErr, 0);
 
-        Enumeration l = inRequest.getElements();
+        Enumeration<SnmpVarBind> l = inRequest.getElements();
         while(l.hasMoreElements()) {
-            SnmpVarBind varbind = (SnmpVarBind) l.nextElement();
+            SnmpVarBind varbind = l.nextElement();
             varbind.setEndOfMibView();
         }
     }

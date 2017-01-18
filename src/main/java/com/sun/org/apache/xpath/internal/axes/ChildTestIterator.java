@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 /*
@@ -31,7 +31,7 @@ import com.sun.org.apache.xpath.internal.compiler.Compiler;
 /**
  * This class implements an optimized iterator for
  * children patterns that have a node test, and possibly a predicate.
- * @see BasicTestIterator
+ * @see com.sun.org.apache.xpath.internal.axes.BasicTestIterator
  * @xsl.usage advanced
  */
 public class ChildTestIterator extends BasicTestIterator
@@ -156,7 +156,7 @@ public class ChildTestIterator extends BasicTestIterator
    */
   public int getAxis()
   {
-    return Axis.CHILD;
+    return com.sun.org.apache.xml.internal.dtm.Axis.CHILD;
   }
 
   /**

@@ -32,7 +32,7 @@ package com.sun.jmx.snmp;
  * <p>
  * You will not usually need to use this class, except if you
  * decide to implement your own
- * {@link SnmpPduFactory SnmPduFactory} object.
+ * {@link com.sun.jmx.snmp.SnmpPduFactory SnmPduFactory} object.
  * <p>
  * The <CODE>varBindCount</CODE> property contains the
  * number of <CODE>SnmpVarBind</CODE> successfully encoded
