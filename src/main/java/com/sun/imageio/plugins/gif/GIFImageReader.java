@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000, 2008, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -30,14 +30,10 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBuffer;
 import java.awt.image.WritableRaster;
-import java.io.BufferedInputStream;
-import java.io.DataInputStream;
 import java.io.EOFException;
-import java.io.InputStream;
 import java.io.IOException;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import javax.imageio.IIOException;
@@ -48,6 +44,11 @@ import javax.imageio.metadata.IIOMetadata;
 import javax.imageio.spi.ImageReaderSpi;
 import javax.imageio.stream.ImageInputStream;
 import com.sun.imageio.plugins.common.ReaderUtil;
+import java.awt.image.ColorModel;
+import java.awt.image.IndexColorModel;
+import java.awt.image.MultiPixelPackedSampleModel;
+import java.awt.image.PixelInterleavedSampleModel;
+import java.awt.image.SampleModel;
 
 public class GIFImageReader extends ImageReader {
 
@@ -113,6 +114,8 @@ public class GIFImageReader extends ImageReader {
 
     // The current interlace pass, starting with 0.
     int interlacePass = 0;
+
+    private byte[] fallbackColorTable = null;
 
     // End per-stream settings
 
@@ -194,6 +197,36 @@ public class GIFImageReader extends ImageReader {
         return imageMetadata.imageHeight;
     }
 
+    // We don't check all parameters as ImageTypeSpecifier.createIndexed do
+    // since this method is private and we pass consistent data here
+    private ImageTypeSpecifier createIndexed(byte[] r, byte[] g, byte[] b,
+                                             int bits) {
+        ColorModel colorModel;
+        if (imageMetadata.transparentColorFlag) {
+            // Some files erroneously have a transparent color index
+            // of 255 even though there are fewer than 256 colors.
+            int idx = Math.min(imageMetadata.transparentColorIndex,
+                    r.length - 1);
+            colorModel = new IndexColorModel(bits, r.length, r, g, b, idx);
+        } else {
+            colorModel = new IndexColorModel(bits, r.length, r, g, b);
+        }
+
+        SampleModel sampleModel;
+        if (bits == 8) {
+            int[] bandOffsets = {0};
+            sampleModel =
+                    new PixelInterleavedSampleModel(DataBuffer.TYPE_BYTE,
+                    1, 1, 1, 1,
+                    bandOffsets);
+        } else {
+            sampleModel =
+                    new MultiPixelPackedSampleModel(DataBuffer.TYPE_BYTE,
+                    1, 1, bits);
+        }
+        return new ImageTypeSpecifier(colorModel, sampleModel);
+    }
+
     public Iterator getImageTypes(int imageIndex) throws IIOException {
         checkIndex(imageIndex);
 
@@ -208,8 +241,20 @@ public class GIFImageReader extends ImageReader {
         byte[] colorTable;
         if (imageMetadata.localColorTable != null) {
             colorTable = imageMetadata.localColorTable;
+            fallbackColorTable = imageMetadata.localColorTable;
         } else {
             colorTable = streamMetadata.globalColorTable;
+        }
+
+        if (colorTable == null) {
+            if (fallbackColorTable == null) {
+                this.processWarningOccurred("Use default color table.");
+
+                // no color table, the spec allows to use any palette.
+                fallbackColorTable = getDefaultPalette();
+            }
+
+            colorTable = fallbackColorTable;
         }
 
         // Normalize color table length to 2^1, 2^2, 2^4, or 2^8
@@ -239,22 +284,7 @@ public class GIFImageReader extends ImageReader {
             b[i] = colorTable[rgbIndex++];
         }
 
-        byte[] a = null;
-        if (imageMetadata.transparentColorFlag) {
-            a = new byte[lutLength];
-            Arrays.fill(a, (byte)255);
-
-            // Some files erroneously have a transparent color index
-            // of 255 even though there are fewer than 256 colors.
-            int idx = Math.min(imageMetadata.transparentColorIndex,
-                               lutLength - 1);
-            a[idx] = (byte)0;
-        }
-
-        int[] bitsPerSample = new int[1];
-        bitsPerSample[0] = bits;
-        l.add(ImageTypeSpecifier.createIndexed(r, g, b, a, bits,
-                                               DataBuffer.TYPE_BYTE));
+        l.add(createIndexed(r, g, b, bits));
         return l.iterator();
     }
 
@@ -774,16 +804,12 @@ public class GIFImageReader extends ImageReader {
     }
 
     private void startPass(int pass) {
-        if (updateListeners == null) {
+        if (updateListeners == null || !imageMetadata.interlaceFlag) {
             return;
         }
 
-        int y = 0;
-        int yStep = 1;
-        if (imageMetadata.interlaceFlag) {
-            y = interlaceOffset[interlacePass];
-            yStep = interlaceIncrement[interlacePass];
-        }
+        int y = interlaceOffset[interlacePass];
+        int yStep = interlaceIncrement[interlacePass];
 
         int[] vals = ReaderUtil.
             computeUpdatedPixels(sourceRegion,
@@ -1024,5 +1050,34 @@ public class GIFImageReader extends ImageReader {
         streamY = -1;
         rowsDone = 0;
         interlacePass = 0;
+
+        fallbackColorTable = null;
+    }
+
+    private static byte[] defaultPalette = null;
+
+    private static synchronized byte[] getDefaultPalette() {
+        if (defaultPalette == null) {
+            BufferedImage img = new BufferedImage(1, 1,
+                    BufferedImage.TYPE_BYTE_INDEXED);
+            IndexColorModel icm = (IndexColorModel) img.getColorModel();
+
+            final int size = icm.getMapSize();
+            byte[] r = new byte[size];
+            byte[] g = new byte[size];
+            byte[] b = new byte[size];
+            icm.getReds(r);
+            icm.getGreens(g);
+            icm.getBlues(b);
+
+            defaultPalette = new byte[size * 3];
+
+            for (int i = 0; i < size; i++) {
+                defaultPalette[3 * i + 0] = r[i];
+                defaultPalette[3 * i + 1] = g[i];
+                defaultPalette[3 * i + 2] = b[i];
+            }
+        }
+        return defaultPalette;
     }
 }

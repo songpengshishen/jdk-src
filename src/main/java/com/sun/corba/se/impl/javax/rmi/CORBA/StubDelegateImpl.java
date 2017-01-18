@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1999, 2004, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -145,6 +145,14 @@ public class StubDelegateImpl implements javax.rmi.CORBA.StubDelegate
             return ior == other.ior ;
         else
             return ior.equals( other.ior ) ;
+    }
+
+    public int hashCode() {
+        if (ior == null) {
+            return 0;
+        } else {
+            return ior.hashCode();
+        }
     }
 
     /**

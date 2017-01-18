@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2001, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2001, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -763,7 +763,7 @@ class JFIFMarkerSegment extends MarkerSegment {
                 }
             } catch (IllegalThumbException e) {
                 // Should never happen
-                throw new InternalError("Illegal thumb in setThumbnail!");
+                throw new InternalError("Illegal thumb in setThumbnail!", e);
             }
         }
 
@@ -1368,7 +1368,7 @@ class JFIFMarkerSegment extends MarkerSegment {
     /**
      * An APP2 marker segment containing an ICC profile.  In the stream
      * a profile larger than 64K is broken up into a series of chunks.
-     * This inner class represents the complete profile as a single objec,
+     * This inner class represents the complete profile as a single object,
      * combining chunks as necessary.
      */
     class ICCMarkerSegment extends MarkerSegment {

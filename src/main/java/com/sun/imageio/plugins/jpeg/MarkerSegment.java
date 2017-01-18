@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2001, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2001, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -28,6 +28,7 @@ package com.sun.imageio.plugins.jpeg;
 import javax.imageio.metadata.IIOInvalidTreeException;
 import javax.imageio.metadata.IIOMetadataNode;
 import javax.imageio.stream.ImageOutputStream;
+import javax.imageio.IIOException;
 
 import java.io.IOException;
 
@@ -60,6 +61,10 @@ class MarkerSegment implements Cloneable {
         length = (buffer.buf[buffer.bufPtr++] & 0xff) << 8;
         length |= buffer.buf[buffer.bufPtr++] & 0xff;
         length -= 2;  // JPEG length includes itself, we don't
+
+        if (length < 0) {
+            throw new IIOException("Invalid segment length: " + length);
+        }
         buffer.bufAvail -= 3;
         // Now that we know the true length, ensure that we've got it,
         // or at least a bufferful if length is too big.

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2001, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2001, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -32,7 +32,7 @@ import javax.imageio.metadata.IIOMetadataFormatImpl;
 
 public class StandardMetadataFormat extends IIOMetadataFormatImpl {
 
-    // Utility method for nodes with a single atttribute named "value"
+    // Utility method for nodes with a single attribute named "value"
     private void addSingleAttributeElement(String elementName,
                                            String parentName,
                                            int dataType) {

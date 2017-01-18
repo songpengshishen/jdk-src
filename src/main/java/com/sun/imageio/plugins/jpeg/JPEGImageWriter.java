@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000, 2007, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -43,8 +43,6 @@ import org.w3c.dom.Node;
 
 import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
-import java.awt.image.SampleModel;
-import java.awt.image.DataBuffer;
 import java.awt.image.DataBufferByte;
 import java.awt.image.ColorModel;
 import java.awt.image.IndexColorModel;
@@ -177,7 +175,12 @@ public class JPEGImageWriter extends ImageWriter {
 
     static {
         java.security.AccessController.doPrivileged(
-            new sun.security.action.LoadLibraryAction("jpeg"));
+            new java.security.PrivilegedAction<Void>() {
+                public Void run() {
+                    System.loadLibrary("jpeg");
+                    return null;
+                }
+            });
         initWriterIDs(JPEGQTable.class,
                       JPEGHuffmanTable.class);
     }
@@ -1043,7 +1046,13 @@ public class JPEGImageWriter extends ImageWriter {
 
         // Call the writer, who will call back for every scanline
 
-        processImageStarted(currentImage);
+        clearAbortRequest();
+        cbLock.lock();
+        try {
+            processImageStarted(currentImage);
+        } finally {
+            cbLock.unlock();
+        }
 
         boolean aborted = false;
 
@@ -1093,6 +1102,11 @@ public class JPEGImageWriter extends ImageWriter {
             cbLock.unlock();
         }
         currentImage++;  // After a successful write
+    }
+
+    @Override
+    public boolean canWriteSequence() {
+        return true;
     }
 
     public void prepareWriteSequence(IIOMetadata streamMetadata)
@@ -1215,6 +1229,23 @@ public class JPEGImageWriter extends ImageWriter {
              */
             super.abort();
             abortWrite(structPointer);
+        } finally {
+            clearThreadLock();
+        }
+    }
+
+    @Override
+    protected synchronized void clearAbortRequest() {
+        setThreadLock();
+        try {
+            cbLock.check();
+            if (abortRequested()) {
+                super.clearAbortRequest();
+                // reset C structures
+                resetWriter(structPointer);
+                // reset the native destination
+                setDest(structPointer);
+            }
         } finally {
             clearThreadLock();
         }

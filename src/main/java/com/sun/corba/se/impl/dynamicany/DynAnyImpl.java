@@ -195,6 +195,6 @@ abstract class DynAnyImpl extends LocalObject implements DynAny
     private String[] __ids = { "IDL:omg.org/DynamicAny/DynAny:1.0" };
 
     public String[] _ids() {
-        return (String[])__ids.clone();
+        return (String[]) __ids.clone();
     }
 }

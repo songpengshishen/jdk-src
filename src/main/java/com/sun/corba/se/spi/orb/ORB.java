@@ -218,7 +218,7 @@ public abstract class ORB extends com.sun.corba.se.org.omg.CORBA.ORB
                         return sff ;
                     }
                 }
-            );
+            ) ;
 
         PresentationManager pm = new PresentationManagerImpl( useDynamicStub ) ;
         pm.setStubFactoryFactory( false,
@@ -564,7 +564,6 @@ public abstract class ORB extends com.sun.corba.se.org.omg.CORBA.ORB
     public abstract ThreadPoolManager getThreadPoolManager();
 
     public abstract CopierManager getCopierManager() ;
-
 }
 
 // End of file.

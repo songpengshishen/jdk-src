@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2003, 2004, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -219,7 +219,7 @@ public class BMPMetadata extends IIOMetadata implements BMPConstants {
 
         // CompressionTypeName
         IIOMetadataNode subNode = new IIOMetadataNode("CompressionTypeName");
-        subNode.setAttribute("value", compressionTypeNames[compression]);
+        subNode.setAttribute("value", BMPCompressionTypes.getName(compression));
         node.appendChild(subNode);
         return node;
     }
