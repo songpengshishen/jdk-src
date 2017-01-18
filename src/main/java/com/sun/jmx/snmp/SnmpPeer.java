@@ -53,7 +53,7 @@ import java.io.Serializable;
  *
  * <p><b>This API is a Sun Microsystems internal API  and is subject
  * to change without notice.</b></p>
- * @see com.sun.jmx.snmp.SnmpParameters
+ * @see SnmpParameters
  */
 
 public class SnmpPeer implements Serializable {
@@ -123,7 +123,7 @@ public class SnmpPeer implements Serializable {
 
     /**
      * SNMP parameters for this peer are valid for all requests using this peer.
-     * @see com.sun.jmx.snmp.SnmpParameters
+     * @see SnmpParameters
      */
     private SnmpParams _snmpParameter = new SnmpParameters() ;
 

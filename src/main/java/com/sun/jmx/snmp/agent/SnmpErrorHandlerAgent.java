@@ -72,7 +72,7 @@ public class SnmpErrorHandlerAgent extends SnmpMibAgent
      *
      * @return The passed name parameter.
      *
-     * @exception java.lang.Exception
+     * @exception Exception
      */
 
     @Override

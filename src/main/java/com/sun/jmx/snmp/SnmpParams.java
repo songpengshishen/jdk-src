@@ -48,9 +48,9 @@ public abstract class SnmpParams implements SnmpDefinitions {
      * Returns the version of the protocol to use.
      * The returned value is:
      * <UL>
-     * <LI>{@link com.sun.jmx.snmp.SnmpDefinitions#snmpVersionOne snmpVersionOne} if the protocol is SNMPv1
-     * <LI>{@link com.sun.jmx.snmp.SnmpDefinitions#snmpVersionTwo snmpVersionTwo} if the protocol is SNMPv2
-     * <LI>{@link com.sun.jmx.snmp.SnmpDefinitions#snmpVersionThree snmpVersionThree} if the protocol is SNMPv3
+     * <LI>{@link SnmpDefinitions#snmpVersionOne snmpVersionOne} if the protocol is SNMPv1
+     * <LI>{@link SnmpDefinitions#snmpVersionTwo snmpVersionTwo} if the protocol is SNMPv2
+     * <LI>{@link SnmpDefinitions#snmpVersionThree snmpVersionThree} if the protocol is SNMPv3
      * </UL>
      * @return The version of the protocol to use.
      */
@@ -62,7 +62,7 @@ public abstract class SnmpParams implements SnmpDefinitions {
      * Sets the version of the protocol to be used.
      * The version should be identified using the definitions
      * contained in
-     * {@link com.sun.jmx.snmp.SnmpDefinitions SnmpDefinitions}.
+     * {@link SnmpDefinitions SnmpDefinitions}.
      * <BR>For instance if you wish to use SNMPv2, you can call the method as follows:
      * <BLOCKQUOTE><PRE>
      * setProtocolVersion(SnmpDefinitions.snmpVersionTwo);

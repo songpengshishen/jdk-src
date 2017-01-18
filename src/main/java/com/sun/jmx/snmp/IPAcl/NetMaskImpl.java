@@ -42,7 +42,7 @@ import java.security.acl.Group;
  * This class is used to represent a subnet mask (a group of hosts matching the same
  * IP mask).
  *
- * @see java.security.acl.Group
+ * @see Group
  */
 
 class NetMaskImpl extends PrincipalImpl implements Group, Serializable {

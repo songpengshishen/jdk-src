@@ -31,14 +31,14 @@ import javax.management.MBeanServerBuilder;
 
 /**
  * This class represents a builder that creates
- * {@link javax.management.MBeanServer} implementations.
+ * {@link MBeanServer} implementations.
  * The JMX {@link javax.management.MBeanServerFactory} allows
  * for applications to provide their custom MBeanServer
  * implementation. This class is not used when the whole Sun Reference JMX
  * Implementation is used. However it may be used to substitute Sun
  * MBeanServer implementation to another JMX implementation.
  * <p>
- * Contrarily to the default {@link javax.management.MBeanServerBuilder
+ * Contrarily to the default {@link MBeanServerBuilder
  * javax.management.MBeanServerBuilder} this MBeanServerBuilder returns
  * MBeanServers on which
  * {@link com.sun.jmx.interceptor.MBeanServerInterceptor}s are enabled.
@@ -60,7 +60,7 @@ public class JmxMBeanServerBuilder extends MBeanServerBuilder {
      * be, for instance, a new object wrapping the previously
      * returned object.
      *
-     * @return A new {@link javax.management.MBeanServerDelegate}.
+     * @return A new {@link MBeanServerDelegate}.
      **/
     public MBeanServerDelegate newMBeanServerDelegate() {
         return JmxMBeanServer.newMBeanServerDelegate();
@@ -71,7 +71,7 @@ public class JmxMBeanServerBuilder extends MBeanServerBuilder {
      * When creating a new MBeanServer the
      * {@link javax.management.MBeanServerFactory} first calls
      * <code>newMBeanServerDelegate()</code> in order to obtain a new
-     * {@link javax.management.MBeanServerDelegate} for the new
+     * {@link MBeanServerDelegate} for the new
      * MBeanServer. Then it calls
      * <code>newMBeanServer(defaultDomain,outer,delegate)</code>
      * passing the <var>delegate</var> that should be used by the

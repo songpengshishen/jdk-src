@@ -49,7 +49,7 @@ import java.util.Enumeration;
  * If positive, the permissions are to be granted to the associated principal.
  * If negative, the permissions are to be denied.
  *
- * @see java.security.acl.Acl
+ * @see Acl
  */
 
 class AclImpl extends OwnerImpl implements Acl, Serializable {
@@ -79,7 +79,7 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    *
    * @exception NotOwnerException if the caller principal is not an owner
    *            of this ACL.
-   * @see java.security.Principal
+   * @see Principal
    */
   @Override
   public void setName(Principal caller, String name)
@@ -113,7 +113,7 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    *       or negative) for the same principal is already present in this ACL.
    * @exception NotOwnerException if the caller principal is not an owner of
    *       this ACL.
-   * @see java.security.Principal
+   * @see Principal
    */
   @Override
   public boolean addEntry(Principal caller, AclEntry entry)
@@ -144,8 +144,8 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    * @return true on success, false if the entry is not part of this ACL.
    * @exception NotOwnerException if the caller principal is not an owner
    *   of this Acl.
-   * @see java.security.Principal
-   * @see java.security.acl.AclEntry
+   * @see Principal
+   * @see AclEntry
    */
   @Override
   public boolean removeEntry(Principal caller, AclEntry entry)
@@ -163,7 +163,7 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    *        of this ACL.
    * @exception NotOwnerException if the caller principal is not an owner of
    *        this Acl.
-   * @see java.security.Principal
+   * @see Principal
    */
   public void removeAll(Principal caller)
         throws NotOwnerException {
@@ -187,7 +187,7 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    * @param user the principal whose permission set is to be returned.
    * @return the permission set specifying the permissions the principal
    *     is allowed.
-   * @see java.security.Principal
+   * @see Principal
    */
   @Override
   public Enumeration<Permission> getPermissions(Principal user){
@@ -224,12 +224,12 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    * @param perm the permission to be checked for.
    * @return true if the principal has the specified permission,
    *         false otherwise.
-   * @see java.security.Principal
+   * @see Principal
    * @see java.security.Permission
    */
   @Override
   public boolean checkPermission(Principal user,
-                                 java.security.acl.Permission perm) {
+                                 Permission perm) {
         for (Enumeration<AclEntry> e = entryList.elements();e.hasMoreElements();){
           AclEntry ent = e.nextElement();
           if (ent.getPrincipal().equals(user))
@@ -252,11 +252,11 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    * @param perm the permission to be checked for.
    * @return true if the principal has the specified permission, false
    *        otherwise.
-   * @see java.security.Principal
+   * @see Principal
    * @see java.security.Permission
    */
   public boolean checkPermission(Principal user, String community,
-                                 java.security.acl.Permission perm) {
+                                 Permission perm) {
         for (Enumeration<AclEntry> e = entryList.elements();e.hasMoreElements();){
           AclEntryImpl ent = (AclEntryImpl) e.nextElement();
           if (ent.getPrincipal().equals(user))
@@ -272,7 +272,7 @@ class AclImpl extends OwnerImpl implements Acl, Serializable {
    *
    * @return true if the specified community string is defined, false
    *      otherwise.
-   * @see java.security.Principal
+   * @see Principal
    * @see java.security.Permission
    */
   public boolean checkCommunity(String community) {

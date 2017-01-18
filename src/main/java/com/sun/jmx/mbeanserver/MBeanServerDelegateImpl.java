@@ -107,7 +107,7 @@ final class MBeanServerDelegateImpl
     }
 
     final public ObjectName preRegister (MBeanServer server, ObjectName name)
-        throws java.lang.Exception {
+        throws Exception {
         if (name == null) return DELEGATE_NAME;
         else return name;
     }
@@ -116,7 +116,7 @@ final class MBeanServerDelegateImpl
     }
 
     final public void preDeregister()
-        throws java.lang.Exception {
+        throws Exception {
         throw new IllegalArgumentException(
                  "The MBeanServerDelegate MBean cannot be unregistered");
     }

@@ -30,7 +30,7 @@ import static com.sun.jmx.defaults.JmxProperties.SNMP_ADAPTOR_LOGGER;
  * limit is {@link SnmpAdaptorServer#bufferSize}.
  */
 
-final class SnmpSocket implements java.lang.Runnable {
+final class SnmpSocket implements Runnable {
 
 
     // VARIABLES
@@ -139,9 +139,9 @@ final class SnmpSocket implements java.lang.Runnable {
         try {
             // We send an empty datagram packet to fix bug 4293791 (it's a jdk 1.1 bug)
             //
-            DatagramSocket sn = new java.net.DatagramSocket(0);
+            DatagramSocket sn = new DatagramSocket(0);
             byte[] ob = new byte[1];
-            DatagramPacket pk = new DatagramPacket(ob , 1, java.net.InetAddress.getLocalHost(), _socketPort);
+            DatagramPacket pk = new DatagramPacket(ob , 1, InetAddress.getLocalHost(), _socketPort);
             sn.send(pk);
             sn.close();
         } catch (Exception e) {}

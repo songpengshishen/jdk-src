@@ -126,7 +126,7 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
      * Gets an <CODE>SnmpVarBind</CODE> object.
      * @param pos The position in the list.
      * @return The <CODE>SnmpVarBind</CODE> object at the specified position.
-     * @exception java.lang.ArrayIndexOutOfBoundsException If the specified <CODE>pos</CODE> is beyond range.
+     * @exception ArrayIndexOutOfBoundsException If the specified <CODE>pos</CODE> is beyond range.
      */
     public final synchronized SnmpVarBind getVarBindAt(int pos) {
         return elementAt(pos);
@@ -216,7 +216,7 @@ public class SnmpVarBindList extends Vector<SnmpVarBind> {
      * Replaces an element at a specified location with the new element.
      * @param var The replacement variable.
      * @param pos The location in the <CODE>SnmpVarBindList</CODE>.
-     * @exception java.lang.ArrayIndexOutOfBoundsException If the specified <CODE>pos</CODE> is beyond range.
+     * @exception ArrayIndexOutOfBoundsException If the specified <CODE>pos</CODE> is beyond range.
      */
     public final synchronized void replaceVarBind(SnmpVarBind var, int pos) {
         setElementAt(var, pos) ;

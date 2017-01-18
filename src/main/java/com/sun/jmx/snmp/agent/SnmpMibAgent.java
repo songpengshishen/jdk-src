@@ -90,12 +90,12 @@ public abstract class SnmpMibAgent
      *
      * @return The name of the SNMP MIB registered.
      *
-     * @exception java.lang.Exception
+     * @exception Exception
      */
     @Override
     public abstract ObjectName preRegister(MBeanServer server,
                                            ObjectName name)
-        throws java.lang.Exception;
+        throws Exception;
 
     /**
      * Not used in this context.
@@ -108,7 +108,7 @@ public abstract class SnmpMibAgent
      * Not used in this context.
      */
     @Override
-    public void preDeregister() throws java.lang.Exception {
+    public void preDeregister() throws Exception {
     }
 
     /**

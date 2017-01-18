@@ -555,13 +555,13 @@ final class SnmpRequestTree {
 
                 // Copy original vectors up to `pos'
                 if (l1 > 0) {
-                    java.lang.System.arraycopy(olde,0,entryoids,
+                    System.arraycopy(olde,0,entryoids,
                                                0,l1);
-                    java.lang.System.arraycopy(oldl,0,entrylists,
+                    System.arraycopy(oldl,0,entrylists,
                                                0,l1);
-                    java.lang.System.arraycopy(oldn,0,isentrynew,
+                    System.arraycopy(oldn,0,isentrynew,
                                                0,l1);
-                    java.lang.System.arraycopy(oldr,0,rowstatus,
+                    System.arraycopy(oldr,0,rowstatus,
                                                0,l1);
                 }
 
@@ -569,13 +569,13 @@ final class SnmpRequestTree {
                 // an empty room at `pos' in the new vectors.
                 if (l2 > 0) {
                     final int l3 = l1+1;
-                    java.lang.System.arraycopy(olde,l1,entryoids,
+                    System.arraycopy(olde,l1,entryoids,
                                                l3,l2);
-                    java.lang.System.arraycopy(oldl,l1,entrylists,
+                    System.arraycopy(oldl,l1,entrylists,
                                                l3,l2);
-                    java.lang.System.arraycopy(oldn,l1,isentrynew,
+                    System.arraycopy(oldn,l1,isentrynew,
                                                l3,l2);
-                    java.lang.System.arraycopy(oldr,l1,rowstatus,
+                    System.arraycopy(oldr,l1,rowstatus,
                                                l3,l2);
                 }
 
@@ -588,13 +588,13 @@ final class SnmpRequestTree {
                 final int l1 = pos+1;
                 final int l2 = entrycount - pos;
 
-                java.lang.System.arraycopy(entryoids,pos,entryoids,
+                System.arraycopy(entryoids,pos,entryoids,
                                            l1,l2);
-                java.lang.System.arraycopy(entrylists,pos,entrylists,
+                System.arraycopy(entrylists,pos,entrylists,
                                            l1,l2);
-                java.lang.System.arraycopy(isentrynew,pos,isentrynew,
+                System.arraycopy(isentrynew,pos,isentrynew,
                                            l1,l2);
-                java.lang.System.arraycopy(rowstatus,pos,rowstatus,
+                System.arraycopy(rowstatus,pos,rowstatus,
                                            l1,l2);
             }
 

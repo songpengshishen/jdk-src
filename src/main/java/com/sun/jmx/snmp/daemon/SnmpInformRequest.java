@@ -29,7 +29,7 @@ import com.sun.jmx.snmp.SnmpPdu;
 import com.sun.jmx.snmp.SnmpPduRequestType;
 
 /**
- * This class is used by the {@link com.sun.jmx.snmp.daemon.SnmpAdaptorServer SNMP adaptor server} to send inform requests
+ * This class is used by the {@link SnmpAdaptorServer SNMP adaptor server} to send inform requests
  * to an SNMP manager and receive inform responses.
  * <P>
  * This class provides basic functions that enable you to fire inform requests,
@@ -52,7 +52,7 @@ import com.sun.jmx.snmp.SnmpPduRequestType;
  * This is done by blocking the user thread for the desired time interval.
  * The user thread gets notified whenever a request reaches completion, independently of the status of the response.
  * <P>
- * If an {@link com.sun.jmx.snmp.daemon.SnmpInformHandler inform callback} is provided when sending the inform request,
+ * If an {@link SnmpInformHandler inform callback} is provided when sending the inform request,
  * the user operates in an asynchronous mode with the inform request. The user thread is not blocked
  * and the specific inform callback implementation provided by the user is invoked when the inform response is received.
  *

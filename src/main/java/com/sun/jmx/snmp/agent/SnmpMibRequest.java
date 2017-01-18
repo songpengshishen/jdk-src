@@ -48,7 +48,7 @@ public interface SnmpMibRequest {
      * Returns the list of varbind to be handled by the SNMP mib node.
      *
      * @return The element of the enumeration are instances of
-     *         {@link com.sun.jmx.snmp.SnmpVarBind}
+     *         {@link SnmpVarBind}
      */
     public Enumeration<SnmpVarBind> getElements();
 
@@ -57,7 +57,7 @@ public interface SnmpMibRequest {
      * The caller shall not modify this vector.
      *
      * @return The element of the vector are instances of
-     *         {@link com.sun.jmx.snmp.SnmpVarBind}
+     *         {@link SnmpVarBind}
      */
     public Vector<SnmpVarBind> getSubList();
 
@@ -92,7 +92,7 @@ public interface SnmpMibRequest {
      **/
     public String getPrincipal();
     /**
-     * Gets the incoming request security level. This level is defined in {@link com.sun.jmx.snmp.SnmpEngine SnmpEngine}. This parameter is returned only if <CODE> SnmpV3AdaptorServer </CODE> is the adaptor receiving this request. Otherwise -1 is returned.
+     * Gets the incoming request security level. This level is defined in {@link SnmpEngine SnmpEngine}. This parameter is returned only if <CODE> SnmpV3AdaptorServer </CODE> is the adaptor receiving this request. Otherwise -1 is returned.
      * @return The security level.
      *
      * @since 1.5

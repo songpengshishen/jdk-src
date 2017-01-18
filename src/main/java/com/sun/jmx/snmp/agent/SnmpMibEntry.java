@@ -83,7 +83,7 @@ public abstract class SnmpMibEntry extends SnmpMibNode
      *
      * @param userData A contextual object containing user-data.
      *        This object is allocated through the <code>
-     *        {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code>
+     *        {@link SnmpUserDataFactory}</code>
      *        for each incoming SNMP request.
      *
      * @exception If the given `arc' does not identify any variable in this

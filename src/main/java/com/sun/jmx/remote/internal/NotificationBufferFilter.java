@@ -36,5 +36,5 @@ public interface NotificationBufferFilter {
      * iff it matches this filter's rules.
      */
     public void apply(List<TargetedNotification> targetedNotifs,
-            ObjectName source, Notification notif);
+                      ObjectName source, Notification notif);
 }

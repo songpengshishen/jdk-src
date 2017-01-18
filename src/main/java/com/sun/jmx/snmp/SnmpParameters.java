@@ -25,7 +25,7 @@ import com.sun.jmx.snmp.SnmpStatusException;
  * <B>Note</B>: Changing values for an <CODE>SnmpParameter</CODE> object
  * affects all <CODE>SnmpPeer</CODE> objects that share the parameter object.
  *
- * @see com.sun.jmx.snmp.SnmpPeer
+ * @see SnmpPeer
  *
  * <p><b>This API is a Sun Microsystems internal API  and is subject
  * to change without notice.</b></p>

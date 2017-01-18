@@ -12,7 +12,7 @@ package com.sun.jmx.snmp;
 import java.io.Serializable;
 
 /**
- * This class holds information for a MIB variable contained in an {@link com.sun.jmx.snmp.SnmpVarBindList}.
+ * This class holds information for a MIB variable contained in an {@link SnmpVarBindList}.
  * An <CODE>SnmpVarBind</CODE> consists of three parts:<P>
  * <DL>
  * <DD>- The corresponding OID object for the MIB variable.

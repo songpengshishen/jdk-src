@@ -120,7 +120,7 @@ abstract class Host extends SimpleNode implements Serializable {
 
         InetAddress add = null;
         try {
-            add = java.net.InetAddress.getByName(getHname());
+            add = InetAddress.getByName(getHname());
         } catch(UnknownHostException e) {
             if (SNMP_LOGGER.isLoggable(Level.FINEST)) {
                 SNMP_LOGGER.logp(Level.FINEST, Host.class.getName(),
@@ -153,7 +153,7 @@ abstract class Host extends SimpleNode implements Serializable {
 
         InetAddress add = null;
         try {
-            add = java.net.InetAddress.getByName(getHname());
+            add = InetAddress.getByName(getHname());
         } catch(UnknownHostException e) {
             if (SNMP_LOGGER.isLoggable(Level.FINEST)) {
                 SNMP_LOGGER.logp(Level.FINEST, Host.class.getName(),

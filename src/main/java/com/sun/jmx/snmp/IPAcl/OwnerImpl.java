@@ -42,7 +42,7 @@ import java.security.acl.NotOwnerException;
  * The initial owner Principal should be specified as an
  * argument to the constructor of the class AclImpl.
  *
- * @see java.security.acl.Owner
+ * @see Owner
  */
 
 class OwnerImpl implements Owner, Serializable {

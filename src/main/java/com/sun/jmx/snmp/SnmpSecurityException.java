@@ -38,7 +38,7 @@ public class SnmpSecurityException extends Exception {
      */
     public SnmpVarBind[] list = null;
     /**
-     * The status of the exception. See {@link com.sun.jmx.snmp.SnmpDefinitions} for possible values.
+     * The status of the exception. See {@link SnmpDefinitions} for possible values.
      */
     public int status = SnmpDefinitions.snmpReqUnknownError;
     /**

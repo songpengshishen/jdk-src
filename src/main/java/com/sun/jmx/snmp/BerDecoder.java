@@ -291,7 +291,7 @@ public class BerDecoder {
       if (contentLength > (bytes.length - next))
           throw new IndexOutOfBoundsException("Decoded length exceeds buffer");
       final byte[] data = new byte[tlvLength] ;
-      java.lang.System.arraycopy(bytes,backup,data,0,tlvLength);
+      System.arraycopy(bytes,backup,data,0,tlvLength);
       // for (int i = 0 ; i < tlvLength ; i++) {
       //  data[i] = bytes[backup + i] ;
       // }
@@ -628,7 +628,7 @@ public class BerDecoder {
       if (length > (bytes.length - next))
           throw new IndexOutOfBoundsException("Decoded length exceeds buffer");
       final byte data[] = new byte[length] ;
-      java.lang.System.arraycopy(bytes,next,data,0,length);
+      System.arraycopy(bytes,next,data,0,length);
       next += length;
       //      int i = 0 ;
       //      while (i < length) {

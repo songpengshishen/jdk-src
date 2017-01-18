@@ -50,7 +50,7 @@ import static com.sun.jmx.defaults.JmxProperties.SNMP_LOGGER;
 import com.sun.jmx.snmp.InetAddressAcl;
 
 /**
- * Defines an implementation of the {@link com.sun.jmx.snmp.InetAddressAcl InetAddressAcl} interface.
+ * Defines an implementation of the {@link InetAddressAcl InetAddressAcl} interface.
  * <p>
  * In this implementation the ACL information is stored on a flat file and
  * its default location is "$JRE/lib/snmp.acl" - See

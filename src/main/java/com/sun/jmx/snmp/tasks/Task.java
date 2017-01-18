@@ -28,18 +28,18 @@ package com.sun.jmx.snmp.tasks;
 
 /**
  * This interface is implemented by objects that can be executed
- * by a {@link com.sun.jmx.snmp.tasks.TaskServer}.
+ * by a {@link TaskServer}.
  * <p>A <code>Task</code> object implements two methods:
  * <ul><li><code>public void run(): </code> from
- *               {@link java.lang.Runnable}</li>
- * <ul>This method is called by the {@link com.sun.jmx.snmp.tasks.TaskServer}
+ *               {@link Runnable}</li>
+ * <ul>This method is called by the {@link TaskServer}
  *     when the task is executed.</ul>
  * <li><code>public void cancel(): </code></li>
- * <ul>This method is called by the {@link com.sun.jmx.snmp.tasks.TaskServer}
+ * <ul>This method is called by the {@link TaskServer}
  *     if the <code>TaskServer</code> is stopped before the
  *     <code>Task</code> is executed.</ul>
  * </ul>
- * An implementation of {@link com.sun.jmx.snmp.tasks.TaskServer} shall call
+ * An implementation of {@link TaskServer} shall call
  * either <code>run()</code> or <code>cancel()</code>.
  * Whether the task is executed synchronously in the current
  * thread (when calling <code>TaskServer.submitTask()</code> or in a new
@@ -51,7 +51,7 @@ package com.sun.jmx.snmp.tasks;
  * which it will be executed.
  * <p><b>This API is a Sun Microsystems internal API  and is subject
  * to change without notice.</b></p>
- * @see com.sun.jmx.snmp.tasks.TaskServer
+ * @see TaskServer
  *
  * @since 1.5
  **/

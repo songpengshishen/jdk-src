@@ -102,7 +102,7 @@ import javax.management.remote.MBeanServerForwarder;
  * <p>
  * When the value of the <CODE>State</CODE> attribute changes the
  * <CODE>CommunicatorServer</CODE> sends a
- * <tt>{@link javax.management.AttributeChangeNotification}</tt> to the
+ * <tt>{@link AttributeChangeNotification}</tt> to the
  * registered listeners, if any.
  *
  * <p><b>This API is a Sun Microsystems internal API  and is subject
@@ -646,11 +646,11 @@ public abstract class CommunicatorServer
      * @param port The port number used by this
      *             <CODE>CommunicatorServer</CODE>.
      *
-     * @exception java.lang.IllegalStateException This method has been invoked
+     * @exception IllegalStateException This method has been invoked
      * while the communicator was ONLINE or STARTING.
      */
     @Override
-    public void setPort(int port) throws java.lang.IllegalStateException {
+    public void setPort(int port) throws IllegalStateException {
         synchronized (stateLock) {
             if ((state == ONLINE) || (state == STARTING))
                 throw new IllegalStateException("Stop server before " +
@@ -710,11 +710,11 @@ public abstract class CommunicatorServer
      *
      * @param c The number of clients.
      *
-     * @exception java.lang.IllegalStateException This method has been invoked
+     * @exception IllegalStateException This method has been invoked
      * while the communicator was ONLINE or STARTING.
      */
     void setMaxActiveClientCount(int c)
-        throws java.lang.IllegalStateException {
+        throws IllegalStateException {
         synchronized (stateLock) {
             if ((state == ONLINE) || (state == STARTING)) {
                 throw new IllegalStateException(
@@ -1177,7 +1177,7 @@ public abstract class CommunicatorServer
      * Adds a listener for the notifications emitted by this
      * CommunicatorServer.
      * There is only one type of notifications sent by the CommunicatorServer:
-     * they are <tt>{@link javax.management.AttributeChangeNotification}</tt>,
+     * they are <tt>{@link AttributeChangeNotification}</tt>,
      * sent when the <tt>State</tt> attribute of this CommunicatorServer
      * changes.
      *
@@ -1194,7 +1194,7 @@ public abstract class CommunicatorServer
     public void addNotificationListener(NotificationListener listener,
                                         NotificationFilter filter,
                                         Object handback)
-        throws java.lang.IllegalArgumentException {
+        throws IllegalArgumentException {
 
         if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
             SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
@@ -1229,7 +1229,7 @@ public abstract class CommunicatorServer
      * Returns an array of MBeanNotificationInfo objects describing
      * the notification types sent by this CommunicatorServer.
      * There is only one type of notifications sent by the CommunicatorServer:
-     * it is <tt>{@link javax.management.AttributeChangeNotification}</tt>,
+     * it is <tt>{@link AttributeChangeNotification}</tt>,
      * sent when the <tt>State</tt> attribute of this CommunicatorServer
      * changes.
      */
@@ -1315,7 +1315,7 @@ public abstract class CommunicatorServer
      */
     @Override
     public ObjectName preRegister(MBeanServer server, ObjectName name)
-            throws java.lang.Exception {
+            throws Exception {
         objectName = name;
         synchronized (this) {
             if (bottomMBS != null) {
@@ -1352,7 +1352,7 @@ public abstract class CommunicatorServer
      *            as an <CODE>MBeanRegistrationException</CODE>.
      */
     @Override
-    public void preDeregister() throws java.lang.Exception {
+    public void preDeregister() throws Exception {
         synchronized (this) {
             topMBS = bottomMBS = null;
         }

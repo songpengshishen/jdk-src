@@ -47,12 +47,12 @@ import com.sun.jmx.snmp.SnmpDefinitions;
 import com.sun.jmx.snmp.SnmpV3Message;
 
 /**
- * Default implementation of the {@link com.sun.jmx.snmp.SnmpPduFactory SnmpPduFactory} interface.
+ * Default implementation of the {@link SnmpPduFactory SnmpPduFactory} interface.
  * <BR>It uses the BER (basic encoding rules) standardized encoding scheme associated with ASN.1.
  * <P>
  * This implementation of the <CODE>SnmpPduFactory</CODE> is very
  * basic: it simply calls encoding and decoding methods from
- * {@link com.sun.jmx.snmp.SnmpMsg}.
+ * {@link SnmpMsg}.
  * <BLOCKQUOTE>
  * <PRE>
  * public SnmpPdu decodeSnmpPdu(SnmpMsg msg)
@@ -80,7 +80,7 @@ public class SnmpPduFactoryBER implements SnmpPduFactory, Serializable {
    private static final long serialVersionUID = -3525318344000547635L;
 
    /**
-     * Calls {@link com.sun.jmx.snmp.SnmpMsg#decodeSnmpPdu SnmpMsg.decodeSnmpPdu}
+     * Calls {@link SnmpMsg#decodeSnmpPdu SnmpMsg.decodeSnmpPdu}
      * on the specified message and returns the resulting <CODE>SnmpPdu</CODE>.
      *
      * @param msg The SNMP message to be decoded.

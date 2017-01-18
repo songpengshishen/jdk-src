@@ -33,9 +33,9 @@ package com.sun.jmx.snmp;
  * <P>
  * You will not usually need to use this class, except if you
  * decide to implement your own
- * {@link com.sun.jmx.snmp.SnmpPduFactory SnmpPduFactory} object.
+ * {@link SnmpPduFactory SnmpPduFactory} object.
  * <P>
- * The <CODE>SnmpPduBulk</CODE> extends {@link com.sun.jmx.snmp.SnmpPduPacket SnmpPduPacket}
+ * The <CODE>SnmpPduBulk</CODE> extends {@link SnmpPduPacket SnmpPduPacket}
  * and defines attributes specific to the <CODE>get-bulk</CODE> PDU (see RFC 1448).
  *
  * <p><b>This API is a Sun Microsystems internal API  and is subject
@@ -63,8 +63,8 @@ public class SnmpPduBulk extends SnmpPduPacket
     /**
      * Builds a new <CODE>get-bulk</CODE> PDU.
      * <BR><CODE>type</CODE> and <CODE>version</CODE> fields are initialized with
-     * {@link com.sun.jmx.snmp.SnmpDefinitions#pduGetBulkRequestPdu pduGetBulkRequestPdu}
-     * and {@link com.sun.jmx.snmp.SnmpDefinitions#snmpVersionTwo snmpVersionTwo}.
+     * {@link SnmpDefinitions#pduGetBulkRequestPdu pduGetBulkRequestPdu}
+     * and {@link SnmpDefinitions#snmpVersionTwo snmpVersionTwo}.
      */
     public SnmpPduBulk() {
         type = pduGetBulkRequestPdu ;

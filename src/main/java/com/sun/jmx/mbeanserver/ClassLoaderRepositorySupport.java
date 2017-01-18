@@ -81,7 +81,7 @@ final class ClassLoaderRepositorySupport
     private LoaderEntry[] loaders = EMPTY_LOADER_ARRAY;
 
     /**
-     * Same behavior as add(Object o) in {@link java.util.List}.
+     * Same behavior as add(Object o) in {@link List}.
      * Replace the loader list with a new one in which the new
      * loader has been added.
      **/
@@ -94,7 +94,7 @@ final class ClassLoaderRepositorySupport
     }
 
     /**
-     * Same behavior as remove(Object o) in {@link java.util.List}.
+     * Same behavior as remove(Object o) in {@link List}.
      * Replace the loader list with a new one in which the old loader
      * has been removed.
      *

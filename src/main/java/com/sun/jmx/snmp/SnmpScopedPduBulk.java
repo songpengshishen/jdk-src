@@ -27,7 +27,7 @@ package com.sun.jmx.snmp;
  * Represents a <CODE>get-bulk</CODE> PDU as defined in RFC 1448.
  * <P>
  * <P>
- * The <CODE>SnmpSocpedPduBulk</CODE> extends {@link com.sun.jmx.snmp.SnmpScopedPduPacket SnmpScopedPduPacket}
+ * The <CODE>SnmpSocpedPduBulk</CODE> extends {@link SnmpScopedPduPacket SnmpScopedPduPacket}
  * and defines attributes specific to the <CODE>get-bulk</CODE> PDU (see RFC 1448).
  *
  * <p><b>This API is a Sun Microsystems internal API  and is subject

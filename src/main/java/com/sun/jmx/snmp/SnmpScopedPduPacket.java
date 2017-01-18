@@ -36,8 +36,8 @@ import com.sun.jmx.snmp.SnmpDefinitions;
  *
  * Classes are derived from <CODE>SnmpPdu</CODE> to
  * represent the different forms of SNMP pdu
- * ({@link com.sun.jmx.snmp.SnmpScopedPduRequest SnmpScopedPduRequest},
- * {@link com.sun.jmx.snmp.SnmpScopedPduBulk SnmpScopedPduBulk}).
+ * ({@link SnmpScopedPduRequest SnmpScopedPduRequest},
+ * {@link SnmpScopedPduBulk SnmpScopedPduBulk}).
  * <BR>The <CODE>SnmpScopedPduPacket</CODE> class defines the attributes
  * common to every scoped SNMP packets.
  *

@@ -26,7 +26,7 @@ import com.sun.jmx.snmp.SnmpStatusException;
  * <P>
  * <p><b>This API is a Sun Microsystems internal API  and is subject
  * to change without notice.</b></p>
- * @see com.sun.jmx.snmp.SnmpOidTable
+ * @see SnmpOidTable
  */
 
 public interface SnmpOidDatabase extends SnmpOidTable {

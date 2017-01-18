@@ -144,7 +144,7 @@ public class SnmpNull extends SnmpValue {
 
     /**
      * Checks if this <CODE>SnmpNull</CODE> object corresponds to a <CODE>noSuchObject</CODE> value.
-     * @return <CODE>true</CODE> if the tag equals {@link com.sun.jmx.snmp.SnmpDataTypeEnums#errNoSuchObjectTag},
+     * @return <CODE>true</CODE> if the tag equals {@link SnmpDataTypeEnums#errNoSuchObjectTag},
      * <CODE>false</CODE> otherwise.
      */
     public boolean isNoSuchObjectValue() {
@@ -153,7 +153,7 @@ public class SnmpNull extends SnmpValue {
 
     /**
      * Checks if this <CODE>SnmpNull</CODE> object corresponds to a <CODE>noSuchInstance</CODE> value.
-     * @return <CODE>true</CODE> if the tag equals {@link com.sun.jmx.snmp.SnmpDataTypeEnums#errNoSuchInstanceTag},
+     * @return <CODE>true</CODE> if the tag equals {@link SnmpDataTypeEnums#errNoSuchInstanceTag},
      * <CODE>false</CODE> otherwise.
      */
     public boolean isNoSuchInstanceValue() {
@@ -162,7 +162,7 @@ public class SnmpNull extends SnmpValue {
 
     /**
      * Checks if this <CODE>SnmpNull</CODE> object corresponds to an <CODE>endOfMibView</CODE> value.
-     * @return <CODE>true</CODE> if the tag equals {@link com.sun.jmx.snmp.SnmpDataTypeEnums#errEndOfMibViewTag},
+     * @return <CODE>true</CODE> if the tag equals {@link SnmpDataTypeEnums#errEndOfMibViewTag},
      * <CODE>false</CODE> otherwise.
      */
     public boolean isEndOfMibViewValue() {

@@ -56,7 +56,7 @@ public interface SunJmxMBeanServer
      * @see #getMBeanServerInterceptor
      * @see #setMBeanServerInterceptor
      * @see #getMBeanInstantiator
-     * @see com.sun.jmx.mbeanserver.JmxMBeanServerBuilder
+     * @see JmxMBeanServerBuilder
      **/
     public boolean interceptorsEnabled();
 

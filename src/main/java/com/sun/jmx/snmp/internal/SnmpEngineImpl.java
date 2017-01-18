@@ -44,26 +44,26 @@ import static com.sun.jmx.defaults.JmxProperties.SNMP_LOGGER;
 /**
  * This engine is conformant with the RFC 2571. It is the main object within
  * an SNMP entity (agent, manager...).
- * To an engine is associated an {@link com.sun.jmx.snmp.SnmpEngineId}.
+ * To an engine is associated an {@link SnmpEngineId}.
  * The way the engineId is retrieved is linked to the way the engine is
  * instantiated. See each <CODE>SnmpEngine</CODE> constructor for more details.
  * An engine is composed of a set of sub systems
- * {@link com.sun.jmx.snmp.internal.SnmpSubSystem}. An <CODE>SNMP</CODE>
+ * {@link SnmpSubSystem}. An <CODE>SNMP</CODE>
  * engine can contain a:
  *<ul>
  *<li> Message Processing Sub System :
- * {@link com.sun.jmx.snmp.internal.SnmpMsgProcessingSubSystem}</li>
+ * {@link SnmpMsgProcessingSubSystem}</li>
  *<li> Security Sub System :
- * {@link com.sun.jmx.snmp.internal.SnmpSecuritySubSystem} </li>
+ * {@link SnmpSecuritySubSystem} </li>
  *<li> Access Control Sub System :
- * {@link com.sun.jmx.snmp.internal.SnmpAccessControlSubSystem}</li>
+ * {@link SnmpAccessControlSubSystem}</li>
  *</ul>
  *<P> Each sub system contains a set of models. A model is an implementation
  * of a particular treatement (eg: the User based Security Model defined in
  * RFC 2574 is a functional element dealing with authentication and privacy).
  *</P>
  * Engine instantiation is based on a factory. This factory, implementing
- * mandatorily {@link com.sun.jmx.snmp.SnmpEngineFactory  SnmpEngineFactory}
+ * mandatorily {@link SnmpEngineFactory  SnmpEngineFactory}
  * is set in the method <CODE>setFactory</CODE>.
  * <p><b>This API is a Sun Microsystems internal API  and is subject
  * to change without notice.</b></p>

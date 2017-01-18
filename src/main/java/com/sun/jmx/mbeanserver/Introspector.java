@@ -112,7 +112,7 @@ public class Introspector {
      **/
     public static final boolean isDynamic(final Class<?> c) {
         // Check if the MBean implements the DynamicMBean interface
-        return javax.management.DynamicMBean.class.isAssignableFrom(c);
+        return DynamicMBean.class.isAssignableFrom(c);
     }
 
     /**
@@ -210,7 +210,7 @@ public class Introspector {
      * @param baseClass The class to be tested
      *
      * @return <code>null</code> if the MBean is a DynamicMBean,
-     *         the computed {@link javax.management.MBeanInfo} otherwise.
+     *         the computed {@link MBeanInfo} otherwise.
      * @exception NotCompliantMBeanException The specified class is not a
      *            JMX compliant MBean
      */
@@ -264,7 +264,7 @@ public class Introspector {
      * @param mbeanInterface the MBean interface that the class implements,
      * or null if the interface must be determined by introspection.
      *
-     * @return the computed {@link javax.management.MBeanInfo}.
+     * @return the computed {@link MBeanInfo}.
      * @exception NotCompliantMBeanException The specified class is not a
      *            JMX compliant Standard MBean
      */

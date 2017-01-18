@@ -54,10 +54,10 @@ import javax.management.NotCompliantMBeanException;
 class MBeanAnalyzer<M> {
     static interface MBeanVisitor<M> {
         public void visitAttribute(String attributeName,
-                M getter,
-                M setter);
+                                   M getter,
+                                   M setter);
         public void visitOperation(String operationName,
-                M operation);
+                                   M operation);
     }
 
     void visit(MBeanVisitor<M> visitor) {

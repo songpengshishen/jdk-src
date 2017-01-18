@@ -12,7 +12,7 @@ package com.sun.jmx.snmp;
 import java.util.Date;
 
 /**
- * This class is used by the {@link com.sun.jmx.snmp.SnmpVarBindList SnmpVarBindList} object.
+ * This class is used by the {@link SnmpVarBindList SnmpVarBindList} object.
  * An <CODE>SnmpVarBindList</CODE> time stamp object represents the time stamp when the list was updated
  * with the response variables.
  * <p><b>This API is a Sun Microsystems internal API  and is subject

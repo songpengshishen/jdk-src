@@ -309,7 +309,7 @@ public interface SnmpDefinitions {
     /**
      * Error code specific to the API.
      * <P>Used if the request PDU exceeds the <CODE>maxTries</CODE> limit
-     * defined in the {@link com.sun.jmx.snmp.SnmpPeer SnmpPeer} object.
+     * defined in the {@link SnmpPeer SnmpPeer} object.
      */
     final public static int snmpReqTimeout          = (0xE0) ;
 
@@ -335,7 +335,7 @@ public interface SnmpDefinitions {
     /**
      * Error code specific to the API.
      * <P>Used if the request PDU does not fit in the <CODE>maxSnmpPktSize</CODE> limit
-     * defined in the {@link com.sun.jmx.snmp.SnmpPeer SnmpPeer} object.
+     * defined in the {@link SnmpPeer SnmpPeer} object.
      */
     final public static int snmpReqPacketOverflow   = (0xE4) ;
 
@@ -356,7 +356,7 @@ public interface SnmpDefinitions {
      * Error code specific to the API.
      * <P>Used if the size of the request PDU <CODE>varBindList</CODE> exceeds
      * the <CODE>maxVarBindLimit</CODE> limit defined in the
-     * {@link com.sun.jmx.snmp.SnmpPeer SnmpPeer} object.
+     * {@link SnmpPeer SnmpPeer} object.
      */
     final public static int snmpReqHandleTooBig     = (0xE7) ;
 

@@ -56,7 +56,7 @@ public class EnvHelp {
 
     /**
     * Name of the attribute that specifies a list of class names acceptable
-    * as parameters to the {@link RMIServer#newClient(java.lang.Object) RMIServer.newClient()}
+    * as parameters to the {@link RMIServer#newClient(Object) RMIServer.newClient()}
     * remote method call.
     * <p>
     * This list of classes should correspond to the transitive closure of the

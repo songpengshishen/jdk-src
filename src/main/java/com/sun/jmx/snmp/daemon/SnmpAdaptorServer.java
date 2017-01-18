@@ -88,7 +88,7 @@ import com.sun.jmx.snmp.tasks.ThreadService;
  * changed by specifying a port number:
  * <UL>
  * <LI>in the object constructor</LI>
- * <LI>using the {@link com.sun.jmx.snmp.daemon.CommunicatorServer#setPort
+ * <LI>using the {@link CommunicatorServer#setPort
  *     setPort} method before starting the adaptor</LI>
  * </UL>
  * The default object name is defined by {@link
@@ -345,7 +345,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
 
     /**
      * Initializes this SNMP protocol adaptor using the default port (161).
-     * Use the {@link com.sun.jmx.snmp.IPAcl.SnmpAcl} default
+     * Use the {@link SnmpAcl} default
      * implementation of the <CODE>InetAddressAcl</CODE> interface.
      */
     public SnmpAdaptorServer() {
@@ -355,7 +355,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
 
     /**
      * Initializes this SNMP protocol adaptor using the specified port.
-     * Use the {@link com.sun.jmx.snmp.IPAcl.SnmpAcl} default
+     * Use the {@link SnmpAcl} default
      * implementation of the <CODE>InetAddressAcl</CODE> interface.
      *
      * @param port The port number for sending SNMP responses.
@@ -382,7 +382,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
      * Initializes this SNMP protocol adaptor using the default port (161)
      * and the
      * specified <CODE>InetAddress</CODE>.
-     * Use the {@link com.sun.jmx.snmp.IPAcl.SnmpAcl} default
+     * Use the {@link SnmpAcl} default
      * implementation of the <CODE>InetAddressAcl</CODE> interface.
      *
      * @param addr The IP address to bind.
@@ -409,7 +409,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
     /**
      * Initializes this SNMP protocol adaptor using the specified port and the
      * specified <CODE>InetAddress</CODE>.
-     * Use the {@link com.sun.jmx.snmp.IPAcl.SnmpAcl} default
+     * Use the {@link SnmpAcl} default
      * implementation of the <CODE>InetAddressAcl</CODE> interface.
      *
      * @param port The port number for sending SNMP responses.
@@ -541,12 +541,12 @@ public class SnmpAdaptorServer extends CommunicatorServer
      *
      * @param c The number of managers.
      *
-     * @exception java.lang.IllegalStateException This method has been invoked
+     * @exception IllegalStateException This method has been invoked
      * while the communicator was <CODE>ONLINE</CODE> or <CODE>STARTING</CODE>.
      */
     @Override
     public void setMaxActiveClientCount(int c)
-        throws java.lang.IllegalStateException {
+        throws IllegalStateException {
         super.setMaxActiveClientCount(c);
     }
 
@@ -649,12 +649,12 @@ public class SnmpAdaptorServer extends CommunicatorServer
      *
      * @param s The buffer size.
      *
-     * @exception java.lang.IllegalStateException This method has been invoked
+     * @exception IllegalStateException This method has been invoked
      * while the communicator was <CODE>ONLINE</CODE> or <CODE>STARTING</CODE>.
      */
     @Override
     public void setBufferSize(Integer s)
-        throws java.lang.IllegalStateException {
+        throws IllegalStateException {
         if ((state == ONLINE) || (state == STARTING)) {
             throw new IllegalStateException("Stop server before carrying out"+
                                             " this operation");
@@ -733,7 +733,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
      * Set the user-data factory of this SNMP protocol adaptor.
      *
      * @param factory The factory object (null means no factory).
-     * @see com.sun.jmx.snmp.agent.SnmpUserDataFactory
+     * @see SnmpUserDataFactory
      */
     @Override
     public void setUserDataFactory(SnmpUserDataFactory factory) {
@@ -744,7 +744,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
      * Get the user-data factory associated with this SNMP protocol adaptor.
      *
      * @return The factory object (null means no factory).
-     * @see com.sun.jmx.snmp.agent.SnmpUserDataFactory
+     * @see SnmpUserDataFactory
      */
     @Override
     public SnmpUserDataFactory getUserDataFactory() {
@@ -1069,11 +1069,11 @@ public class SnmpAdaptorServer extends CommunicatorServer
      *
      * @return The name of the SNMP protocol adaptor registered.
      *
-     * @exception java.lang.Exception
+     * @exception Exception
      */
     @Override
     public ObjectName preRegister(MBeanServer server, ObjectName name)
-        throws java.lang.Exception {
+        throws Exception {
 
         if (name == null) {
             name = new ObjectName(server.getDefaultDomain() + ":" +
@@ -1094,7 +1094,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
      * Not used in this context.
      */
     @Override
-    public void preDeregister() throws java.lang.Exception {
+    public void preDeregister() throws Exception {
         super.preDeregister();
     }
 
@@ -1456,7 +1456,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
                         pk = new DatagramPacket(ob , 1, address, port);
                     else
                         pk = new DatagramPacket(ob , 1,
-                                 java.net.InetAddress.getLocalHost(), port);
+                                 InetAddress.getLocalHost(), port);
 
                     if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
                         SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag,
@@ -2312,7 +2312,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
      * @param trapOid The OID identifying the trap.
      * @param varBindList A list of <CODE>SnmpVarBind</CODE> instances or null.
      *
-     * @return A vector of {@link com.sun.jmx.snmp.daemon.SnmpInformRequest}
+     * @return A vector of {@link SnmpInformRequest}
      *         objects.
      *         <P>If there is no destination host for this inform request,
      *         the returned vector will be empty.
@@ -2716,7 +2716,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
 
         // For the trap time, use the time the agent started ...
         //
-        startUpTime= java.lang.System.currentTimeMillis();
+        startUpTime= System.currentTimeMillis();
         maxActiveClientCount = 10;
 
         // Create the default message factory

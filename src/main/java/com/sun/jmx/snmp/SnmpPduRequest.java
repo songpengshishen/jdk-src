@@ -34,7 +34,7 @@ package com.sun.jmx.snmp;
  * <P>
  * You will not usually need to use this class, except if you
  * decide to implement your own
- * {@link com.sun.jmx.snmp.SnmpPduFactory SnmpPduFactory} object.
+ * {@link SnmpPduFactory SnmpPduFactory} object.
  *
  * <p><b>This API is a Sun Microsystems internal API  and is subject
  * to change without notice.</b></p>
@@ -47,7 +47,7 @@ public class SnmpPduRequest extends SnmpPduPacket
 
     /**
      * Error status. Statuses are defined in
-     * {@link com.sun.jmx.snmp.SnmpDefinitions SnmpDefinitions}.
+     * {@link SnmpDefinitions SnmpDefinitions}.
      * @serial
      */
     public int errorStatus=0 ;

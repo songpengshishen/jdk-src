@@ -78,7 +78,7 @@ public class BerEncoder {
     //  bytes[i-start] = bytes[i] ;
     // }
     if (result > 0)
-        java.lang.System.arraycopy(bytes,start,bytes,0,result);
+        System.arraycopy(bytes,start,bytes,0,result);
 
     start = bytes.length ;
     stackTop = 0 ;
@@ -226,7 +226,7 @@ public class BerEncoder {
   */
 
   public void putAny(byte[] s, int byteCount) {
-      java.lang.System.arraycopy(s,0,bytes,start-byteCount,byteCount);
+      System.arraycopy(s,0,bytes,start-byteCount,byteCount);
       start -= byteCount;
       //    for (int i = byteCount - 1 ; i >= 0 ; i--) {
       //      bytes[--start] = s[i] ;
@@ -407,7 +407,7 @@ public class BerEncoder {
 
   protected final void putStringValue(byte[] s) {
       final int datalen = s.length;
-      java.lang.System.arraycopy(s,0,bytes,start-datalen,datalen);
+      System.arraycopy(s,0,bytes,start-datalen,datalen);
       start -= datalen;
       // for (int i = s.length - 1 ; i >= 0 ; i--) {
       //   bytes[--start] = s[i] ;
