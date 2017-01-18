@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2010, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -28,7 +28,8 @@ package com.sun.security.jgss;
 /**
  * Kerberos 5 AuthorizationData entry.
  */
-final public class AuthorizationDataEntry {
+@jdk.Exported
+public final class AuthorizationDataEntry {
 
     private final int type;
     private final byte[] data;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005, 2010, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -25,14 +25,12 @@
 
 package com.sun.security.auth.module;
 
-import java.io.IOException;
 import java.security.AccessController;
 import java.net.SocketPermission;
 import java.security.Principal;
 import java.security.PrivilegedAction;
 import java.util.Arrays;
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -50,7 +48,6 @@ import javax.security.auth.spi.*;
 import com.sun.security.auth.LdapPrincipal;
 import com.sun.security.auth.UserPrincipal;
 
-import sun.security.util.AuthResources;
 
 /**
  * This {@link LoginModule} performs LDAP-based authentication.
@@ -156,7 +153,7 @@ import sun.security.util.AuthResources;
  *      If the attribute cannot be found then the option is ignored.
  *      When this option is supplied and the user has been successfully
  *      authenticated then an additional {@link UserPrincipal}
- *      is created using the authorization identity and it is assocated with
+ *      is created using the authorization identity and it is associated with
  *      the current {@link Subject}. </dd>
  *
  * <dt> <code>useSSL</code> </dt>
@@ -307,6 +304,7 @@ import sun.security.util.AuthResources;
  *
  * @since 1.6
  */
+@jdk.Exported
 public class LdapLoginModule implements LoginModule {
 
     // Use the default classloader for this class to load the prompt strings.
@@ -366,12 +364,12 @@ public class LdapLoginModule implements LoginModule {
     // Initial state
     private Subject subject;
     private CallbackHandler callbackHandler;
-    private Map sharedState;
+    private Map<String, Object> sharedState;
     private Map<String, ?> options;
     private LdapContext ctx;
     private Matcher identityMatcher = null;
     private Matcher filterMatcher = null;
-    private Hashtable ldapEnvironment;
+    private Hashtable<String, Object> ldapEnvironment;
     private SearchControls constraints = null;
 
     /**
@@ -385,15 +383,18 @@ public class LdapLoginModule implements LoginModule {
      *                  <code>Configuration</code> for this particular
      *                  <code>LoginModule</code>.
      */
+    // Unchecked warning from (Map<String, Object>)sharedState is safe
+    // since javax.security.auth.login.LoginContext passes a raw HashMap.
+    @SuppressWarnings("unchecked")
     public void initialize(Subject subject, CallbackHandler callbackHandler,
                         Map<String, ?> sharedState, Map<String, ?> options) {
 
         this.subject = subject;
         this.callbackHandler = callbackHandler;
-        this.sharedState = sharedState;
+        this.sharedState = (Map<String, Object>)sharedState;
         this.options = options;
 
-        ldapEnvironment = new Hashtable(9);
+        ldapEnvironment = new Hashtable<String, Object>(9);
         ldapEnvironment.put(Context.INITIAL_CONTEXT_FACTORY,
             "com.sun.jndi.ldap.LdapCtxFactory");
 
@@ -981,7 +982,7 @@ public class LdapLoginModule implements LoginModule {
                                 password, 0, tmpPassword.length);
             ((PasswordCallback)callbacks[1]).clearPassword();
 
-        } catch (IOException ioe) {
+        } catch (java.io.IOException ioe) {
             throw new LoginException(ioe.toString());
 
         } catch (UnsupportedCallbackException uce) {

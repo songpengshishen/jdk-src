@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000, 2009, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -53,6 +53,7 @@ import sun.security.util.Password;
  * @see javax.security.auth.callback
  */
 
+@jdk.Exported
 public class TextCallbackHandler implements CallbackHandler {
 
     /**

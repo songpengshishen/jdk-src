@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -25,35 +25,18 @@
 
 package com.sun.security.auth.module;
 
-import javax.security.auth.x500.X500Principal;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PushbackInputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.security.AuthProvider;
-import java.security.GeneralSecurityException;
-import java.security.Key;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.Principal;
-import java.security.PrivateKey;
-import java.security.Provider;
-import java.security.UnrecoverableKeyException;
+import java.security.*;
 import java.security.cert.*;
+import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 import javax.security.auth.Destroyable;
 import javax.security.auth.DestroyFailedException;
-import javax.security.auth.Subject;
-import javax.security.auth.x500.*;
 import javax.security.auth.Subject;
 import javax.security.auth.x500.*;
 import javax.security.auth.callback.Callback;
@@ -67,7 +50,6 @@ import javax.security.auth.login.FailedLoginException;
 import javax.security.auth.login.LoginException;
 import javax.security.auth.spi.LoginModule;
 
-import sun.security.util.AuthResources;
 import sun.security.util.Password;
 
 /**
@@ -128,10 +110,17 @@ import sun.security.util.Password;
  *
  * </dl>
  */
+@jdk.Exported
 public class KeyStoreLoginModule implements LoginModule {
 
-   static final ResourceBundle rb =
-        ResourceBundle.getBundle("sun.security.util.AuthResources");
+    private static final ResourceBundle rb = AccessController.doPrivileged(
+            new PrivilegedAction<ResourceBundle>() {
+                public ResourceBundle run() {
+                    return ResourceBundle.getBundle(
+                            "sun.security.util.AuthResources");
+                }
+            }
+    );
 
     /* -- Fields -- */
 
@@ -159,7 +148,7 @@ public class KeyStoreLoginModule implements LoginModule {
 
     private Subject subject;
     private CallbackHandler callbackHandler;
-    private Map sharedState;
+    private Map<String, Object> sharedState;
     private Map<String, ?> options;
 
     private char[] keyStorePassword;
@@ -202,7 +191,9 @@ public class KeyStoreLoginModule implements LoginModule {
      *                  <code>Configuration</code> for this particular
      *                  <code>LoginModule</code>.
      */
-
+    // Unchecked warning from (Map<String, Object>)sharedState is safe
+    // since javax.security.auth.login.LoginContext passes a raw HashMap.
+    @SuppressWarnings("unchecked")
     public void initialize(Subject subject,
                            CallbackHandler callbackHandler,
                            Map<String,?> sharedState,
@@ -210,7 +201,7 @@ public class KeyStoreLoginModule implements LoginModule {
     {
         this.subject = subject;
         this.callbackHandler = callbackHandler;
-        this.sharedState = sharedState;
+        this.sharedState = (Map<String, Object>)sharedState;
         this.options = options;
 
         processOptions();
@@ -337,6 +328,7 @@ public class KeyStoreLoginModule implements LoginModule {
     }
 
     /** Get the alias and passwords to use for looking up in the KeyStore. */
+    @SuppressWarnings("fallthrough")
     private void getAliasAndPasswords(int env) throws LoginException {
         if (callbackHandler == null) {
 

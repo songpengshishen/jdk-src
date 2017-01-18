@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -33,6 +33,7 @@ import org.ietf.jgss.GSSCredential;
  * GSS-API Utilities for using in conjunction with Sun Microsystem's
  * implementation of Java GSS-API.
  */
+@jdk.Exported
 public class GSSUtil {
 
     /**

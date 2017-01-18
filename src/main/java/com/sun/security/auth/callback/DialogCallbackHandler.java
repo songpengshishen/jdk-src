@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -52,7 +52,10 @@ import javax.swing.JTextField;
  * This can be used by a JAAS application to instantiate a
  * CallbackHandler
  * @see javax.security.auth.callback
+ * @deprecated This class will be removed in a future release.
  */
+@jdk.Exported(false)
+@Deprecated
 public class DialogCallbackHandler implements CallbackHandler {
 
     /* -- Fields -- */

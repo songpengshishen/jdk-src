@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -30,6 +30,7 @@ package com.sun.security.auth.module;
  * security information for the current user.
  *
  */
+@jdk.Exported
 public class NTSystem {
 
     private native void getCurrent(boolean debug);

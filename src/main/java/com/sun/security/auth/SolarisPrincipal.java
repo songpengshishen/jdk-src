@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1999, 2010, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -44,6 +44,7 @@ import java.security.Principal;
  * @see Principal
  * @see javax.security.auth.Subject
  */
+@jdk.Exported(false)
 @Deprecated
 public class SolarisPrincipal implements Principal, java.io.Serializable {
 

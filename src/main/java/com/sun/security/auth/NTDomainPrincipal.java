@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1999, 2010, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -45,6 +45,7 @@ import java.security.Principal;
  * @see Principal
  * @see javax.security.auth.Subject
  */
+@jdk.Exported
 public class NTDomainPrincipal implements Principal, java.io.Serializable {
 
     private static final long serialVersionUID = -4408637351440771220L;

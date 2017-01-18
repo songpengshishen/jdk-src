@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1999, 2010, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -49,6 +49,7 @@ import sun.security.x509.X500Name;
  *             class.
  * @see javax.security.auth.x500.X500Principal
 */
+@jdk.Exported(false)
 @Deprecated
 public class X500Principal implements Principal, java.io.Serializable {
 

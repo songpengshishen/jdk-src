@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1999, 2010, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -40,6 +40,7 @@ package com.sun.security.auth;
  * @see javax.security.auth.Subject
  * @see NTSid
  */
+@jdk.Exported
 public class NTSidGroupPrincipal extends NTSid {
 
     private static final long serialVersionUID = -1373347438636198229L;

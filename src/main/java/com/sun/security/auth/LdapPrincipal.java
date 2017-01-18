@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2006, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -45,6 +45,7 @@ import javax.naming.ldap.LdapName;
  *
  * @since 1.6
  */
+@jdk.Exported
 public final class LdapPrincipal implements Principal, java.io.Serializable {
 
     private static final long serialVersionUID = 6820120005580754861L;
