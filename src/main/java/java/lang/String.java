@@ -111,9 +111,11 @@ import java.util.regex.PatternSyntaxException;
 public final class String
     implements java.io.Serializable, Comparable<String>, CharSequence {
     /** The value is used for character storage. */
+    /* 字符串对象内部的字符数组用来存放字符串对象的字符值,final修饰的引用数据类型,value一旦赋值就不能再指向另一个字符数组,但本身数组可以改变*/
     private final char value[];
 
-    /** Cache the hash code for the string */
+    /** Cache the hash code for the string  */
+    /* 字符串对象的hash代码,默认为0 */
     private int hash; // Default to 0
 
     /** use serialVersionUID from JDK 1.0.2 for interoperability */
@@ -126,6 +128,7 @@ public final class String
      * <a href="{@docRoot}/../platform/serialization/spec/output.html">
      * Object Serialization Specification, Section 6.2, "Stream Elements"</a>
      */
+     /*字符串对象序列化时,序列化的字段数组*/
     private static final ObjectStreamField[] serialPersistentFields =
         new ObjectStreamField[0];
 
@@ -133,6 +136,7 @@ public final class String
      * Initializes a newly created {@code String} object so that it represents
      * an empty character sequence.  Note that use of this constructor is
      * unnecessary since Strings are immutable.
+     * 创建一个空数组
      */
     public String() {
         this.value = "".value;
@@ -144,7 +148,7 @@ public final class String
      * newly created string is a copy of the argument string. Unless an
      * explicit copy of {@code original} is needed, use of this constructor is
      * unnecessary since Strings are immutable.
-     *
+     * 复制一个传入的字符串对象的字符序列和hash值创建新的字符串对象
      * @param  original
      *         A {@code String}
      */
@@ -158,7 +162,7 @@ public final class String
      * characters currently contained in the character array argument. The
      * contents of the character array are copied; subsequent modification of
      * the character array does not affect the newly created string.
-     *
+     * 根据传入的字符数组创建一个新的字符串,这里并没有直接赋值给value,而是通过copy方法重新创建个字符数组,并指向它.
      * @param  value
      *         The initial value of the string
      */
@@ -173,7 +177,7 @@ public final class String
      * argument specifies the length of the subarray. The contents of the
      * subarray are copied; subsequent modification of the character array does
      * not affect the newly created string.
-     *
+     * 根据传入的字符数组创建一个新的字符串,新的字符串的字符值通过offset偏移量以及count截取数量从传入的字符数组中获取
      * @param  value
      *         Array that is the source of characters
      *
@@ -215,10 +219,10 @@ public final class String
      * length of the subarray.  The contents of the subarray are converted to
      * {@code char}s; subsequent modification of the {@code int} array does not
      * affect the newly created string.
-     *
+     * 根据传入的整型数组(代码点)创建一个新的字符串,新的字符串的字符值通过offset偏移量以及count截取数量从传入的整型数组中获取
      * @param  codePoints
      *         Array that is the source of Unicode code points
-     *
+     *         代码点:unicode 字符表中字符所对应的二进制代码值
      * @param  offset
      *         The initial offset
      *
@@ -253,12 +257,16 @@ public final class String
             throw new StringIndexOutOfBoundsException(offset + count);
         }
 
-        final int end = offset + count;
+
+
+        final int end = offset + count; //计算出结尾的下标
 
         // Pass 1: Compute precise size of char[]
-        int n = count;
+        int n = count;//把要截取的个数赋值给n
+        //从偏移处到截取的结尾开始遍历codePoints数组
         for (int i = offset; i < end; i++) {
             int c = codePoints[i];
+            // TODO: 2017/2/3 bmp?
             if (Character.isBmpCodePoint(c))
                 continue;
             else if (Character.isValidCodePoint(c))
