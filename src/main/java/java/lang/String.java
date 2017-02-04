@@ -219,7 +219,7 @@ public final class String
      * length of the subarray.  The contents of the subarray are converted to
      * {@code char}s; subsequent modification of the {@code int} array does not
      * affect the newly created string.
-     * 根据传入的整型数组(代码点)创建一个新的字符串,新的字符串的字符值通过offset偏移量以及count截取数量从传入的整型数组中获取
+     * 根据传入的整型数组(unicode 代码点)创建一个新的字符串,新的字符串的字符值通过offset偏移量以及count截取数量从传入的整型数组中获取
      * @param  codePoints
      *         Array that is the source of Unicode code points
      *         代码点:unicode 字符表中字符所对应的二进制代码值
@@ -266,17 +266,18 @@ public final class String
         //从偏移处到截取的结尾开始遍历codePoints数组
         for (int i = offset; i < end; i++) {
             int c = codePoints[i];
-            // TODO: 2017/2/3 bmp?
+            //判断c是否是unicode中的bmp字符.可以强制转成char
             if (Character.isBmpCodePoint(c))
                 continue;
+            //判断c是否是有效的代码点,如果是n+1
             else if (Character.isValidCodePoint(c))
                 n++;
             else throw new IllegalArgumentException(Integer.toString(c));
         }
-
+        //分配一个字符数组长度为n
         // Pass 2: Allocate and fill in char[]
         final char[] v = new char[n];
-
+        // TODO: 2017/2/4   Character.toSurrogates?
         for (int i = offset, j = 0; i < end; i++, j++) {
             int c = codePoints[i];
             if (Character.isBmpCodePoint(c))
@@ -389,7 +390,7 @@ public final class String
             throw new StringIndexOutOfBoundsException(length);
         if (offset < 0)
             throw new StringIndexOutOfBoundsException(offset);
-        if (offset > bytes.length - length)
+        if (offset > (bytes.length - length))
             throw new StringIndexOutOfBoundsException(offset + length);
     }
 
@@ -404,6 +405,7 @@ public final class String
      * java.nio.charset.CharsetDecoder} class should be used when more control
      * over the decoding process is required.
      *
+     * 通过指定的字符集字符串,按照offset的位置对字节数组解码length个字节,创建字符串对象
      * @param  bytes
      *         The bytes to be decoded into characters
      *
@@ -430,8 +432,8 @@ public final class String
             throws UnsupportedEncodingException {
         if (charsetName == null)
             throw new NullPointerException("charsetName");
-        checkBounds(bytes, offset, length);
-        this.value = StringCoding.decode(charsetName, bytes, offset, length);
+        checkBounds(bytes, offset, length);//检查参数是否越界
+        this.value = StringCoding.decode(charsetName, bytes, offset, length);//解码成字符数组
     }
 
     /**
@@ -444,7 +446,7 @@ public final class String
      * sequences with this charset's default replacement string.  The {@link
      * java.nio.charset.CharsetDecoder} class should be used when more control
      * over the decoding process is required.
-     *
+     *通过指定的字符集,按照offset的位置对字节数组解码length个字节,创建字符串对象
      * @param  bytes
      *         The bytes to be decoded into characters
      *
@@ -481,7 +483,7 @@ public final class String
      * in the given charset is unspecified.  The {@link
      * java.nio.charset.CharsetDecoder} class should be used when more control
      * over the decoding process is required.
-     *
+     * 通过指定的字符集字符串,对整体的字节数组解码,创建字符串对象
      * @param  bytes
      *         The bytes to be decoded into characters
      *
@@ -509,7 +511,7 @@ public final class String
      * sequences with this charset's default replacement string.  The {@link
      * java.nio.charset.CharsetDecoder} class should be used when more control
      * over the decoding process is required.
-     *
+     * 通过指定的字符集,对整体的字节数组解码,创建字符串对象
      * @param  bytes
      *         The bytes to be decoded into characters
      *
@@ -528,7 +530,7 @@ public final class String
      * bytes using the platform's default charset.  The length of the new
      * {@code String} is a function of the charset, and hence may not be equal
      * to the length of the subarray.
-     *
+     * 使用平台默认的字符集对字节数组解码,从offset位置解码length字节
      * <p> The behavior of this constructor when the given bytes are not valid
      * in the default charset is unspecified.  The {@link
      * java.nio.charset.CharsetDecoder} class should be used when more control
@@ -564,7 +566,7 @@ public final class String
      * in the default charset is unspecified.  The {@link
      * java.nio.charset.CharsetDecoder} class should be used when more control
      * over the decoding process is required.
-     *
+     *使用平台默认的字符集对字节数组解码.
      * @param  bytes
      *         The bytes to be decoded into characters
      *
@@ -584,9 +586,10 @@ public final class String
      *         A {@code StringBuffer}
      */
     public String(StringBuffer buffer) {
-        synchronized(buffer) {
+       synchronized(buffer) {
+             // this.value = buffer.toString().value; 这样是否可以
             this.value = Arrays.copyOf(buffer.getValue(), buffer.length());
-        }
+       }
     }
 
     /**
@@ -971,7 +974,7 @@ public final class String
      * true} if and only if the argument is not {@code null} and is a {@code
      * String} object that represents the same sequence of characters as this
      * object.
-     *
+     * 判断俩个字符串对象是否是相同的,如果想判断字符串对象的内容使用此方法
      * @param  anObject
      *         The object to compare this {@code String} against
      *
@@ -982,16 +985,20 @@ public final class String
      * @see  #equalsIgnoreCase(String)
      */
     public boolean equals(Object anObject) {
+        //step 1 判断俩个字符串引用的地址,是否为同一个字符串对象
         if (this == anObject) {
             return true;
         }
+
         if (anObject instanceof String) {
             String anotherString = (String)anObject;
             int n = value.length;
+            //step 2 判断俩个字符串的长度是否相同
             if (n == anotherString.value.length) {
                 char v1[] = value;
                 char v2[] = anotherString.value;
                 int i = 0;
+                //step 3 循环俩个字符串对象的字符数组,判断字符是否相同
                 while (n-- != 0) {
                     if (v1[i] != v2[i])
                         return false;
@@ -1150,7 +1157,8 @@ public final class String
      * <blockquote><pre>
      * this.length()-anotherString.length()
      * </pre></blockquote>
-     *
+     *  与指定字符串对象比较大小,负数代表小与,0代表等于,正数代表大于.
+     *  按照相同位置的字符进行比较,如果字符都相同,则比较字符串长度.
      * @param   anotherString   the {@code String} to be compared.
      * @return  the value {@code 0} if the argument string is equal to
      *          this string; a value less than {@code 0} if this string
@@ -1190,7 +1198,11 @@ public final class String
      * @since   1.2
      */
     public static final Comparator<String> CASE_INSENSITIVE_ORDER
-                                         = new CaseInsensitiveComparator();
+                                         = new CaseInsensitiveComparator();//忽略大小写的比较器对象
+
+    /**
+     * 静态成员内部类
+     */
     private static class CaseInsensitiveComparator
             implements Comparator<String>, java.io.Serializable {
         // use serialVersionUID from JDK 1.2.2 for interoperability
@@ -1393,7 +1405,7 @@ public final class String
     /**
      * Tests if the substring of this string beginning at the
      * specified index starts with the specified prefix.
-     *
+     * 以字符串开头位置,从指定索引处查找指定子字符串是否存在
      * @param   prefix    the prefix.
      * @param   toffset   where to begin looking in this string.
      * @return  {@code true} if the character sequence represented by the
@@ -1414,6 +1426,7 @@ public final class String
         int po = 0;
         int pc = prefix.value.length;
         // Note: toffset might be near -1>>>1.
+        //索引必须为正数,同时必须小于字符串长度减去子字符串的长度,并且字符串长度必须大于子字符长长度
         if ((toffset < 0) || (toffset > value.length - pc)) {
             return false;
         }
@@ -1427,7 +1440,7 @@ public final class String
 
     /**
      * Tests if this string starts with the specified prefix.
-     *
+     *以字符串开头的第一个字符开始查找指定子字符串是否存在
      * @param   prefix   the prefix.
      * @return  {@code true} if the character sequence represented by the
      *          argument is a prefix of the character sequence represented by
@@ -1444,7 +1457,9 @@ public final class String
 
     /**
      * Tests if this string ends with the specified suffix.
-     *
+     * 测试此字符串是否以指定的字符串后缀结尾,使用startWith方法。
+     * value.length - suffix.value.length 因为如果子字符串是结尾后缀,那么做减法得到的位置一定是子字符串的首个字符的下标。
+     * 所以直接使用startWith不用单独写一个从尾部查找的算法,并且不用提供让用户输入下标的重载方法
      * @param   suffix   the suffix.
      * @return  {@code true} if the character sequence represented by the
      *          argument is a suffix of the character sequence represented by
