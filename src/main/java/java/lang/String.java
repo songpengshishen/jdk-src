@@ -2882,22 +2882,25 @@ public final class String
      * <p>
      * This method may be used to trim whitespace (as defined above) from
      * the beginning and end of a string.
-     *
+     * 去除字符串中的头,尾空格,返回一个字符串.
      * @return  A string whose value is this string, with any leading and trailing white
      *          space removed, or this string if it has no leading or
      *          trailing white space.
      */
     public String trim() {
         int len = value.length;
-        int st = 0;
+        int st = 0;//字符串开头第一个索引
         char[] val = value;    /* avoid getfield opcode */
 
+        //从第一个字符开始判断,是否是空字符,如果是继续判断,得到第一个有效字符的位置
         while ((st < len) && (val[st] <= ' ')) {
             st++;
         }
+        //从末尾字符开始判断,是否是空字符,如果是继续判断,得到最后一个有效字符的位置
         while ((st < len) && (val[len - 1] <= ' ')) {
             len--;
         }
+        //如果开头或结尾有空字符,则subString,否则直接返回当前字符串
         return ((st > 0) || (len < value.length)) ? substring(st, len) : this;
     }
 
@@ -3183,6 +3186,9 @@ public final class String
      * All literal strings and string-valued constant expressions are
      * interned. String literals are defined in section 3.10.5 of the
      * <cite>The Java&trade; Language Specification</cite>.
+     *
+     * 一个初始时为空的字符串池，它由类 String 私有地维护。 当调用 intern 方法时，如果池已经包含一个等于此 String 对象的字符串（该对象由 equals(Object) 方法确定），则返回池中的字符串。否则，将此 String 对象添加到池中，并且返回此 String 对象的引用。
+     * 它遵循对于任何两个字符串 s 和 t，当且仅当 s.equals(t) 为 true 时，s.intern() == t.intern() 才为 true
      *
      * @return  a string that has the same contents as this string, but is
      *          guaranteed to be from a pool of unique strings.

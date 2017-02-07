@@ -42,7 +42,7 @@ import java.lang.annotation.Native;
  * {@link #numberOfTrailingZeros(int) numberOfTrailingZeros}) are
  * based on material from Henry S. Warren, Jr.'s <i>Hacker's
  * Delight</i>, (Addison Wesley, 2002).
- *
+ * int 基本数据类型的包装类,java中int存储是占用4个字节的.
  * @author  Lee Boynton
  * @author  Arthur van Hoff
  * @author  Josh Bloch
@@ -53,12 +53,14 @@ public final class Integer extends Number implements Comparable<Integer> {
     /**
      * A constant holding the minimum value an {@code int} can
      * have, -2<sup>31</sup>.
+     * int 的最小值, -2 31次方  值为-2147483648 存储时以补码存储
      */
     @Native public static final int   MIN_VALUE = 0x80000000;
 
     /**
      * A constant holding the maximum value an {@code int} can
      * have, 2<sup>31</sup>-1.
+     * int 的最大值, 2 31次方-1  值为2147483647 存储时以补码存储
      */
     @Native public static final int   MAX_VALUE = 0x7fffffff;
 

@@ -36,7 +36,7 @@ package java.lang;
  * {@code String} to a {@code boolean}, as well as other
  * constants and methods useful when dealing with a
  * {@code boolean}.
- *
+ * boolean基本数据类型的包装类
  * @author  Arthur van Hoff
  * @since   JDK1.0
  */
@@ -46,18 +46,20 @@ public final class Boolean implements java.io.Serializable,
     /**
      * The {@code Boolean} object corresponding to the primitive
      * value {@code true}.
+     * true对象
      */
     public static final Boolean TRUE = new Boolean(true);
 
     /**
      * The {@code Boolean} object corresponding to the primitive
      * value {@code false}.
+     * false对象
      */
     public static final Boolean FALSE = new Boolean(false);
 
     /**
      * The Class object representing the primitive type boolean.
-     *
+     * 获取布尔的原始基本数据类型
      * @since   JDK1.1
      */
     @SuppressWarnings("unchecked")
@@ -65,7 +67,7 @@ public final class Boolean implements java.io.Serializable,
 
     /**
      * The value of the Boolean.
-     *
+     * boolean类的私有常量值,用来存放当前boolean类的boolean值
      * @serial
      */
     private final boolean value;
@@ -98,7 +100,7 @@ public final class Boolean implements java.io.Serializable,
      * that represents {@code true}.<br>
      * {@code new Boolean("yes")} produces a {@code Boolean} object
      * that represents {@code false}.
-     *
+     * 根据传入的字符串参数创建布尔对象,如果不是null,并且等于true,忽略大小写,为true,否则为false.
      * @param   s   the string to be converted to a {@code Boolean}.
      */
     public Boolean(String s) {
@@ -204,7 +206,7 @@ public final class Boolean implements java.io.Serializable,
     /**
      * Returns a hash code for a {@code boolean} value; compatible with
      * {@code Boolean.hashCode()}.
-     *
+     * true hash值 1231 false hash值1237
      * @param value the value to hash
      * @return a hash code value for a {@code boolean} value.
      * @since 1.8
@@ -240,7 +242,7 @@ public final class Boolean implements java.io.Serializable,
      * <p>
      * If there is no property with the specified name, or if the specified
      * name is empty or null, then {@code false} is returned.
-     *
+     * 获取指定系统属性的布尔值
      * @param   name   the system property name.
      * @return  the {@code boolean} value of the system property.
      * @throws  SecurityException for the same reasons as
