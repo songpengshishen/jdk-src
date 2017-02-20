@@ -67,7 +67,7 @@ public final class Integer extends Number implements Comparable<Integer> {
     /**
      * The {@code Class} instance representing the primitive type
      * {@code int}.
-     *
+     * 获取int原始类型
      * @since   JDK1.1
      */
     @SuppressWarnings("unchecked")
@@ -122,7 +122,7 @@ public final class Integer extends Number implements Comparable<Integer> {
      * <blockquote>
      *  {@code Integer.toString(n, 16).toUpperCase()}
      * </blockquote>
-     *
+     * 将第一个参数i转成radix进制.使用digits内部数组.0,1进制或者大于数组长度则默认使用10进制
      * @param   i       an integer to be converted to a string.
      * @param   radix   the radix to use in the string representation.
      * @return  a string representation of the argument in the specified radix.
