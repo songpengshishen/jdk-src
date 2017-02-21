@@ -74,6 +74,7 @@ public final class Integer extends Number implements Comparable<Integer> {
     public static final Class<Integer>  TYPE = (Class<Integer>) Class.getPrimitiveClass("int");
 
     /**
+     * 数字字符表,数字的下标所以正好对应于值,作为进制转换时用.
      * All possible chars for representing a number as a String
      */
     final static char[] digits = {
@@ -122,30 +123,42 @@ public final class Integer extends Number implements Comparable<Integer> {
      * <blockquote>
      *  {@code Integer.toString(n, 16).toUpperCase()}
      * </blockquote>
-     * 将第一个参数i转成radix进制.使用digits内部数组.0,1进制或者大于数组长度则默认使用10进制
-     * @param   i       an integer to be converted to a string.
-     * @param   radix   the radix to use in the string representation.
+     * 将第一个参数i转成radix进制,并使用字符串输出.使用digits内部数字字符数组.0,1,>36进制默认使用10进制
+     * @param   i       an integer to be converted to a string. 转换的10进制数
+     * @param   radix   the radix to use in the string representation. 进制基数[0-36]
      * @return  a string representation of the argument in the specified radix.
      * @see     Character#MAX_RADIX
      * @see     Character#MIN_RADIX
      */
     public static String toString(int i, int radix) {
+        //当转换的进制不是在[2,36]之间，则按10进制进行转换
+        //其中 public static final int MIN_RADIX = 2;
+        //   public static final int MAX_RADIX = 36;
         if (radix < Character.MIN_RADIX || radix > Character.MAX_RADIX)
             radix = 10;
-
+         //如果是10进制使用toString默认方法进行转换.
         /* Use the faster version */
         if (radix == 10) {
             return toString(i);
         }
-
+        //存放转换后的字符数组 int最多占32位
         char buf[] = new char[33];
+        //判断是否是负数
         boolean negative = (i < 0);
         int charPos = 32;
-
+        //这里统一使用负数进行进制转换,不用在考虑负数
         if (!negative) {
+            //当不是负数，将其转为负数，这里是为了防止数据溢出
+            //若不这么做，当其是负数时，将负数转变为正数，则会发生数据溢出，毕竟int的数据范围是[-2^31, 2^31-1]，当Integer.MIN_VALUE=-2^31转化为正数时，绝对会溢出，防止，若是将Integer.MAX_VALUE=2^31-1转化为负数，就肯定没有数据溢出了。
             i = -i;
         }
-
+        /**
+         * 这里使用负数进行10进制转其他进制的算法,可以省去对负数的判断
+         * 10进制转换算法: 10进制数%进制数取余作为低位数,然后10进制数/进制数得到新的10进制数如果不为0继续上一步,最后得到指定进制数
+         * 注意:这里因为使用负数进行 % /操作所以不能判断小于0,就停止取余操作.而是判断如果10进制负数大于进制数(实际上是低于)就退出
+         * because 当10进制数低于进制数时只会进行最后一次计算,并且余数固定为10进制数(设x,y并且x<y则x%y=x).
+         * 注意负数和正数转换
+         */
         while (i <= -radix) {
             buf[charPos--] = digits[-(i % radix)];
             i = i / radix;
