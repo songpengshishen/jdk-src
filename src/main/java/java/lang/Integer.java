@@ -54,6 +54,8 @@ public final class Integer extends Number implements Comparable<Integer> {
      * A constant holding the minimum value an {@code int} can
      * have, -2<sup>31</sup>.
      * int 的最小值, -2 31次方  值为-2147483648 存储时以补码存储
+     * 最小值减一会变成 MAX_VALUE 因为 int 31位存不下-2147483649
+     * 负溢出得正高
      */
     @Native public static final int   MIN_VALUE = 0x80000000;
 
@@ -61,6 +63,8 @@ public final class Integer extends Number implements Comparable<Integer> {
      * A constant holding the maximum value an {@code int} can
      * have, 2<sup>31</sup>-1.
      * int 的最大值, 2 31次方-1  值为2147483647 存储时以补码存储
+     * 最大值加一会变成 MIN_VALUE 因为 int 31位存不下2147483648
+     * 正溢出得负高
      */
     @Native public static final int   MAX_VALUE = 0x7fffffff;
 
@@ -191,7 +195,7 @@ public final class Integer extends Number implements Comparable<Integer> {
      *
      * <p>The behavior of radixes and the characters used as digits
      * are the same as {@link #toString(int, int) toString}.
-     *
+     * 将第一个参数的值转换成无符号的radix进制字符串
      * @param   i       an integer to be converted to an unsigned string.
      * @param   radix   the radix to use in the string representation.
      * @return  an unsigned string representation of the argument in the specified radix.
@@ -405,17 +409,22 @@ public final class Integer extends Number implements Comparable<Integer> {
      * representation and returned as a string, exactly as if the
      * argument and radix 10 were given as arguments to the {@link
      * #toString(int, int)} method.
-     *
+     * 将值转换为10进制的字符串,注意处理溢出问题.
      * @param   i   an integer to be converted.
      * @return  a string representation of the argument in base&nbsp;10.
      */
     public static String toString(int i) {
+        //这里判断是否是Interge最小值,如果是则直接返回最小值字符串,避免下面转换正数时出现溢出问题
         if (i == Integer.MIN_VALUE)
             return "-2147483648";
+        /**
+         * 获取该数值的字符长度,通过一个sizeTable数组来判断个位数,十位数,百位数,千位数...的长度
+         * @see sizeTable
+         */
         int size = (i < 0) ? stringSize(-i) + 1 : stringSize(i);
-        char[] buf = new char[size];
-        getChars(i, size, buf);
-        return new String(buf, true);
+        char[] buf = new char[size];//创建一个字符数组,长度就是数值长度
+        getChars(i, size, buf);//获取字符
+        return new String(buf, true);//创建字符串,使用共享char数组的方式创建字符串.这里不copy是因为当前char数组的引用变量在方法运行完后就释放了.不会存在多个引用,不必再耗费内存copy
     }
 
     /**
@@ -482,7 +491,9 @@ public final class Integer extends Number implements Comparable<Integer> {
     final static int [] sizeTable = { 9, 99, 999, 9999, 99999, 999999, 9999999,
                                       99999999, 999999999, Integer.MAX_VALUE };
 
-    // Requires positive x
+    // Requires positive x 根据长度table来获取x整数的字符串长度,
+    // 1:个位数占1位,十位数占2位,百位数占3位...2:9,99,999...分别代表个位,10位,百位的最大值.
+    // 3:所以<=9就是1位,等于所在下标+1
     static int stringSize(int x) {
         for (int i=0; ; i++)
             if (x <= sizeTable[i])
@@ -790,6 +801,7 @@ public final class Integer extends Number implements Comparable<Integer> {
      * During VM initialization, java.lang.Integer.IntegerCache.high property
      * may be set and saved in the private system properties in the
      * sun.misc.VM class.
+     * Integer缓存类,使用数组缓存Integer对象,jls规范规定最小值必须为-128,最大值必须>=127
      */
 
     private static class IntegerCache {
@@ -837,6 +849,7 @@ public final class Integer extends Number implements Comparable<Integer> {
      * This method will always cache values in the range -128 to 127,
      * inclusive, and may cache other values outside of this range.
      *
+     * 尝试从IntegerCache中返回Integer对象.如果值不在范围内,就重新创建个
      * @param  i an {@code int} value.
      * @return an {@code Integer} instance representing {@code i}.
      * @since  1.5
@@ -849,7 +862,7 @@ public final class Integer extends Number implements Comparable<Integer> {
 
     /**
      * The value of the {@code Integer}.
-     *
+     * 静态的int值
      * @serial
      */
     private final int value;
@@ -885,6 +898,7 @@ public final class Integer extends Number implements Comparable<Integer> {
     /**
      * Returns the value of this {@code Integer} as a {@code byte}
      * after a narrowing primitive conversion.
+     * 类型强制转换为byte
      * @jls 5.1.3 Narrowing Primitive Conversions
      */
     public byte byteValue() {
@@ -894,6 +908,7 @@ public final class Integer extends Number implements Comparable<Integer> {
     /**
      * Returns the value of this {@code Integer} as a {@code short}
      * after a narrowing primitive conversion.
+     * 类型强制转换为short
      * @jls 5.1.3 Narrowing Primitive Conversions
      */
     public short shortValue() {
@@ -911,6 +926,7 @@ public final class Integer extends Number implements Comparable<Integer> {
     /**
      * Returns the value of this {@code Integer} as a {@code long}
      * after a widening primitive conversion.
+     * 类型强制转换为Long
      * @jls 5.1.2 Widening Primitive Conversions
      * @see Integer#toUnsignedLong(int)
      */
@@ -921,6 +937,7 @@ public final class Integer extends Number implements Comparable<Integer> {
     /**
      * Returns the value of this {@code Integer} as a {@code float}
      * after a widening primitive conversion.
+     * 类型强制转换为float
      * @jls 5.1.2 Widening Primitive Conversions
      */
     public float floatValue() {
@@ -930,6 +947,7 @@ public final class Integer extends Number implements Comparable<Integer> {
     /**
      * Returns the value of this {@code Integer} as a {@code double}
      * after a widening primitive conversion.
+     * 类型强制转换为double
      * @jls 5.1.2 Widening Primitive Conversions
      */
     public double doubleValue() {
