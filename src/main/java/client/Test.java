@@ -7,17 +7,7 @@ public class Test {
 
 
     public static void main(String[] args) {
-        byte b = 0;
-        char c = 'a';
-        short s = 1;
-        int bi = b;
-        int ci = c;
-        int si = s;
-        float bf = bi;
-        System.out.println(bi);
-        System.out.println(ci);
-        System.out.println(si);
-        System.out.println(bf);
+        System.out.println(-(-128) + 127 + 1);
     }
 
 

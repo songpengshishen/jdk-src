@@ -35,7 +35,7 @@ package java.lang;
  * a {@code byte} to a {@code String} and a {@code String} to a {@code
  * byte}, as well as other constants and methods useful when dealing
  * with a {@code byte}.
- *
+ * byte的包装类Byte
  * @author  Nakul Saraiya
  * @author  Joseph D. Darcy
  * @see     Number
@@ -46,23 +46,29 @@ public final class Byte extends Number implements Comparable<Byte> {
     /**
      * A constant holding the minimum value a {@code byte} can
      * have, -2<sup>7</sup>.
+     * -2的7次方一个字节的最小数值
      */
     public static final byte   MIN_VALUE = -128;
 
     /**
      * A constant holding the maximum value a {@code byte} can
      * have, 2<sup>7</sup>-1.
+     * 2的7次方一个自己的最大数值
      */
     public static final byte   MAX_VALUE = 127;
 
     /**
+     * 获取基本数据类型byte的class类
      * The {@code Class} instance representing the primitive type
      * {@code byte}.
      */
     @SuppressWarnings("unchecked")
-    public static final Class<Byte>     TYPE = (Class<Byte>) Class.getPrimitiveClass("byte");
+    public static final Class<Byte> TYPE = (Class<Byte>) Class.getPrimitiveClass("byte");
 
     /**
+     *
+     * 转换指定字节为字符串.
+     * 使用Integer.tostring方法将字节转换为10进制后在转换成字符串
      * Returns a new {@code String} object representing the
      * specified {@code byte}. The radix is assumed to be 10.
      *
@@ -74,12 +80,19 @@ public final class Byte extends Number implements Comparable<Byte> {
         return Integer.toString((int)b, 10);
     }
 
+    /**
+     * 字节数组缓存
+     */
     private static class ByteCache {
         private ByteCache(){}
 
+        /**
+         * 创建一个字节数组长度为256
+         */
         static final Byte cache[] = new Byte[-(-128) + 127 + 1];
 
         static {
+            //初始化字节数组
             for(int i = 0; i < cache.length; i++)
                 cache[i] = new Byte((byte)(i - 128));
         }
@@ -93,7 +106,8 @@ public final class Byte extends Number implements Comparable<Byte> {
      * {@link #Byte(byte)}, as this method is likely to yield
      * significantly better space and time performance since
      * all byte values are cached.
-     *
+     * 通过字节缓存数组{@code ByteCache}中获取字节对象
+     * 公式 value+offset(128)=arrayIndex
      * @param  b a byte value.
      * @return a {@code Byte} instance representing {@code b}.
      * @since  1.5
@@ -397,7 +411,7 @@ public final class Byte extends Number implements Comparable<Byte> {
     /**
      * Returns a hash code for a {@code byte} value; compatible with
      * {@code Byte.hashCode()}.
-     *
+     * 返回当前字节值为hashcode
      * @param value the value to hash
      * @return a hash code value for a {@code byte} value.
      * @since 1.8
@@ -411,7 +425,7 @@ public final class Byte extends Number implements Comparable<Byte> {
      * {@code true} if and only if the argument is not
      * {@code null} and is a {@code Byte} object that
      * contains the same {@code byte} value as this object.
-     *
+     * 当前字节对象是否与指定对象相同,如果指定对象不是字节则直接返回false,否则转换为Byte比较值.
      * @param obj       the object to compare with
      * @return          {@code true} if the objects are the same;
      *                  {@code false} otherwise.
@@ -425,7 +439,7 @@ public final class Byte extends Number implements Comparable<Byte> {
 
     /**
      * Compares two {@code Byte} objects numerically.
-     *
+     * 比较当前字节与另一个字节的大小
      * @param   anotherByte   the {@code Byte} to be compared.
      * @return  the value {@code 0} if this {@code Byte} is
      *          equal to the argument {@code Byte}; a value less than
@@ -446,7 +460,7 @@ public final class Byte extends Number implements Comparable<Byte> {
      * <pre>
      *    Byte.valueOf(x).compareTo(Byte.valueOf(y))
      * </pre>
-     *
+     * 比较俩个字节值的大小
      * @param  x the first {@code byte} to compare
      * @param  y the second {@code byte} to compare
      * @return the value {@code 0} if {@code x == y};
