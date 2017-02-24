@@ -546,7 +546,7 @@ public final class Integer extends Number implements Comparable<Integer> {
      * parseInt("Kona", 10) throws a NumberFormatException
      * parseInt("Kona", 27) returns 411787
      * </pre></blockquote>
-     *
+     * 将数值字符串按照radix进制转换成整数
      * @param      s   the {@code String} containing the integer
      *                  representation to be parsed
      * @param      radix   the radix to be used while parsing {@code s}.
@@ -587,17 +587,20 @@ public final class Integer extends Number implements Comparable<Integer> {
 
         if (len > 0) {
             char firstChar = s.charAt(0);
+            //如果小于0特殊处理第一个字符
             if (firstChar < '0') { // Possible leading "+" or "-"
                 if (firstChar == '-') {
+                    //是负数设置标识符,并设置最小负数值为Integer.MIN_VALUE
                     negative = true;
                     limit = Integer.MIN_VALUE;
                 } else if (firstChar != '+')
                     throw NumberFormatException.forInputString(s);
-
+                //如果只有1个字符,抛出异常因为不能只有+或者-无法转换
                 if (len == 1) // Cannot have lone "+" or "-"
                     throw NumberFormatException.forInputString(s);
                 i++;
             }
+            //为什么要除进制
             multmin = limit / radix;
             while (i < len) {
                 // Accumulating negatively avoids surprises near MAX_VALUE
@@ -1598,7 +1601,7 @@ public final class Integer extends Number implements Comparable<Integer> {
     /**
      * Returns the greater of two {@code int} values
      * as if by calling {@link Math#max(int, int) Math.max}.
-     *
+     * 返回俩个值的最大值
      * @param a the first operand
      * @param b the second operand
      * @return the greater of {@code a} and {@code b}
@@ -1612,7 +1615,7 @@ public final class Integer extends Number implements Comparable<Integer> {
     /**
      * Returns the smaller of two {@code int} values
      * as if by calling {@link Math#min(int, int) Math.min}.
-     *
+     * 返回俩个值的最小值
      * @param a the first operand
      * @param b the second operand
      * @return the smaller of {@code a} and {@code b}

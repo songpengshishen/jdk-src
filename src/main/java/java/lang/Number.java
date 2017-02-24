@@ -45,11 +45,11 @@ package java.lang;
  *
  * See the documentation of a given {@code Number} implementation for
  * conversion details.
- *
+ * JDK中的数值类型类,各种强制转换.
  * @author      Lee Boynton
  * @author      Arthur van Hoff
- * @jls 5.1.2 Widening Primitive Conversions
- * @jls 5.1.3 Narrowing Primitive Conversions
+ * @jls 5.1.2 Widening Primitive Conversions 扩大基本类型转换
+ * @jls 5.1.3 Narrowing Primitive Conversions 窄化基本类型转换
  * @since   JDK1.0
  */
 public abstract class Number implements java.io.Serializable {
