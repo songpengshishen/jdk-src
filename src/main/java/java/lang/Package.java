@@ -105,13 +105,16 @@ import java.lang.annotation.Annotation;
  * java package have the same Package object.  The static methods allow a package
  * to be found by name or the set of all packages known to the current class
  * loader to be found.
+ * package是java包的抽象表示
+ * 该类用来表示一个package实例的模板
+ * 每一个package实例都拥有包名,包的规范名称,规范版本,包的供应商等信息
  *
  * @see ClassLoader#definePackage
  */
 public class Package implements AnnotatedElement {
     /**
      * Return the name of this package.
-     *
+     * 返回包的名字
      * @return  The fully-qualified name of this package as defined in section 6.5.3 of
      *          <cite>The Java&trade; Language Specification</cite>,
      *          for example, {@code java.lang}
@@ -122,6 +125,7 @@ public class Package implements AnnotatedElement {
 
 
     /**
+     * 返回包实现的规范名称
      * Return the title of the specification that this package implements.
      * @return the specification title, null is returned if it is not known.
      */
@@ -130,6 +134,7 @@ public class Package implements AnnotatedElement {
     }
 
     /**
+     * 返回规范版本
      * Returns the version number of the specification
      * that this package implements.
      * This version string must be a sequence of nonnegative decimal
@@ -143,6 +148,7 @@ public class Package implements AnnotatedElement {
     }
 
     /**
+     * 返回包的供应商
      * Return the name of the organization, vendor,
      * or company that owns and maintains the specification
      * of the classes that implement this package.
@@ -153,6 +159,7 @@ public class Package implements AnnotatedElement {
     }
 
     /**
+     * 返回包的实现商
      * Return the title of this package.
      * @return the title of the implementation, null is returned if it is not known.
      */

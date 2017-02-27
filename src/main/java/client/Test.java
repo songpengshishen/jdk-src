@@ -7,7 +7,11 @@ public class Test {
 
 
     public static void main(String[] args) {
-        System.out.println(-(-128) + 127 + 1);
+        Package[] pk = Package.getPackages();
+        for (Package p : pk){
+            System.out.println(p);
+        }
+        Package p1 =  Package.getPackage("client");
     }
 
 
