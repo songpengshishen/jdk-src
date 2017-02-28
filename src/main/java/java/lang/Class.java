@@ -111,7 +111,12 @@ import sun.reflect.misc.ReflectUtil;
  * object.  For example, the type of {@code String.class} is {@code
  * Class<String>}.  Use {@code Class<?>} if the class being modeled is
  * unknown.
- *
+ * Class类是Java类模板.每一个类对象(注意不是普通的对象是由java虚拟机加载class文件后默认创建的)都由Class类来定义.
+ * Class类的实例代表一个运行java应用程序的类和接口,枚举是一个类而注释是一个接口不过它们都属于Class类.
+ * 每个类型维度的数组对象也属于一个类，该类被反射为一个类对象，该对象被同一元素类型和维度数的所有数组对象共享.
+ * 例如String[]数组反射形成String[]Class类对象,每一个String[]数组对象都使用该类对象
+ * 原始的java类型（布尔型，字节，char，int，短，长，浮动，双），和关键字void也表示为类对象。
+ * 类没有公共构造函数。相反，类对象是由java虚拟机自动构造类被加载和调用方法的类装载器的defineclass。
  * @author  unascribed
  * @see     ClassLoader#defineClass(byte[], int, int)
  * @since   JDK1.0
@@ -120,16 +125,22 @@ public final class Class<T> implements java.io.Serializable,
                               GenericDeclaration,
                               Type,
                               AnnotatedElement {
-    private static final int ANNOTATION= 0x00002000;
-    private static final int ENUM      = 0x00004000;
-    private static final int SYNTHETIC = 0x00001000;
 
-    private static native void registerNatives();
+    private static final int ANNOTATION= 0x00002000;//注解int值 ?不知道
+    private static final int ENUM      = 0x00004000;//枚举int值 ?不知道
+    private static final int SYNTHETIC = 0x00001000;//合成?
+
+    private static native void registerNatives();//声明一个本地方法
     static {
+        //静态代码块执行本地方法
         registerNatives();
     }
 
     /*
+     * Class类的私有构造器,只有java虚拟机可以创建类(class)对象
+     * 把构造器设置为私有避免使用类构造器创建Class对象.
+     * 虚拟机加载并初始化好类对象后最后执行这个构造器设置类加载器
+     * 注意:就像普通对象一样,new对象的时候,虚拟机会把对象创建好,并放到堆中最后才执行构造器,在执行到构造器的时候这个对象已经创建完成了.
      * Private constructor. Only the Java Virtual Machine creates Class objects.
      * This constructor is not used and prevents the default constructor being
      * generated.
@@ -141,6 +152,8 @@ public final class Class<T> implements java.io.Serializable,
     }
 
     /**
+     * Class对象ToString方法,调用getName方法输出.
+     * 接口前缀:interface原始类型前缀(基本类型):""类前缀:class
      * Converts the object to a string. The string representation is the
      * string "class" or "interface", followed by a space, and then by the
      * fully qualified name of the class in the format returned by
@@ -176,7 +189,8 @@ public final class Class<T> implements java.io.Serializable,
      * of a type is being generated, modifiers not present on the
      * originating source code or illegal on the originating source
      * code may be present.
-     *
+     * 返回描述此类对象的字符串，包括有关修饰符和类型参数的信息.
+     * 1.8新增方法
      * @return a string describing this {@code Class}, including
      * information about modifiers and type parameters
      *
@@ -213,6 +227,7 @@ public final class Class<T> implements java.io.Serializable,
             if (typeparms.length > 0) {
                 boolean first = true;
                 sb.append('<');
+                //这里很好处理了,累加逗号,除了第一个,其他都先加逗号在加参数类型名,这样最后加完了不会多一个逗号.
                 for(TypeVariable<?> typeparm: typeparms) {
                     if (!first)
                         sb.append(',');
@@ -248,8 +263,10 @@ public final class Class<T> implements java.io.Serializable,
      * <p>
      * A call to {@code forName("X")} causes the class named
      * {@code X} to be initialized.
-     *
-     * @param      className   the fully qualified name of the desired class.
+     * 返回与给定字符串名称相关的类或接口的类对象。调用此方法相当于调用
+     * Class.forName(className, true, currentLoader)
+     * 注意此方法是通过本地方法实现的
+     * @param      className   the fully qualified name of the desired class. 所需类的完全限定名称(包名加类名)
      * @return     the {@code Class} object for the class with the
      *             specified name.
      * @exception LinkageError if the linkage fails
@@ -309,7 +326,9 @@ public final class Class<T> implements java.io.Serializable,
      * method calls the security manager's {@code checkPermission} method
      * with a {@code RuntimePermission("getClassLoader")} permission to
      * ensure it's ok to access the bootstrap class loader.
-     *
+     * 使用给定的类加载器和类全限定名称返回类对象。
+     * 指定的类加载器用于加载类或接口。如果类加载器参数为空，则类将通过引导(根)类加载器加载。初始化参数如果是真的，则初始化类,否则直接返回不初始化。
+     * 使用此方法可以加载并初始化一个类.
      * @param name       fully qualified name of the desired class
      * @param initialize if {@code true} the class will be initialized.
      *                   See Section 12.4 of <em>The Java Language Specification</em>.
@@ -369,6 +388,8 @@ public final class Class<T> implements java.io.Serializable,
      * Constructor.newInstance} method avoids this problem by wrapping
      * any exception thrown by the constructor in a (checked) {@link
      * InvocationTargetException}.
+     * 创建由该类对象表示的类的新实例。例如String.class.newInstance创建一个String实例
+     * 使用默认的无参构造器创建.
      *
      * @return  a newly allocated instance of the class represented by this
      *          object.
@@ -403,13 +424,14 @@ public final class Class<T> implements java.io.Serializable,
         // Constructor lookup
         if (cachedConstructor == null) {
             if (this == Class.class) {
+                //java不允许在程序中创建类对象,只能由java虚拟机创建...,这里判断如果不是Class类对象创建的都是普通实例,如果是则创建的就是类对象.所以抛出异常
                 throw new IllegalAccessException(
                     "Can not call newInstance() on the Class for java.lang.Class"
                 );
             }
             try {
                 Class<?>[] empty = {};
-                final Constructor<T> c = getConstructor0(empty, Member.DECLARED);
+                final Constructor<T> c = getConstructor0(empty, Member.DECLARED);//获取当前类对象的空构造器
                 // Disable accessibility checks on the constructor
                 // since we have to do the security check here anyway
                 // (the stack depth is wrong for the Constructor's
@@ -446,8 +468,8 @@ public final class Class<T> implements java.io.Serializable,
             return null;
         }
     }
-    private volatile transient Constructor<T> cachedConstructor;
-    private volatile transient Class<?>       newInstanceCallerCache;
+    private volatile transient Constructor<T> cachedConstructor; //缓存的类对象中的构造器实例变量 volatile线程可见性变量
+    private volatile transient Class<?>       newInstanceCallerCache;  //缓存的类对象volatile线程可见性变量
 
 
     /**
@@ -474,7 +496,11 @@ public final class Class<T> implements java.io.Serializable,
      * implements this interface; it returns {@code false} otherwise. If
      * this {@code Class} object represents a primitive type, this method
      * returns {@code false}.
-     *
+     * 确定指定对象是否是当前类对象或子类的实例。这种方法是java语言的instanceof运算符动态等值。该方法返回true，
+     * 如果指定对象的争论是非空的，可以转换为代表的这一类对象的引用类型的对象没有提高。否则返回错误。
+     * 具体来说，如果这个类对象表示一个声明类，如果指定的对象参数是表示类（或它的任何子类）的实例，则该方法返回true；
+     * 否则返回false。如果该类对象表示数组类，则如果指定的对象参数可以通过身份转换或扩展的引用转换转换为数组类的对象，则返回true；否则返回false。
+     * 如果这类对象表示一个接口，该方法返回true，如果类或超类的指定对象参数实现此接口；它否则返回false。如果该类对象表示原始类型，则该方法返回false。
      * @param   obj the object to check
      * @return  true if {@code obj} is an instance of this class
      *
@@ -513,7 +539,7 @@ public final class Class<T> implements java.io.Serializable,
     /**
      * Determines if the specified {@code Class} object represents an
      * interface type.
-     *
+     * 当前类对象是否是接口
      * @return  {@code true} if this object represents an interface;
      *          {@code false} otherwise.
      */
@@ -522,7 +548,7 @@ public final class Class<T> implements java.io.Serializable,
 
     /**
      * Determines if this {@code Class} object represents an array class.
-     *
+     * 当前类对象是否是数组
      * @return  {@code true} if this object represents an array class;
      *          {@code false} otherwise.
      * @since   JDK1.1
@@ -544,7 +570,7 @@ public final class Class<T> implements java.io.Serializable,
      * <p> These objects may only be accessed via the following public static
      * final variables, and are the only {@code Class} objects for which
      * this method returns {@code true}.
-     *
+     * 是否是原始类型
      * @return true if and only if this class represents a primitive type
      *
      * @see     Boolean#TYPE
@@ -949,7 +975,7 @@ public final class Class<T> implements java.io.Serializable,
      *
      * <p> The modifier encodings are defined in <em>The Java Virtual Machine
      * Specification</em>, table 4.1.
-     *
+     * 返回该类对象的修饰符包括访问修饰符和static final class enum这些的整数值
      * @return the {@code int} representing the modifiers for this class
      * @see     Modifier
      * @since JDK1.1
@@ -1536,7 +1562,12 @@ public final class Class<T> implements java.io.Serializable,
      *
      * <p> The elements in the returned array are not sorted and are not in any
      * particular order.
-     *
+     * 返回包含字段对象的数组，字段对象反映由该类对象表示的类或接口的所有可访问公共(public)字段。
+     * 1:如果该类对象表示没有可访问公共字段的类或接口，则该方法返回长度为0的数组。
+     * 2:如果这个类对象代表一个类，那么这个方法返回类和其所有父类的公共字段。
+     * 3:如果这类对象表示一个接口，那么这个方法返回的接口和它所有的超接口等。
+     * 4:如果这类对象代表一阵列类型，原始类型，或无效，那么这个方法的回归年长度0阵列。
+     * 返回数组中的元素没有排序，并且没有任何特定的顺序。
      * @return the array of {@code Field} objects representing the
      *         public fields
      * @throws SecurityException

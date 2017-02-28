@@ -1,19 +1,31 @@
 package client;
 
+import java.lang.reflect.Field;
+
 /**
  *
  */
-public class Test {
+public class Test<T> {
+
+    public String name;
+    public int age;
 
 
-    public static void main(String[] args) {
-        Package[] pk = Package.getPackages();
-        for (Package p : pk){
-            System.out.println(p);
+    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+        Field[] fields = Test0.class.getFields();
+        int i = 0;
+        while (fields.length>i){
+            System.out.println(fields[i++]);
         }
-        Package p1 =  Package.getPackage("client");
+
+
     }
 
+
+
+    public static class Test0 extends Test{
+          public char sex;
+    }
 
     private static int reverse(int i){
           String str =  Integer.toString(i);
