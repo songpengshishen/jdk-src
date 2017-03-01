@@ -90,9 +90,13 @@ import java.util.function.UnaryOperator;
  * <p>This interface is a member of the
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
  * Java Collections Framework</a>.
- *
+ * 这是一个有序集合接口（也称为序列）。该接口的实现集合列表中的每个元素的位置都有精确的控制。用户可以通过其整数索引访问元素，并在列表中搜索元素。
+ * 与普通集合不同，这个列表集合通常允许重复元素。更正式，列表通常允许元素E1和E2，E1对。等于（E2），他们通常允许NULL值。
+ * List接口提供了一个特殊的迭代器，叫做ListIterator，允许元素的插入和替换，而且除了正常的操作双向迭代器接口提供访问。提供了一种方法，以获取从列表中指定位置开始的列表迭代器。
+ * List接口提供了两种搜索指定对象的方法。从性能的角度来看，这些方法应谨慎使用。在许多实现中，他们将执行昂贵的线性搜索。
+ * List接口提供了两种方法，可以有效地在指定下标处插入和删除列表中任意一个的多个元素。
+ * 此接口是java集合框架中的一员。
  * @param <E> the type of elements in this list
- *
  * @author  Josh Bloch
  * @author  Neal Gafter
  * @see Collection
@@ -115,14 +119,16 @@ public interface List<E> extends Collection<E> {
      * Returns the number of elements in this list.  If this list contains
      * more than <tt>Integer.MAX_VALUE</tt> elements, returns
      * <tt>Integer.MAX_VALUE</tt>.
-     *
+     * 同Collection
+     * @see Collection#size()
      * @return the number of elements in this list
      */
     int size();
 
     /**
      * Returns <tt>true</tt> if this list contains no elements.
-     *
+     * 同Collection
+     * @see Collection#isEmpty()
      * @return <tt>true</tt> if this list contains no elements
      */
     boolean isEmpty();
@@ -132,7 +138,8 @@ public interface List<E> extends Collection<E> {
      * More formally, returns <tt>true</tt> if and only if this list contains
      * at least one element <tt>e</tt> such that
      * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>.
-     *
+     * 同Collection
+     * @see Collection#contains(Object)
      * @param o element whose presence in this list is to be tested
      * @return <tt>true</tt> if this list contains the specified element
      * @throws ClassCastException if the type of the specified element
@@ -146,7 +153,8 @@ public interface List<E> extends Collection<E> {
 
     /**
      * Returns an iterator over the elements in this list in proper sequence.
-     *
+     * 同Collection
+     * @see Collection#iterator()
      * @return an iterator over the elements in this list in proper sequence
      */
     Iterator<E> iterator();
@@ -162,7 +170,8 @@ public interface List<E> extends Collection<E> {
      *
      * <p>This method acts as bridge between array-based and collection-based
      * APIs.
-     *
+     * 同Collection
+     * @see Collection#toArray()
      * @return an array containing all of the elements in this list in proper
      *         sequence
      * @see Arrays#asList(Object[])
@@ -198,7 +207,8 @@ public interface List<E> extends Collection<E> {
      *
      * Note that <tt>toArray(new Object[0])</tt> is identical in function to
      * <tt>toArray()</tt>.
-     *
+     * 同Collection
+     * @see Collection#toArray()
      * @param a the array into which the elements of this list are to
      *          be stored, if it is big enough; otherwise, a new array of the
      *          same runtime type is allocated for this purpose.
@@ -394,7 +404,7 @@ public interface List<E> extends Collection<E> {
      * If the list's list-iterator does not support the {@code set} operation
      * then an {@code UnsupportedOperationException} will be thrown when
      * replacing the first element.
-     *
+     * 使用@{UnaryOperator运算符操作替换此列表集合中的每个元素,1.8新增的
      * @param operator the operator to apply to each element
      * @throws UnsupportedOperationException if this list is unmodifiable.
      *         Implementations may throw this exception if an element

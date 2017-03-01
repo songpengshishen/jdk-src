@@ -120,6 +120,10 @@ import java.util.stream.StreamSupport;
  * synchronization protocol.  If a {@code Collection} implementation has a
  * specific synchronization protocol, then it must override default
  * implementations to apply that protocol.
+ * JAVA集合层次结构中的根接口。JAVA集合代表一组类与特定的数据结构相对应,JAVA集合对数据结构进行了抽奖和封装,隐藏掉复杂的实现细节,方便程序员使用。
+ * JAVA中有些集合允许重复元素，有些则不允许重复元素。有些是有序和无序的。
+ * 这个根接口提供更具体的子接口设置和列表的实现。此接口通常用于传递集合，并在需要最大通用性的地方操作它们。
+ * 也可以把这个接口理解为数据结构ADT
  *
  * @param <E> the type of elements in this collection
  *
@@ -145,6 +149,7 @@ public interface Collection<E> extends Iterable<E> {
     // Query Operations
 
     /**
+     * 返回此集合中元素的数目。如果这个集合包含多与integer.max_value元素，返回integer.max_value。
      * Returns the number of elements in this collection.  If this collection
      * contains more than <tt>Integer.MAX_VALUE</tt> elements, returns
      * <tt>Integer.MAX_VALUE</tt>.
@@ -154,13 +159,14 @@ public interface Collection<E> extends Iterable<E> {
     int size();
 
     /**
+     * 判断这个集合是否为空
      * Returns <tt>true</tt> if this collection contains no elements.
-     *
      * @return <tt>true</tt> if this collection contains no elements
      */
     boolean isEmpty();
 
     /**
+     * 如果此集合包含指定元素，则返回true。更正式地，返回true，当且仅当此集合包含至少一个元素E这样的（O = = null？E = =零：o.equals（E））。
      * Returns <tt>true</tt> if this collection contains the specified element.
      * More formally, returns <tt>true</tt> if and only if this collection
      * contains at least one element <tt>e</tt> such that
@@ -179,6 +185,8 @@ public interface Collection<E> extends Iterable<E> {
     boolean contains(Object o);
 
     /**
+     *
+     * 返回集合的迭代器。对于返回元素的顺序没有任何保证（除非这个集合是某些类提供担保的实例）。
      * Returns an iterator over the elements in this collection.  There are no
      * guarantees concerning the order in which the elements are returned
      * (unless this collection is an instance of some class that provides a
@@ -201,7 +209,9 @@ public interface Collection<E> extends Iterable<E> {
      *
      * <p>This method acts as bridge between array-based and collection-based
      * APIs.
-     *
+     * 返回包含此集合中所有元素的数组。如果此集合对其迭代器返回的元素的顺序有任何保证，则该方法必须以相同的顺序返回元素。
+     * 返回的数组将是“安全的”，因为没有对此数组的引用。换句话说，这个方法必须分配一个新的数组，即使这个集合是由数组支持的）。因此，调用者可以自由地修改返回的数组。
+     * 此方法作为基于数组和基于集合的API之间的桥梁。
      * @return an array containing all of the elements in this collection
      */
     Object[] toArray();
@@ -238,6 +248,10 @@ public interface Collection<E> extends Iterable<E> {
      *
      * Note that <tt>toArray(new Object[0])</tt> is identical in function to
      * <tt>toArray()</tt>.
+     * 返回包含此集合中所有元素的数组；返回数组的运行时类型是指定数组的。如果集合符合指定的数组，则返回。否则，将用指定数组的运行时类型和此集合的大小分配新数组。
+     * 如果此集合适合于指定的数组，且具有备用空间（即数组具有比此集合更多的元素），则紧接在集合结束后的数组中的元素将设置为null。（仅当调用方知道此集合不包含任何空元素）时，确定此集合的长度是有用的。）
+     * 如果此集合对其迭代器返回的元素的顺序有任何保证，则该方法必须以相同的顺序返回元素。
+     * 像toarray()方法，该方法作为之间的桥梁，基于阵列和基于集合API。此外，这种方法允许精确控制的输出数组的运行时类型，并且，在某些情况下，可以使用，以节省分配成本。
      *
      * @param <T> the runtime type of the array to contain the collection
      * @param a the array into which the elements of this collection are to be
@@ -271,7 +285,9 @@ public interface Collection<E> extends Iterable<E> {
      * an exception (rather than returning <tt>false</tt>).  This preserves
      * the invariant that a collection always contains the specified element
      * after this call returns.
-     *
+     * 确保此集合包含指定元素（可选操作）。如果此集合由于调用而更改，则返回true。（如果此集合不允许重复并已包含指定的元素）返回false。
+     * 支持此操作的集合可能会限制哪些元素可以添加到该集合中。特别是，一些集合将拒绝添加null元素，而其他将对可能添加的元素类型施加限制。集合类应该清楚地在文档中指定任何可能添加的元素的限制。
+     * 如果集合拒绝添加任何特定的元素，除了它已经包含元素之外，它必须抛出一个异常（而不是返回false）。这保留了该调用返回后集合始终包含指定元素的不变量。
      * @param e element whose presence in this collection is to be ensured
      * @return <tt>true</tt> if this collection changed as a result of the
      *         call
@@ -296,7 +312,7 @@ public interface Collection<E> extends Iterable<E> {
      * this collection contains one or more such elements.  Returns
      * <tt>true</tt> if this collection contained the specified element (or
      * equivalently, if this collection changed as a result of the call).
-     *
+     * 如果集合存在，则从集合中移除指定元素的单个实例（可选操作）。，
      * @param o element to be removed from this collection, if present
      * @return <tt>true</tt> if an element was removed as a result of this call
      * @throws ClassCastException if the type of the specified element
@@ -316,7 +332,7 @@ public interface Collection<E> extends Iterable<E> {
     /**
      * Returns <tt>true</tt> if this collection contains all of the elements
      * in the specified collection.
-     *
+     * 如果这个集合包含了指定集合的所有元素
      * @param  c collection to be checked for containment in this collection
      * @return <tt>true</tt> if this collection contains all of the elements
      *         in the specified collection
@@ -340,7 +356,7 @@ public interface Collection<E> extends Iterable<E> {
      * (This implies that the behavior of this call is undefined if the
      * specified collection is this collection, and this collection is
      * nonempty.)
-     *
+     * 将指定集合中的所有元素添加到此集合只不过
      * @param c collection containing elements to be added to this collection
      * @return <tt>true</tt> if this collection changed as a result of the call
      * @throws UnsupportedOperationException if the <tt>addAll</tt> operation
@@ -364,7 +380,7 @@ public interface Collection<E> extends Iterable<E> {
      * specified collection (optional operation).  After this call returns,
      * this collection will contain no elements in common with the specified
      * collection.
-     *
+     * 删除包含在指定集合中的所有集合元素（可选操作）。此调用返回后，此集合将不包含与指定集合共同的元素。
      * @param c collection containing elements to be removed from this collection
      * @return <tt>true</tt> if this collection changed as a result of the
      *         call
@@ -385,6 +401,8 @@ public interface Collection<E> extends Iterable<E> {
     boolean removeAll(Collection<?> c);
 
     /**
+     *
+     * 按照给定的过滤器规则来删除集合中的元素。
      * Removes all of the elements of this collection that satisfy the given
      * predicate.  Errors or runtime exceptions thrown during iteration or by
      * the predicate are relayed to the caller.
@@ -424,7 +442,7 @@ public interface Collection<E> extends Iterable<E> {
      * specified collection (optional operation).  In other words, removes from
      * this collection all of its elements that are not contained in the
      * specified collection.
-     *
+     * 仅保留此集合中包含在指定集合中的元素（可选操作）。换句话说，从该集合中移除不包含在指定集合中的所有元素。
      * @param c collection containing elements to be retained in this collection
      * @return <tt>true</tt> if this collection changed as a result of the call
      * @throws UnsupportedOperationException if the <tt>retainAll</tt> operation
@@ -446,7 +464,7 @@ public interface Collection<E> extends Iterable<E> {
     /**
      * Removes all of the elements from this collection (optional operation).
      * The collection will be empty after this method returns.
-     *
+     * 删除此集合中的所有元素（可选操作）。此方法返回后集合将为空。
      * @throws UnsupportedOperationException if the <tt>clear</tt> operation
      *         is not supported by this collection
      */
@@ -479,7 +497,7 @@ public interface Collection<E> extends Iterable<E> {
      * is compared to any list or set.  (By the same logic, it is not possible
      * to write a class that correctly implements both the <tt>Set</tt> and
      * <tt>List</tt> interfaces.)
-     *
+     * 将指定对象与此集合比较相等。
      * @param o object to be compared for equality with this collection
      * @return <tt>true</tt> if the specified object is equal to this
      * collection
@@ -499,7 +517,7 @@ public interface Collection<E> extends Iterable<E> {
      * to satisfy the general contract for the <tt>Object.hashCode</tt> method.
      * In particular, <tt>c1.equals(c2)</tt> implies that
      * <tt>c1.hashCode()==c2.hashCode()</tt>.
-     *
+     * 返回此集合的哈希代码值
      * @return the hash code value for this collection
      *
      * @see Object#hashCode()
@@ -545,7 +563,10 @@ public interface Collection<E> extends Iterable<E> {
      * @implNote
      * The created {@code Spliterator} additionally reports
      * {@link Spliterator#SUBSIZED}.
-     *
+     * 创建此集合中的元素的Spliterator.
+     * Spliterator是特殊的迭代器,可以理解为是分片迭代器.
+     * 我们可以将集合的元素分割成多份，分别交于不于的线程去遍历，以提高效率.
+     * 该方法是1.8新增的
      * <p>If a spliterator covers no elements then the reporting of additional
      * characteristic values, beyond that of {@code SIZED} and {@code SUBSIZED},
      * does not aid clients to control, specialize or simplify computation.
