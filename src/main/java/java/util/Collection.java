@@ -248,7 +248,7 @@ public interface Collection<E> extends Iterable<E> {
      *
      * Note that <tt>toArray(new Object[0])</tt> is identical in function to
      * <tt>toArray()</tt>.
-     * 返回包含此集合中所有元素的数组；返回数组的运行时类型是指定数组的。如果集合符合指定的数组，则返回。否则，将用指定数组的运行时类型和此集合的大小分配新数组。
+     * 返回此集合中所有元素到指定数组中,返回数组的运行时类型是指定数组的。如果集合符合指定的数组，则返回。否则，将用指定数组的运行时类型和此集合的大小分配新数组。
      * 如果此集合适合于指定的数组，且具有备用空间（即数组具有比此集合更多的元素），则紧接在集合结束后的数组中的元素将设置为null。（仅当调用方知道此集合不包含任何空元素）时，确定此集合的长度是有用的。）
      * 如果此集合对其迭代器返回的元素的顺序有任何保证，则该方法必须以相同的顺序返回元素。
      * 像toarray()方法，该方法作为之间的桥梁，基于阵列和基于集合API。此外，这种方法允许精确控制的输出数组的运行时类型，并且，在某些情况下，可以使用，以节省分配成本。
@@ -594,7 +594,7 @@ public interface Collection<E> extends Iterable<E> {
      * @implSpec
      * The default implementation creates a sequential {@code Stream} from the
      * collection's {@code Spliterator}.
-     *
+     * 返回当前集合的Stream迭代器
      * @return a sequential {@code Stream} over the elements in this collection
      * @since 1.8
      */
@@ -614,7 +614,7 @@ public interface Collection<E> extends Iterable<E> {
      * @implSpec
      * The default implementation creates a parallel {@code Stream} from the
      * collection's {@code Spliterator}.
-     *
+     * 返回一个集合的并行的parallel
      * @return a possibly parallel {@code Stream} over the elements in this
      * collection
      * @since 1.8

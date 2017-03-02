@@ -51,7 +51,10 @@ package java.util;
  * This class is a member of the
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
  * Java Collections Framework</a>.
- *
+ * 这个类提供了一个集合接口的基本抽象实现对于一些通用方法的实现,从而可以让Collection的实现类只负责自己的方法实现。
+ * 程序员应根据集合接口规范中的建议，一般提供空（无参数）和集合构造函数。
+ * 这个类中的每个非抽象方法的文档详细描述了它的实现。这些方法可以被重写如果集合采取了更有效的实现。
+ * 这个类是java集合框架中的一员。
  * @author  Josh Bloch
  * @author  Neal Gafter
  * @see Collection
@@ -60,6 +63,7 @@ package java.util;
 
 public abstract class AbstractCollection<E> implements Collection<E> {
     /**
+     * 空构造器
      * Sole constructor.  (For invocation by subclass constructors, typically
      * implicit.)
      */
@@ -69,17 +73,21 @@ public abstract class AbstractCollection<E> implements Collection<E> {
     // Query Operations
 
     /**
+     * 返回一个集合的迭代器
      * Returns an iterator over the elements contained in this collection.
-     *
      * @return an iterator over the elements contained in this collection
      */
     public abstract Iterator<E> iterator();
 
+    /**
+     * 返回当前集合的长度,元素的个数.
+     * @return
+     */
     public abstract int size();
 
     /**
      * {@inheritDoc}
-     *
+     * 当前集合是否为空,由抽象集合类实现
      * <p>This implementation returns <tt>size() == 0</tt>.
      */
     public boolean isEmpty() {
@@ -88,7 +96,7 @@ public abstract class AbstractCollection<E> implements Collection<E> {
 
     /**
      * {@inheritDoc}
-     *
+     * 判断当前元素是否在集合中存在,使用迭代器来迭代
      * <p>This implementation iterates over the elements in the collection,
      * checking each element in turn for equality with the specified element.
      *
@@ -121,7 +129,8 @@ public abstract class AbstractCollection<E> implements Collection<E> {
      * concurrent modification during iteration.  The {@code size} method is
      * called only as an optimization hint; the correct result is returned
      * even if the iterator returns a different number of elements.
-     *
+     * 将集合转换为数组返回.数组一个重新分配的安全数组.我们要保证数组和集合是对应上的,集合的大小应该是和数组一致.
+     * 如果发现集合元素少于数组的长度了,则修剪重新分配返回。如果大于则调用finishToArray(),否则直接返回即可.
      * <p>This method is equivalent to:
      *
      *  <pre> {@code
@@ -157,7 +166,6 @@ public abstract class AbstractCollection<E> implements Collection<E> {
      * concurrent modification during iteration.  The {@code size} method is
      * called only as an optimization hint; the correct result is returned
      * even if the iterator returns a different number of elements.
-     *
      * <p>This method is equivalent to:
      *
      *  <pre> {@code
@@ -211,7 +219,8 @@ public abstract class AbstractCollection<E> implements Collection<E> {
      * Reallocates the array being used within toArray when the iterator
      * returned more elements than expected, and finishes filling it from
      * the iterator.
-     *
+     * 如果当前迭代器还有数据,数组也已经填满则扩充数组大小,分配一个新数组,然后将迭代器的数据从老数组的末尾开始填充到新数组中
+     * 最后判断如果数组正好全部填充完毕(i==r.length),则直接返回新数组,否则进行修剪返回一个新数组.保证数组是占满的(都有元素)
      * @param r the array, replete with previously stored elements
      * @param it the in-progress iterator over this collection
      * @return array containing the elements in the given array, plus any

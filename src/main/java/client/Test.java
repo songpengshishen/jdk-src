@@ -1,6 +1,8 @@
 package client;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -12,11 +14,8 @@ public class Test<T> {
 
 
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-        Field[] fields = Test0.class.getFields();
-        int i = 0;
-        while (fields.length>i){
-            System.out.println(fields[i++]);
-        }
+
+
 
 
     }

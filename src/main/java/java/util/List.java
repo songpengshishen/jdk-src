@@ -233,7 +233,8 @@ public interface List<E> extends Collection<E> {
      * restrictions on the type of elements that may be added.  List
      * classes should clearly specify in their documentation any restrictions
      * on what elements may be added.
-     *
+     * 同collection
+     * @see Collection#add(Object)
      * @param e element to be appended to this list
      * @return <tt>true</tt> (as specified by {@link Collection#add})
      * @throws UnsupportedOperationException if the <tt>add</tt> operation
@@ -256,7 +257,8 @@ public interface List<E> extends Collection<E> {
      * (if such an element exists).  Returns <tt>true</tt> if this list
      * contained the specified element (or equivalently, if this list changed
      * as a result of the call).
-     *
+     * 同Collection
+     * @see Collection#remove(Object)
      * @param o element to be removed from this list, if present
      * @return <tt>true</tt> if this list contained the specified element
      * @throws ClassCastException if the type of the specified element
@@ -276,7 +278,8 @@ public interface List<E> extends Collection<E> {
     /**
      * Returns <tt>true</tt> if this list contains all of the elements of the
      * specified collection.
-     *
+     * 同Collection
+     * @see Collection#containsAll(Collection)
      * @param  c collection to be checked for containment in this list
      * @return <tt>true</tt> if this list contains all of the elements of the
      *         specified collection
@@ -300,7 +303,8 @@ public interface List<E> extends Collection<E> {
      * operation is undefined if the specified collection is modified while
      * the operation is in progress.  (Note that this will occur if the
      * specified collection is this list, and it's nonempty.)
-     *
+     * 同Collection
+     * @see Collection#addAll(Collection)
      * @param c collection containing elements to be added to this list
      * @return <tt>true</tt> if this list changed as a result of the call
      * @throws UnsupportedOperationException if the <tt>addAll</tt> operation
@@ -326,7 +330,8 @@ public interface List<E> extends Collection<E> {
      * undefined if the specified collection is modified while the
      * operation is in progress.  (Note that this will occur if the specified
      * collection is this list, and it's nonempty.)
-     *
+     * 同Collection
+     * @see Collection#addAll(Collection)
      * @param index index at which to insert the first element from the
      *              specified collection
      * @param c collection containing elements to be added to this list
@@ -348,7 +353,8 @@ public interface List<E> extends Collection<E> {
     /**
      * Removes from this list all of its elements that are contained in the
      * specified collection (optional operation).
-     *
+     * 同Collection
+     * @see Collection#removeAll(Collection)
      * @param c collection containing elements to be removed from this list
      * @return <tt>true</tt> if this list changed as a result of the call
      * @throws UnsupportedOperationException if the <tt>removeAll</tt> operation
@@ -370,7 +376,8 @@ public interface List<E> extends Collection<E> {
      * specified collection (optional operation).  In other words, removes
      * from this list all of its elements that are not contained in the
      * specified collection.
-     *
+     * 同Collection
+     * @see Collection#retainAll(Collection)
      * @param c collection containing elements to be retained in this list
      * @return <tt>true</tt> if this list changed as a result of the call
      * @throws UnsupportedOperationException if the <tt>retainAll</tt> operation
@@ -468,7 +475,7 @@ public interface List<E> extends Collection<E> {
      * Sorting and Information Theoretic Complexity", in Proceedings of the
      * Fourth Annual ACM-SIAM Symposium on Discrete Algorithms, pp 467-474,
      * January 1993.
-     *
+     * 使用比较器对集合中的所有元素进行排序
      * @param c the {@code Comparator} used to compare list elements.
      *          A {@code null} value indicates that the elements'
      *          {@linkplain Comparable natural ordering} should be used
@@ -496,7 +503,8 @@ public interface List<E> extends Collection<E> {
     /**
      * Removes all of the elements from this list (optional operation).
      * The list will be empty after this call returns.
-     *
+     * 同Collection
+     * @see Collection#clear()
      * @throws UnsupportedOperationException if the <tt>clear</tt> operation
      *         is not supported by this list
      */
@@ -515,7 +523,8 @@ public interface List<E> extends Collection<E> {
      * equal if they contain the same elements in the same order.  This
      * definition ensures that the equals method works properly across
      * different implementations of the <tt>List</tt> interface.
-     *
+     * 同Collection
+     * @see Collection#equals(Object)
      * @param o the object to be compared for equality with this list
      * @return <tt>true</tt> if the specified object is equal to this list
      */
@@ -533,7 +542,8 @@ public interface List<E> extends Collection<E> {
      * <tt>list1.hashCode()==list2.hashCode()</tt> for any two lists,
      * <tt>list1</tt> and <tt>list2</tt>, as required by the general
      * contract of {@link Object#hashCode}.
-     *
+     * 同Collection
+     * @see Collection#hashCode()
      * @return the hash code value for this list
      * @see Object#equals(Object)
      * @see #equals(Object)
@@ -545,7 +555,7 @@ public interface List<E> extends Collection<E> {
 
     /**
      * Returns the element at the specified position in this list.
-     *
+     * 返回列表中指定位置的元素。
      * @param index index of the element to return
      * @return the element at the specified position in this list
      * @throws IndexOutOfBoundsException if the index is out of range
@@ -556,7 +566,7 @@ public interface List<E> extends Collection<E> {
     /**
      * Replaces the element at the specified position in this list with the
      * specified element (optional operation).
-     *
+     * 用指定元素替换此列表中指定位置的元素（可选操作）。
      * @param index index of the element to replace
      * @param element element to be stored at the specified position
      * @return the element previously at the specified position
@@ -578,7 +588,7 @@ public interface List<E> extends Collection<E> {
      * (optional operation).  Shifts the element currently at that position
      * (if any) and any subsequent elements to the right (adds one to their
      * indices).
-     *
+     * 将元素插入到集合的指定位置上,这个操作会触发该元素后的元素的后移.这个操作是为了保证顺序,比较是有序集合列表。
      * @param index index at which the specified element is to be inserted
      * @param element element to be inserted
      * @throws UnsupportedOperationException if the <tt>add</tt> operation
@@ -599,7 +609,7 @@ public interface List<E> extends Collection<E> {
      * operation).  Shifts any subsequent elements to the left (subtracts one
      * from their indices).  Returns the element that was removed from the
      * list.
-     *
+     * 删除此列表中指定位置的元素（可选操作）。所有后续元素左移（下标减1）。返回从列表中移除的元素。
      * @param index the index of the element to be removed
      * @return the element previously at the specified position
      * @throws UnsupportedOperationException if the <tt>remove</tt> operation
@@ -618,7 +628,7 @@ public interface List<E> extends Collection<E> {
      * More formally, returns the lowest index <tt>i</tt> such that
      * <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt>,
      * or -1 if there is no such index.
-     *
+     * 返回此列表中指定元素的第一次出现的索引，或者如果该列表不包含元素，则返回-1。
      * @param o element to search for
      * @return the index of the first occurrence of the specified element in
      *         this list, or -1 if this list does not contain the element
@@ -637,7 +647,7 @@ public interface List<E> extends Collection<E> {
      * More formally, returns the highest index <tt>i</tt> such that
      * <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt>,
      * or -1 if there is no such index.
-     *
+     * 返回此列表中指定元素的最后一次出现的索引，或者如果该列表不包含元素，则返回-1。
      * @param o element to search for
      * @return the index of the last occurrence of the specified element in
      *         this list, or -1 if this list does not contain the element
@@ -656,7 +666,7 @@ public interface List<E> extends Collection<E> {
     /**
      * Returns a list iterator over the elements in this list (in proper
      * sequence).
-     *
+     * 返回列表中元素的列表迭代器（按适当的顺序）。
      * @return a list iterator over the elements in this list (in proper
      *         sequence)
      */
@@ -669,7 +679,7 @@ public interface List<E> extends Collection<E> {
      * returned by an initial call to {@link ListIterator#next next}.
      * An initial call to {@link ListIterator#previous previous} would
      * return the element with the specified index minus one.
-     *
+     * 返回列表中元素（按适当顺序）的列表迭代器，从列表中指定的位置开始。
      * @param index index of the first element to be returned from the
      *        list iterator (by a call to {@link ListIterator#next next})
      * @return a list iterator over the elements in this list (in proper
@@ -707,7 +717,7 @@ public interface List<E> extends Collection<E> {
      * any way other than via the returned list.  (Structural modifications are
      * those that change the size of this list, or otherwise perturb it in such
      * a fashion that iterations in progress may yield incorrect results.)
-     *
+     * 返回指定位置从fromIndex到toInde处的集合.类似于从当前集合中截取了子字符串
      * @param fromIndex low endpoint (inclusive) of the subList
      * @param toIndex high endpoint (exclusive) of the subList
      * @return a view of the specified range within this list
