@@ -48,7 +48,8 @@ package java.util;
  * <p>This interface is a member of the
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
  * Java Collections Framework</a>.
- *
+ * 基于List接口的迭代器,允许程序在任一方向遍历列表，在迭代期间修改列表，并在列表中获取迭代器的当前位置。
+ * 此接口是java集合框架中的一员。
  * @author  Josh Bloch
  * @see Collection
  * @see List
@@ -65,7 +66,7 @@ public interface ListIterator<E> extends Iterator<E> {
      * traversing the list in the forward direction. (In other words,
      * returns {@code true} if {@link #next} would return an element rather
      * than throwing an exception.)
-     *
+     * 如果该列表迭代器在向前方向遍历列表时具有更多元素，则返回true。（换句话说，如果next()会返回一个元素而不是抛出一个异常，返回true）
      * @return {@code true} if the list iterator has more elements when
      *         traversing the list in the forward direction
      */
@@ -77,7 +78,7 @@ public interface ListIterator<E> extends Iterator<E> {
      * or intermixed with calls to {@link #previous} to go back and forth.
      * (Note that alternating calls to {@code next} and {@code previous}
      * will return the same element repeatedly.)
-     *
+     * 返回列表中的当前元素，并向前移动光标位置。这种方法可以重复调用遍历列表，或混合调用previous()来回要走。（注意交替调用下一个和上一个将返回相同的元素反复。）
      * @return the next element in the list
      * @throws NoSuchElementException if the iteration has no next element
      */
@@ -88,7 +89,7 @@ public interface ListIterator<E> extends Iterator<E> {
      * traversing the list in the reverse direction.  (In other words,
      * returns {@code true} if {@link #previous} would return an element
      * rather than throwing an exception.)
-     *
+     * 如果列表迭代器在反向遍历列表(向上遍历)时具有更多元素，则返回true。（换句话说，如果previous()会返回一个元素而不是抛出一个异常，返回true）
      * @return {@code true} if the list iterator has more elements when
      *         traversing the list in the reverse direction
      */
@@ -101,7 +102,7 @@ public interface ListIterator<E> extends Iterator<E> {
      * {@link #next} to go back and forth.  (Note that alternating calls
      * to {@code next} and {@code previous} will return the same
      * element repeatedly.)
-     *
+     *  将光标位置向后移动,返回列表中当前元素的上一个元素，这种方法可以重复调用遍历列表时，或在调用next()来回要走。（注意交替调用下一个和上一个将返回相同的元素反复。）
      * @return the previous element in the list
      * @throws NoSuchElementException if the iteration has no previous
      *         element
@@ -112,7 +113,7 @@ public interface ListIterator<E> extends Iterator<E> {
      * Returns the index of the element that would be returned by a
      * subsequent call to {@link #next}. (Returns list size if the list
      * iterator is at the end of the list.)
-     *
+     * 返回下一个元素的位置。（如果列表迭代器位于列表的结尾）返回列表大小。
      * @return the index of the element that would be returned by a
      *         subsequent call to {@code next}, or list size if the list
      *         iterator is at the end of the list
@@ -123,7 +124,7 @@ public interface ListIterator<E> extends Iterator<E> {
      * Returns the index of the element that would be returned by a
      * subsequent call to {@link #previous}. (Returns -1 if the list
      * iterator is at the beginning of the list.)
-     *
+     * 返回当前元素上一个元素的位置。（如果列表迭代器位于列表的开头）返回列表开头1。
      * @return the index of the element that would be returned by a
      *         subsequent call to {@code previous}, or -1 if the list
      *         iterator is at the beginning of the list
@@ -139,7 +140,7 @@ public interface ListIterator<E> extends Iterator<E> {
      * only be made once per call to {@code next} or {@code previous}.
      * It can be made only if {@link #add} has not been
      * called after the last call to {@code next} or {@code previous}.
-     *
+     * 从列表中删除是由next()或previous()返回的元素。
      * @throws UnsupportedOperationException if the {@code remove}
      *         operation is not supported by this list iterator
      * @throws IllegalStateException if neither {@code next} nor
@@ -155,7 +156,7 @@ public interface ListIterator<E> extends Iterator<E> {
      * This call can be made only if neither {@link #remove} nor {@link
      * #add} have been called after the last call to {@code next} or
      * {@code previous}.
-     *
+     * 从列表取代是由next()或previous()返回的元素。
      * @param e the element with which to replace the last element returned by
      *          {@code next} or {@code previous}
      * @throws UnsupportedOperationException if the {@code set} operation
@@ -182,7 +183,8 @@ public interface ListIterator<E> extends Iterator<E> {
      * subsequent call to {@code previous} would return the new element.
      * (This call increases by one the value that would be returned by a
      * call to {@code nextIndex} or {@code previousIndex}.)
-     *
+     * 将指定的元素插入列表（可选操作）。元素插入的元素，将立即返回next()，之前的任何元素，并将返回的previous()后，如果任何。（如果列表中不包含元素，则新元素将成为列表中唯一的元素）。新元素将插入到隐式游标之前：随后的下一个调用将不受影响，随后对前一次的调用将返回新元素。
+     * （这叫增加一个值，可以通过调用NextIndex或previousindex。返回）
      * @param e the element to insert
      * @throws UnsupportedOperationException if the {@code add} method is
      *         not supported by this list iterator

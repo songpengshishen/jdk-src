@@ -2,7 +2,9 @@ package client;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  *
@@ -14,9 +16,18 @@ public class Test<T> {
 
 
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+       List<String> arrayList = new ArrayList<String>();
+       arrayList.add("a");
+       arrayList.add("b");
+       arrayList.add("c");
+       arrayList.add("d");
+       arrayList.add("e");
+       arrayList.add("f");
+       ListIterator<String>  strIt =  arrayList.listIterator();
 
-
-
+           System.out.println(strIt.next());
+           System.out.println(strIt.next());
+        System.out.println(strIt.previousIndex());
 
     }
 

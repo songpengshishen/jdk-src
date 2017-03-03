@@ -42,9 +42,9 @@ import java.util.function.Consumer;
  * <p>This interface is a member of the
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
  * Java Collections Framework</a>.
- *
+ * Java集合上的迭代器。Iterator用来按照指定顺序一个一个的去遍历集合的元素
+ * 此接口是java集合框架中的一员
  * @param <E> the type of elements returned by this iterator
- *
  * @author  Josh Bloch
  * @see Collection
  * @see ListIterator
@@ -56,14 +56,14 @@ public interface Iterator<E> {
      * Returns {@code true} if the iteration has more elements.
      * (In other words, returns {@code true} if {@link #next} would
      * return an element rather than throwing an exception.)
-     *
+     * 如果迭代器还有元素，返回true,否则返回false。
      * @return {@code true} if the iteration has more elements
      */
     boolean hasNext();
 
     /**
      * Returns the next element in the iteration.
-     *
+     * 返回这个迭代器的下一个元素
      * @return the next element in the iteration
      * @throws NoSuchElementException if the iteration has no more elements
      */
@@ -76,7 +76,7 @@ public interface Iterator<E> {
      * is unspecified if the underlying collection is modified while the
      * iteration is in progress in any way other than by calling this
      * method.
-     *
+     * 从基础集合中移除该迭代器返回的最后一个元素（可选操作）。这种方法可称为每只调用一次next(),在调用一次remove。
      * @implSpec
      * The default implementation throws an instance of
      * {@link UnsupportedOperationException} and performs no other action.
@@ -105,7 +105,7 @@ public interface Iterator<E> {
      *     while (hasNext())
      *         action.accept(next());
      * }</pre>
-     *
+     * 对每个剩余元素执行给定的操作，直到所有元素被处理或操作抛出异常。如果顺序被指定，则按迭代的顺序执行操作。动作抛出的异常将传递给调用者。
      * @param action The action to be performed for each element
      * @throws NullPointerException if the specified action is null
      * @since 1.8

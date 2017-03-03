@@ -208,6 +208,9 @@ public abstract class AbstractCollection<E> implements Collection<E> {
     }
 
     /**
+     * 要分配的数组的最大大小
+     * 一些虚拟机保留一些标题的话在一个数组
+     * 分配较大数组的尝试可能会导致 OutOfMemoryErro
      * The maximum size of array to allocate.
      * Some VMs reserve some header words in an array.
      * Attempts to allocate larger arrays may result in
@@ -244,6 +247,11 @@ public abstract class AbstractCollection<E> implements Collection<E> {
         return (i == r.length) ? r : Arrays.copyOf(r, i);
     }
 
+    /**
+     * 返回一个大容量数组长度
+     * @param minCapacity
+     * @return
+     */
     private static int hugeCapacity(int minCapacity) {
         if (minCapacity < 0) // overflow
             throw new OutOfMemoryError
@@ -257,7 +265,7 @@ public abstract class AbstractCollection<E> implements Collection<E> {
 
     /**
      * {@inheritDoc}
-     *
+     *  如果集合实现类不支持添加元素操作,则抛出异常UnsupportedOperationException.
      * <p>This implementation always throws an
      * <tt>UnsupportedOperationException</tt>.
      *
@@ -282,7 +290,8 @@ public abstract class AbstractCollection<E> implements Collection<E> {
      * <tt>UnsupportedOperationException</tt> if the iterator returned by this
      * collection's iterator method does not implement the <tt>remove</tt>
      * method and this collection contains the specified object.
-     *
+     * 删除集合中指定的元素o,使用迭代器的方式迭代集合元素,如果是元素为null则删除null。否则使用对象的equals方法判断相等就删除.
+     * 删除成功返回true
      * @throws UnsupportedOperationException {@inheritDoc}
      * @throws ClassCastException            {@inheritDoc}
      * @throws NullPointerException          {@inheritDoc}
@@ -317,7 +326,7 @@ public abstract class AbstractCollection<E> implements Collection<E> {
      * checking each element returned by the iterator in turn to see
      * if it's contained in this collection.  If all elements are so
      * contained <tt>true</tt> is returned, otherwise <tt>false</tt>.
-     *
+     * 判断当前集合是否包含指定集合的所有元素。迭代指定集合,使用contains方法判断如果指定集合的元素不存在在当前集合中则直接返回false.
      * @throws ClassCastException            {@inheritDoc}
      * @throws NullPointerException          {@inheritDoc}
      * @see #contains(Object)
@@ -338,7 +347,8 @@ public abstract class AbstractCollection<E> implements Collection<E> {
      * <p>Note that this implementation will throw an
      * <tt>UnsupportedOperationException</tt> unless <tt>add</tt> is
      * overridden (assuming the specified collection is non-empty).
-     *
+     * 添加指定集合到当前集合中。迭代指定集合将集合中的元素添加到当前集合的尾部
+     * true:成功false:失败
      * @throws UnsupportedOperationException {@inheritDoc}
      * @throws ClassCastException            {@inheritDoc}
      * @throws NullPointerException          {@inheritDoc}
@@ -362,13 +372,13 @@ public abstract class AbstractCollection<E> implements Collection<E> {
      * element returned by the iterator in turn to see if it's contained
      * in the specified collection.  If it's so contained, it's removed from
      * this collection with the iterator's <tt>remove</tt> method.
-     *
      * <p>Note that this implementation will throw an
      * <tt>UnsupportedOperationException</tt> if the iterator returned by the
      * <tt>iterator</tt> method does not implement the <tt>remove</tt> method
      * and this collection contains one or more elements in common with the
      * specified collection.
-     *
+     * 删除当前集合中指定集合的所有元素.迭代当前集合判断集合元素是否在指定集合中,存在则删除.
+     * 注意此方法是双重循环.
      * @throws UnsupportedOperationException {@inheritDoc}
      * @throws ClassCastException            {@inheritDoc}
      * @throws NullPointerException          {@inheritDoc}
@@ -402,7 +412,7 @@ public abstract class AbstractCollection<E> implements Collection<E> {
      * <tt>iterator</tt> method does not implement the <tt>remove</tt> method
      * and this collection contains one or more elements not present in the
      * specified collection.
-     *
+     * 保持当前集合中指定集合的元素,删除不是的元素.迭代当前集合判断集合元素是否在指定集合中,存在则保留,不存在则删除.
      * @throws UnsupportedOperationException {@inheritDoc}
      * @throws ClassCastException            {@inheritDoc}
      * @throws NullPointerException          {@inheritDoc}
@@ -425,7 +435,7 @@ public abstract class AbstractCollection<E> implements Collection<E> {
 
     /**
      * {@inheritDoc}
-     *
+     * 迭代当前集合清空所有元素
      * <p>This implementation iterates over this collection, removing each
      * element using the <tt>Iterator.remove</tt> operation.  Most
      * implementations will probably choose to override this method for
@@ -456,7 +466,8 @@ public abstract class AbstractCollection<E> implements Collection<E> {
      * (<tt>"[]"</tt>).  Adjacent elements are separated by the characters
      * <tt>", "</tt> (comma and space).  Elements are converted to strings as
      * by {@link String#valueOf(Object)}.
-     *
+     * 返回当前集合的字符串表示形式.
+     * 迭代当前集合,把每一个元素加入到StringBuilder中.
      * @return a string representation of this collection
      */
     public String toString() {

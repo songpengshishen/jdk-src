@@ -62,7 +62,9 @@ package java.util;
  * <p>This class is a member of the
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
  * Java Collections Framework</a>.
- *
+ * 这个类提供了一个有序集合(列表)接口的基本抽象实现以及对于一些通用方法的实现,从而可以让List的实现类只负责自己的方法实现。
+ * 实现一个不可修改的列表，程序员只需要扩展这个类为得到实现（int）和size()方法。
+ * 这个类是java集合框架中的一员。
  * @author  Josh Bloch
  * @author  Neal Gafter
  * @since 1.2
@@ -92,7 +94,7 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
      * <p>Note that this implementation throws an
      * {@code UnsupportedOperationException} unless
      * {@link #add(int, Object) add(int, E)} is overridden.
-     *
+     * 默认向集合的尾部添加一个元素
      * @param e element to be appended to this list
      * @return {@code true} (as specified by {@link Collection#add})
      * @throws UnsupportedOperationException if the {@code add} operation
@@ -118,7 +120,7 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
 
     /**
      * {@inheritDoc}
-     *
+     * 向指定位置设置新的元素,如果子类不实现此方法则抛出{@code UnsupportedOperationException}
      * <p>This implementation always throws an
      * {@code UnsupportedOperationException}.
      *
@@ -137,7 +139,7 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
      *
      * <p>This implementation always throws an
      * {@code UnsupportedOperationException}.
-     *
+     * 添加新元素到集合的指定位置,如果子类不实现此方法,则抛出{@code UnsupportedOperationException}
      * @throws UnsupportedOperationException {@inheritDoc}
      * @throws ClassCastException            {@inheritDoc}
      * @throws NullPointerException          {@inheritDoc}
@@ -150,7 +152,7 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
 
     /**
      * {@inheritDoc}
-     *
+     * 删除指定索引位置的元素.如果子类不实现此方法,则抛出{@code UnsupportedOperationException}
      * <p>This implementation always throws an
      * {@code UnsupportedOperationException}.
      *
