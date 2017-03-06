@@ -78,7 +78,7 @@ public interface ListIterator<E> extends Iterator<E> {
      * or intermixed with calls to {@link #previous} to go back and forth.
      * (Note that alternating calls to {@code next} and {@code previous}
      * will return the same element repeatedly.)
-     * 返回列表中的当前元素，并向前移动光标位置。这种方法可以重复调用遍历列表，或混合调用previous()来回要走。（注意交替调用下一个和上一个将返回相同的元素反复。）
+     * 返回迭代器的当前光标指定的元素,并移动光标+1,指向下一个元素 。
      * @return the next element in the list
      * @throws NoSuchElementException if the iteration has no next element
      */
@@ -102,7 +102,7 @@ public interface ListIterator<E> extends Iterator<E> {
      * {@link #next} to go back and forth.  (Note that alternating calls
      * to {@code next} and {@code previous} will return the same
      * element repeatedly.)
-     *  将光标位置向后移动,返回列表中当前元素的上一个元素，这种方法可以重复调用遍历列表时，或在调用next()来回要走。（注意交替调用下一个和上一个将返回相同的元素反复。）
+     * 移动集合光标+1,指向上一个元素并返回 。
      * @return the previous element in the list
      * @throws NoSuchElementException if the iteration has no previous
      *         element
@@ -140,7 +140,7 @@ public interface ListIterator<E> extends Iterator<E> {
      * only be made once per call to {@code next} or {@code previous}.
      * It can be made only if {@link #add} has not been
      * called after the last call to {@code next} or {@code previous}.
-     * 从列表中删除是由next()或previous()返回的元素。
+     * 从列表中删除是由next()或previous()返回的当前元素。
      * @throws UnsupportedOperationException if the {@code remove}
      *         operation is not supported by this list iterator
      * @throws IllegalStateException if neither {@code next} nor

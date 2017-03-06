@@ -19,16 +19,12 @@ public class Test<T> {
        List<String> arrayList = new ArrayList<String>();
        arrayList.add("a");
        arrayList.add("b");
-       arrayList.add("c");
+       arrayList.add("a");
        arrayList.add("d");
        arrayList.add("e");
-       arrayList.add("f");
-       ListIterator<String>  strIt =  arrayList.listIterator();
-
-           System.out.println(strIt.next());
-           System.out.println(strIt.next());
-        System.out.println(strIt.previousIndex());
-
+       arrayList.add("a");
+       System.out.println(arrayList.indexOf("a"));
+       System.out.println(arrayList.lastIndexOf("a"));
     }
 
 

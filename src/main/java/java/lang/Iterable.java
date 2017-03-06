@@ -36,7 +36,7 @@ import java.util.function.Consumer;
  * <strong>
  * <a href="{@docRoot}/../technotes/guides/language/foreach.html">For-each Loop</a>
  * </strong>
- *
+ * 实现此接口的类需要实现迭代器功能，并且对象可以通过foreach语法进行迭代.
  * @param <T> the type of elements returned by the iterator
  *
  * @since 1.5
@@ -44,8 +44,8 @@ import java.util.function.Consumer;
  */
 public interface Iterable<T> {
     /**
+     * 返回一个Iterator迭代器
      * Returns an iterator over elements of type {@code T}.
-     *
      * @return an Iterator.
      */
     Iterator<T> iterator();

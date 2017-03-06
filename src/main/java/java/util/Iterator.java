@@ -42,7 +42,7 @@ import java.util.function.Consumer;
  * <p>This interface is a member of the
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
  * Java Collections Framework</a>.
- * Java集合上的迭代器。Iterator用来按照指定顺序一个一个的去遍历集合的元素
+ * Javacollection集合上的迭代器。Iterator用来按照指定顺序一个一个的去遍历集合的元素
  * 此接口是java集合框架中的一员
  * @param <E> the type of elements returned by this iterator
  * @author  Josh Bloch
@@ -56,14 +56,14 @@ public interface Iterator<E> {
      * Returns {@code true} if the iteration has more elements.
      * (In other words, returns {@code true} if {@link #next} would
      * return an element rather than throwing an exception.)
-     * 如果迭代器还有元素，返回true,否则返回false。
+     * 如果迭代器还有元素，返回true,否则返回false。如果next()有值就返回true,否则返回false.
      * @return {@code true} if the iteration has more elements
      */
     boolean hasNext();
 
     /**
      * Returns the next element in the iteration.
-     * 返回这个迭代器的下一个元素
+     * 返回迭代器的当前元素,并移动光标+1,指向下一个元素.
      * @return the next element in the iteration
      * @throws NoSuchElementException if the iteration has no more elements
      */

@@ -168,7 +168,8 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
 
     /**
      * {@inheritDoc}
-     *
+     * 根据指定的元素,使用迭代器从列表头部开始迭代在列表内查找元素的索引,使用previousIndex(返回当前元素上一个元素的位置。（如果列表迭代器位于列表的开头）返回列表开头1。)方法返回元素索引
+     * 如果元素不存在则返回-1.
      * <p>This implementation first gets a list iterator (with
      * {@code listIterator()}).  Then, it iterates over the list until the
      * specified element is found or the end of the list is reached.
@@ -197,7 +198,7 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
      * of the list (with {@code listIterator(size())}).  Then, it iterates
      * backwards over the list until the specified element is found, or the
      * beginning of the list is reached.
-     *
+     * 根据指定的元素,使用迭代器从列表尾部开始迭代在列表内查找元素的索引,使用nextIndex(返回当前元素的位置。（如果列表迭代器位于列表的开头）返回列表开头1。)方法返回元素索引
      * @throws ClassCastException   {@inheritDoc}
      * @throws NullPointerException {@inheritDoc}
      */
@@ -228,7 +229,7 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
      * {@code UnsupportedOperationException} unless {@code remove(int
      * index)} or {@code removeRange(int fromIndex, int toIndex)} is
      * overridden.
-     *
+     * 清空当前列表,使用removeRange指定从0位置元素开始清空,直到列表结尾。
      * @throws UnsupportedOperationException if the {@code clear} operation
      *         is not supported by this list
      */
@@ -248,7 +249,7 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
      * <p>Note that this implementation throws an
      * {@code UnsupportedOperationException} unless
      * {@link #add(int, Object) add(int, E)} is overridden.
-     *
+     * 将指定集合添加到当前集合中,从index位置处
      * @throws UnsupportedOperationException {@inheritDoc}
      * @throws ClassCastException            {@inheritDoc}
      * @throws NullPointerException          {@inheritDoc}
@@ -279,11 +280,11 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
      * {@link UnsupportedOperationException} in response to its
      * {@code remove} method unless the list's {@code remove(int)} method is
      * overridden.
-     *
+     * 返回java集合标准的迭代器,使用成员内部类实现
      * <p>This implementation can be made to throw runtime exceptions in the
      * face of concurrent modification, as described in the specification
      * for the (protected) {@link #modCount} field.
-     *
+     * @see Itr
      * @return an iterator over the elements in this list in proper sequence
      */
     public Iterator<E> iterator() {
@@ -292,7 +293,7 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
 
     /**
      * {@inheritDoc}
-     *
+     * 返回java集合中list列表的迭代器默认从0处开始迭代,使用成员内部类实现
      * <p>This implementation returns {@code listIterator(0)}.
      *
      * @see #listIterator(int)
@@ -320,7 +321,7 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
      * <p>This implementation can be made to throw runtime exceptions in the
      * face of concurrent modification, as described in the specification for
      * the (protected) {@link #modCount} field.
-     *
+     * 返回java集合中list列表的迭代器默认从指定位置index处开始迭代,使用成员内部类实现
      * @throws IndexOutOfBoundsException {@inheritDoc}
      */
     public ListIterator<E> listIterator(final int index) {
@@ -329,13 +330,19 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
         return new ListItr(index);
     }
 
+    /**
+     * 实现了标准迭代器的实例成员内部类实现
+     * 该迭代器是单向迭代器,从头部顺序迭代到结尾.
+     */
     private class Itr implements Iterator<E> {
         /**
+         * 下一次调用返回的元素的索引 next方法返回的元素索引
          * Index of element to be returned by subsequent call to next.
          */
         int cursor = 0;
 
         /**
+         * 最近调用到下一个或以前的元素返回的索引。next或previous方法返回的元素索引
          * Index of element returned by most recent call to next or
          * previous.  Reset to -1 if this element is deleted by a call
          * to remove.
@@ -343,12 +350,17 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
         int lastRet = -1;
 
         /**
+         * 迭代器中的expectedModCount值,在迭代器迭代时如果该值和列表的modCount不一致时,迭代器为了程序执行正确安全将抛出异常。
          * The modCount value that the iterator believes that the backing
          * List should have.  If this expectation is violated, the iterator
          * has detected concurrent modification.
          */
         int expectedModCount = modCount;
 
+        /**
+         * 是否有下一个元素,如果cursor不等于
+         * @return
+         */
         public boolean hasNext() {
             return cursor != size();
         }
