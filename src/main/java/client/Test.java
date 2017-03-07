@@ -1,10 +1,7 @@
 package client;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 /**
  *
@@ -23,8 +20,8 @@ public class Test<T> {
        arrayList.add("d");
        arrayList.add("e");
        arrayList.add("a");
-       System.out.println(arrayList.indexOf("a"));
-       System.out.println(arrayList.lastIndexOf("a"));
+       Iterator<String> it =  arrayList.iterator();
+       it.remove();
     }
 
 

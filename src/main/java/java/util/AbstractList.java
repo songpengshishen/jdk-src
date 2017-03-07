@@ -331,12 +331,12 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
     }
 
     /**
-     * 实现了标准迭代器的实例成员内部类实现
+     * 实现了Java集合标准迭代器的实例成员内部类实现
      * 该迭代器是单向迭代器,从头部顺序迭代到结尾.
      */
     private class Itr implements Iterator<E> {
         /**
-         * 下一次调用返回的元素的索引 next方法返回的元素索引
+         * 光标下一次调用返回的元素的索引 next方法返回的元素索引
          * Index of element to be returned by subsequent call to next.
          */
         int cursor = 0;
@@ -369,38 +369,46 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
             checkForComodification();
             try {
                 int i = cursor;
-                E next = get(i);
-                lastRet = i;
-                cursor = i + 1;
+                E next = get(i);//获取当前索引的元素
+                lastRet = i;//转变成上一个元素的索引
+                cursor = i + 1;//加1移动光标到下一个元素
                 return next;
             } catch (IndexOutOfBoundsException e) {
-                checkForComodification();
+                checkForComodification();//在这里发生的数组下标越界操作很有可能就是数组结构改变的.
                 throw new NoSuchElementException();
             }
         }
 
         public void remove() {
+            //迭代器不允许一开始就删除,换句话说在没使用next()方法时,不能删除.
             if (lastRet < 0)
                 throw new IllegalStateException();
             checkForComodification();
 
             try {
+                //删除元素
                 AbstractList.this.remove(lastRet);
+                //删除元素后,list这种有序线性表要保证连续顺序特性,所以元素会向左靠,cursor要减一
                 if (lastRet < cursor)
                     cursor--;
-                lastRet = -1;
-                expectedModCount = modCount;
+
+                expectedModCount = modCount; //删除后重新赋值modCount,保证迭代器remove后不出现错误.
             } catch (IndexOutOfBoundsException e) {
                 throw new ConcurrentModificationException();
             }
         }
-
+        //验证集合列表的结构是否被修改过,比如add,remove这种改变集合结构的操作
         final void checkForComodification() {
             if (modCount != expectedModCount)
                 throw new ConcurrentModificationException();
         }
     }
-
+    /**
+     * 实现了Java集合中list迭代器的实例成员内部类实现,该迭代器只针对于list接口的实现
+     * 该迭代器是双向迭代器,可以从正,反俩个方向迭代.
+     * 迭代器继承{@code Itr}
+     * @see Itr
+     */
     private class ListItr extends Itr implements ListIterator<E> {
         ListItr(int index) {
             cursor = index;
