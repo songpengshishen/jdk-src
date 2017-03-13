@@ -89,11 +89,12 @@ import java.util.function.UnaryOperator;
  * Therefore, it would be wrong to write a program that depended on this
  * exception for its correctness:  <i>the fail-fast behavior of iterators
  * should be used only to detect bugs.</i>
- *
  * <p>This class is a member of the
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
  * Java Collections Framework</a>.
- *
+ * List接口的动态数组实现,实现所有可选集合列表操作,并允许所有元素，包括NULL。除了实现列表接口之外，这个类还提供了方法来处理内部存储列表的数组的大小.该类不是线程安全的
+ * 每一个ArrayList实例都有一个容量和内部数组.数组用来存储集合列表的数据,容量用来表示当前数组的大小。该容量会动态的自动增加.
+ * ArrayList提供了和数组一样的常数时间的随机存取效率,但是同样的在添加元素和删除元素时,为了保证连续顺序的存储性质需要移动其他元素,如果发生在头部则会发生全部遍历.
  * @author  Josh Bloch
  * @author  Neal Gafter
  * @see     Collection

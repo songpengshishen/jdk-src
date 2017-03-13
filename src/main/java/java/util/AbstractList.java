@@ -342,7 +342,7 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
         int cursor = 0;
 
         /**
-         * 最近调用到下一个或以前的元素返回的索引。next或previous方法返回的元素索引
+         * 最近调用的next或previous的元素的索引。用来保存当前返回元素的索引
          * Index of element returned by most recent call to next or
          * previous.  Reset to -1 if this element is deleted by a call
          * to remove.
@@ -404,20 +404,21 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
         }
     }
     /**
-     * 实现了Java集合中list迭代器的实例成员内部类实现,该迭代器只针对于list接口的实现
+     * 实现了Java集合中list迭代器的实例成员内部类实现,该迭代器只针对于list接口的实现类
      * 该迭代器是双向迭代器,可以从正,反俩个方向迭代.
-     * 迭代器继承{@code Itr}
+     * 迭代器继承{@link Itr}
      * @see Itr
      */
     private class ListItr extends Itr implements ListIterator<E> {
+        //创建迭代器时指定光标
         ListItr(int index) {
             cursor = index;
         }
-
+        //只要光标不等于0,当前迭代器都有上一个元素.cursor-1
         public boolean hasPrevious() {
             return cursor != 0;
         }
-
+        //光标减1获取上一个元素,并且把当前元素的位置赋值给光标和上一个引用.
         public E previous() {
             checkForComodification();
             try {
@@ -430,15 +431,15 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
                 throw new NoSuchElementException();
             }
         }
-
+        //获取下一个元素地址,当前光标值
         public int nextIndex() {
             return cursor;
         }
-
+        //获取上一个元素地址,当前光标值-1
         public int previousIndex() {
             return cursor-1;
         }
-
+        //替换上一次操作next,previous返回的元素的值,使用lastRet引用
         public void set(E e) {
             if (lastRet < 0)
                 throw new IllegalStateException();
@@ -451,7 +452,7 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
                 throw new ConcurrentModificationException();
             }
         }
-
+        //将元素插入当前光标指定位置,并将光标+1继续指向原有迭代元素.并将lastRet初始化为-1.
         public void add(E e) {
             checkForComodification();
 
@@ -496,7 +497,9 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
      * <p>All methods first check to see if the actual {@code modCount} of
      * the backing list is equal to its expected value, and throw a
      * {@code ConcurrentModificationException} if it is not.
-     *
+     * 使用fromIndex起始索引,以及toindex结束索引来截取当前this集合列表.
+     * 根据当前集合列表是否是{@link RandomAccess}随机存取集合,如果是则返回RandomAccessSubList,否则返回SubList.
+     * 注意返回的list是{@link RandomAccessSubList}或{@link SubList}。
      * @throws IndexOutOfBoundsException if an endpoint index value is out of range
      *         {@code (fromIndex < 0 || toIndex > size)}
      * @throws IllegalArgumentException if the endpoint indices are out of order
@@ -527,7 +530,11 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
      * {@code false}.  If either iterator runs out of elements before the
      * other it returns {@code false} (as the lists are of unequal length);
      * otherwise it returns {@code true} when the iterations complete.
-     *
+     * 判断指定对象是否和当前集合列表相同
+     * 1:先判断对象==是否是同一个,满足则返回true
+     * 2:判断对象是否是List接口及其子类的实例.满足 go 3
+     * 3:使用List迭代器迭代每一个元素进行判断.满足 go 4
+     * 4:判断俩个列表的迭代器是否还有下一个,如果没有则代表相同.返回true
      * @param o the object to be compared for equality with this list
      * @return {@code true} if the specified object is equal to this list
      */
@@ -554,7 +561,8 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
      * <p>This implementation uses exactly the code that is used to define the
      * list hash function in the documentation for the {@link List#hashCode}
      * method.
-     *
+     * 返回此集合列表对象的哈希代码值
+     * 使用31*hashcode+元素的hascode值,列表内元素越多hashcode越大
      * @return the hash code value for this list
      */
     public int hashCode() {
@@ -582,7 +590,8 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
      * followed by {@code ListIterator.remove} until the entire range has
      * been removed.  <b>Note: if {@code ListIterator.remove} requires linear
      * time, this implementation requires quadratic time.</b>
-     *
+     * 删除集合列表内从fromIndex到toIndex的元素
+     * 使用listIterator从fromIndex返回,循环fromIndex-toIndex次,进行删除
      * @param fromIndex index of first element to be removed
      * @param toIndex index after last element to be removed
      */
@@ -619,6 +628,11 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
      * bogus {@code ConcurrentModificationExceptions}.  If an implementation
      * does not wish to provide fail-fast iterators, this field may be
      * ignored.
+     * 1:modCount字段是集合列表的结构修改的次数。集合列表结构上的修改是指改变列表的大小等方式如insert,remove等.
+     * 2:modCount字段提供了快速失败机制(看3),在迭代器遍历过程中,或在多线程下操作集合时,通过判断modCount是否一致来抛出concurrentmodificationexceptions异常,
+     * 保证了迭代器迭代集合列表或者多线程下同时操作集合列表时,程序对于集合列表的安全性。
+     * 3:快速失败机制也就是fail-fast,它是Java集合的一种错误检测机制,快速失败机制尽最大努力抛出 ConcurrentModificationException.
+     * 4:modCount在集合列表做增,删,或者其他改变结构的操作时加一,在迭代器遍历(next)时,或者get以及add等时会判断。保证程序对集合列表操作的正确性。
      */
     protected transient int modCount = 0;
 
@@ -694,7 +708,7 @@ class SubList<E> extends AbstractList<E> {
 
     public boolean addAll(Collection<? extends E> c) {
         return addAll(size, c);
-    }
+}
 
     public boolean addAll(int index, Collection<? extends E> c) {
         rangeCheckForAdd(index);

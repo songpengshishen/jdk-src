@@ -61,7 +61,7 @@ package java.util;
  * <p>This interface is a member of the
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
  * Java Collections Framework</a>.
- *
+ * 标记接口实现该接口表示可以进行常数时间的快速存取,随机存储.
  * @since 1.4
  */
 public interface RandomAccess {

@@ -156,7 +156,7 @@ public interface ListIterator<E> extends Iterator<E> {
      * This call can be made only if neither {@link #remove} nor {@link
      * #add} have been called after the last call to {@code next} or
      * {@code previous}.
-     * 从列表取代是由next()或previous()返回的元素。
+     * 从列表取代替换是由next()或previous()返回的元素。此操作不改变集合列表结构,只是纯粹的替换值.
      * @param e the element with which to replace the last element returned by
      *          {@code next} or {@code previous}
      * @throws UnsupportedOperationException if the {@code set} operation
@@ -183,8 +183,7 @@ public interface ListIterator<E> extends Iterator<E> {
      * subsequent call to {@code previous} would return the new element.
      * (This call increases by one the value that would be returned by a
      * call to {@code nextIndex} or {@code previousIndex}.)
-     * 将指定的元素插入列表（可选操作）。元素插入的元素，将立即返回next()，之前的任何元素，并将返回的previous()后，如果任何。（如果列表中不包含元素，则新元素将成为列表中唯一的元素）。新元素将插入到隐式游标之前：随后的下一个调用将不受影响，随后对前一次的调用将返回新元素。
-     * （这叫增加一个值，可以通过调用NextIndex或previousindex。返回）
+     * 将指定的元素插入列表当前光标指定位置.并移动光标继续指向指向迭代的元素位置,如果想要获取最新插入的元素,可以通过previours来获取
      * @param e the element to insert
      * @throws UnsupportedOperationException if the {@code add} method is
      *         not supported by this list iterator
