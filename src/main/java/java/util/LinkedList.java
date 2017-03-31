@@ -72,6 +72,11 @@ import java.util.function.Consumer;
  * <p>This class is a member of the
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
  * Java Collections Framework</a>.
+ * 双向链表实现的列表和双端队列,实现所有可选列表操作.并允许所有元素（包括空）。
+ * 所有的操作都可以作为双向链表执行.对于按照索引的随机存取，将从列表的开头或结尾进行迭代，以接近指定的索引为准.所以是一个线性操作.
+ * 此集合列表实现的操作都不是线性安全的即不是同步的.如果多线程同时访问链接列表,并且至少一个线程在结构上修改列表,必须在外部进行同步.
+ * PS-结构修改:结构修改是添加或删除一个或多个元素的任何操作,仅仅设置元素的值不是结构修改比如set不是结构修改,add,remove等时结构修改.简而言之扩容或缩容操作都是结构修改.
+ * 这通常通过在封装列表的对象上使用一个对象锁进行同步来实现,如果没有这样的锁对象,可以使用collections.synchronizedlist这样的集合线程安全方法实现线程安全.
  *
  * @author  Josh Bloch
  * @see     List

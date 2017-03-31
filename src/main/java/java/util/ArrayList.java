@@ -705,6 +705,7 @@ public class ArrayList<E> extends AbstractList<E>
     }
 
     /**
+     * 删除该集合列表内包含在指定集合中的元素
      * Removes from this list all of its elements that are contained in the
      * specified collection.
      *
@@ -725,6 +726,7 @@ public class ArrayList<E> extends AbstractList<E>
     }
 
     /**
+     *
      * Retains only the elements in this list that are contained in the
      * specified collection.  In other words, removes from this list all
      * of its elements that are not contained in the specified collection.
@@ -747,12 +749,12 @@ public class ArrayList<E> extends AbstractList<E>
 
     private boolean batchRemove(Collection<?> c, boolean complement) {
         final Object[] elementData = this.elementData;
-        int r = 0, w = 0;
+        int r = 0, w = 0;//定义俩个值 r,w. r用来循环集合列表 w代表要保留的值长度
         boolean modified = false;
         try {
             for (; r < size; r++)
-                if (c.contains(elementData[r]) == complement)
-                    elementData[w++] = elementData[r];
+                if (c.contains(elementData[r]) == complement)//complement removeAll就是false不存在的保留,retainAll就是true存在的保留
+                    elementData[w++] = elementData[r];//这里将删除后要保留的值按顺序存放,w就代表新集合列表的长度.
         } finally {
             // Preserve behavioral compatibility with AbstractCollection,
             // even if c.contains() throws.
