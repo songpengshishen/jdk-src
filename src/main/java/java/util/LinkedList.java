@@ -77,7 +77,7 @@ import java.util.function.Consumer;
  * 此集合列表实现的操作都不是线性安全的即不是同步的.如果多线程同时访问链接列表,并且至少一个线程在结构上修改列表,必须在外部进行同步.
  * PS-结构修改:结构修改是添加或删除一个或多个元素的任何操作,仅仅设置元素的值不是结构修改比如set不是结构修改,add,remove等时结构修改.简而言之扩容或缩容操作都是结构修改.
  * 这通常通过在封装列表的对象上使用一个对象锁进行同步来实现,如果没有这样的锁对象,可以使用collections.synchronizedlist这样的集合线程安全方法实现线程安全.
- *
+ * 这个类是java集合框架中的一员。
  * @author  Josh Bloch
  * @see     List
  * @see     ArrayList
@@ -89,9 +89,11 @@ public class LinkedList<E>
     extends AbstractSequentialList<E>
     implements List<E>, Deque<E>, Cloneable, java.io.Serializable
 {
+    /*不可被序列化的字段,代表当前列表元素个数*/
     transient int size = 0;
 
     /**
+     * 当前链表的头结点。
      * Pointer to first node.
      * Invariant: (first == null && last == null) ||
      *            (first.prev == null && first.item != null)
@@ -99,6 +101,7 @@ public class LinkedList<E>
     transient Node<E> first;
 
     /**
+     * 当前链表的尾结点。
      * Pointer to last node.
      * Invariant: (first == null && last == null) ||
      *            (last.next == null && last.item != null)
@@ -112,6 +115,7 @@ public class LinkedList<E>
     }
 
     /**
+     * 构造包含指定集合元素的列表,由集合迭代器返回的顺序
      * Constructs a list containing the elements of the specified
      * collection, in the order they are returned by the collection's
      * iterator.
@@ -125,36 +129,41 @@ public class LinkedList<E>
     }
 
     /**
+     * 链接E作为第一个元素
+     * 在开始节点上添加一个节点，判断原头结点否为空，如果为空，则直接first和last都指向这个节点，否则就需要把原来的first的prev指向新节点，把新节点作为新的first节点：
      * Links e as first element.
      */
     private void linkFirst(E e) {
-        final Node<E> f = first;
-        final Node<E> newNode = new Node<>(null, e, f);
-        first = newNode;
-        if (f == null)
-            last = newNode;
+        final Node<E> f = first;//保存头结点
+        final Node<E> newNode = new Node<>(null, e, f);//创建新节点,e为数据域原头结点为其下一级节点
+        first = newNode;//赋值新节点为头结点
+        if (f == null)//如果原头结点为null
+            last = newNode;//新节点为最后一个节点,这样头结点和尾结点都指向新节点.
         else
-            f.prev = newNode;
-        size++;
-        modCount++;
+            f.prev = newNode;//否则新节点是原头结点的上级结点
+        size++;//元素加1
+        modCount++;//修改次数加1
     }
 
     /**
+     * 链接E作为最后一个元素
+     * 在尾节点上添加一个节点，判断原尾结点否为空，如果为空，则直接first和last都指向这个节点，否则就需要把原来的last的next指向新节点，把新节点作为新的last节点：
      * Links e as last element.
      */
     void linkLast(E e) {
-        final Node<E> l = last;
-        final Node<E> newNode = new Node<>(l, e, null);
-        last = newNode;
-        if (l == null)
-            first = newNode;
+        final Node<E> l = last;//保存尾结点
+        final Node<E> newNode = new Node<>(l, e, null);//创建新节点,e为数据域原尾结点为其上一级节点
+        last = newNode;//赋值新节点为尾结点
+        if (l == null)//如果原尾结点为null
+            first = newNode;//新节点为第一个节点,这样头结点和尾结点都指向新节点.
         else
-            l.next = newNode;
+            l.next = newNode;//否则新节点是原尾结点的下级结点
         size++;
         modCount++;
     }
 
     /**
+     * 把元素插入到succ结点之前,如果succ是新节点,那么新节点就为头结点
      * Inserts element e before non-null Node succ.
      */
     void linkBefore(E e, Node<E> succ) {
@@ -171,6 +180,7 @@ public class LinkedList<E>
     }
 
     /**
+     * 第一个非空结点,
      * Unlinks non-null first node f.
      */
     private E unlinkFirst(Node<E> f) {
@@ -190,6 +200,7 @@ public class LinkedList<E>
     }
 
     /**
+     * 切断最后一个非空结点
      * Unlinks non-null last node l.
      */
     private E unlinkLast(Node<E> l) {
@@ -209,6 +220,7 @@ public class LinkedList<E>
     }
 
     /**
+     * 切断指定结点
      * Unlinks non-null node x.
      */
     E unlink(Node<E> x) {
@@ -238,8 +250,8 @@ public class LinkedList<E>
     }
 
     /**
+     * 返回当前列表内的第一个元素,通过first头结点直接获取数据域
      * Returns the first element in this list.
-     *
      * @return the first element in this list
      * @throws NoSuchElementException if this list is empty
      */
@@ -251,6 +263,7 @@ public class LinkedList<E>
     }
 
     /**
+     * 返回当前列表内的最后一个元素,通过last尾结点直接获取数据域
      * Returns the last element in this list.
      *
      * @return the last element in this list

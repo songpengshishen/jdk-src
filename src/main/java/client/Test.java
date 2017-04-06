@@ -11,8 +11,15 @@ public class Test<T> {
 
 
     public static void main(String[] args) throws Exception {
-        Computer a = new Add();
-        System.out.println(a.count());
+        List<String> testArr = new ArrayList<String>();
+        testArr.add("a");
+        testArr.add("b");
+        testArr.add("c");
+        ListIterator<String> listIterator =  testArr.listIterator(3);
+        while (listIterator.hasPrevious()){
+            System.out.println(listIterator.previous());
+        }
+
     }
 
 

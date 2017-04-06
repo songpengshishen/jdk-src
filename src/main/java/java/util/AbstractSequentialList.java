@@ -56,6 +56,8 @@ package java.util;
  * This class is a member of the
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
  * Java Collections Framework</a>.
+ * 这个类提供了一个列表接口的所有实现，以最小化实现由“顺序访问”数据存储（如链表）支持的接口所需的工作量。随机存取的数据（如数组），abstractlist应优先用于这类。
+ * 因为此类的get,set方法使用的都是迭代器进行迭代的,而ArrayList动态数组直接可以使用数组下标操作.
  *
  * @author  Josh Bloch
  * @author  Neal Gafter
@@ -75,6 +77,7 @@ public abstract class AbstractSequentialList<E> extends AbstractList<E> {
     }
 
     /**
+     * 返回列表中指定位置的元素。实现首先获取列表迭代器指向的元素的索引（用ListIterator（指数））。然后，它会用listiterator.next元素并返回它。
      * Returns the element at the specified position in this list.
      *
      * <p>This implementation first gets a list iterator pointing to the
@@ -92,6 +95,8 @@ public abstract class AbstractSequentialList<E> extends AbstractList<E> {
     }
 
     /**
+     * 用指定元素替换此列表中指定位置的元素（可选操作）。实现首先获取列表迭代器指向的元素的索引,
+     * 然后，就当前元素使用listiterator.next和listiterator.set取代它。
      * Replaces the element at the specified position in this list with the
      * specified element (optional operation).
      *
