@@ -180,7 +180,7 @@ public class LinkedList<E>
     }
 
     /**
-     * 第一个非空结点,
+     *切断第一个非空结点,
      * Unlinks non-null first node f.
      */
     private E unlinkFirst(Node<E> f) {
@@ -228,14 +228,14 @@ public class LinkedList<E>
         final E element = x.item;
         final Node<E> next = x.next;
         final Node<E> prev = x.prev;
-
+        //这里切断节点的上级链关系
         if (prev == null) {
             first = next;
         } else {
             prev.next = next;
             x.prev = null;
         }
-
+       //这里切断节点的下级链关系
         if (next == null) {
             last = prev;
         } else {
@@ -243,7 +243,7 @@ public class LinkedList<E>
             x.next = null;
         }
 
-        x.item = null;
+        x.item = null;//赋值为null
         size--;
         modCount++;
         return element;
@@ -256,7 +256,7 @@ public class LinkedList<E>
      * @throws NoSuchElementException if this list is empty
      */
     public E getFirst() {
-        final Node<E> f = first;
+        final Node<E> f = first;//这里先赋值给final变量,避免操作时.first节点改变
         if (f == null)
             throw new NoSuchElementException();
         return f.item;
@@ -270,15 +270,15 @@ public class LinkedList<E>
      * @throws NoSuchElementException if this list is empty
      */
     public E getLast() {
-        final Node<E> l = last;
+        final Node<E> l = last;//这里先赋值给final变量,避免操作时.last节点改变
         if (l == null)
             throw new NoSuchElementException();
         return l.item;
     }
 
     /**
+     * 删除第一个节点并返回
      * Removes and returns the first element from this list.
-     *
      * @return the first element from this list
      * @throws NoSuchElementException if this list is empty
      */
@@ -290,8 +290,8 @@ public class LinkedList<E>
     }
 
     /**
+     * 删除最后一个节点并返回
      * Removes and returns the last element from this list.
-     *
      * @return the last element from this list
      * @throws NoSuchElementException if this list is empty
      */
@@ -303,8 +303,8 @@ public class LinkedList<E>
     }
 
     /**
+     * 在列表的开头插入指定的元素
      * Inserts the specified element at the beginning of this list.
-     *
      * @param e the element to add
      */
     public void addFirst(E e) {
@@ -312,10 +312,9 @@ public class LinkedList<E>
     }
 
     /**
+     * 在列表的结尾插入指定的元素
      * Appends the specified element to the end of this list.
-     *
      * <p>This method is equivalent to {@link #add}.
-     *
      * @param e the element to add
      */
     public void addLast(E e) {
@@ -323,11 +322,11 @@ public class LinkedList<E>
     }
 
     /**
+     * 如果该列表包含指定元素，则返回true。返回TRUE，当且仅当该列表包含至少一个元素E这样的（O = = null？E = =零：o.equals（E））。
      * Returns {@code true} if this list contains the specified element.
      * More formally, returns {@code true} if and only if this list contains
      * at least one element {@code e} such that
      * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>.
-     *
      * @param o element whose presence in this list is to be tested
      * @return {@code true} if this list contains the specified element
      */
@@ -336,8 +335,8 @@ public class LinkedList<E>
     }
 
     /**
+     * 返回当前链表的长度
      * Returns the number of elements in this list.
-     *
      * @return the number of elements in this list
      */
     public int size() {
@@ -345,10 +344,9 @@ public class LinkedList<E>
     }
 
     /**
+     * 在列表的结尾插入指定的元素
      * Appends the specified element to the end of this list.
-     *
      * <p>This method is equivalent to {@link #addLast}.
-     *
      * @param e element to be appended to this list
      * @return {@code true} (as specified by {@link Collection#add})
      */
