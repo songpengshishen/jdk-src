@@ -230,11 +230,13 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      */
 
     /**
+     * 二进制位移运算 16
      * The default initial capacity - MUST be a power of two.
      */
     static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
 
     /**
+     * 二进制位移运算 16 1073741824
      * The maximum capacity, used if a higher value is implicitly specified
      * by either of the constructors with arguments.
      * MUST be a power of two <= 1<<30.
@@ -242,6 +244,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     static final int MAXIMUM_CAPACITY = 1 << 30;
 
     /**
+     * 默认的负载因子
      * The load factor used when none specified in constructor.
      */
     static final float DEFAULT_LOAD_FACTOR = 0.75f;
@@ -272,6 +275,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     static final int MIN_TREEIFY_CAPACITY = 64;
 
     /**
+     * 静态成员内部类,实现Entry接口.为HashMap内部节点
      * Basic hash bin node, used for most entries.  (See below for
      * TreeNode subclass, and in LinkedHashMap for its Entry subclass.)
      */
@@ -279,7 +283,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         final int hash;
         final K key;
         V value;
-        Node<K,V> next;
+        Node<K,V> next;//拉链法,指向下一个节点的指针域
 
         Node(int hash, K key, V value, Node<K,V> next) {
             this.hash = hash;
@@ -293,6 +297,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         public final String toString() { return key + "=" + value; }
 
         public final int hashCode() {
+            //这里使用^异或操作,如果key和value的hashcode一样则返回0.
             return Objects.hashCode(key) ^ Objects.hashCode(value);
         }
 
@@ -332,6 +337,15 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * cheapest possible way to reduce systematic lossage, as well as
      * to incorporate impact of the highest bits that would otherwise
      * never be used in index calculations because of table bounds.
+     * 网上摘录: 我们知道，按位异或就是把两个数按二进制，相同就取0，不同就取1。 比如：0101 ^ 1110 的结果为 1011。异或的速度是非常快的。
+     * 把一个数右移16位即丢弃低16位，就是任何小于2的16次方的数只占用16个位，右移16后结果都为0。而且任何一个数，与0按位异或的结果都是这个数本身
+     * 所以这个hash()函数对于非null的hash值,先获取其hashCode值,并用hashcode值与hashcode无符号右移(>>>)进行异或.这样如果hashcode值低于
+     * 2的16次方,他右移后就为0,如上(任何一个数与0按位异或的结果都是这个数本身),故低于2的16次方的key的hashcode就等于hashcode本身.高于2的16次方
+     * 的数会重新调整.
+     * (h = key.hashCode()) ^ (h >>> 16)该代码实现了如果值低于2的16次方，就返回自身的功能.否则重新调整
+     * 暂时知道的是,hash值是hashMap哈希表高性能的很重要的值.
+     * 而hash值与hashMap的长度做&运算.hashMap的默认容量为16-1低位为1111,hashMap按照2倍来增长，一直以低位1111为值.
+     * 我们的hash值与容量做&,如果高位为0,低4位也为0那么就一直存放在0这个桶位上.这个函数会减少hash值低位为0000的概率
      */
     static final int hash(Object key) {
         int h;

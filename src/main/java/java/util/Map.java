@@ -113,7 +113,7 @@ import java.io.Serializable;
  * <p>This interface is a member of the
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
  * Java Collections Framework</a>.
- *
+ * 键值对的数据结构Map,map不能包含重复键,每个键最多可以映射一个值
  * @param <K> the type of keys maintained by this map
  * @param <V> the type of mapped values
  *
@@ -130,6 +130,7 @@ public interface Map<K,V> {
     // Query Operations
 
     /**
+     * 返回map的键值个数,如果个数超过Integer.MAX_VALUE,则返回Integer.MAX_VALUE
      * Returns the number of key-value mappings in this map.  If the
      * map contains more than <tt>Integer.MAX_VALUE</tt> elements, returns
      * <tt>Integer.MAX_VALUE</tt>.
@@ -139,6 +140,7 @@ public interface Map<K,V> {
     int size();
 
     /**
+     * 返回此map是否为空,是则返回true,反之返回false
      * Returns <tt>true</tt> if this map contains no key-value mappings.
      *
      * @return <tt>true</tt> if this map contains no key-value mappings
@@ -146,6 +148,7 @@ public interface Map<K,V> {
     boolean isEmpty();
 
     /**
+     * 如果这个map包含指定的key则返回true
      * Returns <tt>true</tt> if this map contains a mapping for the specified
      * key.  More formally, returns <tt>true</tt> if and only if
      * this map contains a mapping for a key <tt>k</tt> such that
@@ -165,6 +168,7 @@ public interface Map<K,V> {
     boolean containsKey(Object key);
 
     /**
+     * 果这个map包含指定的value则返回true
      * Returns <tt>true</tt> if this map maps one or more keys to the
      * specified value.  More formally, returns <tt>true</tt> if and only if
      * this map contains at least one mapping to a value <tt>v</tt> such that
@@ -185,6 +189,8 @@ public interface Map<K,V> {
     boolean containsValue(Object value);
 
     /**
+     *
+     * 根据指定的key获取对应的value
      * Returns the value to which the specified key is mapped,
      * or {@code null} if this map contains no mapping for the key.
      *
