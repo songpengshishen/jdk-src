@@ -236,7 +236,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
 
     /**
-     * 二进制位移运算 16 1073741824
+     * 二进制位移运算 161073741824
      * The maximum capacity, used if a higher value is implicitly specified
      * by either of the constructors with arguments.
      * MUST be a power of two <= 1<<30.
@@ -386,6 +386,10 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
+     * 这个方法返回hashMap的长度.
+     * 由于HashMap的cap都是2的幂.
+     * 这个方法的算法是，当cap是2的幂则返回的还是这个数,
+     * 如果不是，则返回大于cap的最小的2的幂.
      * Returns a power of two size for the given target capacity.
      */
     static final int tableSizeFor(int cap) {
@@ -395,17 +399,18 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         n |= n >>> 4;
         n |= n >>> 8;
         n |= n >>> 16;
+        //经过位移运算后得到大于cap的最小的2的幂,如果小于或等于0则返回2的0次方1
         return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
     }
 
     /* ---------------- Fields -------------- */
 
     /**
+     * HashMap中的node数组
      * The table, initialized on first use, and resized as
      * necessary. When allocated, length is always a power of two.
-     * (We also tolerate length zero in some operations to allow
-     * bootstrapping mechanics that are currently not needed.)
-     */
+     * (We also tolerate length zero in
+     * */
     transient Node<K,V>[] table;
 
     /**
@@ -429,6 +434,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     transient int modCount;
 
     /**
+     * HashMap进行扩容的阀值.在put时计算
      * The next size value at which to resize (capacity * load factor).
      *
      * @serial
@@ -440,8 +446,8 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     int threshold;
 
     /**
+     * 负载因子
      * The load factor for the hash table.
-     *
      * @serial
      */
     final float loadFactor;
@@ -467,7 +473,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
             throw new IllegalArgumentException("Illegal load factor: " +
                                                loadFactor);
         this.loadFactor = loadFactor;
-        this.threshold = tableSizeFor(initialCapacity);
+        this.threshold = tableSizeFor(initialCapacity);//根据传入的容量获取下一次扩容的阀值
     }
 
     /**
