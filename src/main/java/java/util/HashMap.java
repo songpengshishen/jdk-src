@@ -249,7 +249,10 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      */
     static final float DEFAULT_LOAD_FACTOR = 0.75f;
 
+    /***以下这些hashMap中hash阀值让代码更有动态性***/
+
     /**
+     * HashMap中hash桶的树化阈值,当桶中元素个数超过这个值时需要使用红黑树节点替换链表节点.
      * The bin count threshold for using a tree rather than list for a
      * bin.  Bins are converted to trees when adding an element to a
      * bin with at least this many nodes. The value must be greater
@@ -260,6 +263,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     static final int TREEIFY_THRESHOLD = 8;
 
     /**
+     * 一个树的链表还原阈值.当hashMap扩容时,桶中元素个数小于这个值就会把树形的桶元素 还原（切分）为链表结构
      * The bin count threshold for untreeifying a (split) bin during a
      * resize operation. Should be less than TREEIFY_THRESHOLD, and at
      * most 6 to mesh with shrinkage detection under removal.
@@ -267,6 +271,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     static final int UNTREEIFY_THRESHOLD = 6;
 
     /**
+     *
      * The smallest table capacity for which bins may be treeified.
      * (Otherwise the table is resized if too many nodes in a bin.)
      * Should be at least 4 * TREEIFY_THRESHOLD to avoid conflicts
@@ -275,7 +280,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     static final int MIN_TREEIFY_CAPACITY = 64;
 
     /**
-     * 静态成员内部类,实现Entry接口.为HashMap内部节点
+     * 静态成员内部类,实现Entry接口.为HashMap的内部节点.hashMap中用来存放数据的数据对象
      * Basic hash bin node, used for most entries.  (See below for
      * TreeNode subclass, and in LinkedHashMap for its Entry subclass.)
      */
@@ -577,11 +582,11 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
+     * 根据key和key的hash值获取Map中的Node数组的Node节点
      * Implements Map.get and related methods
-     *
      * @param hash hash for key
      * @param key the key
-     * @return the node, or null if none
+     * @return the node, or null if none 返回节点或null
      */
     final Node<K,V> getNode(int hash, Object key) {
         Node<K,V>[] tab; Node<K,V> first, e; int n; K k;
@@ -633,12 +638,11 @@ public class HashMap<K,V> extends AbstractMap<K,V>
 
     /**
      * Implements Map.put and related methods
-     *
      * @param hash hash for key
      * @param key the key
      * @param value the value to put
-     * @param onlyIfAbsent if true, don't change existing value
-     * @param evict if false, the table is in creation mode.
+     * @param onlyIfAbsent if true, don't change existing value 如果参数为真,不改变现有的值
+     * @param evict if false, the table is in creation mode. 如果参数为假,则该表处于创建模式
      * @return previous value, or null if none
      */
     final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
@@ -646,14 +650,17 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         Node<K,V>[] tab; Node<K,V> p; int n, i;
         if ((tab = table) == null || (n = tab.length) == 0)
             n = (tab = resize()).length;
+        //使用hash值与table的长度做与运算,得到key在hashMap中Node数组中的位置索引
         if ((p = tab[i = (n - 1) & hash]) == null)
-            tab[i] = newNode(hash, key, value, null);
+            tab[i] = newNode(hash, key, value, null);//没有发生hash碰撞
         else {
+            //发生hash碰撞的处理
             Node<K,V> e; K k;
             if (p.hash == hash &&
                 ((k = p.key) == key || (key != null && key.equals(k))))
                 e = p;
             else if (p instanceof TreeNode)
+                //如果是TreeNode节点说明桶已经转成树,使用树的操作来避免链表迭代的低效.
                 e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
             else {
                 for (int binCount = 0; ; ++binCount) {
@@ -671,14 +678,14 @@ public class HashMap<K,V> extends AbstractMap<K,V>
             }
             if (e != null) { // existing mapping for key
                 V oldValue = e.value;
-                if (!onlyIfAbsent || oldValue == null)
+                if (!onlyIfAbsent || oldValue == null)//如果value为空或者onlyIfAbsent参数为false,就修改当前值
                     e.value = value;
                 afterNodeAccess(e);
                 return oldValue;
             }
         }
         ++modCount;
-        if (++size > threshold)
+        if (++size > threshold)//超过了hashMap需要扩容的阀值,则进行扩容.
             resize();
         afterNodeInsertion(evict);
         return null;
