@@ -630,7 +630,7 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
      * ignored.
      * 1:modCount字段是集合列表的结构修改的次数。集合列表结构上的修改是指改变列表的大小等方式如insert,remove等.
      * 2:modCount字段提供了快速失败机制．快速失败机制也就是fail-fast,它是Java集合的一种错误检测机制．在迭代器遍历过程中,或在多线程下操作集合时,
-     * 通过判断modCount是否一致来抛出concurrentmodificationexceptions异常,快速失败机制尽最大努力抛出 ConcurrentModificationException.
+     * 通过判断modCount是否改变来确定集合操作是否正确.以此抛出concurrentmodificationexceptions异常.快速失败机制尽最大努力抛出 ConcurrentModificationException.
      * 保证了迭代器迭代集合列表或者多线程下同时操作集合列表时,程序对于集合列表的安全性和正确性。
      * ３:modCount在集合列表做增,删,或者其他改变结构的操作时加一,在迭代器遍历(next)时,或者get以及add等时会判断。保证程序对集合列表操作的正确性。
      */

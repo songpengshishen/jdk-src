@@ -119,7 +119,8 @@ import java.util.function.Function;
  * <p>This class is a member of the
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
  * Java Collections Framework</a>.
- *
+ * 基于数组和链表实现，内部维护着一个数组table，该数组保存着每个链表的表头结点；查找时，先通过hash函数计算key的hash值，
+ * 再根据key的hash值计算数组索引（取余法），然后根据索引找到链表表头结点，然后遍历查找该链表；
  * @param <K> the type of keys maintained by this map
  * @param <V> the type of mapped values
  *
@@ -244,7 +245,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     static final int MAXIMUM_CAPACITY = 1 << 30;
 
     /**
-     * 默认的负载因子
+     * 默认的负载因子 负载因子与hashMap容量的乘积得出hashHap扩容的阀值.
      * The load factor used when none specified in constructor.
      */
     static final float DEFAULT_LOAD_FACTOR = 0.75f;
@@ -280,6 +281,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     static final int MIN_TREEIFY_CAPACITY = 64;
 
     /**
+     * 键值对对象
      * 静态成员内部类,实现Entry接口.为HashMap的内部节点.hashMap中用来存放数据的数据对象
      * Basic hash bin node, used for most entries.  (See below for
      * TreeNode subclass, and in LinkedHashMap for its Entry subclass.)
@@ -411,7 +413,8 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     /* ---------------- Fields -------------- */
 
     /**
-     * HashMap中的node数组
+     * HashMap中的Node数组,该数组是HashMap内部实际存放数据的数据结构.
+     * 这个数组中的Node对象本身又会形成一个链表.
      * The table, initialized on first use, and resized as
      * necessary. When allocated, length is always a power of two.
      * (We also tolerate length zero in
@@ -439,19 +442,19 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     transient int modCount;
 
     /**
-     * HashMap进行扩容的阀值.在put时计算
-     * The next size value at which to resize (capacity * load factor).
+     * HashMap进行扩容的阀值.在put时计算. 当siza>threshold 进行扩容
      *
+     * The next size value at which to resize (capacity * load factor).
      * @serial
      */
-    // (The javadoc description is true upon serialization.
-    // Additionally, if the table array has not been allocated, this
-    // field holds the initial array capacity, or zero signifying
+     // (The javadoc description is true upon serialization.
+     // Additionally, if the table array has not been allocated, this
+     // field holds the initial array capacity, or zero signifying
     // DEFAULT_INITIAL_CAPACITY.)
     int threshold;
 
     /**
-     * 负载因子
+     * 负载因子 负载因子与hashMap容量的乘积得出hashHap扩容的阀值.
      * The load factor for the hash table.
      * @serial
      */
@@ -701,6 +704,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * @return the table
      */
     final Node<K,V>[] resize() {
+        //JDK总是将堆内存的成员变量赋值给,线程方法的局部变量中，在对局部变量进行操作,这样可以保证线程安全.
         Node<K,V>[] oldTab = table;
         int oldCap = (oldTab == null) ? 0 : oldTab.length;
         int oldThr = threshold;
