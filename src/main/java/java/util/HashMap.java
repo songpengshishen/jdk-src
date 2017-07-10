@@ -253,6 +253,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     /***以下这些hashMap中hash阀值让代码更有动态性***/
 
     /**
+     * JDK1.8后新添加的,对于HashMap的性能优化.出现hash冲突时,桶中元素不在单一按照链表存储而是会根据阀值判断升级为红黑树.
      * HashMap中hash桶的树化阈值,当桶中元素个数超过这个值时需要使用红黑树节点替换链表节点.
      * The bin count threshold for using a tree rather than list for a
      * bin.  Bins are converted to trees when adding an element to a
@@ -422,17 +423,20 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     transient Node<K,V>[] table;
 
     /**
+     * 缓存的基于Entry的set集合
      * Holds cached entrySet(). Note that AbstractMap fields are used
      * for keySet() and values().
      */
     transient Set<Entry<K,V>> entrySet;
 
     /**
+     * HashMap中K,V个数
      * The number of key-value mappings contained in this map.
      */
     transient int size;
 
     /**
+     * HashMap结构修改的次数,用以实现fast-fail
      * The number of times this HashMap has been structurally modified
      * Structural modifications are those that change the number of mappings in
      * the HashMap or otherwise modify its internal structure (e.g.,
@@ -442,8 +446,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     transient int modCount;
 
     /**
-     * HashMap进行扩容的阀值.在put时计算. 当siza>threshold 进行扩容
-     *
+     * HashMap进行扩容的阀值.在put时计算. 当size>threshold 进行扩容
      * The next size value at which to resize (capacity * load factor).
      * @serial
      */
@@ -454,7 +457,8 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     int threshold;
 
     /**
-     * 负载因子 负载因子与hashMap容量的乘积得出hashHap扩容的阀值.
+     * 负载因子 负载因子与hashMap容量的乘积得出hashHap扩容的阀值 {@code threshold}.
+     * 因为是常量,所以负载因子只会赋值一次.
      * The load factor for the hash table.
      * @serial
      */
@@ -463,11 +467,11 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     /* ---------------- Public operations -------------- */
 
     /**
+     * 根据初始容量与负载因子构造一个空的HashMap
      * Constructs an empty <tt>HashMap</tt> with the specified initial
      * capacity and load factor.
-     *
-     * @param  initialCapacity the initial capacity
-     * @param  loadFactor      the load factor
+     * @param  initialCapacity the initial capacity 初始容量
+     * @param  loadFactor      the load factor 负载因子
      * @throws IllegalArgumentException if the initial capacity is negative
      *         or the load factor is nonpositive
      */
@@ -485,9 +489,9 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
+     * 根据初始容量与默认的负载因子构造一个空的HashMap
      * Constructs an empty <tt>HashMap</tt> with the specified initial
      * capacity and the default load factor (0.75).
-     *
      * @param  initialCapacity the initial capacity.
      * @throws IllegalArgumentException if the initial capacity is negative.
      */
@@ -496,6 +500,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
+     * 根据默认的容量构造一个空的Map,负载因子为默认值0.75f
      * Constructs an empty <tt>HashMap</tt> with the default initial capacity
      * (16) and the default load factor (0.75).
      */
@@ -504,11 +509,11 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
+     * 通过指定的HashMap构造一个新的HashMap
      * Constructs a new <tt>HashMap</tt> with the same mappings as the
      * specified <tt>Map</tt>.  The <tt>HashMap</tt> is created with
      * default load factor (0.75) and an initial capacity sufficient to
      * hold the mappings in the specified <tt>Map</tt>.
-     *
      * @param   m the map whose mappings are to be placed in this map
      * @throws  NullPointerException if the specified map is null
      */
@@ -519,7 +524,6 @@ public class HashMap<K,V> extends AbstractMap<K,V>
 
     /**
      * Implements Map.putAll and Map constructor
-     *
      * @param m the map
      * @param evict false when initially constructing this map, else
      * true (relayed to method afterNodeInsertion).
@@ -545,8 +549,8 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
+     * hashMap中当前元素实际的个数
      * Returns the number of key-value mappings in this map.
-     *
      * @return the number of key-value mappings in this map
      */
     public int size() {
@@ -554,8 +558,8 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
+     * 根据size判断hashMap是否为空
      * Returns <tt>true</tt> if this map contains no key-value mappings.
-     *
      * @return <tt>true</tt> if this map contains no key-value mappings
      */
     public boolean isEmpty() {
@@ -563,20 +567,18 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
+     * 根据指定key从hashMap中获取对应的value
      * Returns the value to which the specified key is mapped,
      * or {@code null} if this map contains no mapping for the key.
-     *
      * <p>More formally, if this map contains a mapping from a key
      * {@code k} to a value {@code v} such that {@code (key==null ? k==null :
      * key.equals(k))}, then this method returns {@code v}; otherwise
      * it returns {@code null}.  (There can be at most one such mapping.)
-     *
      * <p>A return value of {@code null} does not <i>necessarily</i>
      * indicate that the map contains no mapping for the key; it's also
      * possible that the map explicitly maps the key to {@code null}.
      * The {@link #containsKey containsKey} operation may be used to
      * distinguish these two cases.
-     *
      * @see #put(Object, Object)
      */
     public V get(Object key) {
@@ -585,19 +587,22 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * 根据key和key的hash值获取Map中的Node数组的Node节点
+     * 根据key和key的hash值获取HashMap中的Node数组的Node节点
      * Implements Map.get and related methods
      * @param hash hash for key
      * @param key the key
      * @return the node, or null if none 返回节点或null
      */
     final Node<K,V> getNode(int hash, Object key) {
-        Node<K,V>[] tab; Node<K,V> first, e; int n; K k;
+        Node<K,V>[] tab; Node<K,V> first, e; int n; K k;//声明变量
+        //将赋值与比较运算结合在一起,通过括号指定操作顺序.
+        //tab[(n - 1) & hash] 哈希算法获取的hash值与table数组容量做&运算
         if ((tab = table) != null && (n = tab.length) > 0 &&
             (first = tab[(n - 1) & hash]) != null) {
             if (first.hash == hash && // always check first node
                 ((k = first.key) == key || (key != null && key.equals(k))))
                 return first;
+            //如果旧节点的hash值和key与hash和key不相同,则迭代这个链表.如果发现已经升级为tree则按照tree的方式获取节点.
             if ((e = first.next) != null) {
                 if (first instanceof TreeNode)
                     return ((TreeNode<K,V>)first).getTreeNode(hash, key);
@@ -612,9 +617,9 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
+     * map中是否包含该Key,包含则返回true,不包含则返回false.
      * Returns <tt>true</tt> if this map contains a mapping for the
      * specified key.
-     *
      * @param   key   The key whose presence in this map is to be tested
      * @return <tt>true</tt> if this map contains a mapping for the specified
      * key.
@@ -624,10 +629,10 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
+     * 向hashMap中添加key/value元素
      * Associates the specified value with the specified key in this map.
      * If the map previously contained a mapping for the key, the old
      * value is replaced.
-     *
      * @param key key with which the specified value is to be associated
      * @param value value to be associated with the specified key
      * @return the previous value associated with <tt>key</tt>, or
