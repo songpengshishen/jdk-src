@@ -140,6 +140,34 @@ public class HashMap<K,V> extends AbstractMap<K,V>
 
     private static final long serialVersionUID = 362498820763181265L;
 
+
+
+
+    /*****************
+
+            hashMap 立体图形
+             //bucket桶
+             Node1  -  Node1 - Node1 .... 拉链法的链表
+
+             Node2
+
+             Node3
+
+             Node4
+
+     HashMap
+
+             Node5                    Node6
+                              Node6
+             Node6 -  Node6                  ....树化的红黑树
+                              Node6
+             Node7                    Node6
+
+             Node8
+
+     *******************/
+
+
     /*
      * Implementation notes.
      *
@@ -231,12 +259,14 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      */
 
     /**
+     * HashMap默认的容量
      * 二进制位移运算 16
      * The default initial capacity - MUST be a power of two.
      */
     static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
 
     /**
+     * hashMap最大容量
      * 二进制位移运算 161073741824
      * The maximum capacity, used if a higher value is implicitly specified
      * by either of the constructors with arguments.
@@ -245,12 +275,12 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     static final int MAXIMUM_CAPACITY = 1 << 30;
 
     /**
-     * 默认的负载因子 负载因子与hashMap容量的乘积得出hashHap扩容的阀值.
+     * 默认的负载因子值0.75f负载因子与hashMap容量的乘积得出hashHap扩容的阀值.
      * The load factor used when none specified in constructor.
      */
     static final float DEFAULT_LOAD_FACTOR = 0.75f;
 
-    /***以下这些hashMap中hash阀值让代码更有动态性***/
+    /***以下这些hashMap中的阀值让代码更有动态性***/
 
     /**
      * JDK1.8后新添加的,对于HashMap的性能优化.出现hash冲突时,桶中元素不在单一按照链表存储而是会根据阀值判断升级为红黑树.
@@ -273,7 +303,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     static final int UNTREEIFY_THRESHOLD = 6;
 
     /**
-     *
+     * 桶中结构转化为红黑树对应的table的最小大小
      * The smallest table capacity for which bins may be treeified.
      * (Otherwise the table is resized if too many nodes in a bin.)
      * Should be at least 4 * TREEIFY_THRESHOLD to avoid conflicts
@@ -282,7 +312,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     static final int MIN_TREEIFY_CAPACITY = 64;
 
     /**
-     * 键值对对象
+     * 键值对对象节点
      * 静态成员内部类,实现Entry接口.为HashMap的内部节点.hashMap中用来存放数据的数据对象
      * Basic hash bin node, used for most entries.  (See below for
      * TreeNode subclass, and in LinkedHashMap for its Entry subclass.)
@@ -415,7 +445,8 @@ public class HashMap<K,V> extends AbstractMap<K,V>
 
     /**
      * HashMap中的Node数组,该数组是HashMap内部实际存放数据的数据结构.
-     * 这个数组中的Node对象本身又会形成一个链表.
+     * 这个数组中的Node对象节点本身又会形成一个链表.
+     * length总是2的幂次倍
      * The table, initialized on first use, and resized as
      * necessary. When allocated, length is always a power of two.
      * (We also tolerate length zero in
@@ -458,14 +489,14 @@ public class HashMap<K,V> extends AbstractMap<K,V>
 
     /**
      * 负载因子 负载因子与hashMap容量的乘积得出hashHap扩容的阀值 {@code threshold}.
-     * 因为是常量,所以负载因子只会赋值一次.
+     * 因为是常量,所以hashMap的负载因子只会赋值一次.
      * The load factor for the hash table.
      * @serial
      */
     final float loadFactor;
 
     /* ---------------- Public operations -------------- */
-
+    /*********** hashMap的构造函数,提供了多个重载版本,并且多个重载版本之间可以互相使用 *************/
     /**
      * 根据初始容量与负载因子构造一个空的HashMap
      * Constructs an empty <tt>HashMap</tt> with the specified initial
@@ -484,8 +515,8 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         if (loadFactor <= 0 || Float.isNaN(loadFactor))
             throw new IllegalArgumentException("Illegal load factor: " +
                                                loadFactor);
-        this.loadFactor = loadFactor;
-        this.threshold = tableSizeFor(initialCapacity);//根据传入的容量获取下一次扩容的阀值
+        this.loadFactor = loadFactor; //设置负载因子
+        this.threshold = tableSizeFor(initialCapacity);//根据传入的容量获取下一次扩容的阀值,返回大于initialCapacity的最小的2的幂值
     }
 
     /**
@@ -523,6 +554,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
+     * 将m中的元素加入到当前的hashMap实例中
      * Implements Map.putAll and Map constructor
      * @param m the map
      * @param evict false when initially constructing this map, else
@@ -629,7 +661,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * 向hashMap中添加key/value元素
+     * 向hashMap中添加key/value元素,通过内部的putval方法实现
      * Associates the specified value with the specified key in this map.
      * If the map previously contained a mapping for the key, the old
      * value is replaced.
@@ -656,11 +688,12 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
                    boolean evict) {
         Node<K,V>[] tab; Node<K,V> p; int n, i;
+        //如果taleb没有初始化或者长度为0则进行扩容
         if ((tab = table) == null || (n = tab.length) == 0)
             n = (tab = resize()).length;
-        //使用hash值与table的长度做与运算,得到key在hashMap中Node数组中的位置索引
+        //使用hash值与table的长度做与运算,得到key在hashMap中table数组中的位置索引,如果该位置没有值,则代表没有发生hash碰撞
         if ((p = tab[i = (n - 1) & hash]) == null)
-            tab[i] = newNode(hash, key, value, null);//没有发生hash碰撞
+            tab[i] = newNode(hash, key, value, null);//没有发生hash碰撞,则直接创建一个Node并放到tab数组的指定索引中
         else {
             //发生hash碰撞的处理
             Node<K,V> e; K k;
@@ -692,14 +725,18 @@ public class HashMap<K,V> extends AbstractMap<K,V>
                 return oldValue;
             }
         }
-        ++modCount;
-        if (++size > threshold)//超过了hashMap需要扩容的阀值,则进行扩容.
+        ++modCount;//hashMap结构修改次数+1
+        if (++size > threshold)//实际元素超过了hashMap需要扩容的阀值,则进行扩容.
             resize();
+        //插入完调用函数实现某个功能?
         afterNodeInsertion(evict);
         return null;
     }
 
     /**
+     * HashMap进行扩容的方法
+     * 注意进行扩容时，HashMap中的值会伴随着一次重新分配(避免扩容后相同的hash取不到值)，所以会遍历hash表中所有的元素，是非常耗时的。在编写程序中，要尽量避免resize。
+     * 而进行扩容的主要原因则是负载因子与table容量的乘积所导致的{@code threshold}.
      * Initializes or doubles table size.  If null, allocates in
      * accord with initial capacity target held in field threshold.
      * Otherwise, because we are using power-of-two expansion, the
@@ -709,36 +746,50 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * @return the table
      */
     final Node<K,V>[] resize() {
-        //JDK总是将堆内存的成员变量赋值给,线程方法的局部变量中，在对局部变量进行操作,这样可以保证线程安全.
+        //JDK总是将堆内存的成员变量赋值给,线程方法的局部变量中，在对局部变量进行操作,这样可以保证线程安全.因为多线程是,成员变量可能不是安全的
+        //保存当前table数组
         Node<K,V>[] oldTab = table;
+        //计算旧table的长度
         int oldCap = (oldTab == null) ? 0 : oldTab.length;
+        //保存旧的扩容阀值
         int oldThr = threshold;
+        //初始化新的长度,与新的阀值
         int newCap, newThr = 0;
+        //如果table初始化过
         if (oldCap > 0) {
+            //大于最大容量,将阀值设置为int最大值
             if (oldCap >= MAXIMUM_CAPACITY) {
                 threshold = Integer.MAX_VALUE;
                 return oldTab;
             }
+            //使用左移1位,容量,阀值翻倍,效率更高
             else if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY &&
                      oldCap >= DEFAULT_INITIAL_CAPACITY)
                 newThr = oldThr << 1; // double threshold
         }
+        // 之前阈值大于0
         else if (oldThr > 0) // initial capacity was placed in threshold
             newCap = oldThr;
+          // oldCap = 0并且oldThr = 0，使用缺省值（如使用HashMap()构造函数，之后再插入一个元素会调用resize函数，会进入这一步）
         else {               // zero initial threshold signifies using defaults
+            //容量与阀值 全部使用默认值
             newCap = DEFAULT_INITIAL_CAPACITY;
             newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
         }
+        //设置新阀值
         if (newThr == 0) {
             float ft = (float)newCap * loadFactor;
             newThr = (newCap < MAXIMUM_CAPACITY && ft < (float)MAXIMUM_CAPACITY ?
                       (int)ft : Integer.MAX_VALUE);
         }
         threshold = newThr;
+        //初始新的table
         @SuppressWarnings({"rawtypes","unchecked"})
             Node<K,V>[] newTab = (Node<K,V>[])new Node[newCap];
-        table = newTab;
+        table = newTab; //赋值给table
+        //之前table已经初始化过
         if (oldTab != null) {
+            //复制元素,重新进行hash分配
             for (int j = 0; j < oldCap; ++j) {
                 Node<K,V> e;
                 if ((e = oldTab[j]) != null) {
@@ -751,6 +802,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
                         Node<K,V> loHead = null, loTail = null;
                         Node<K,V> hiHead = null, hiTail = null;
                         Node<K,V> next;
+                        // 将同一桶中的元素根据(e.hash & oldCap)是否为0进行分割，分成两个不同的链表，完成rehash 具体怎么做,为什么不清楚
                         do {
                             next = e.next;
                             if ((e.hash & oldCap) == 0) {
