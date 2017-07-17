@@ -62,13 +62,13 @@ package java.util;
  * exception or it may succeed, at the option of the implementation.
  * Such exceptions are marked as "optional" in the specification for this
  * interface.
- *
+ * 不包含重复元素的也不保证顺序的JAVA集合
+ * 此接口是java集合框架中的一员。
  * <p>This interface is a member of the
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
  * Java Collections Framework</a>.
  *
  * @param <E> the type of elements maintained by this set
- *
  * @author  Josh Bloch
  * @author  Neal Gafter
  * @see Collection
@@ -86,27 +86,27 @@ public interface Set<E> extends Collection<E> {
     // Query Operations
 
     /**
+     * 返回当前集合中实际元素个数
      * Returns the number of elements in this set (its cardinality).  If this
      * set contains more than <tt>Integer.MAX_VALUE</tt> elements, returns
      * <tt>Integer.MAX_VALUE</tt>.
-     *
      * @return the number of elements in this set (its cardinality)
      */
     int size();
 
     /**
+     * 当前集合是否是空
      * Returns <tt>true</tt> if this set contains no elements.
-     *
      * @return <tt>true</tt> if this set contains no elements
      */
     boolean isEmpty();
 
     /**
+     * set集合中是否包含该元素
      * Returns <tt>true</tt> if this set contains the specified element.
      * More formally, returns <tt>true</tt> if and only if this set
      * contains an element <tt>e</tt> such that
      * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>.
-     *
      * @param o element whose presence in this set is to be tested
      * @return <tt>true</tt> if this set contains the specified element
      * @throws ClassCastException if the type of the specified element
@@ -119,25 +119,24 @@ public interface Set<E> extends Collection<E> {
     boolean contains(Object o);
 
     /**
+     * set集合迭代器
      * Returns an iterator over the elements in this set.  The elements are
      * returned in no particular order (unless this set is an instance of some
      * class that provides a guarantee).
-     *
      * @return an iterator over the elements in this set
      */
     Iterator<E> iterator();
 
     /**
+     * 将set转成数组并返回,返回的数组不带元类型
      * Returns an array containing all of the elements in this set.
      * If this set makes any guarantees as to what order its elements
      * are returned by its iterator, this method must return the
      * elements in the same order.
-     *
      * <p>The returned array will be "safe" in that no references to it
      * are maintained by this set.  (In other words, this method must
      * allocate a new array even if this set is backed by an array).
      * The caller is thus free to modify the returned array.
-     *
      * <p>This method acts as bridge between array-based and collection-based
      * APIs.
      *
@@ -146,6 +145,7 @@ public interface Set<E> extends Collection<E> {
     Object[] toArray();
 
     /**
+     * 将set集合转成传入的数组类型,并将数据放入到传入的数组中
      * Returns an array containing all of the elements in this set; the
      * runtime type of the returned array is that of the specified array.
      * If the set fits in the specified array, it is returned therein.
@@ -193,6 +193,7 @@ public interface Set<E> extends Collection<E> {
     // Modification Operations
 
     /**
+     * 将指定元素加入到set集合中
      * Adds the specified element to this set if it is not already present
      * (optional operation).  More formally, adds the specified element
      * <tt>e</tt> to this set if the set contains no element <tt>e2</tt>
@@ -226,6 +227,7 @@ public interface Set<E> extends Collection<E> {
 
 
     /**
+     * 从当前set集合中移除指定元素
      * Removes the specified element from this set if it is present
      * (optional operation).  More formally, removes an element <tt>e</tt>
      * such that
@@ -252,10 +254,11 @@ public interface Set<E> extends Collection<E> {
     // Bulk Operations
 
     /**
+     * 当前set集合中是否包含指定集合中的元素.
+     * 或者可以这么理解,指定的集合是否是当前set集合的一个子集
      * Returns <tt>true</tt> if this set contains all of the elements of the
      * specified collection.  If the specified collection is also a set, this
      * method returns <tt>true</tt> if it is a <i>subset</i> of this set.
-     *
      * @param  c collection to be checked for containment in this set
      * @return <tt>true</tt> if this set contains all of the elements of the
      *         specified collection
@@ -273,6 +276,7 @@ public interface Set<E> extends Collection<E> {
     boolean containsAll(Collection<?> c);
 
     /**
+     * 批量将指定集合中的元素插入到当前set集合中
      * Adds all of the elements in the specified collection to this set if
      * they're not already present (optional operation).  If the specified
      * collection is also a set, the <tt>addAll</tt> operation effectively
@@ -297,6 +301,7 @@ public interface Set<E> extends Collection<E> {
     boolean addAll(Collection<? extends E> c);
 
     /**
+     * 仅保留Set集合中包含在指定集合中的元素。换句话说，从Set集合中移除不包含在指定集合中的所有元素。
      * Retains only the elements in this set that are contained in the
      * specified collection (optional operation).  In other words, removes
      * from this set all of its elements that are not contained in the
@@ -320,6 +325,7 @@ public interface Set<E> extends Collection<E> {
     boolean retainAll(Collection<?> c);
 
     /**
+     * 从当前Set集合中移除指定集合中的元素
      * Removes from this set all of its elements that are contained in the
      * specified collection (optional operation).  If the specified
      * collection is also a set, this operation effectively modifies this
@@ -343,9 +349,9 @@ public interface Set<E> extends Collection<E> {
     boolean removeAll(Collection<?> c);
 
     /**
+     * 清空Set集合
      * Removes all of the elements from this set (optional operation).
      * The set will be empty after this call returns.
-     *
      * @throws UnsupportedOperationException if the <tt>clear</tt> method
      *         is not supported by this set
      */
@@ -355,6 +361,7 @@ public interface Set<E> extends Collection<E> {
     // Comparison and hashing
 
     /**
+     * 重写的Object类的equals方法,判断指定对象和当前Set集合是否相等
      * Compares the specified object with this set for equality.  Returns
      * <tt>true</tt> if the specified object is also a set, the two sets
      * have the same size, and every member of the specified set is
@@ -369,6 +376,7 @@ public interface Set<E> extends Collection<E> {
     boolean equals(Object o);
 
     /**
+     * 重写的Object类的hashCode方法,得出当前Set集合对象的hashCode
      * Returns the hash code value for this set.  The hash code of a set is
      * defined to be the sum of the hash codes of the elements in the set,
      * where the hash code of a <tt>null</tt> element is defined to be zero.
@@ -384,8 +392,8 @@ public interface Set<E> extends Collection<E> {
     int hashCode();
 
     /**
+     * Set集合1.8新增方法
      * Creates a {@code Spliterator} over the elements in this set.
-     *
      * <p>The {@code Spliterator} reports {@link Spliterator#DISTINCT}.
      * Implementations should document the reporting of additional
      * characteristic values.
