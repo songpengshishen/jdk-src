@@ -26,6 +26,8 @@
 package java.util;
 
 /**
+ * 这个类是Set集合的抽象基类,提供了一个整体通用方法的实现,以减少Set接口实现的编写.
+ * 该类没有提供任何抽象方法,只是隐藏了接口和父类的抽象.选择了适合的方法重写.
  * This class provides a skeletal implementation of the <tt>Set</tt>
  * interface to minimize the effort required to implement this
  * interface. <p>
@@ -66,6 +68,7 @@ public abstract class AbstractSet<E> extends AbstractCollection<E> implements Se
     // Comparison and hashing
 
     /**
+     * 判断指定的对象O是否与当前对象相等
      * Compares the specified object with this set for equality.  Returns
      * <tt>true</tt> if the given object is also a set, the two sets have
      * the same size, and every member of the given set is contained in
@@ -83,11 +86,13 @@ public abstract class AbstractSet<E> extends AbstractCollection<E> implements Se
      * @return <tt>true</tt> if the specified object is equal to this set
      */
     public boolean equals(Object o) {
+        //是否是一个引用对象
         if (o == this)
             return true;
-
+        //是否是Set或Set子接口实现的实例
         if (!(o instanceof Set))
             return false;
+        //转换成集合并赋值给c
         Collection<?> c = (Collection<?>) o;
         if (c.size() != size())
             return false;
@@ -101,6 +106,7 @@ public abstract class AbstractSet<E> extends AbstractCollection<E> implements Se
     }
 
     /**
+     * 计算当前Set的HashCode
      * Returns the hash code value for this set.  The hash code of a set is
      * defined to be the sum of the hash codes of the elements in the set,
      * where the hash code of a <tt>null</tt> element is defined to be zero.
@@ -119,11 +125,11 @@ public abstract class AbstractSet<E> extends AbstractCollection<E> implements Se
      */
     public int hashCode() {
         int h = 0;
-        Iterator<E> i = iterator();
+        Iterator<E> i = iterator();//返回迭代器
         while (i.hasNext()) {
             E obj = i.next();
             if (obj != null)
-                h += obj.hashCode();
+                h += obj.hashCode(); //这里累加元素的hashCode值,因为Set中元素不相同,所以每个Set的hashCode值一定不相同.
         }
         return h;
     }

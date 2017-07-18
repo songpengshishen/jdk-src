@@ -28,6 +28,9 @@ package java.util;
 import java.io.InvalidObjectException;
 
 /**
+ *
+ * 这个类实现了一个以哈希表(hashMap)为基础的Set集合,是一个迭代无序,不允许重复元素的集合.
+ * 所有对元素的操作都是基于内部的HashMap.包装了HashMap的皮
  * This class implements the <tt>Set</tt> interface, backed by a hash table
  * (actually a <tt>HashMap</tt> instance).  It makes no guarantees as to the
  * iteration order of the set; in particular, it does not guarantee that the
@@ -91,14 +94,18 @@ public class HashSet<E>
     implements Set<E>, Cloneable, java.io.Serializable
 {
     static final long serialVersionUID = -5024744406713321676L;
-
+    /**
+     * 内部的HashMap对象
+     */
     private transient HashMap<E,Object> map;
 
-    // Dummy value to associate with an Object in the backing Map
+    /**
+     * HashSet中map对象所有key映射的虚拟值,也就是说所有的HashSet值作为key都对应这个值{@link HashSet#PRESENT}在Map中存储
+     */
     private static final Object PRESENT = new Object();
 
     /**
-     * Constructs a new, empty set; the backing <tt>HashMap</tt> instance has
+     * HashSet空构造器,初始化内部的HashMap,默认容量16,负载因子0.75
      * default initial capacity (16) and load factor (0.75).
      */
     public HashSet() {
@@ -106,11 +113,11 @@ public class HashSet<E>
     }
 
     /**
+     * HashSet构造器,根据传入的集合来构造HashSet内部的HashMap.并将传入的集合的元素批量加入到HashMap中
      * Constructs a new set containing the elements in the specified
      * collection.  The <tt>HashMap</tt> is created with default load factor
      * (0.75) and an initial capacity sufficient to contain the elements in
      * the specified collection.
-     *
      * @param c the collection whose elements are to be placed into this set
      * @throws NullPointerException if the specified collection is null
      */
@@ -120,9 +127,9 @@ public class HashSet<E>
     }
 
     /**
+     * HashSet构造器,根据传入的容量与负载因子创建内部的HashMap
      * Constructs a new, empty set; the backing <tt>HashMap</tt> instance has
      * the specified initial capacity and the specified load factor.
-     *
      * @param      initialCapacity   the initial capacity of the hash map
      * @param      loadFactor        the load factor of the hash map
      * @throws     IllegalArgumentException if the initial capacity is less
@@ -133,9 +140,9 @@ public class HashSet<E>
     }
 
     /**
+     * HashSet构造器,根据传入的容量创建内部的HashMap
      * Constructs a new, empty set; the backing <tt>HashMap</tt> instance has
      * the specified initial capacity and default load factor (0.75).
-     *
      * @param      initialCapacity   the initial capacity of the hash table
      * @throws     IllegalArgumentException if the initial capacity is less
      *             than zero
@@ -145,11 +152,11 @@ public class HashSet<E>
     }
 
     /**
+     * HashSet构造器,根据传入的容量与负载因子创建内部的HashMap注意该HashMap是LinkedHashMap并且该构造器是包访问权限
      * Constructs a new, empty linked hash set.  (This package private
      * constructor is only used by LinkedHashSet.) The backing
      * HashMap instance is a LinkedHashMap with the specified initial
      * capacity and the specified load factor.
-     *
      * @param      initialCapacity   the initial capacity of the hash map
      * @param      loadFactor        the load factor of the hash map
      * @param      dummy             ignored (distinguishes this
@@ -162,19 +169,21 @@ public class HashSet<E>
     }
 
     /**
+     * 返回HashSet的迭代器
      * Returns an iterator over the elements in this set.  The elements
      * are returned in no particular order.
      *
      * @return an Iterator over the elements in this set
      * @see ConcurrentModificationException
      */
-    public Iterator<E> iterator() {
-        return map.keySet().iterator();
+    public Iterator<E> iterator()
+    {
+        return map.keySet().iterator();//使用内部的HashMap的KeySet方法获取Map中key的Set集合.并返回这个Set的迭代器
     }
 
     /**
+     * 返回Map中实际元素的个数
      * Returns the number of elements in this set (its cardinality).
-     *
      * @return the number of elements in this set (its cardinality)
      */
     public int size() {
@@ -183,7 +192,6 @@ public class HashSet<E>
 
     /**
      * Returns <tt>true</tt> if this set contains no elements.
-     *
      * @return <tt>true</tt> if this set contains no elements
      */
     public boolean isEmpty() {
@@ -204,6 +212,7 @@ public class HashSet<E>
     }
 
     /**
+     * 添加元素到HashSet中,添加成功表示元素在集合中是唯一的,false代表集合中已经包含该元素
      * Adds the specified element to this set if it is not already present.
      * More formally, adds the specified element <tt>e</tt> to this set if
      * this set contains no element <tt>e2</tt> such that
@@ -216,10 +225,11 @@ public class HashSet<E>
      * element
      */
     public boolean add(E e) {
-        return map.put(e, PRESENT)==null;
+        return map.put(e, PRESENT)==null; //将元素插入到内部的HashMap中,以PRESENT为固定value.
     }
 
     /**
+     * 从当前HashSet中删除指定元素,删除成功表示该元素在hashSet存在.
      * Removes the specified element from this set if it is present.
      * More formally, removes an element <tt>e</tt> such that
      * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>,

@@ -36,7 +36,7 @@ import java.util.function.Consumer;
  * <strong>
  * <a href="{@docRoot}/../technotes/guides/language/foreach.html">For-each Loop</a>
  * </strong>
- * 实现此接口的类需要实现迭代器功能，并且对象可以通过foreach语法进行迭代.
+ * 实现此接口的类需要实现迭代器功能，并且实现该接口的类可以通过foreach语法进行迭代.
  * @param <T> the type of elements returned by the iterator
  *
  * @since 1.5

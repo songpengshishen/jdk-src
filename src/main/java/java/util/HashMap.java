@@ -490,6 +490,8 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     /**
      * 负载因子 负载因子与hashMap容量的乘积得出hashHap扩容的阀值 {@code threshold}.
      * 因为是常量,所以hashMap的负载因子只会赋值一次.
+     * 负载因子值的选择决定了当前数据结构的空间及时间复杂度
+     * 所以应该根据程序在使用这个数据结构时的偏重点(到底是注重时间性能还是空间性能)来设置这个负载因子或者最好的就是使用默认值
      * The load factor for the hash table.
      * @serial
      */
