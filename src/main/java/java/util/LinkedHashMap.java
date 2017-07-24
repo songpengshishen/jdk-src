@@ -147,7 +147,8 @@ import java.io.IOException;
  * The spliterators returned by the spliterator method of the collections
  * returned by all of this class's collection view methods are created from
  * the iterators of the corresponding collections.
- *
+ * 哈希表与双向链表的结合体,保存了元素插入的顺序关系,并且可以按照我们插入的顺序进行访问迭代.
+ * 继承了hashMap并实现了Map接口
  * @param <K> the type of keys maintained by this map
  * @param <V> the type of mapped values
  *
@@ -186,11 +187,42 @@ public class LinkedHashMap<K,V>
      * access, insertion, and removal.
      */
 
+
+    /*****************
+
+     linkedHashMap 立体图形  LinkedHashMap会将元素串起来，形成一个双链表结构。
+     其结构在HashMap结构上增加了链表结构。数据结构为（数组(存放每个键对应的值) + 单链表(拉链法存放桶中hash冲突元素) + 红黑树(单链表超过阀值后进化的) + 双向链表(存放按照顺序插入的元素,会重复存放hash冲突节点,包括了单链表桶中元素)）
+     //bucket桶
+     Node1  <->  Node1 <-> Node1----------<> 双向链表+单向链表
+                                          |
+     Node2                                |
+                                          |
+     Node3 -------------------------------<>
+
+     Node4
+
+     HashMap
+
+     Node5                    Node6
+     Node6
+     Node6 -  Node6                  ....树化的红黑树
+     Node6
+     Node7                    Node6
+
+     Node8
+
+     *******************/
+
+
+
     /**
+     * linkedHashMap中链表节点对象
+     * 继承HashMap的Node,为linkedHashMap中的数据节点对象.实际存放数据的对象.
      * HashMap.Node subclass for normal LinkedHashMap entries.
      */
     static class Entry<K,V> extends HashMap.Node<K,V> {
-        Entry<K,V> before, after;
+        Entry<K,V> before, after;//双向链表的前后节点指针
+        //其他继承Node包括next单向链表域
         Entry(int hash, K key, V value, Node<K,V> next) {
             super(hash, key, value, next);
         }
@@ -199,16 +231,21 @@ public class LinkedHashMap<K,V>
     private static final long serialVersionUID = 3801124242820219131L;
 
     /**
+     * 链表头结点
      * The head (eldest) of the doubly linked list.
      */
     transient Entry<K,V> head;
 
     /**
+     * 链表尾结点
      * The tail (youngest) of the doubly linked list.
      */
     transient Entry<K,V> tail;
 
     /**
+     * 访问顺序
+     * 为true表示之后访问顺序按照元素的访问顺序进行，即不按照之前的插入顺序了，access为false表示按照插入顺序访问。默认为false.
+     * 成员常量没有在声明时给定值,是为了在构造器中设置值.通过选择不同构造器来设置该值.
      * The iteration ordering method for this linked hash map: <tt>true</tt>
      * for access-order, <tt>false</tt> for insertion-order.
      *
@@ -218,13 +255,14 @@ public class LinkedHashMap<K,V>
 
     // internal utilities
 
-    // link at the end of list
+    // link at the end of list 将节点插入到双向链表尾部
     private void linkNodeLast(Entry<K,V> p) {
-        Entry<K,V> last = tail;
-        tail = p;
+        Entry<K,V> last = tail;//尾节点赋值给临时变量
+        tail = p; //新节点赋值给尾部节点
         if (last == null)
-            head = p;
+            head = p;//原尾部节点是空,则代表这个链表是空的,那新节点即是尾节点也是头节点
         else {
+            //原尾部节点不是空,将俩个节点链接在一起.
             p.before = last;
             last.after = p;
         }
@@ -252,9 +290,20 @@ public class LinkedHashMap<K,V>
         head = tail = null;
     }
 
+    /**
+     * 创建一个LinkedHashMap Entry新节点,将HashMap.Node包装成LinkedHashMap.Entry
+     * 注意该方法是重写HashMap的newNode
+     * @param hash key hash值
+     * @param key
+     * @param value
+     * @param e {@link java.util.HashMap.Node}
+     * @return
+     */
     Node<K,V> newNode(int hash, K key, V value, Node<K,V> e) {
+        // 生成Entry结点
         Entry<K,V> p =
             new Entry<K,V>(hash, key, value, e);
+        //将节点插入到双向链表尾部
         linkNodeLast(p);
         return p;
     }
@@ -334,7 +383,9 @@ public class LinkedHashMap<K,V>
         }
     }
 
+
     /**
+     * 根据初始容量与负载因子调用父类的构造器初始化linkedHashMap,accessOrder设置为false
      * Constructs an empty insertion-ordered <tt>LinkedHashMap</tt> instance
      * with the specified initial capacity and load factor.
      *
@@ -349,6 +400,7 @@ public class LinkedHashMap<K,V>
     }
 
     /**
+     * 根据初始容量调用父类的构造器初始化linkedHashMap,accessOrder设置为false
      * Constructs an empty insertion-ordered <tt>LinkedHashMap</tt> instance
      * with the specified initial capacity and a default load factor (0.75).
      *
@@ -361,6 +413,7 @@ public class LinkedHashMap<K,V>
     }
 
     /**
+     * 根据默认的容量与默认的负载因子调用父类的构造器初始化linkedHashMap,accessOrder设置为false
      * Constructs an empty insertion-ordered <tt>LinkedHashMap</tt> instance
      * with the default initial capacity (16) and load factor (0.75).
      */
@@ -370,6 +423,7 @@ public class LinkedHashMap<K,V>
     }
 
     /**
+     * 根据传入的Map初始化linkedHashMap,并将map中的元素插入到哈希表中
      * Constructs an insertion-ordered <tt>LinkedHashMap</tt> instance with
      * the same mappings as the specified map.  The <tt>LinkedHashMap</tt>
      * instance is created with a default load factor (0.75) and an initial
@@ -385,6 +439,7 @@ public class LinkedHashMap<K,V>
     }
 
     /**
+     * 根据初始容量与负载因子调用父类的构造器初始化linkedHashMap,并根据accessOrder设置控制访问顺序.
      * Constructs an empty <tt>LinkedHashMap</tt> instance with the
      * specified initial capacity, load factor and ordering mode.
      *

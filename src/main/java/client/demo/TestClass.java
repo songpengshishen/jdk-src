@@ -10,6 +10,12 @@ import java.util.Set;
  */
 public class TestClass extends TestAbstractClass implements TestInterface{
 
+    final boolean testField;
+
+
+    public TestClass(){
+        testField = false;
+    }
 
     @Override
     public void test1() {
