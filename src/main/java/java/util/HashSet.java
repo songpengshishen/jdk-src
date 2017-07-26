@@ -100,7 +100,7 @@ public class HashSet<E>
     private transient HashMap<E,Object> map;
 
     /**
-     * HashSet中map对象所有key映射的虚拟值,也就是说所有的HashSet值作为key都对应这个值{@link HashSet#PRESENT}在Map中存储
+     * HashSet中map表所有key映射的虚拟值,也就是说所有的HashSet值在作为哈希表的key时都对应这个值{@link HashSet#PRESENT}在Map中存储
      */
     private static final Object PRESENT = new Object();
 

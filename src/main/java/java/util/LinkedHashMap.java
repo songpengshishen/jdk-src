@@ -191,7 +191,7 @@ public class LinkedHashMap<K,V>
     /*****************
 
      linkedHashMap 立体图形  LinkedHashMap会将元素串起来，形成一个双链表结构。
-     其结构在HashMap结构上增加了链表结构。数据结构为（数组(存放每个键对应的值) + 单链表(拉链法存放桶中hash冲突元素) + 红黑树(单链表超过阀值后进化的) + 双向链表(存放按照顺序插入的元素,会重复存放hash冲突节点,包括了单链表桶中元素)）
+     其结构在HashMap结构上增加了链表结构。数据结构为（数组(存放每个键对应的值) + 单链表(拉链法存放桶中hash冲突元素) + 红黑树(单链表超过阀值后进化的) + 双向链表(存放按照顺序插入的元素,会重复存放hash冲突节点,包括了桶中单链表元素)）
      //bucket桶
      Node1  <->  Node1 <-> Node1----------<> 双向链表+单向链表
                                           |
@@ -255,7 +255,7 @@ public class LinkedHashMap<K,V>
 
     // internal utilities
 
-    // link at the end of list 将节点插入到双向链表尾部
+    // link at the end of list 将节点插入到双向链表尾部,这个方法是linkedHashMap可以保存插入元素顺序的关键
     private void linkNodeLast(Entry<K,V> p) {
         Entry<K,V> last = tail;//尾节点赋值给临时变量
         tail = p; //新节点赋值给尾部节点
@@ -351,21 +351,26 @@ public class LinkedHashMap<K,V>
         }
     }
 
+    /**
+     * 在新节点插入后.对节点做处理
+     * 这个方法在HashMap中声明为空方法,并在put,replace等方法中都有回调.
+     * @param e
+     */
     void afterNodeAccess(Node<K,V> e) { // move node to last
-        Entry<K,V> last;
+        Entry<K,V> last;//声明一个entry节点
+        //如果访问顺序为true并且操作的节点不是尾节点
         if (accessOrder && (last = tail) != e) {
-            Entry<K,V> p =
-                (Entry<K,V>)e, b = p.before, a = p.after;
-            p.after = null;
+            Entry<K,V> p = (Entry<K,V>)e, b = p.before, a = p.after; //e强转为Entry并赋值给p,上级节点赋值给b,下级节点赋值给a
+            p.after = null; // p 的下级节点置空
             if (b == null)
-                head = a;
+                head = a; //b是空说明p就是头结点,将a设置为头节点
             else
-                b.after = a;
+                b.after = a; //b的下级节点为a跳过p
             if (a != null)
-                a.before = b;
+                a.before = b; //a不是null将a的上级节点连上b
             else
                 last = b;
-            if (last == null)
+            if (last == null) //如果p的上级节点和下级节点都为null则p就为head
                 head = p;
             else {
                 p.before = last;
@@ -753,6 +758,9 @@ public class LinkedHashMap<K,V>
 
     // Iterators
 
+    /**
+     * LinkedHashMap 迭代器,迭代时(next)通过双向链表的上下级指针域来迭代.
+     */
     abstract class LinkedHashIterator {
         Entry<K,V> next;
         Entry<K,V> current;
