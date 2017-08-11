@@ -321,7 +321,7 @@ import java.util.*;
 public class ThreadPoolExecutor extends AbstractExecutorService {
     /**
      * 线程池的核心变量,保存所有有效线程的数量以及线程池的状态.
-     * 其中低29位存线程数,高3位存线程状态
+     * 其中低29位存线程数,高3位存线程池状态
      * 此变量是JAVA的原子整型类,操作都是基于CAS的原子操作.
      * The main pool control state, ctl, is an atomic integer packing
      * two conceptual fields
@@ -607,6 +607,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
         new RuntimePermission("modifyThread");
 
     /**
+     * 一个内部类,对任务的抽象,每一个任务都被抽象为一个worker
      * Class Worker mainly maintains interrupt control state for
      * threads running tasks, along with other minor bookkeeping.
      * This class opportunistically extends AbstractQueuedSynchronizer
