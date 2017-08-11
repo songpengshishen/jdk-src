@@ -41,6 +41,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.*;
 
 /**
+ *
+ * 线程池执行者类
  * An {@link ExecutorService} that executes each submitted task using
  * one of possibly several pooled threads, normally configured
  * using {@link Executors} factory methods.
@@ -318,6 +320,9 @@ import java.util.*;
  */
 public class ThreadPoolExecutor extends AbstractExecutorService {
     /**
+     * 线程池的核心变量,保存所有有效线程的数量以及线程池的状态.
+     * 其中低29位存线程数,高3位存线程状态
+     * 此变量是JAVA的原子整型类,操作都是基于CAS的原子操作.
      * The main pool control state, ctl, is an atomic integer packing
      * two conceptual fields
      *   workerCount, indicating the effective number of threads
@@ -375,19 +380,44 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
      * below).
      */
     private final AtomicInteger ctl = new AtomicInteger(ctlOf(RUNNING, 0));
+
+
     private static final int COUNT_BITS = Integer.SIZE - 3;
     private static final int CAPACITY   = (1 << COUNT_BITS) - 1;
 
     // runState is stored in the high-order bits
-    private static final int RUNNING    = -1 << COUNT_BITS;
-    private static final int SHUTDOWN   =  0 << COUNT_BITS;
-    private static final int STOP       =  1 << COUNT_BITS;
-    private static final int TIDYING    =  2 << COUNT_BITS;
-    private static final int TERMINATED =  3 << COUNT_BITS;
+    //线程池的状态值
+    private static final int RUNNING    = -1 << COUNT_BITS; //-536870912
+    private static final int SHUTDOWN   =  0 << COUNT_BITS; // 0
+    private static final int STOP       =  1 << COUNT_BITS; // 536870912
+    private static final int TIDYING    =  2 << COUNT_BITS; // 1073741824
+    private static final int TERMINATED =  3 << COUNT_BITS; // 1610612736
 
-    // Packing and unpacking ctl
+    /**
+     * 该方法用来获取ctl的高3位即线程池状态值(runState)
+     * 因为CAPACITY值为：00011111111111111111111111111111,~为按位取反操作，则~CAPACITY值为：11100000000000000000000000000000,
+     * 再同参数做&操作，就将低29位置0了，而高3位还是保持原先的值，也就是runState的值
+     * @param c  ctl, 存储runState和workerCount的int值
+     * @return
+     */
     private static int runStateOf(int c)     { return c & ~CAPACITY; }
+
+    /**
+     * 该方法用来获取ctl的低29位即当前线程池的有效线程数(workerCount)
+     * 因为CAPACITY值为：00011111111111111111111111111111，所以&操作将参数的高3位置0了, 保留参数的低29位，也就是workerCount的值
+     * @param c  ctl, 存储runState和workerCount的int值
+     * @return
+     */
     private static int workerCountOf(int c)  { return c & CAPACITY; }
+
+
+    /**
+     * 将ctl的 runState和workerCount存到同一个int中,通过|运算符将俩个变量的二进制合并到一起
+     * 假设rs的值是101000，wc的值是000111，则他们位或运算的值为101111
+     * @param rs runState移位过后的值，负责填充返回值的高3位
+     * @param wc workerCount移位过后的值，负责填充返回值的低29位
+     * @return
+     */
     private static int ctlOf(int rs, int wc) { return rs | wc; }
 
     /*
@@ -403,6 +433,11 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
         return c >= s;
     }
 
+    /**
+     * 判断是否是运行状态,只有Running小于0
+     * @param c
+     * @return
+     */
     private static boolean isRunning(int c) {
         return c < SHUTDOWN;
     }
@@ -513,6 +548,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
     private volatile RejectedExecutionHandler handler;
 
     /**
+     * 线程空闲存活时间,对于大于corePoolSize数量的线程,超过这个时间没有任务执行即空闲这么久,就被删除
      * Timeout in nanoseconds for idle threads waiting for work.
      * Threads use this timeout when there are more than corePoolSize
      * present or if allowCoreThreadTimeOut. Otherwise they wait
@@ -528,6 +564,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
     private volatile boolean allowCoreThreadTimeOut;
 
     /**
+     * 线程池核心线程数量,当活动数量小于corePoolSize时创建,大于等于则先加到workQueue中，队列满了才创建新的线程
      * Core pool size is the minimum number of workers to keep alive
      * (and not allow to time out etc) unless allowCoreThreadTimeOut
      * is set, in which case the minimum is zero.
