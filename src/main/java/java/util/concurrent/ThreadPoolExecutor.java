@@ -323,6 +323,8 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
      * 线程池的核心变量,保存所有有效线程的数量以及线程池的状态.
      * 其中低29位存线程数,高3位存线程池状态
      * 此变量是JAVA的原子整型类,操作都是基于CAS的原子操作.
+     * 使用一种巧妙的方式将有效线程数和线程池状态用一个变量存储,具体为什么这么做还不太清楚，猜想是节省内存.
+     * 默认是RUNNING状态，线程个数为0
      * The main pool control state, ctl, is an atomic integer packing
      * two conceptual fields
      *   workerCount, indicating the effective number of threads
@@ -381,18 +383,24 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
      */
     private final AtomicInteger ctl = new AtomicInteger(ctlOf(RUNNING, 0));
 
-
+    //线程池线程个数所占位数 29位
     private static final int COUNT_BITS = Integer.SIZE - 3;
-    private static final int CAPACITY   = (1 << COUNT_BITS) - 1;
+    //线程池中线程最大个数(低29位)00011111111111111111111111111111,利用该常量与ctl作二进制逻辑运算，可以获取高三位和低29位
+    private static final int CAPACITY   = (1 << COUNT_BITS) - 1; //536870911
 
-    // runState is stored in the high-order bits
-    //线程池的状态值
+
+    /****线程池的状态值 runState start****/
+    // 运行状态:接受新任务并且处理阻塞任务队列里的任务,取值（高3位）：11100000000000000000000000000000
     private static final int RUNNING    = -1 << COUNT_BITS; //-536870912
+    // 关闭状态:拒绝新任务但是处理阻塞任务队列里的任务,取值（高3位）：00000000000000000000000000000000
     private static final int SHUTDOWN   =  0 << COUNT_BITS; // 0
+    // 暂停状态:拒绝新任务并且抛弃阻塞队列里的任务同时会中断正在处理的任务,取值（高3位）：00100000000000000000000000000000
     private static final int STOP       =  1 << COUNT_BITS; // 536870912
+    // 完成状态:所有任务都执行完（包含阻塞任务队列里面任务）当前线程池活动线程为0，将要调用terminated方法,取值（高3位）：01000000000000000000000000000000
     private static final int TIDYING    =  2 << COUNT_BITS; // 1073741824
+    // 终止状态:terminated方法调用完成以后的状态,取值 （高3位）：01100000000000000000000000000000
     private static final int TERMINATED =  3 << COUNT_BITS; // 1610612736
-
+    /****线程池的状态值 runState end****/
     /**
      * 该方法用来获取ctl的高3位即线程池状态值(runState)
      * 因为CAPACITY值为：00011111111111111111111111111111,~为按位取反操作，则~CAPACITY值为：11100000000000000000000000000000,
@@ -413,9 +421,10 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 
     /**
      * 将ctl的 runState和workerCount存到同一个int中,通过|运算符将俩个变量的二进制合并到一起
-     * 假设rs的值是101000，wc的值是000111，则他们位或运算的值为101111
-     * @param rs runState移位过后的值，负责填充返回值的高3位
-     * @param wc workerCount移位过后的值，负责填充返回值的低29位
+     * 举个例子: rs取值RUNNING: 11100000000000000000000000000000 | wc取值1:00000000000000000000000000000001
+     * 因为rs低29位是0,wc高三位是0,或运算后保留了rs的高三位及wc的低29位值位11100000000000000000000000000001.
+     * @param rs runState 线程池运行状态 取值:RUNNING,SHUTDOWN,STOP...负责填充CTL的高三位,其低29位都是0
+     * @param wc workerCount 线程池的线程个数 负责填充CTL的低29位,因为取值不可以超过 CAPACITY,故其高三位都是0.
      * @return
      */
     private static int ctlOf(int rs, int wc) { return rs | wc; }
@@ -434,7 +443,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
     }
 
     /**
-     * 判断是否是运行状态,只有Running小于0
+     * 判断是否是运行状态,只有Running小于0低于ShutDown
      * @param c
      * @return
      */
@@ -466,6 +475,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
     }
 
     /**
+     * 用于保存任务的阻塞任务队列
      * The queue used for holding tasks and handing off to worker
      * threads.  We do not require that workQueue.poll() returning
      * null necessarily means that workQueue.isEmpty(), so rely
@@ -543,6 +553,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
     private volatile ThreadFactory threadFactory;
 
     /**
+     * 线程池饱和时的拒绝执行任务策略.队列满了并且线程个数达到maximunPoolSize后采取的策略
      * Handler called when saturated or shutdown in execute.
      */
     private volatile RejectedExecutionHandler handler;
@@ -572,6 +583,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
     private volatile int corePoolSize;
 
     /**
+     * 线程池最大线程数量
      * Maximum pool size. Note that the actual maximum is internally
      * bounded by CAPACITY.
      */
@@ -932,14 +944,14 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
     private boolean addWorker(Runnable firstTask, boolean core) {
         retry:
         for (;;) {
+            //获取当前线程池状态
             int c = ctl.get();
             int rs = runStateOf(c);
 
             // Check if queue empty only if necessary.
-            if (rs >= SHUTDOWN &&
-                ! (rs == SHUTDOWN &&
-                   firstTask == null &&
-                   ! workQueue.isEmpty()))
+            //左边表达式:当线程池状态为 shutdown|stop|TIDYING|TERMINATED 时
+            //右边表达式:
+            if (rs >= SHUTDOWN && ! (rs == SHUTDOWN && firstTask == null && ! workQueue.isEmpty()))
                 return false;
 
             for (;;) {
@@ -1202,6 +1214,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
     // Public constructors and methods
 
     /**
+     * 创建一个ThreadPoolExecutor,使用默认的线程工厂与RejectedExecutionHandler
      * Creates a new {@code ThreadPoolExecutor} with the given initial
      * parameters and default thread factory and rejected execution handler.
      * It may be more convenient to use one of the {@link Executors} factory
@@ -1235,6 +1248,8 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
     }
 
     /**
+     * 创建一个ThreadPoolExecutor,使用默认的RejectedExecutionHandler.{@link AbortPolicy}
+     * 拒绝任务并抛出异常.
      * Creates a new {@code ThreadPoolExecutor} with the given initial
      * parameters and default rejected execution handler.
      *
@@ -1270,6 +1285,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
     }
 
     /**
+     * 创建一个ThreadPoolExecutor,使用默认的线程工厂Executors.defaultThreadFactory()
      * Creates a new {@code ThreadPoolExecutor} with the given initial
      * parameters and default thread factory.
      *
@@ -1305,6 +1321,9 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
     }
 
     /**
+     *
+     * 最基本的包含所有参数的创建ThreadPoolExecutor的构造器
+     * NOTE:JDK中很多类都采取,定义一个包含所有参数的基本构造器,然后在这个构造器之上进行扩展其他简易版构造器.
      * Creates a new {@code ThreadPoolExecutor} with the given initial
      * parameters.
      *
@@ -1354,6 +1373,11 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
     }
 
     /**
+     * 线程池主要方法,用来执行任务.
+     * 主要分为三个步骤
+     * 1:活动线程小于corePoolSize的时候创建新的线程；
+     * 2:活动线程大于corePoolSize时都是先加入到任务队列当中；
+     * 3:任务队列满了再去启动新的线程，如果线程数达到最大值就拒绝任务。
      * Executes the given task sometime in the future.  The task
      * may execute in a new thread or in an existing pooled thread.
      *
@@ -1361,10 +1385,11 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
      * executor has been shutdown or because its capacity has been reached,
      * the task is handled by the current {@code RejectedExecutionHandler}.
      *
-     * @param command the task to execute
+     * @param command the task to execute 一个实现了线程执行类{@link Runnable}的类
      * @throws RejectedExecutionException at discretion of
      *         {@code RejectedExecutionHandler}, if the task
-     *         cannot be accepted for execution
+     *         cannot be accepted for execution  拒绝执行任务异常,当线程池饱满时抛出异常,线程池线程已达{@link ThreadPoolExecutor#maximumPoolSize},并且任务队列也满了
+     *         线程池就达到饱满.
      * @throws NullPointerException if {@code command} is null
      */
     public void execute(Runnable command) {
@@ -1390,20 +1415,31 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
          * thread.  If it fails, we know we are shut down or saturated
          * and so reject the task.
          */
-        int c = ctl.get();
+        int c = ctl.get();//原子性的获取ctl
+        //workerCountOf(c)获取有效线程数,如果低于核心线程数,则创建新的线程执行.
         if (workerCountOf(c) < corePoolSize) {
+             // 直接启动新的线程。第二个参数true:addWorker中会重新检查workerCount是否小于corePoolSize
             if (addWorker(command, true))
                 return;
             c = ctl.get();
         }
+
+        //如果线程池是Running状态,并且队列没有满
         if (isRunning(c) && workQueue.offer(command)) {
             int recheck = ctl.get();
+            //二次验证
+            //如果不是Running状态,从任务队列中移除任务
             if (! isRunning(recheck) && remove(command))
+                //拒绝执行给定任务策略
                 reject(command);
+           // 线程池处于RUNNING状态 || 线程池处于非RUNNING状态但是任务移除失败
             else if (workerCountOf(recheck) == 0)
+                // 这行代码是为了SHUTDOWN状态下没有活动线程了，但是队列里还有任务没执行这种特殊情况。
+                // 添加一个null任务是因为SHUTDOWN状态下，线程池不再接受新任务
                 addWorker(null, false);
         }
         else if (!addWorker(command, false))
+            //拒绝执行给定任务策略
             reject(command);
     }
 
