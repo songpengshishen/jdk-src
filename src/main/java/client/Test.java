@@ -11,9 +11,16 @@ public class Test<T> {
 
 
     public static void main(String[] args) throws Exception {
-        int COUNT_BITS = Integer.SIZE - 3;
-        int CAPACITY   = (1 << COUNT_BITS) - 1;
-        System.out.println(CAPACITY);
+        int i = 0;
+        retry:
+        for (;;) {
+             if(i<5){
+                 System.out.println(i++);
+                 continue retry;
+             }
+            break retry;
+        }
+        System.out.println("over!");
     }
 
 

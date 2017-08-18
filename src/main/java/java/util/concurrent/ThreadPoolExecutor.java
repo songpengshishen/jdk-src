@@ -916,6 +916,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
      */
 
     /**
+     * 添加新任务.启动新线程.
      * Checks if a new worker can be added with respect to current
      * pool state and the given bound (either core or maximum). If so,
      * the worker count is adjusted accordingly, and, if possible, a
@@ -941,27 +942,32 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
      * state).
      * @return true if successful
      */
-    private boolean addWorker(Runnable firstTask, boolean core) {
+    private boolean addWorker(Runnable firstTask, boolean  core) {
+        //retry就是一个标号,类似于goto,continue时重新返回到retry,break时跳出retry以及其下语句
+        //这里的retry的作用猜想是为了在多层循环时,从内层的for循环处跳回到retry和外层循环或者跳出retry和外层循环,这样代码很简洁.
         retry:
         for (;;) {
-            //获取当前线程池状态
+            //获取当前线程池状态和线程池工作线程数量
             int c = ctl.get();
             int rs = runStateOf(c);
 
             // Check if queue empty only if necessary.
-            //左边表达式:当线程池状态为 shutdown|stop|TIDYING|TERMINATED 时
-            //右边表达式:
+            //如果线程池状态是在SHUTDOWN以后的状态,并且rs不是shutDown,或者firstTask不为空,或者队列是空都不在执行余下操作,创建线程.
             if (rs >= SHUTDOWN && ! (rs == SHUTDOWN && firstTask == null && ! workQueue.isEmpty()))
                 return false;
 
             for (;;) {
+                //获取线程池工作线程数
                 int wc = workerCountOf(c);
+                //当工作线程数大于线程池的最大容量或者大于等于corePoolSize|maximumPoolSize
                 if (wc >= CAPACITY ||
                     wc >= (core ? corePoolSize : maximumPoolSize))
                     return false;
+                //cas算法增加线程池线程数量 ctl
                 if (compareAndIncrementWorkerCount(c))
                     break retry;
                 c = ctl.get();  // Re-read ctl
+                //cas失败了，则看线程池状态是否变化了，变化则跳到外层循环重试重新获取线程池状态，否者内层循环重新cas。
                 if (runStateOf(c) != rs)
                     continue retry;
                 // else CAS failed due to workerCount change; retry inner loop
@@ -972,15 +978,18 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
         boolean workerAdded = false;
         Worker w = null;
         try {
+            //创建任务
             w = new Worker(firstTask);
             final Thread t = w.thread;
             if (t != null) {
+                //上锁
                 final ReentrantLock mainLock = this.mainLock;
                 mainLock.lock();
                 try {
                     // Recheck while holding lock.
                     // Back out on ThreadFactory failure or if
                     // shut down before lock acquired.
+                    //获取线程池的状态
                     int rs = runStateOf(ctl.get());
 
                     if (rs < SHUTDOWN ||
@@ -1424,20 +1433,21 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
             c = ctl.get();
         }
 
-        //如果线程池是Running状态,并且队列没有满
+        //如果大于核心线程数,或者创建新线程失败.判断线程池状态是否处于Running,并且则添加到阻塞任务队列中
         if (isRunning(c) && workQueue.offer(command)) {
             int recheck = ctl.get();
             //二次验证
-            //如果不是Running状态,从任务队列中移除任务
+            //如果不是Running状态,不接受任务新加的任务,从阻塞任务队列中移除刚加入的任务.
             if (! isRunning(recheck) && remove(command))
                 //拒绝执行给定任务策略
                 reject(command);
-           // 线程池处于RUNNING状态 || 线程池处于非RUNNING状态但是任务移除失败
+           // 线程池处于RUNNING状态 || 线程池处于非RUNNING状态但是任务移除失败, 判断如果当前线程池线程空，则添加一个线程
             else if (workerCountOf(recheck) == 0)
                 // 这行代码是为了SHUTDOWN状态下没有活动线程了，但是队列里还有任务没执行这种特殊情况。
                 // 添加一个null任务是因为SHUTDOWN状态下，线程池不再接受新任务
                 addWorker(null, false);
         }
+        //如果队列满了，则新增线程，新增失败则执行拒绝策略
         else if (!addWorker(command, false))
             //拒绝执行给定任务策略
             reject(command);
