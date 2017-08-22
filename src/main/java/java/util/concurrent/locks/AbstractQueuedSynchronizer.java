@@ -282,7 +282,9 @@ import sun.misc.Unsafe;
  *     sync.acquireSharedInterruptibly(1);
  *   }
  * }}</pre>
- *
+ * 抽象的队列式的同步器,也被称作AQS.
+ * AQS基本概念:AQS是一个多线程的同步模板类,许多同步类实现都依赖于它，如常用的ReentrantLock/Semaphore/CountDownLatch...,主要目的是实现多个线程获取共享资源时的同步与互斥
+ * AQS提供二种方式,使得多线程占用资源.1:独占(Exclusive)只有一个线程能执行，如ReentrantLock.2:共享(Share)多个线程可同时执行，如Semaphore/CountDownLatch.
  * @since 1.5
  * @author Doug Lea
  */
@@ -576,17 +578,20 @@ public abstract class AbstractQueuedSynchronizer
     static final long spinForTimeoutThreshold = 1000L;
 
     /**
+     * 将指定节点插入到等待队列的队尾
      * Inserts node into queue, initializing if necessary. See picture above.
      * @param node the node to insert
      * @return node's predecessor
      */
     private Node enq(final Node node) {
+        //无限循环生成CAS"自旋"，直到成功加入队尾
         for (;;) {
             Node t = tail;
-            if (t == null) { // Must initialize
+            if (t == null) { // 队列为空，创建一个空的标志结点作为head结点，并将tail也指向它。
                 if (compareAndSetHead(new Node()))
                     tail = head;
             } else {
+                //最终正常流程，放入队尾
                 node.prev = t;
                 if (compareAndSetTail(t, node)) {
                     t.next = node;
@@ -596,15 +601,24 @@ public abstract class AbstractQueuedSynchronizer
         }
     }
 
+
+    public Node enn(final  Node node){
+        for(;;){
+
+        }
+
+    }
+
     /**
+     * 将当前线程加入到等待队列队尾,并返回当前线程所在节点.
      * Creates and enqueues node for current thread and given mode.
-     *
      * @param mode Node.EXCLUSIVE for exclusive, Node.SHARED for shared
      * @return the new node
      */
     private Node addWaiter(Node mode) {
+        //创建节点以当前线程和给定模式为参数
         Node node = new Node(Thread.currentThread(), mode);
-        // Try the fast path of enq; backup to full enq on failure
+        //尝试快速方式直接放到队尾。
         Node pred = tail;
         if (pred != null) {
             node.prev = pred;
@@ -613,6 +627,7 @@ public abstract class AbstractQueuedSynchronizer
                 return node;
             }
         }
+        //尝试失败则通过enq入队。
         enq(node);
         return node;
     }
@@ -1047,6 +1062,8 @@ public abstract class AbstractQueuedSynchronizer
     // Main exported methods
 
     /**
+     *
+     * 该方法在此类中没有实现直接抛出异常,交给子类去实现.
      * Attempts to acquire in exclusive mode. This method should query
      * if the state of the object permits it to be acquired in the
      * exclusive mode, and if so to acquire it.
@@ -1183,6 +1200,7 @@ public abstract class AbstractQueuedSynchronizer
     }
 
     /**
+     * 以独占模式的方式让线程获取共享资源,此方法是顶级方法无法被重写.如果获取到资源，线程直接返回，否则进入等待队列，直到获取到资源为止，且整个过程忽略中断的影响(什么意思)
      * Acquires in exclusive mode, ignoring interrupts.  Implemented
      * by invoking at least once {@link #tryAcquire},
      * returning on success.  Otherwise the thread is queued, possibly
@@ -1195,6 +1213,7 @@ public abstract class AbstractQueuedSynchronizer
      *        can represent anything you like.
      */
     public final void acquire(int arg) {
+        //tryAcquire方法尝试获取资源,获取到,线程直接返回,否则线程通过acquireQueued方法进入到等待队列一直获取到资源后才返回。如果在整个等待过程中被中断过，则返回true，否则返回false。
         if (!tryAcquire(arg) &&
             acquireQueued(addWaiter(Node.EXCLUSIVE), arg))
             selfInterrupt();
