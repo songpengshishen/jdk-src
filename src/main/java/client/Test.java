@@ -9,18 +9,27 @@ import java.util.*;
  */
 public class Test<T> {
 
+   public static Object Lock = new Object();
 
     public static void main(String[] args) throws Exception {
-        int i = 0;
-        retry:
-        for (;;) {
-             if(i<5){
-                 System.out.println(i++);
-                 continue retry;
-             }
-            break retry;
-        }
-        System.out.println("over!");
+       Thread t1 = new Thread(() -> {
+           try {
+               System.out.println("我在执行!");
+               synchronized (Lock){
+                   System.out.println(Thread.currentThread().getName()+"拿到锁");
+                   Lock.wait();
+               }
+           }catch (InterruptedException e){
+               System.out.println("阻塞时被中断了");
+           }
+           System.out.println("哇,我结束了!");
+       });
+       t1.start();
+       Thread.sleep(1000);
+       synchronized (Lock){
+           System.out.println(Thread.currentThread().getName()+"拿到锁");
+           t1.interrupt();
+       }
     }
 
 

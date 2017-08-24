@@ -799,37 +799,35 @@ public abstract class AbstractQueuedSynchronizer
     }
 
     /**
+     * 检查线程与前驱线程的状态,来确定当前线程是否可以真正去wait了.
      * Checks and updates status for a node that failed to acquire.
      * Returns true if thread should block. This is the main signal
      * control in all acquire loops.  Requires that pred == node.prev.
      *
-     * @param pred node's predecessor holding status
-     * @param node the node
-     * @return {@code true} if thread should block
+     * @param pred node's predecessor holding status 当前线程的前驱节点
+     * @param node the node 当前线程节点
+     * @return {@code true} if thread should block 返回true代表可以进入wait了,
      */
     private static boolean shouldParkAfterFailedAcquire(Node pred, Node node) {
-        int ws = pred.waitStatus;
+        int ws = pred.waitStatus;//得到队列中前驱线程节点状态
         if (ws == Node.SIGNAL)
             /*
              * This node has already set status asking a release
              * to signal it, so it can safely park.
              */
+            //如果已经告诉前驱拿完号后通知自己一下(Unpark)，那就可以安心休息了.
             return true;
         if (ws > 0) {
             /*
-             * Predecessor was cancelled. Skip over predecessors and
-             * indicate retry.
-             */
+            * 如果前驱放弃了，那就一直往前找，直到找到最近一个正常等待的状态，并排在它的后边。
+            * 注意：那些放弃的结点，由于被自己“加塞”到它们前边，它们相当于形成一个无引用链，稍后就会被保安大叔赶走了(GC回收)！
+            */
             do {
                 node.prev = pred = pred.prev;
             } while (pred.waitStatus > 0);
             pred.next = node;
         } else {
-            /*
-             * waitStatus must be 0 or PROPAGATE.  Indicate that we
-             * need a signal, but don't park yet.  Caller will need to
-             * retry to make sure it cannot acquire before parking.
-             */
+            //如果前驱是正常，那就把前驱的状态设置成SIGNAL，告诉它拿完号后通知自己一下。有可能失败，人家说不定刚刚释放完呢！
             compareAndSetWaitStatus(pred, ws, Node.SIGNAL);
         }
         return false;
@@ -843,13 +841,14 @@ public abstract class AbstractQueuedSynchronizer
     }
 
     /**
+     *
      * Convenience method to park and then check if interrupted
      *
      * @return {@code true} if interrupted
      */
     private final boolean parkAndCheckInterrupt() {
-        LockSupport.park(this);
-        return Thread.interrupted();
+        LockSupport.park(this);//调用park()使线程进入waiting状态
+        return Thread.interrupted();//如果被唤醒，查看自己是不是被中断的
     }
 
     /*
@@ -862,30 +861,35 @@ public abstract class AbstractQueuedSynchronizer
      */
 
     /**
+     * 在队列中通过循环自旋不断的尝试去获取独占资源,并返回获取过程中是否中断过。
      * Acquires in exclusive uninterruptible mode for thread already in
      * queue. Used by condition wait methods as well as acquire.
-     *
      * @param node the node
      * @param arg the acquire argument
      * @return {@code true} if interrupted while waiting
      */
     final boolean acquireQueued(final Node node, int arg) {
-        boolean failed = true;
+        boolean failed = true; //是否拿到过资源标识
         try {
-            boolean interrupted = false;
+            boolean interrupted = false;//是否被中断过
+            //循环自旋
             for (;;) {
-                final Node p = node.predecessor();
+                final Node p = node.predecessor();//拿到当前线程在队列中的前驱节点
+                //如果前驱节点是头节点,自己就是下一个那么就尝试去获取资源,前驱节点可能已经释放资源并唤醒自己，或者被中断了.
                 if (p == head && tryAcquire(arg)) {
+                    //获取到资源,将自己设置为队列中的头节点
                     setHead(node);
-                    p.next = null; // help GC
-                    failed = false;
-                    return interrupted;
+                    p.next = null; // help GC 原来的老大的next指针域设置为null,帮助GC
+                    failed = false;//这段代码不太理解
+                    return interrupted;//返回等待过程中是否被中断过
                 }
+                //如果自己可以休息了，就进入waiting状态，直到被unpark()
                 if (shouldParkAfterFailedAcquire(p, node) &&
                     parkAndCheckInterrupt())
-                    interrupted = true;
+                    interrupted = true;//如果等待过程中被中断过，哪怕只有那么一次，就将interrupted标记为true
             }
         } finally {
+            //这段代码不太理解
             if (failed)
                 cancelAcquire(node);
         }
@@ -1216,7 +1220,7 @@ public abstract class AbstractQueuedSynchronizer
         //tryAcquire方法尝试获取资源,获取到,线程直接返回,否则线程通过acquireQueued方法进入到等待队列一直获取到资源后才返回。如果在整个等待过程中被中断过，则返回true，否则返回false。
         if (!tryAcquire(arg) &&
             acquireQueued(addWaiter(Node.EXCLUSIVE), arg))
-            selfInterrupt();
+            selfInterrupt();//当前线程设置中断位
     }
 
     /**
