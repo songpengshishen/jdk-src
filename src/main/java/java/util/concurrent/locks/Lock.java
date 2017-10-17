@@ -37,6 +37,7 @@ package java.util.concurrent.locks;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * JAVA JUC体系中的锁的抽象表示,具有多种获取锁资源的方式.
  * {@code Lock} implementations provide more extensive locking
  * operations than can be obtained using {@code synchronized} methods
  * and statements.  They allow more flexible structuring, may have
@@ -167,8 +168,8 @@ import java.util.concurrent.TimeUnit;
 public interface Lock {
 
     /**
+     * 获取锁,如果锁是可用的,获取到的线程直接返回.如果锁不可用被其他线程占用,则线程会被挂起直到锁可用并获取到锁
      * Acquires the lock.
-     *
      * <p>If the lock is not available then the current thread becomes
      * disabled for thread scheduling purposes and lies dormant until the
      * lock has been acquired.
@@ -184,6 +185,8 @@ public interface Lock {
     void lock();
 
     /**
+     * 可中断的获取锁
+     * 获取锁或者拿到锁执行的时候，线程可以响应中断
      * Acquires the lock unless the current thread is
      * {@linkplain Thread#interrupt interrupted}.
      *
@@ -232,6 +235,7 @@ public interface Lock {
     void lockInterruptibly() throws InterruptedException;
 
     /**
+     * 尝试获取锁.线程获取成功与否都会立即返回,不会导致线程阻塞或等待,换言之多个线程同时去抢一个锁只有一个抢成功,其它的立即返回不阻塞.具有可中断Interruptibly特性.
      * Acquires the lock only if it is free at the time of invocation.
      *
      * <p>Acquires the lock if it is available and returns immediately
@@ -261,6 +265,11 @@ public interface Lock {
     boolean tryLock();
 
     /**
+     * 具备超时特性的tryLock版本
+     * 在指定的时间内获取到锁会返回true
+     * 在这段时间内被中断了,会返回false
+     * 在这段时间内没有获取到锁，会返回false
+     * 具有可中断Interruptibly特性.
      * Acquires the lock if it is free within the given waiting time and the
      * current thread has not been {@linkplain Thread#interrupt interrupted}.
      *
@@ -321,6 +330,7 @@ public interface Lock {
     boolean tryLock(long time, TimeUnit unit) throws InterruptedException;
 
     /**
+     * 释放锁
      * Releases the lock.
      *
      * <p><b>Implementation Considerations</b>
@@ -335,6 +345,7 @@ public interface Lock {
     void unlock();
 
     /**
+     * 新建一个Condition对象
      * Returns a new {@link Condition} instance that is bound to this
      * {@code Lock} instance.
      *

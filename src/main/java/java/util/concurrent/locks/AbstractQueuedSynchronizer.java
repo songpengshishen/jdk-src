@@ -282,8 +282,8 @@ import sun.misc.Unsafe;
  *     sync.acquireSharedInterruptibly(1);
  *   }
  * }}</pre>
- * 抽象的队列式的同步器,也被称作AQS.
- * AQS基本概念:AQS是一个多线程的同步模板类,许多同步类实现都依赖于它，如常用的ReentrantLock/Semaphore/CountDownLatch...,主要目的是实现多个线程获取共享资源时的同步与互斥
+ * 抽象的队列式的同步器,也被称作AQS.是JUC中的核心同步类
+ * AQS基本概念:AQS是一个多线程的同步模板容器类,许多同步类实现都依赖于它，如常用的ReentrantLock/Semaphore/CountDownLatch...,主要目的是实现多个线程获取共享资源时的同步与互斥
  * AQS提供二种方式,使得多线程占用资源.1:独占(Exclusive)只有一个线程能执行，如ReentrantLock.2:共享(Share)多个线程可同时执行，如Semaphore/CountDownLatch.
  * @since 1.5
  * @author Doug Lea
