@@ -150,16 +150,22 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
  * actions following a successful return from a corresponding
  * {@code await()} in another thread.
  *
+ * 倒计时锁阀值同步工具类 : 通过共享锁的方式实现让一个或多个线程等待其他线程的操作执行完后再执行.从而实现线程通信.属于juc的一个同步工具类.
+ *
  * @since 1.5
  * @author Doug Lea
  */
 public class CountDownLatch {
+
+
     /**
+     * 静态的成员内部类,继承AQS的同步工具类.CountDownLatch通过组合的方式来使用AQS功能,并未直接继承.多用组合,少用继承.
      * Synchronization control For CountDownLatch.
      * Uses AQS state to represent count.
      */
     private static final class Sync extends AbstractQueuedSynchronizer {
         private static final long serialVersionUID = 4982264981922014374L;
+
 
         Sync(int count) {
             setState(count);
@@ -169,12 +175,24 @@ public class CountDownLatch {
             return getState();
         }
 
+        /**
+         * 尝试获取共享锁,如果AQS_state为0,则返回1代表获取到,否则返回-1没有获取到.
+         * 这个方法重写了AQS的tryAcquireShared,尝试获取共享锁.并返回获取结果.
+         * @param acquires
+         * @return
+         */
         protected int tryAcquireShared(int acquires) {
             return (getState() == 0) ? 1 : -1;
         }
 
+        /**
+         * 尝试释放共享锁,具有原子性
+         * 这个方法重写了AQS的tryReleaseShared,尝试释放共享锁.并返回释放的整体结果.
+         * @param releases
+         * @return
+         */
         protected boolean tryReleaseShared(int releases) {
-            // Decrement count; signal when transition to zero
+            //针对AQSstate,循环自旋的减1
             for (;;) {
                 int c = getState();
                 if (c == 0)
@@ -189,6 +207,7 @@ public class CountDownLatch {
     private final Sync sync;
 
     /**
+     * 构造CountDownLatch对象,内部创建sync对象.
      * Constructs a {@code CountDownLatch} initialized with the given count.
      *
      * @param count the number of times {@link #countDown} must be invoked
@@ -201,6 +220,8 @@ public class CountDownLatch {
     }
 
     /**
+     * 如果当前倒计时锁不低于0,当前线程进入阻塞状态,并放到AQS的队列中.
+     * 如果当前倒计时锁低于0,线程直接执行,执行过该方法的线程直接返回并运行,该方法可以使调用线程中断.
      * Causes the current thread to wait until the latch has counted down to
      * zero, unless the thread is {@linkplain Thread#interrupt interrupted}.
      *
@@ -232,6 +253,7 @@ public class CountDownLatch {
     }
 
     /**
+     * 具有超时时间的await,超过指定的timeOut,线程会自动唤醒
      * Causes the current thread to wait until the latch has counted down to
      * zero, unless the thread is {@linkplain Thread#interrupt interrupted},
      * or the specified waiting time elapses.
@@ -278,6 +300,7 @@ public class CountDownLatch {
     }
 
     /**
+     * 释放一次共享锁,原子性减一.
      * Decrements the count of the latch, releasing all waiting threads if
      * the count reaches zero.
      *
@@ -292,6 +315,7 @@ public class CountDownLatch {
     }
 
     /**
+     * 获取当前的倒计时计数
      * Returns the current count.
      *
      * <p>This method is typically used for debugging and testing purposes.
