@@ -131,13 +131,22 @@ import java.util.concurrent.locks.ReentrantLock;
  * <i>happen-before</i> actions following a successful return from the
  * corresponding {@code await()} in other threads.
  *
+ * 循环屏障同步工具类 : 允许让一组线程全部都等待到一个屏障点(通过await),在接着执行.并且可以循环使用,当所有线程都达到屏障点后接着执行时,清空自身状态循环使用.
+ *                  和CountDownLatch区别在于,CountDownLatch是每个线程执行完通过CountDown()来释放一个锁,直到都释放完毕后在唤醒等待的线程开始执行,
+ *                  而CyclicBarrier则是每个线程达到屏障点释放锁,直到释放完毕后在全部执行.而且CyclicBarrier是可以循环使用的.
+ *
+ * 此类的实现不依赖于AQS,主要通过ReentrantLock独占锁和Condition实现.
  * @since 1.5
  * @see CountDownLatch
  *
  * @author Doug Lea
  */
 public class CyclicBarrier {
+
+
     /**
+     * 循环屏障可以循环使用,每一次重新循环使用都重新创建该对象.Generation对象表示循环屏障
+     * 每次循环使用的记录.
      * Each use of the barrier is represented as a generation instance.
      * The generation changes whenever the barrier is tripped, or
      * is reset. There can be many generations associated with threads
@@ -152,15 +161,15 @@ public class CyclicBarrier {
         boolean broken = false;
     }
 
-    /** The lock for guarding barrier entry */
+    /** The lock for guarding barrier entry 可重入的独占锁,用来对使用循环屏障工具类的线程加锁. */
     private final ReentrantLock lock = new ReentrantLock();
-    /** Condition to wait on until tripped */
+    /** Condition to wait on until tripped 锁条件,用来睡眠以及唤醒线程. */
     private final Condition trip = lock.newCondition();
-    /** The number of parties */
+    /** The number of parties 等待屏障状态的线程数量 */
     private final int parties;
-    /* The command to run when tripped */
+    /* The command to run when tripped 全部达到屏障状态后默认执行的任务*/
     private final Runnable barrierCommand;
-    /** The current generation */
+    /** The current generation  当前循环的代对象*/
     private Generation generation = new Generation();
 
     /**
@@ -171,6 +180,8 @@ public class CyclicBarrier {
     private int count;
 
     /**
+     * 开启下一次屏障使用:
+     *                 更新屏障状态值,唤醒所有使用屏障的线程,重新创建{@Generation}对象
      * Updates state on barrier trip and wakes up everyone.
      * Called only while holding lock.
      */
@@ -202,15 +213,17 @@ public class CyclicBarrier {
         lock.lock();
         try {
             final Generation g = generation;
-
+            /*如果屏障状态已经损坏,直接抛出异常*/
             if (g.broken)
                 throw new BrokenBarrierException();
 
+            /*线程如果中断,跳出屏障唤醒之前等待的所有线程,并给当前线程抛异常*/
             if (Thread.interrupted()) {
                 breakBarrier();
                 throw new InterruptedException();
             }
 
+            //每当有一个线程await进入屏障状态  count 减 一,为0的时候代表都进入屏障状态,唤醒所有线程进入下一轮循环.如果有默认执行任务则执行.
             int index = --count;
             if (index == 0) {  // tripped
                 boolean ranAction = false;
@@ -227,7 +240,7 @@ public class CyclicBarrier {
                 }
             }
 
-            // loop until tripped, broken, interrupted, or timed out
+            // loop until tripped, broken, interrupted, or timed out 自旋直到线程被中断,或达到屏障状态被唤醒
             for (;;) {
                 try {
                     if (!timed)
@@ -248,7 +261,7 @@ public class CyclicBarrier {
 
                 if (g.broken)
                     throw new BrokenBarrierException();
-
+                //循环屏障已经到下一轮了,直接返回
                 if (g != generation)
                     return index;
 
@@ -263,6 +276,9 @@ public class CyclicBarrier {
     }
 
     /**
+     *
+     * 创建一个新的循环屏障实例,指定等待屏障状态的线程数量,并且指定都达到屏障状态时的预执行任务.
+     *
      * Creates a new {@code CyclicBarrier} that will trip when the
      * given number of parties (threads) are waiting upon it, and which
      * will execute the given barrier action when the barrier is tripped,
@@ -304,6 +320,10 @@ public class CyclicBarrier {
     }
 
     /**
+     *
+     * 使该线程在当前屏障上等待,如果线程不是最后一个线程则进入阻塞状态,直到最后一个线程也达到屏障状态在被唤醒重新工作
+     * 或者线程自身中断导致抛异常.
+     *
      * Waits until all {@linkplain #getParties parties} have invoked
      * {@code await} on this barrier.
      *
