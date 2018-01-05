@@ -150,15 +150,21 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
  * actions following a successful "acquire" method such as {@code acquire()}
  * in another thread.
  *
+ * 信号量同步工具类 : 用来控制一个特定的共享资源可被同时访问的线程数量.当同时访问的线程数量已达上限,信号量就类似与变成了红灯线程都不可以执行并进入阻塞状态.每当一个线程执行完释放了,信号量
+ *                 就又变成绿灯,其他线程就可以继续执行.
+ *
+ *
  * @since 1.5
  * @author Doug Lea
  */
 public class Semaphore implements java.io.Serializable {
     private static final long serialVersionUID = -3222578661600680210L;
-    /** All mechanics via AbstractQueuedSynchronizer subclass */
+
+    /** All mechanics via AbstractQueuedSynchronizer subclass AQS 子类*/
     private final Sync sync;
 
     /**
+     * 信号量内部实现线程控制的静态成员内部类,继承与AQS
      * Synchronization implementation for semaphore.  Uses AQS state
      * to represent permits. Subclassed into fair and nonfair
      * versions.
@@ -216,6 +222,7 @@ public class Semaphore implements java.io.Serializable {
     }
 
     /**
+     * 非公平同步工具类
      * NonFair version
      */
     static final class NonfairSync extends Sync {
@@ -231,6 +238,7 @@ public class Semaphore implements java.io.Serializable {
     }
 
     /**
+     * 公平同步工具类
      * Fair version
      */
     static final class FairSync extends Sync {
@@ -254,6 +262,7 @@ public class Semaphore implements java.io.Serializable {
     }
 
     /**
+     * 创建一个信号量实例,根据传入的参数设置允许同时访问的线程数.默认创建非公平Sync
      * Creates a {@code Semaphore} with the given number of
      * permits and nonfair fairness setting.
      *
@@ -266,6 +275,7 @@ public class Semaphore implements java.io.Serializable {
     }
 
     /**
+     * 创建一个信号量实例,根据传入的参数设置允许同时访问的线程数.根据传入的参数设置是公平还是非公平
      * Creates a {@code Semaphore} with the given number of
      * permits and the given fairness setting.
      *
@@ -281,6 +291,8 @@ public class Semaphore implements java.io.Serializable {
     }
 
     /**
+     * 获取一个信号量的许可证,如果没有获取到则阻塞当前线程.获取到的线程则可以访问共享资源.通过AQS的底层共享锁方式实现.
+     * 获取许可证时线程可以被中断.
      * Acquires a permit from this semaphore, blocking until one is
      * available, or the thread is {@linkplain Thread#interrupt interrupted}.
      *
@@ -313,6 +325,8 @@ public class Semaphore implements java.io.Serializable {
     }
 
     /**
+     * 获取一个信号量的许可证,如果没有获取到则阻塞当前线程.获取到的线程则可以访问共享资源.通过AQS的底层共享锁方式实现.
+     * 获取许可证时线程不接受中断.
      * Acquires a permit from this semaphore, blocking until one is
      * available.
      *
