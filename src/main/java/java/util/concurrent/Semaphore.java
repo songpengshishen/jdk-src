@@ -184,6 +184,7 @@ public class Semaphore implements java.io.Serializable {
             for (;;) {
                 int available = getState();
                 int remaining = available - acquires;
+                //如果remaining小于0则不必要在cas,减少不必要操作,同时减少了cas操作的资源开销
                 if (remaining < 0 ||
                     compareAndSetState(available, remaining))
                     return remaining;
@@ -350,6 +351,7 @@ public class Semaphore implements java.io.Serializable {
     }
 
     /**
+     * 尝试去获取许可证,如果获取成功返回true,获取失败返回false,无论是否获取到许可证线程都不会阻塞而是继续执行.
      * Acquires a permit from this semaphore, only if one is available at the
      * time of invocation.
      *
@@ -378,6 +380,7 @@ public class Semaphore implements java.io.Serializable {
     }
 
     /**
+     * 尝试去获取许可证,如果获取成功返回true,获取失败则会在timeout时间内重复去获取,如果超时了还没获取到则返回false
      * Acquires a permit from this semaphore, if one becomes available
      * within the given waiting time and the current thread has not
      * been {@linkplain Thread#interrupt interrupted}.
@@ -424,6 +427,7 @@ public class Semaphore implements java.io.Serializable {
     }
 
     /**
+     * 释放一个许可证
      * Releases a permit, returning it to the semaphore.
      *
      * <p>Releases a permit, increasing the number of available permits by
@@ -624,6 +628,7 @@ public class Semaphore implements java.io.Serializable {
     }
 
     /**
+     * 获取可用的许可证数量
      * Returns the current number of permits available in this semaphore.
      *
      * <p>This method is typically used for debugging and testing purposes.
@@ -644,6 +649,7 @@ public class Semaphore implements java.io.Serializable {
     }
 
     /**
+     * 减少许可证
      * Shrinks the number of available permits by the indicated
      * reduction. This method can be useful in subclasses that use
      * semaphores to track resources that become unavailable. This
@@ -659,8 +665,8 @@ public class Semaphore implements java.io.Serializable {
     }
 
     /**
+     * 线程等待信号量时是否是公平的
      * Returns {@code true} if this semaphore has fairness set true.
-     *
      * @return {@code true} if this semaphore has fairness set true
      */
     public boolean isFair() {
@@ -668,6 +674,7 @@ public class Semaphore implements java.io.Serializable {
     }
 
     /**
+     *
      * Queries whether any threads are waiting to acquire. Note that
      * because cancellations may occur at any time, a {@code true}
      * return does not guarantee that any other thread will ever
