@@ -53,9 +53,7 @@ public class JvmInfoUtils {
             System.out.println("fullGC 次数 : "  + jvmInfoUtils.fullGC.getCollectionCount());
             System.out.println("fullGC 时间 : "  + jvmInfoUtils.fullGC.getCollectionTime());
             System.out.println("youngGC 名称 : " + jvmInfoUtils.fullGC.getName());
-            System.out.println(jvmInfoUtils.threadMxBean.getPeakThreadCount());
-            System.out.println(jvmInfoUtils.threadMxBean.getDaemonThreadCount());
-            System.out.println(jvmInfoUtils.memoryMXBean.getHeapMemoryUsage().getUsed());
+            System.out.println("操作系统名称: " + jvmInfoUtils.operatingSystemMXBean.getName());
         }
     }
 
