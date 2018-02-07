@@ -37,13 +37,14 @@ package java.util.concurrent;
 
 /**
  * A handler for tasks that cannot be executed by a {@link ThreadPoolExecutor}.
- *
+ * 线程池中拒绝执行策略接口,该接口主要是为了给线程池使用.
  * @since 1.5
  * @author Doug Lea
  */
 public interface RejectedExecutionHandler {
 
     /**
+     * 线程池拒绝执行任务时,执行该方法处理.
      * Method that may be invoked by a {@link ThreadPoolExecutor} when
      * {@link ThreadPoolExecutor#execute execute} cannot accept a
      * task.  This may occur when no more threads or queue slots are

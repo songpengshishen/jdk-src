@@ -42,7 +42,7 @@ import java.util.*;
 
 /**
  *
- * 线程池执行者类
+ *
  * An {@link ExecutorService} that executes each submitted task using
  * one of possibly several pooled threads, normally configured
  * using {@link Executors} factory methods.
@@ -314,6 +314,8 @@ import java.util.*;
  *     }
  *   }
  * }}</pre>
+ *
+ * 线程池执行者类 : JAVA线程池的核心类,基于该类可以构建自定义的线程池类
  *
  * @since 1.5
  * @author Doug Lea
@@ -974,6 +976,9 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
             }
         }
 
+        /**
+         * 创建work,创建线程执行Task
+         */
         boolean workerStarted = false;
         boolean workerAdded = false;
         Worker w = null;
@@ -1386,7 +1391,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
      * 主要分为三个步骤
      * 1:活动线程小于corePoolSize的时候创建新的线程；
      * 2:活动线程大于corePoolSize时都是先加入到任务队列当中；
-     * 3:任务队列满了再去启动新的线程，如果线程数达到最大值就拒绝任务。
+     * 3:任务队列满了再去启动新的线程，如果线程数达到设置的最大值就拒绝任务并执行拒绝策略.
      * Executes the given task sometime in the future.  The task
      * may execute in a new thread or in an existing pooled thread.
      *
@@ -2083,6 +2088,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
     /* Predefined RejectedExecutionHandlers */
 
     /**
+
      * A handler for rejected tasks that runs the rejected task
      * directly in the calling thread of the {@code execute} method,
      * unless the executor has been shut down, in which case the task
