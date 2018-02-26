@@ -140,6 +140,8 @@ package java.util;
  * @since 1.5
  * @author Doug Lea
  * @param <E> the type of elements held in this collection
+ *
+ *   JAVA数据结构中的队列结构接口,一个特殊饿线性表,遵守FIFO特性.
  */
 public interface Queue<E> extends Collection<E> {
     /**
