@@ -75,6 +75,8 @@ import java.util.Spliterator;
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
  * Java Collections Framework</a>.
  *
+ *  一个采用静态数组的阻塞式队列.经典的有界缓冲区
+ *
  * @since 1.5
  * @author Doug Lea
  * @param <E> the type of elements held in this collection
@@ -90,16 +92,16 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
      */
     private static final long serialVersionUID = -817911632652898426L;
 
-    /** The queued items */
+    /** The queued items 存放队列元素的数组 */
     final Object[] items;
 
-    /** items index for next take, poll, peek or remove */
+    /** items index for next take, poll, peek or remove 队头指针索引,下一个取，查看,删除的索引 */
     int takeIndex;
 
-    /** items index for next put, offer, or add */
+    /** items index for next put, offer, or add  队尾指针索引,下一个增加的索引 */
     int putIndex;
 
-    /** Number of elements in the queue */
+    /** Number of elements in the queue 队列总数 */
     int count;
 
     /*
@@ -107,13 +109,13 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
      * found in any textbook.
      */
 
-    /** Main lock guarding all access */
+    /** Main lock guarding all access 可重入锁 */
     final ReentrantLock lock;
 
-    /** Condition for waiting takes */
+    /** Condition for waiting takes 线程等待从队列取数的条件对象 */
     private final Condition notEmpty;
 
-    /** Condition for waiting puts */
+    /** Condition for waiting puts 线程等待向队列写入数据的条件对象  */
     private final Condition notFull;
 
     /**
