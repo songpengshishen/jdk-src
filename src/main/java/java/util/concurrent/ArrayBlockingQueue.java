@@ -35,6 +35,7 @@
 
 package java.util.concurrent;
 import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.AbstractQueue;
 import java.util.Collection;
@@ -101,7 +102,7 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
     /** items index for next put, offer, or add  队尾指针索引,下一个增加的索引 */
     int putIndex;
 
-    /** Number of elements in the queue 队列总数 */
+    /** Number of elements in the queue 队列中实际元素的总数 */
     int count;
 
     /*
@@ -153,6 +154,7 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
     }
 
     /**
+     * 插入队列，只在持有锁时调用。
      * Inserts element at current put position, advances, and signals.
      * Call only when holding lock.
      */
@@ -162,12 +164,13 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
         final Object[] items = this.items;
         items[putIndex] = x;
         if (++putIndex == items.length)
-            putIndex = 0;
+            putIndex = 0;//当队尾的指针索引达到数组长度限制时，设置为0，说明是一个循环队列。
         count++;
-        notEmpty.signal();
+        notEmpty.signal();//唤醒消费者线程
     }
 
     /**
+     * 退出队列，只在持有锁时调用
      * Extracts element at current take position, advances, and signals.
      * Call only when holding lock.
      */
@@ -176,10 +179,11 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
         // assert items[takeIndex] != null;
         final Object[] items = this.items;
         @SuppressWarnings("unchecked")
+        //取出队头指针指向的数据,并设置为null
         E x = (E) items[takeIndex];
         items[takeIndex] = null;
         if (++takeIndex == items.length)
-            takeIndex = 0;
+            takeIndex = 0;//当队头的指针索引达到数组长度限制时，设置为0，说明是一个循环队列。
         count--;
         if (itrs != null)
             itrs.elementDequeued();
@@ -231,6 +235,7 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
     }
 
     /**
+     * 根据初始容量构建一个数组的阻塞队列,有界缓冲区。该队列是非公平的。
      * Creates an {@code ArrayBlockingQueue} with the given (fixed)
      * capacity and default access policy.
      *
@@ -242,6 +247,7 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
     }
 
     /**
+     * 根据初始容量及是否公平性构建一个数组的阻塞队列,有界缓冲区。
      * Creates an {@code ArrayBlockingQueue} with the given (fixed)
      * capacity and the specified access policy.
      *
