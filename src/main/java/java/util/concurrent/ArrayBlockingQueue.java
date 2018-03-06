@@ -321,6 +321,7 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
     }
 
     /**
+     * 将元素插入到队列尾部,如果队列已满,则返回false
      * Inserts the specified element at the tail of this queue if it is
      * possible to do so immediately without exceeding the queue's capacity,
      * returning {@code true} upon success and {@code false} if this queue
@@ -346,6 +347,7 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
     }
 
     /**
+     * 将元素插入到队列尾部,如果队列已满,则阻塞当前线程
      * Inserts the specified element at the tail of this queue, waiting
      * for space to become available if the queue is full.
      *
@@ -366,6 +368,7 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
     }
 
     /**
+     * 将元素插入到队列尾部,如果队列已满,则阻塞当前线程指定时间.
      * Inserts the specified element at the tail of this queue, waiting
      * up to the specified wait time for space to become available if
      * the queue is full.
@@ -393,6 +396,10 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
         }
     }
 
+    /**
+     * 从队列中取出元素,返回取出的元素,如果队列为空则返回null
+     * @return
+     */
     public E poll() {
         final ReentrantLock lock = this.lock;
         lock.lock();
@@ -403,6 +410,10 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
         }
     }
 
+    /**
+     * 从队列中取出元素,返回取出的元素,如果队列为空则阻塞当前线程。
+     * @return
+     */
     public E take() throws InterruptedException {
         final ReentrantLock lock = this.lock;
         lock.lockInterruptibly();
@@ -414,7 +425,10 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
             lock.unlock();
         }
     }
-
+    /**
+     * 从队列中取出元素,返回取出的元素,如果队列为空则阻塞当前线程至指定时间.
+     * @return
+     */
     public E poll(long timeout, TimeUnit unit) throws InterruptedException {
         long nanos = unit.toNanos(timeout);
         final ReentrantLock lock = this.lock;
