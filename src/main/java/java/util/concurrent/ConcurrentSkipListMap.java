@@ -108,6 +108,10 @@ import java.util.function.Function;
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
  * Java Collections Framework</a>.
  *
+ * 并发的跳跃表Map,在并发环境下可以保证线程安全，并且性能优异的进行k/v存取,而且key还是有序存储.
+ *
+ * 线程安全的并发访问的排序映射表,内部使用跳跃表实现,跳跃表是一种链表.
+ *
  * @author Doug Lea
  * @param <K> the type of keys maintained by this map
  * @param <V> the type of mapped values
@@ -360,12 +364,12 @@ public class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
     /**
      * Special value used to identify base-level header
      */
-    private static final Object BASE_HEADER = new Object();
+    private static final Object BASE_HEADER = new Object();//该值用于标记数据节点的头结点
 
     /**
      * The topmost head index of the skiplist.
      */
-    private transient volatile HeadIndex<K,V> head;
+    private transient volatile HeadIndex<K,V> head;//最高级别索引节点的索引头节点
 
     /**
      * The comparator used to maintain order in this map, or null if
@@ -408,6 +412,7 @@ public class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
     /* ---------------- Nodes -------------- */
 
     /**
+     * 数据节点
      * Nodes hold keys and values, and are singly linked in sorted
      * order, possibly with some intervening marker nodes. The list is
      * headed by a dummy node accessible as head.node. The value field
@@ -415,9 +420,9 @@ public class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
      * values for marker and header nodes.
      */
     static final class Node<K,V> {
-        final K key;
-        volatile Object value;
-        volatile Node<K,V> next;
+        final K key; //数据key
+        volatile Object value;//数据value
+        volatile Node<K,V> next;//下一个节点引用
 
         /**
          * Creates a new regular node.
@@ -556,6 +561,7 @@ public class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
     /* ---------------- Indexing -------------- */
 
     /**
+     * 索引节点
      * Index nodes represent the levels of the skip list.  Note that
      * even though both Nodes and Indexes have forward-pointing
      * fields, they have different types and are handled in different
