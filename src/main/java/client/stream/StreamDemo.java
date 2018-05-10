@@ -2,9 +2,7 @@ package client.stream;
 
 import client.lambda.Apple;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -16,6 +14,12 @@ import java.util.stream.Collectors;
 public class StreamDemo {
 
     public static void main(String[] args) {
+        reduceDemo();
+    }
+
+
+
+    public static void simpleDemo(){
         //使用JDK1.8的流方式实现集合中数据的筛选,排序..
         List<Apple> apples = new ArrayList<Apple>();
         apples.add(new Apple(10));
@@ -26,9 +30,58 @@ public class StreamDemo {
         apples.add(new Apple(2));
         //筛选出重量低于10的苹果并排序
         List<Apple> appleList = apples.parallelStream().
-                                filter((Apple a1) -> {return a1.getWeight() < 10;}).
-                                sorted(Comparator.comparing(Apple::getWeight)).
-                                collect(Collectors.toList());
+                filter((Apple a1) -> {return a1.getWeight() < 10;}).
+                sorted(Comparator.comparing(Apple::getWeight)).
+                collect(Collectors.toList());
         System.out.println(appleList);
     }
+
+    /**
+     * 去除重复
+     */
+    public static void distinctDemo(){
+        List<Integer> numbers = Arrays.asList(1,2,3,1,3,2);
+        numbers.stream().distinct().forEach((Integer i) ->{
+            System.out.println(i);
+        });
+    }
+
+    public static void limitDemo(){
+        List<Integer> numbers = Arrays.asList(1,2,3,4,5,6);
+        numbers.stream().limit(3).forEach((i)->{
+            System.out.println(i);
+        });
+    }
+
+    /**
+     * 匹配元素
+     */
+    public static void matchDemo(){
+        List<Integer> numbers = Arrays.asList(1,2,3,4,5,6);
+        boolean flag1 = numbers.stream().anyMatch((i)->{return i<3;});
+        System.out.println(flag1);
+
+
+        boolean flag2 = numbers.stream().allMatch((i)->{return i<3;});
+        System.out.println(flag2);
+    }
+
+    /**
+     * 查找元素
+     */
+    public static void findDemo(){
+        List<Integer> numbers = Arrays.asList(1,2,3,4,5,6);
+        Optional<Integer> result = numbers.stream().filter((i)->{return i<1;}).findAny();
+        System.out.println(result.isPresent());
+    }
+
+    /**
+     * 类似sql中的聚合函数sum max等
+     */
+    public static void reduceDemo(){
+        List<Integer> numbers = Arrays.asList(1,2,3,4,5,6);
+        Optional<Integer> sum = numbers.parallelStream().reduce(Integer::max);
+        System.out.println(sum);
+    }
+
 }
