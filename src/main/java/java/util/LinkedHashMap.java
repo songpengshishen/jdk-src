@@ -147,7 +147,7 @@ import java.io.IOException;
  * The spliterators returned by the spliterator method of the collections
  * returned by all of this class's collection view methods are created from
  * the iterators of the corresponding collections.
- * 哈希表与双向链表的结合体,保存了元素插入的顺序关系,并且可以按照我们插入的顺序进行访问迭代.
+ * 哈希表与双向链表的结合体,保存了元素插入的顺序关系,并且可以按照我们访问的顺序进行访问迭代.
  * 继承了hashMap并实现了Map接口
  * @param <K> the type of keys maintained by this map
  * @param <V> the type of mapped values
