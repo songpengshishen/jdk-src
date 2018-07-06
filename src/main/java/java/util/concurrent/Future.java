@@ -86,7 +86,7 @@ package java.util.concurrent;
  * <p>Memory consistency effects: Actions taken by the asynchronous computation
  * <a href="package-summary.html#MemoryVisibility"> <i>happen-before</i></a>
  * actions following the corresponding {@code Future.get()} in another thread.
- *
+ * 用来描述一个异步计算的任务结果的抽象,可以取消任务,也可以判断任务状态,并且可以获取完成任务的结果.
  * @see FutureTask
  * @see Executor
  * @since 1.5

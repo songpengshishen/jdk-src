@@ -48,7 +48,7 @@ package java.util.concurrent;
  *
  * <p>The {@link Executors} class contains utility methods to
  * convert from other common forms to {@code Callable} classes.
- *
+ * 一个具有返回值或者抛出异常的,线程执行任务对象.通常可用于异步计算
  * @see Executor
  * @since 1.5
  * @author Doug Lea

@@ -130,7 +130,7 @@ import java.util.Collection;
  * <a href="package-summary.html#MemoryVisibility"><i>happen-before</i></a>
  * any actions taken by that task, which in turn <i>happen-before</i> the
  * result is retrieved via {@code Future.get()}.
- *
+ * 提供了更多线程池的管理方法,停止线程池,或向线程池提交一个有返回值的任务对象{@link Future},{@link Callable}
  * @since 1.5
  * @author Doug Lea
  */

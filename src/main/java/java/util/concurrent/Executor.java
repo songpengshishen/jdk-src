@@ -121,7 +121,7 @@ package java.util.concurrent;
  * submitting a {@code Runnable} object to an {@code Executor}
  * <a href="package-summary.html#MemoryVisibility"><i>happen-before</i></a>
  * its execution begins, perhaps in another thread.
- *
+ * 线程池的根级接口,把任务给我我决定何时执行,用什么线程执行!
  * @since 1.5
  * @author Doug Lea
  */
