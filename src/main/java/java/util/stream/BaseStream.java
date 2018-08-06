@@ -52,6 +52,8 @@ import java.util.function.Predicate;
  * specification of streams, stream operations, stream pipelines, and
  * parallelism, which governs the behavior of all stream types.
  *
+ *  最基础的Stream接口
+ *
  * @param <T> the type of the stream elements
  * @param <S> the type of of the stream implementing {@code BaseStream}
  * @since 1.8
@@ -93,6 +95,8 @@ public interface BaseStream<T, S extends BaseStream<T, S>>
     boolean isParallel();
 
     /**
+     *
+     * 返回一个有序的流.
      * Returns an equivalent stream that is sequential.  May return
      * itself, either because the stream was already sequential, or because
      * the underlying stream state was modified to be sequential.

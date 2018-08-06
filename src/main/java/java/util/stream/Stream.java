@@ -144,6 +144,8 @@ import java.util.function.UnaryOperator;
  * {@link #sequential()} or {@link #parallel()} methods, and may be queried with
  * the {@link #isParallel()} method.
  *
+ * 核心Stream接口
+ *
  * @param <T> the type of the stream elements
  * @since 1.8
  * @see IntStream
