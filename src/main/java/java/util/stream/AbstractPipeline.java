@@ -63,7 +63,7 @@ import java.util.function.Supplier;
  * evaluated separately and the result used as the input to the next
  * segment.  In all cases, the source data is not consumed until a terminal
  * operation begins.
- *
+ * Stream的抽象Pipeline类,包含了一个双向链表记录了一次Stream的所有操作步骤.
  * @param <E_IN>  type of input elements
  * @param <E_OUT> type of output elements
  * @param <S> type of the subclass implementing {@code BaseStream}
@@ -75,6 +75,7 @@ abstract class AbstractPipeline<E_IN, E_OUT, S extends BaseStream<E_OUT, S>>
     private static final String MSG_CONSUMED = "source already consumed or closed";
 
     /**
+     * 最开始的操作通过是{@link java.util.stream.ReferencePipeline.Head}
      * Backlink to the head of the pipeline chain (self if this is the source
      * stage).
      */
@@ -82,6 +83,7 @@ abstract class AbstractPipeline<E_IN, E_OUT, S extends BaseStream<E_OUT, S>>
     private final AbstractPipeline sourceStage;
 
     /**
+     * 上一个操作
      * The "upstream" pipeline, or null if this is the source stage.
      */
     @SuppressWarnings("rawtypes")
@@ -94,6 +96,7 @@ abstract class AbstractPipeline<E_IN, E_OUT, S extends BaseStream<E_OUT, S>>
     protected final int sourceOrOpFlags;
 
     /**
+     * 下一个操作
      * The next stage in the pipeline, or null if this is the last stage.
      * Effectively final at the point of linking to the next pipeline.
      */
@@ -101,6 +104,7 @@ abstract class AbstractPipeline<E_IN, E_OUT, S extends BaseStream<E_OUT, S>>
     private AbstractPipeline nextStage;
 
     /**
+     * 管道的深度
      * The number of intermediate operations between this pipeline object
      * and the stream source if sequential, or the previous stateful if parallel.
      * Valid at the point of pipeline preparation for evaluation.

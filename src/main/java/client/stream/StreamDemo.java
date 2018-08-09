@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class StreamDemo {
 
     public static void main(String[] args) {
-        reduceDemo();
+        distinctDemo();
     }
 
 
