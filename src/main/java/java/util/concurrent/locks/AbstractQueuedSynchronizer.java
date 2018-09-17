@@ -530,6 +530,7 @@ public abstract class AbstractQueuedSynchronizer
     private transient volatile Node tail;
 
     /**
+     * 该变量用来表示同步锁状态及数量 state>0?获取到了N个锁:已释放锁
      * The synchronization state.
      */
     private volatile int state;
@@ -553,6 +554,7 @@ public abstract class AbstractQueuedSynchronizer
     }
 
     /**
+     * 以CAS指令原子性的更新State变量,保证在多线程之间安全的更新此值
      * Atomically sets synchronization state to the given updated
      * value if the current state value equals the expected value.
      * This operation has memory semantics of a {@code volatile} read
@@ -1067,7 +1069,7 @@ public abstract class AbstractQueuedSynchronizer
 
     /**
      *
-     * 该方法在此类中没有实现直接抛出异常,交给子类去实现.
+     * 尝试通过独占的方式获取同步锁,交由子类实现
      * Attempts to acquire in exclusive mode. This method should query
      * if the state of the object permits it to be acquired in the
      * exclusive mode, and if so to acquire it.
@@ -1098,6 +1100,7 @@ public abstract class AbstractQueuedSynchronizer
     }
 
     /**
+     * 尝试通过独占的方式释放同步锁,交由子类实现
      * Attempts to set the state to reflect a release in exclusive
      * mode.
      *
@@ -1124,6 +1127,7 @@ public abstract class AbstractQueuedSynchronizer
     }
 
     /**
+     * 尝试通过共享的方式获取锁,交由子类实现
      * Attempts to acquire in shared mode. This method should query if
      * the state of the object permits it to be acquired in the shared
      * mode, and if so to acquire it.
@@ -1160,6 +1164,7 @@ public abstract class AbstractQueuedSynchronizer
     }
 
     /**
+     * 尝试通过共享的方式释放锁,交由子类实现
      * Attempts to set the state to reflect a release in shared mode.
      *
      * <p>This method is always invoked by the thread performing release.
@@ -1185,6 +1190,7 @@ public abstract class AbstractQueuedSynchronizer
     }
 
     /**
+     * 是否被当前线程独占
      * Returns {@code true} if synchronization is held exclusively with
      * respect to the current (calling) thread.  This method is invoked
      * upon each call to a non-waiting {@link ConditionObject} method.
@@ -1204,7 +1210,7 @@ public abstract class AbstractQueuedSynchronizer
     }
 
     /**
-     * 以独占模式的方式让线程获取共享资源,此方法是顶级方法无法被重写.如果获取到资源，线程直接返回，否则进入等待队列，直到获取到资源为止，且整个过程忽略中断的影响(什么意思)
+     * 以独占模式的方式让线程获取共享资源,此方法是顶级方法无法被重写.如果获取到资源，线程直接返回，否则进入等待队列，直到获取到资源为止，且整个过程忽略中断的影响
      * Acquires in exclusive mode, ignoring interrupts.  Implemented
      * by invoking at least once {@link #tryAcquire},
      * returning on success.  Otherwise the thread is queued, possibly
