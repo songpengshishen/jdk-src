@@ -378,6 +378,7 @@ public abstract class AbstractQueuedSynchronizer
      * Scherer and Michael Scott, along with members of JSR-166
      * expert group, for helpful ideas, discussions, and critiques
      * on the design of this class.
+     * 在AQS中一个Node节点代表一个来获取共享资源的线程,每一个Node节点线程都放在了CLH双向队列中
      */
     static final class Node {
         /** Marker to indicate a node is waiting in shared mode */
@@ -516,6 +517,7 @@ public abstract class AbstractQueuedSynchronizer
     }
 
     /**
+     * 等待队列的头部
      * Head of the wait queue, lazily initialized.  Except for
      * initialization, it is modified only via method setHead.  Note:
      * If head exists, its waitStatus is guaranteed not to be
@@ -524,6 +526,7 @@ public abstract class AbstractQueuedSynchronizer
     private transient volatile Node head;
 
     /**
+     * 等待队列的尾部
      * Tail of the wait queue, lazily initialized.  Modified only via
      * method enq to add new wait node.
      */
@@ -620,7 +623,7 @@ public abstract class AbstractQueuedSynchronizer
     private Node addWaiter(Node mode) {
         //创建节点以当前线程和给定模式为参数
         Node node = new Node(Thread.currentThread(), mode);
-        //尝试快速方式直接放到队尾。
+        //先尝试一下直接放到队尾，普通的链表操作.
         Node pred = tail;
         if (pred != null) {
             node.prev = pred;
@@ -811,25 +814,26 @@ public abstract class AbstractQueuedSynchronizer
      * @return {@code true} if thread should block 返回true代表可以进入wait了,
      */
     private static boolean shouldParkAfterFailedAcquire(Node pred, Node node) {
-        int ws = pred.waitStatus;//得到队列中前驱线程节点状态
+        int ws = pred.waitStatus;//得到队列中前面节点状态
+
         if (ws == Node.SIGNAL)
+            //已经通知前面节点释放资源时通知我下
             /*
              * This node has already set status asking a release
              * to signal it, so it can safely park.
              */
-            //如果已经告诉前驱拿完号后通知自己一下(Unpark)，那就可以安心休息了.
             return true;
         if (ws > 0) {
             /*
-            * 如果前驱放弃了，那就一直往前找，直到找到最近一个正常等待的状态，并排在它的后边。
-            * 注意：那些放弃的结点，由于被自己“加塞”到它们前边，它们相当于形成一个无引用链，稍后就会被保安大叔赶走了(GC回收)！
+            * 如果前面节点放弃了，那就一直往前找，直到找到最近一个正常等待的状态，并排在它的后边。
+            * ,这些放弃的节点会被gc回收掉
             */
             do {
                 node.prev = pred = pred.prev;
             } while (pred.waitStatus > 0);
             pred.next = node;
         } else {
-            //如果前驱是正常，那就把前驱的状态设置成SIGNAL，告诉它拿完号后通知自己一下。有可能失败，人家说不定刚刚释放完呢！
+            //如果前驱是正常，那就设置前驱节点状态为SIGNAL,释放资源通知我下
             compareAndSetWaitStatus(pred, ws, Node.SIGNAL);
         }
         return false;
@@ -871,7 +875,7 @@ public abstract class AbstractQueuedSynchronizer
      * @return {@code true} if interrupted while waiting
      */
     final boolean acquireQueued(final Node node, int arg) {
-        boolean failed = true; //是否拿到过资源标识
+        boolean failed = true;
         try {
             boolean interrupted = false;//是否被中断过
             //循环自旋
@@ -882,7 +886,7 @@ public abstract class AbstractQueuedSynchronizer
                     //获取到资源,将自己设置为队列中的头节点
                     setHead(node);
                     p.next = null; // help GC 原来的老大的next指针域设置为null,帮助GC
-                    failed = false;//这段代码不太理解
+                    failed = false;
                     return interrupted;//返回等待过程中是否被中断过
                 }
                 //如果自己可以休息了，就进入waiting状态，直到被unpark()
@@ -1277,6 +1281,7 @@ public abstract class AbstractQueuedSynchronizer
     }
 
     /**
+     * 释放独占模式的线程
      * Releases in exclusive mode.  Implemented by unblocking one or
      * more threads if {@link #tryRelease} returns true.
      * This method can be used to implement method {@link Lock#unlock}.
@@ -1287,6 +1292,7 @@ public abstract class AbstractQueuedSynchronizer
      * @return the value returned from {@link #tryRelease}
      */
     public final boolean release(int arg) {
+        //先释放资源
         if (tryRelease(arg)) {
             Node h = head;
             if (h != null && h.waitStatus != 0)
